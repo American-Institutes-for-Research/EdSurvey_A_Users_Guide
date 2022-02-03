@@ -1,0 +1,256 @@
+# Models {#models}
+```{r loadEdSurvey8, echo=FALSE, message=FALSE}
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+##  Regression Analysis With `lm.sdf`
+After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.
+
+The `lm.sdf` function allows jackknife methods (i.e., JK1, JK2, or BRR) or the Taylor series method for variance estimation. By default, the standard error of coefficient is estimated with the jackknife replication method, but users can switch to the Taylor series when appropriate by setting the `varMethod` argument to `varMethod="Taylor"`. When an explicit weight variable is not set, the `lm.sdf` function uses a default weight for the full sample in the analysis. For instance, `origwt` is the default weight in NAEP.
+
+The data are read in and analyzed by the `lm.sdf` function---in this case, `dsex`, `b017451`, the five plausible values for `composite`, and the full sample weight `origwt`. By default, variance is estimated using the jackknife method, so the following call reads in the jackknife replicate weights:
+
+```{r lm, cache=FALSE, warning=FALSE}
+lm1 <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf)
+summary(lm1)
+```
+
+After the regression is run, the data are automatically removed from memory. 
+
+`EdSurvey` drops level 1 by default from the discrete predictor and treats it as the reference group. The reference level can be changed through the argument `relevels`. For example, in the previous model, the default reference group is males. In the following example, the reference group is changed to "Female" for the variable `dsex`:
+
+```{r lmf, cache=FALSE, warning=FALSE}
+lm1f <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf,
+               relevels = list(dsex = "Female"))
+summary(lm1f)
+```
+
+The coefficient on `dsex` changed from negative in the previous run to positive of the exact same magnitude, whereas none of the other coefficients (aside from the intercept) changed; this is the expected result. 
+
+The standardized regression coefficient also can be returned by adding `src=TRUE` into the summary call for your regression model object: 
+```{r lm1fSrc, cache=FALSE, warning=FALSE}
+summary(lm1f, src=TRUE)
+```
+
+By default, the standardized coefficients are calculated using standard deviations of the variables themselves, including averaging the standard deviation across any plausible values. When `standardizeWithSamplingVar` is set to `TRUE`, the variance of the standardized coefficient is calculated similar to a regression coefficient and therefore includes the sampling variance in the variance estimate of the outcome variable.
+
+### Calculating Multiple Comparisons in lm.sdf
+
+A linear model is analyzed by the `lm.sdf` function---in this case, `dsex`, `b017451`, the five plausible values for `composite`, and the full sample weight `origwt`.
+
+```{r lm1, eval=FALSE}
+lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
+summary(lm1)$coefmat
+```
+```{r table801, echo=FALSE}
+lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
+knitr::kable(x = summary(lm1)$coefmat, digits = 5, row.names = TRUE, caption = "Coefficients \\label{tab:Coefficients}")
+```
+
+The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
+
+```{r lm1pvalues}
+# p-values without adjustment
+summary(lm1)$coefmat[6:8, "Pr(>|t|)"]
+```
+
+Here the Benjamini and Hochberg (1995) FDR adjustment is used in the argument `method = "BH"`. The output below displays the adjusted *p*-values with the FDR adjustment:
+
+```{r pAdjust}
+# Benjamini and Hochberg adjusted p-values
+p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "BH")
+```
+The next example adjusts the same *p*-values using the Bonferroni adjustment with `method="bonferroni"`. Below shows the adjusted *p*-values:
+
+```{r bonferroniAdjustment}
+# Bonferroni adjusted p-values
+p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
+```
+We can compare all the values in a single table in \ref{tab:allp}
+```{r allAdjustments, echo=FALSE}
+raw <- summary(lm1)$coefmat[6:8, "Pr(>|t|)"]
+bh <- p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "BH")
+bon <- p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
+df1 <- data.frame(raw=raw, BH=bh, Bonferroni=bon)
+rownames(df1) <- rownames(lm1$coefmat)[6:8]
+knitr::kable(x = df1, digits = 6, caption = "Various p-values adjustments for b003501 \\label{tab:allp}", row.names=TRUE)
+```
+The coefficients matrix also can be overwritten by selecting the same vector in the `lm1` linear regression object, updated here the Bonferroni p-values:
+
+```{r updateCoefmat, eval=FALSE}
+lm1$coefmat[6:8, "Pr(>|t|)"] <- p.adjust(lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
+summary(lm1)$coefmat[6:8, ]
+```
+
+```{r updateCoefmatout, echo=FALSE}
+lm1$coefmat[6:8, "Pr(>|t|)"] <- p.adjust(lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
+knitr::kable(x = summary(lm1)$coefmat[6:8, ], digits = 5, row.names = TRUE, caption = "Coefficients table after using Bonferroni adjustment to the b003501 variable  \\label{tab:Coefficients with Bonferroni}")
+```
+
+### Adjusting *p*-Values From Multiple Sources
+Sometimes several values must be adjusted at once. In these cases, the `p.adjust` function must be called with all the *p*-values the researcher wishes to adjust together.
+
+For example, if one wishes to adjust values from two regressions and an additional value from another test, all these *p*-values must be put into a single vector and adjusted as a set. Therefore, *p*-value adjustments called on smaller portions of regressions/tests independently may return incorrect adjusted *p*-values and could result in an incorrect inference.
+
+In this example, the coefficients from `b003501` and `b003601`---each from independent regressions---as well as another *p*-value of 0.02 are adjusted.
+
+```{r bones}
+lm2a <- lm.sdf(formula = composite ~ dsex + b003501, data = sdf)
+lm2b <- lm.sdf(formula = composite ~ dsex + b003601, data = sdf)
+# pvalues data.frame with missing values
+# values of coef that are not in this initial call but will be added
+pvalues <- data.frame(source=c(rep("lm2a",3), rep("lm2b",3), "otherp"),
+                      coef=rep("",7),
+                      p=rep(NA,7),
+                      stringsAsFactors=FALSE)
+```
+
+This code  is careful to note where the values came from to help avoid transcription errors. The `pvalues` object is then populated using *p*-values and coefficients from the `lm2a` and `lm2b` linear regression objects, rows 1--3 and 4--6 for each, respectively.
+
+```{r bonesCombined}
+# load in values from lm2a
+lm2aCoef <- summary(lm2a)$coefmat
+pvalues$p[1:3] <- lm2aCoef[3:5,5]
+pvalues$coef[1:3] <- row.names(lm2aCoef)[3:5]
+# load in values from lm2b
+lm2bCoef <- summary(lm2b)$coefmat
+pvalues$p[4:6] <- lm2bCoef[3:5,5]
+pvalues$coef[4:6] <- row.names(lm2aCoef)[3:5]
+```
+
+The additional *p*-value due for adjustment is included in row 7:
+
+```{r pvaluesName, eval=FALSE}
+# load in other p-value
+pvalues$p[7] <- 0.02
+colnames(pvalues)[3] <- "Pr(>|t|)"
+# check matrix
+pvalues
+```
+```{r table804, echo=FALSE}
+# load in other p-value
+pvalues$p[7] <- 0.02
+colnames(pvalues)[3] <- "Pr(>|t|)"
+# check matrix
+knitr::kable(x = pvalues, digits = 7, row.names = FALSE, caption = "Unadjusted *p*-values \\label{tab:unadjustedPValues}")
+```
+
+Now that the aforementioned *p*-values are included in the same vector, they are adjusted via `p.adjust` using the Benjamini and Hochberg method:
+
+```{r pvaluesBenHochberg, eval=FALSE}
+pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
+pvalues
+```
+```{r table805, echo=FALSE}
+pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
+knitr::kable(x = pvalues, digits = 7, row.names = FALSE, caption = "Adjusted *p*-values \\label{tab:adjustedPValues}")
+```
+
+*NOTE:* The `EdSurvey` package produces *p*-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.  
+
+
+##  Multivariate Regression With `mvrlm.sdf`
+A multivariate regression model can be fit to fully account for the complex sample design used for NCES data by using `mvrlm.sdf`. This function implements an estimator that correctly handles multiple dependent variables that are continuous (such as plausible values), which allows for variance estimation using the jackknife replication method.
+
+The vertical line symbol `|` separates dependent variables on the left-hand side of formula. In the following example, a multivariate regression is fit with two subject scales as the outcome variables (`algebra` and `geometry`) by two predictor variables signifying gender and a survey item concerning the ability to identify the best unit of area (`dsex` and `m072801`):
+ 
+```{r mvrlmsdf, cache=FALSE, warning=FALSE}
+mvrlm1 <- mvrlm.sdf(algebra | geometry ~ dsex + m072801, data = sdf)
+summary(mvrlm1)
+```
+
+The `mvrlm.sdf` documentation provides examples to compare the regression outputs. See `?mvrlm.sdf` for an overview of additional details that can be accessed through components of the returned object. In addition, the vignette titled [*Statistical Methods Used in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-Statistics.pdf) goes into further detail by describing estimation of the reported statistics.
+
+##  Logistic Regression Analysis With `glm.sdf`, `logit.sdf`, and `probit.sdf`
+A logistic regression model can be fit to fully account for the complex sample design used for NCES data by using `glm.sdf`, `logit.sdf`, and `probit.sdf`. These functions predict binary outcomes from a set of predictor variables factoring in appropriate weights and variance estimates. `glm.sdf` is an umbrella function that currently fits logit and probit models. Alternatively, users can choose `logit.sdf` or `probit.sdf` functions for binomial outcomes. 
+
+The following example demonstrates how to use `logit.sdf` to predict the number of books at home with student gender. The example arguments are generalizable to `glm.sdf` and `probit.sdf`. For more information about how to use the latter two functions, check their help files by calling `?glm.sdf` and `?probit.sdf`, respectively.
+
+In `logit.sdf`, although some variables might already be binary, the function `I()` will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level: 
+
+```{r logit, cache=FALSE, warning=FALSE}
+logit1 <- logit.sdf(I(b013801 %in% ">100") ~ dsex,
+                    weightVar = 'origwt', data = sdf)
+summary(logit1)
+```
+
+The log odds of having more than 100 books at home (versus less than or equal to 100 books) increases by `0.178274` for female students compared with male students.
+
+Logistic regression results can be further interpreted with the assistance of the `oddsRatio` and `waldTest` functions.
+
+### Recovering Odds Ratios
+The `oddsRatio` helper function converts coefficients from an `EdSurvey` logit regression model to odds ratios. Odds ratios are useful for understanding the real likelihood of an event occurring based on a transformation to the log odds returned in a logistic model.
+
+In `EdSurvey`, odds ratios can be returned by specifying the logistic model object (`logit1`).
+
+```{r oddsRatio, cache=FALSE, warning=FALSE}
+oddsRatio(logit1)
+```
+
+The odds of having more than 100 books at home (versus less than or equal to 100 books) increases by `1.1951531` for female students compared with male students.
+
+### Wald Tests
+The `waldTest` function allows the user to test composite hypotheses---those with multiple coefficients involved---even when the data include plausible values.  Because there is no likelihood test for plausible values or residuals of large-scale assessment data analysis, the Wald test fills the role of the likelihood ratio test, analysis of variance, and the F-test.
+
+Wald tests can be run by specifying the model and coefficients. The second coefficient in our `logit1` model object (`Female`) is tested in the following example:
+
+```{r waldTest, cache=FALSE, warning=FALSE}
+waldTest(model = logit1, coefficients = 2)
+```
+
+To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
+
+##  Quantile Regression Analysis with `rq.sdf`
+The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.
+
+To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the `tau` argument (in this example `tau = 0.8`); all other arguments are otherwise consistent with `lm.sdf`, except for `returnVarEstInputs`, `returnNumberOfPSU`, and `standardizeWithSamplingVar`, which are not available.
+
+```{r rqsdf, cache=FALSE, warning=FALSE}
+rq1 <- rq.sdf(composite ~ dsex + b017451, data=sdf, tau = 0.8)
+summary(rq1)
+```
+
+For further details on quantile regression models and how they are implemented in R, see the vignette from the `quantreg` package (accessible by the `vignette("rq", package="quantreg")`), on which the `rq.sdf` function is built.
+
+##  Mixed Models With `mixed.sdf`
+`EdSurvey` features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. `EdSurvey` fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the `WeMix` package.
+
+This example illustrates how the user might implement student-level weighting when using a survey (NAEP in this example) that does not have a weighting scheme previously implemented.
+
+```{r mixed, cache=FALSE, warning=FALSE}
+# Subset data to a sample of interest
+sdf2 <- subset(sdf, scrpsu < 500)
+
+# Extract variables of interest to a light.edsurvey.data.frame
+lsdf <- getData(sdf2, c("composite","dsex","b017451","scrpsu","origwt","smsrswt"),
+                addAttributes=TRUE)
+
+# Transform weights using your method (Note that this method is not recommended for NAEP)
+lsdf$pwt1 <- lsdf$origwt/lsdf$smsrswt
+lsdf$pwt2 <- lsdf$smsrswt
+
+m1 <- mixed.sdf(composite ~ dsex + b017451 + (1|scrpsu), data=lsdf,
+                weightVar = c('pwt1', 'pwt2'))
+summary(m1)
+```
+
+The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students' gender as a covariate, using TIMSS 2015 datasets. 
+
+```{r mixAgain, cache=FALSE, warning=FALSE}
+
+#Use all plausible values
+TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
+mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
+                  weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
+summary(mix1)
+```
+
+```{r mixed3rd, cache=FALSE, warning=FALSE}
+# uses only one plausible value
+mix2 <- mixed.sdf(asmmat01 ~ itsex + (1|idschool), data = TIMSS15USA,
+                  weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
+summary(mix2)
+```
+
+For further guidance and use cases for mixed-effects models in `EdSurvey`, see the vignette titled [*Methods Used for Estimating Mixed-Effects Models in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-Mixed_Models.pdf). For examples of how NCES recommends using weighted mixed-effects models, as well as their summary of the mathematical background and the description of the insufficiency of hierarchical linear models in this case, see Appendix D in the NCES working paper on analysis of TIMSS data at [*Using TIMSS to Analyze Correlates of Performance Variation in Mathematics*](https://nces.ed.gov/pubs2001/200105.pdf).

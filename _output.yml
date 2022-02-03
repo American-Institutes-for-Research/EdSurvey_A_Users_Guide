@@ -1,0 +1,16 @@
+bookdown::bs4_book:
+  css: ["style.css"]
+  citation_package: none
+  pandoc_args: ["--csl", "apa-annotated-bibliography.csl"]
+  theme:
+    primary: "#003DA5"
+  repo: https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide
+  branch: main
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: none
+  pandoc_args: ["--csl", "apa-annotated-bibliography.csl"]
+  keep_tex: yes
+bookdown::epub_book: default

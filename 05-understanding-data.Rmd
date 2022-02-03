@@ -1,0 +1,249 @@
+```{r loadEdSurvey5, echo=FALSE, message=FALSE}
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+# Understanding Data {#understandingData}
+
+Once data are successfully read in (see how `EdSurvey` supports reading-in data for each study in [Chapter 4](#dataAccess)), users can use the commands in the following sections to understand the data.
+
+To follow along in this chapter, load the [NAEP Primer dataset](https://nces.ed.gov/pubsearch/pubsinfo.asp?pubid=2011463) `M36NT2PM` and assign it the name `sdf` with the following call:
+```{r readIn}
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+## Searching Variables
+The `colnames()` function will list all variable names in the data:
+
+```{r colnames}
+colnames(x = sdf)
+```
+
+To conduct a more powerful search of NAEP data variables, use the `searchSDF()` function, which returns variable names and labels from an `edsurvey.data.frame` based on a character string. The user can specify which data source (either "student" or "school") to search. For example, the following call to `searchSDF()` searches for the character string `"book"` in an `edsurvey.data.frame` and specifies the `fileFormat` to search the student data file:
+
+```{r searchSDFB}
+searchSDF(string = "book", data = sdf, fileFormat = "student")
+```
+
+The levels and labels for each variable searched via `searchSDF()` also can be returned by setting `levels = TRUE`:
+
+```{r searchSDF1}
+searchSDF(string = "book", data = sdf, fileFormat = "student", levels = TRUE)
+```
+
+The `|` (OR) operator will search several strings simultaneously:
+
+```{r searchSDF2}
+searchSDF(string="book|home|value", data=sdf)
+```
+
+A vector of strings will search for variables that contain multiple strings, such as both "book" and "home"; each string is present in the variable label and can be used to filter the results:
+
+```{r searchSDF3}
+searchSDF(string=c("book","home"), data=sdf)
+```
+
+To dive into a particular variable, use `levelsSDF()`. It returns the levels, the corresponding sample size, and label of each level.
+
+```{r levelsSDF}
+levelsSDF(varnames = "b017451", data = sdf)
+```
+
+## Displaying Basic Information
+
+Some basic functions that work on a `data.frame`, such as `dim`, `nrow`, and `ncol`, also work on an `edsurvey.data.frame`. They help check the dimensions of `sdf`.
+
+
+```{r dimensions, warning=FALSE}
+dim(x = sdf)
+nrow(x = sdf)
+ncol(x = sdf)
+```
+
+Basic information about plausible values and weights in an `edsurvey.data.frame` can be seen in the `print` function. The variables associated with plausible values and weights can be seen from the `showPlausibleValues` and `showWeights` functions, respectively, when setting the `verbose` argument to `TRUE`:
+
+```{r showPlausibleValues}
+showPlausibleValues(data = sdf, verbose = TRUE)
+showWeights(data = sdf, verbose = TRUE)
+```
+
+The functions `getStratumVar` and `getPSUVar` return the default stratum variable name or a PSU variable associated with a weight variable.
+
+```{r getStratumVar}
+getStratumVar(data = sdf, weightVar = "origwt")
+getPSUVar(data = sdf, weightVar = "origwt")
+```
+
+##	Keeping or Removing Omitted Levels
+
+`EdSurvey` uses listwise deletion to remove special values in all analyses by default. For example, in the NAEP Primer data, the omitted levels are returned when `print(sdf)` is called: `Omitted Levels: 'Multiple', 'NA', 'Omitted'`. By default, these levels are excluded via listwise deletion in `EdSurvey` analytical functions. To use a different method, such as pairwise deletion, set `defaultConditions = FALSE` when running your analysis.
+
+## Exploring Data
+This section introduces three basic R functions (both `EdSurvey` and `non-EdSurvey`) commonly used in the data exploration step, as follows:
+
+1. **`summary2()`** produces both weighted and unweighted descriptive statistics for a variable.
+
+2. **`edsurveyTable()`** produces cross-tabulation statistics.
+
+3. **`ggplot2`** produces a variety of exploratory data analysis (EDA) plots.
+
+
+### `summary2()`
+**`summary2()`** takes the following four arguments in order:
+
+- **`data`**: An `EdSurvey` object.
+- **`variable`**: Name of the variable you want to produce statistics on.
+- **`weightVar`**: name of the weight variable or `NULL` if users want to produce unweighted statistics.
+- **`omittedLevels`**: If `TRUE`, the function will remove omitted levels for the specified variable before producing descriptive statistics. If `FALSE`, the function will include omitted levels in the output statistics.
+
+The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
+
+```{r summary2}
+summary2(sdf, "composite")
+```
+
+By specifying `weightVar = NULL`, the function prints out unweighted descriptive statistics for the selected variable or plausible values:
+
+```{r summary2Unweighted}
+summary2(sdf, "composite", weightVar = NULL)
+```
+
+For a categorical variable, the `summary2` function returns the weighted number of cases, the weighted percentage, and the weighted standard error (SE). For example, the variable `b017451` (frequency of students talking about studies at home) returns the following output:
+
+```{r summary2Categorical}
+summary2(sdf, "b017451")
+```
+
+By default, the `summary2` function includes omitted levels; to remove those levels, set `omittedLevels = TRUE`:
+
+```{r summary2Categoricalmitted}
+summary2(sdf, "b017451", omittedLevels = TRUE)
+```
+
+
+### `edsurveyTable()`
+`edsurveyTable()` creates a summary table of outcome and categorical variables. The three important arguments are as follows: 
+
+- **`formula`**: Typically written as `a ~ b + c`, with the following meanings:
+  - **`a`** is a continuous variable (optional) for which the function will return the weighted mean.
+  - **`b`** and **`c`** are categorical variables for which the function will run cross-tabulations; multiple crosstab 
+  categorical variables can be separated using `+` symbol.  
+- **`data`**: An `EdSurvey` object.
+- **`pctAggregationLevel`**: A numeric value (i.e., 0, 1, 2) that indicates the level of aggregation in the cross-tabulation result's percentage column. 
+
+The following call uses `edsurveyTable()` to create a summary table of NAEP composite mathematics performance scale scores (`composite`) of 8th-grade students by two student factors:
+  - `dsex`: gender
+  - `b017451`: frequency of talk about studies at home
+  
+`pctAggregationLevel` is by default set to `NULL` (or `1`). That is, the `PCT` column adds up to 100 within each level of the first categorical variable `dsex`. 
+
+```{r edsurveyTable1, eval=FALSE}
+es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+```
+
+```{r table501, echo=FALSE}
+library(knitr)
+library(kableExtra)
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+kable(es1$data, format="html", caption = "Summary Data Tables with EdSurvey") %>%
+  kable_styling(font_size = 16) %>%
+  scroll_box(width="100%", height = "30%")
+```
+
+
+By specifying `pctAggregationLevel = 0`, such as in the following call, the `PCT` column adds up to 100 across the entire sample.         
+
+```{r edsurveyTable2}
+es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
+```
+
+
+```{r table502, echo=FALSE}
+library(knitr)
+library(kableExtra)
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
+kable(es2$data, format="html", caption = "Summary Data Tables with EdSurvey, Setting pctAggregationLevel = 0 \\label{tab:table2}") %>%
+  kable_styling(font_size = 16) %>%
+  scroll_box(width="100%", height = "75%")
+```
+
+### `ggplot2`
+`ggplot2` is an important R package used with `EdSurvey` to conduct EDA. 
+
+```{r loadgg, message=FALSE}
+# load the ggplot2 library
+library(ggplot2)
+```
+
+The basic steps for using `ggplot2` are as follows. To learn more about how to use `ggplot2()`, visit its [official website](https://ggplot2.tidyverse.org/). 
+
+1. Start with a `ggplot()`.
+2. Supply a dataset and aesthetic mapping with `aes()`.
+3. Add layers comprising one or more of the following functions. We will address examples of the *talicized functions*.
+- Geometries:  *`geom_bar()`*, *`geom_histogram()`*, *`geom_boxplot()`*
+- Scales: `scale_colour_brewer()`, `scale_x_date()`
+- Facets:  *`facet_grid()`*, `facet_wrap()`
+- Statistical transformations: *`stat_summary()`*, `stat_density()`
+- Coordinate systems: *`coord_flip()`*, `coord_map()`
+
+In this chapter, you will find a "quick and dirty" approach (i.e., no application of weights; where applicable, only one set of plausible values is used) for EDA using `ggplot2` and `EdSurvey` functions. To learn more about conducting EDA on NCES data, read [*Exploratory Data Analysis on NCES Data*](https://www.air.org/sites/default/files/EdSurvey-EDA.pdf)
+
+This section uses the following `gddat` object:
+
+```{r gddat}
+gddat <- getData(sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451',
+                                   'composite', 'geometry', 'origwt'),
+              addAttributes = TRUE, omittedLevels = FALSE)
+```           
+
+`geom_bar()` uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable `b017451` in each category, with `fill = dsex` used to color portions of the selected `x` variable.
+
+```{r plot1, message=FALSE, fig.width=11,fig.height=3}
+bar1 <- ggplot(data = gddat, aes(x = b017451)) +
+  geom_bar(aes(fill = dsex)) +
+  coord_flip() +
+  labs(title = "Figure 1")
+bar1
+```
+
+`geom_histogram()` uses binning to visualize the distribution of continuous variables. Figure 2 is a basic histogram that uses the first plausible value of the composite, giving an unbiased (but unweighted) estimate of the frequencies in each bin.
+
+```{r plot2, message=FALSE, fig.width=11,fig.height=3}
+hist1 <- ggplot(gddat, aes(x = mrpcm1)) +
+    geom_histogram() + 
+    labs(title = "Figure 2") 
+hist1
+``` 
+
+Figure 3 extends Figure 2, faceted on the categorical variable `dsex`, so that the output will be two histograms with common axes.
+
+```{r plot3, message=FALSE, fig.width=11, fig.height=3}
+hist2 <- ggplot(gddat, aes(x = mrpcm1)) +
+  geom_histogram(color = "black", fill = "white")+
+  facet_grid(dsex ~ .) +
+  labs(title = "Figure 3") 
+hist2
+```
+
+`geom_boxplot()` shows the distribution of a single variable through quartiles. Figure 4 shows the distribution of the six levels of the `sdracem` variable by the first plausible value of the composite.
+
+```{r plot4, message=FALSE, fig.width=11, fig.height=3}
+box1 <- ggplot(gddat, aes(x = sdracem, y = mrpcm1)) + 
+  geom_boxplot() +
+  labs(title = "Figure 4") 
+box1
+``` 
+
+Figure 5 extends Figure 4 by using `stat_summary()` to add another statistic on top: the mean of `mrpcm1` by `sdracem`, which is represented by the diamond-shaped symbol (`shape = 23`). Figure 5 also adds a coordinate flip via `coord_flip()`.
+
+```{r plot5, message=FALSE, fig.width=11, fig.height=3, warning=FALSE}
+
+box2 <- box1 + stat_summary(fun.y = mean, geom = "point", shape = 23, size = 4) +
+  coord_flip() +
+  labs(title = "Figure 5") 
+box2
+``` 

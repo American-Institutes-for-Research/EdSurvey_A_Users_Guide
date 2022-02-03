@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/models.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="nces-information-page.html">NCES Information Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="active" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="models" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Models<a class="anchor" aria-label="anchor" href="#models"><i class="fas fa-link"></i></a>
+</h1>
+<div id="regression-analysis-with-lm.sdf" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Regression Analysis With <code>lm.sdf</code><a class="anchor" aria-label="anchor" href="#regression-analysis-with-lm.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p>After the data are read in with the <code>EdSurvey</code> package, a linear model can be fit to fully account for the complex sample design used for NCES data by using <code>lm.sdf</code>.</p>
+<p>The <code>lm.sdf</code> function allows jackknife methods (i.e., JK1, JK2, or BRR) or the Taylor series method for variance estimation. By default, the standard error of coefficient is estimated with the jackknife replication method, but users can switch to the Taylor series when appropriate by setting the <code>varMethod</code> argument to <code>varMethod="Taylor"</code>. When an explicit weight variable is not set, the <code>lm.sdf</code> function uses a default weight for the full sample in the analysis. For instance, <code>origwt</code> is the default weight in NAEP.</p>
+<p>The data are read in and analyzed by the <code>lm.sdf</code> function—in this case, <code>dsex</code>, <code>b017451</code>, the five plausible values for <code>composite</code>, and the full sample weight <code>origwt</code>. By default, variance is estimated using the jackknife method, so the following call reads in the jackknife replicate weights:</p>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: composite ~ dsex + b017451</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; Plausible values: 5</span>
+<span class="co">#&gt; jrrIMax: 1</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16331</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                                  coef        se        t</span>
+<span class="co">#&gt; (Intercept)                 270.41112   1.02443 263.9615</span>
+<span class="co">#&gt; dsexFemale                   -2.95858   0.60423  -4.8965</span>
+<span class="co">#&gt; b017451Once every few weeks   4.23341   1.18327   3.5777</span>
+<span class="co">#&gt; b017451About once a week     11.22612   1.25854   8.9200</span>
+<span class="co">#&gt; b0174512 or 3 times a week   14.94591   1.18665  12.5951</span>
+<span class="co">#&gt; b017451Every day              7.52998   1.30846   5.7549</span>
+<span class="co">#&gt;                                dof  Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)                 54.670 &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexFemale                  54.991 8.947e-06 ***</span>
+<span class="co">#&gt; b017451Once every few weeks 57.316 0.0007131 ***</span>
+<span class="co">#&gt; b017451About once a week    54.683 2.983e-12 ***</span>
+<span class="co">#&gt; b0174512 or 3 times a week  72.582 &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; b017451Every day            48.470 5.755e-07 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Multiple R-squared: 0.0224</span></code></pre></div>
+<p>After the regression is run, the data are automatically removed from memory.</p>
+<p><code>EdSurvey</code> drops level 1 by default from the discrete predictor and treats it as the reference group. The reference level can be changed through the argument <code>relevels</code>. For example, in the previous model, the default reference group is males. In the following example, the reference group is changed to “Female” for the variable <code>dsex</code>:</p>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm1f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span>,
+               relevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dsex <span class="op">=</span> <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1f</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: composite ~ dsex + b017451</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; Plausible values: 5</span>
+<span class="co">#&gt; jrrIMax: 1</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16331</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                                  coef        se        t</span>
+<span class="co">#&gt; (Intercept)                 267.45254   1.13187 236.2919</span>
+<span class="co">#&gt; dsexMale                      2.95858   0.60423   4.8965</span>
+<span class="co">#&gt; b017451Once every few weeks   4.23341   1.18327   3.5777</span>
+<span class="co">#&gt; b017451About once a week     11.22612   1.25854   8.9200</span>
+<span class="co">#&gt; b0174512 or 3 times a week   14.94591   1.18665  12.5951</span>
+<span class="co">#&gt; b017451Every day              7.52998   1.30846   5.7549</span>
+<span class="co">#&gt;                                dof  Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)                 76.454 &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexMale                    54.991 8.947e-06 ***</span>
+<span class="co">#&gt; b017451Once every few weeks 57.316 0.0007131 ***</span>
+<span class="co">#&gt; b017451About once a week    54.683 2.983e-12 ***</span>
+<span class="co">#&gt; b0174512 or 3 times a week  72.582 &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; b017451Every day            48.470 5.755e-07 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Multiple R-squared: 0.0224</span></code></pre></div>
+<p>The coefficient on <code>dsex</code> changed from negative in the previous run to positive of the exact same magnitude, whereas none of the other coefficients (aside from the intercept) changed; this is the expected result.</p>
+<p>The standardized regression coefficient also can be returned by adding <code>src=TRUE</code> into the summary call for your regression model object:</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1f</span>, src<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: composite ~ dsex + b017451</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; Plausible values: 5</span>
+<span class="co">#&gt; jrrIMax: 1</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16331</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                                   coef         se        t</span>
+<span class="co">#&gt; (Intercept)                 2.6745e+02 1.1319e+00 236.2919</span>
+<span class="co">#&gt; dsexMale                    2.9586e+00 6.0423e-01   4.8965</span>
+<span class="co">#&gt; b017451Once every few weeks 4.2334e+00 1.1833e+00   3.5777</span>
+<span class="co">#&gt; b017451About once a week    1.1226e+01 1.2585e+00   8.9200</span>
+<span class="co">#&gt; b0174512 or 3 times a week  1.4946e+01 1.1866e+00  12.5951</span>
+<span class="co">#&gt; b017451Every day            7.5300e+00 1.3085e+00   5.7549</span>
+<span class="co">#&gt;                                dof   Pr(&gt;|t|) stdCoef</span>
+<span class="co">#&gt; (Intercept)                 76.454 0.0000e+00      NA</span>
+<span class="co">#&gt; dsexMale                    54.991 8.9474e-06  0.0407</span>
+<span class="co">#&gt; b017451Once every few weeks 57.316 7.1311e-04  0.0458</span>
+<span class="co">#&gt; b017451About once a week    54.683 2.9834e-12  0.1175</span>
+<span class="co">#&gt; b0174512 or 3 times a week  72.582 0.0000e+00  0.1659</span>
+<span class="co">#&gt; b017451Every day            48.470 5.7550e-07  0.0817</span>
+<span class="co">#&gt;                                stdSE   </span>
+<span class="co">#&gt; (Intercept)                       NA   </span>
+<span class="co">#&gt; dsexMale                    0.008313 **</span>
+<span class="co">#&gt; b017451Once every few weeks 0.012791 * </span>
+<span class="co">#&gt; b017451About once a week    0.013175 * </span>
+<span class="co">#&gt; b0174512 or 3 times a week  0.013175 * </span>
+<span class="co">#&gt; b017451Every day            0.014200 * </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Multiple R-squared: 0.0224</span></code></pre></div>
+<p>By default, the standardized coefficients are calculated using standard deviations of the variables themselves, including averaging the standard deviation across any plausible values. When <code>standardizeWithSamplingVar</code> is set to <code>TRUE</code>, the variance of the standardized coefficient is calculated similar to a regression coefficient and therefore includes the sampling variance in the variance estimate of the outcome variable.</p>
+<div id="calculating-multiple-comparisons-in-lm.sdf" class="section level3" number="8.1.1">
+<h3>
+<span class="header-section-number">8.1.1</span> Calculating Multiple Comparisons in lm.sdf<a class="anchor" aria-label="anchor" href="#calculating-multiple-comparisons-in-lm.sdf"><i class="fas fa-link"></i></a>
+</h3>
+<p>A linear model is analyzed by the <code>lm.sdf</code> function—in this case, <code>dsex</code>, <code>b017451</code>, the five plausible values for <code>composite</code>, and the full sample weight <code>origwt</code>.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003501</span> <span class="op">+</span> <span class="va">b003601</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table801">Table 8.1. </span>Coefficients </caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">coef</th>
+<th align="right">se</th>
+<th align="right">t</th>
+<th align="right">dof</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">262.52409</td>
+<td align="right">1.32295</td>
+<td align="right">198.43843</td>
+<td align="right">43.30064</td>
+<td align="right">0.00000</td>
+</tr>
+<tr class="even">
+<td align="left">dsexFemale</td>
+<td align="right">-1.51812</td>
+<td align="right">0.91367</td>
+<td align="right">-1.66156</td>
+<td align="right">68.46417</td>
+<td align="right">0.10117</td>
+</tr>
+<tr class="odd">
+<td align="left">b003501Graduated H.S.</td>
+<td align="right">4.08166</td>
+<td align="right">1.57890</td>
+<td align="right">2.58513</td>
+<td align="right">41.10442</td>
+<td align="right">0.01338</td>
+</tr>
+<tr class="even">
+<td align="left">b003501Some ed after H.S.</td>
+<td align="right">15.03018</td>
+<td align="right">1.40534</td>
+<td align="right">10.69502</td>
+<td align="right">45.41276</td>
+<td align="right">0.00000</td>
+</tr>
+<tr class="odd">
+<td align="left">b003501I Don’t Know</td>
+<td align="right">-1.59176</td>
+<td align="right">1.79932</td>
+<td align="right">-0.88465</td>
+<td align="right">34.72285</td>
+<td align="right">0.38243</td>
+</tr>
+<tr class="even">
+<td align="left">b003601Graduated H.S.</td>
+<td align="right">2.89789</td>
+<td align="right">1.65445</td>
+<td align="right">1.75157</td>
+<td align="right">44.98221</td>
+<td align="right">0.08666</td>
+</tr>
+<tr class="odd">
+<td align="left">b003601Some ed after H.S.</td>
+<td align="right">9.15489</td>
+<td align="right">1.85547</td>
+<td align="right">4.93399</td>
+<td align="right">25.78984</td>
+<td align="right">0.00004</td>
+</tr>
+<tr class="even">
+<td align="left">b003601I Don’t Know</td>
+<td align="right">-4.12084</td>
+<td align="right">1.52672</td>
+<td align="right">-2.69914</td>
+<td align="right">37.56060</td>
+<td align="right">0.01036</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <em>p</em>-values for variables run in <code>lm1</code> can be corrected for multiple testing. Notice that the only <em>p</em>-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in <code>lm1</code>, and that column’s name is <code>Pr(&gt;|t|)</code> so we can extract them with this command</p>
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># p-values without adjustment</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>
+<span class="co">#&gt; [1] 8.666330e-02 4.083289e-05 1.035995e-02</span></code></pre></div>
+<p>Here the Benjamini and Hochberg (1995) FDR adjustment is used in the argument <code>method = "BH"</code>. The output below displays the adjusted <em>p</em>-values with the FDR adjustment:</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Benjamini and Hochberg adjusted p-values</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.0866633006 0.0001224987 0.0155399244</span></code></pre></div>
+<p>The next example adjusts the same <em>p</em>-values using the Bonferroni adjustment with <code>method="bonferroni"</code>. Below shows the adjusted <em>p</em>-values:</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Bonferroni adjusted p-values</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bonferroni"</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.2599899019 0.0001224987 0.0310798488</span></code></pre></div>
+<p>We can compare all the values in a single table in </p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:allAdjustments">Table 8.2. </span>Various p-values adjustments for b003501 </caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw</th>
+<th align="right">BH</th>
+<th align="right">Bonferroni</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">b003601Graduated H.S.</td>
+<td align="right">0.086663</td>
+<td align="right">0.086663</td>
+<td align="right">0.259990</td>
+</tr>
+<tr class="even">
+<td align="left">b003601Some ed after H.S.</td>
+<td align="right">0.000041</td>
+<td align="right">0.000122</td>
+<td align="right">0.000122</td>
+</tr>
+<tr class="odd">
+<td align="left">b003601I Don’t Know</td>
+<td align="right">0.010360</td>
+<td align="right">0.015540</td>
+<td align="right">0.031080</td>
+</tr>
+</tbody>
+</table></div>
+<p>The coefficients matrix also can be overwritten by selecting the same vector in the <code>lm1</code> linear regression object, updated here the Bonferroni p-values:</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bonferroni"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="op">]</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:updateCoefmatout">Table 8.3. </span>Coefficients table after using Bonferroni adjustment to the b003501 variable </caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">coef</th>
+<th align="right">se</th>
+<th align="right">t</th>
+<th align="right">dof</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">b003601Graduated H.S.</td>
+<td align="right">2.89789</td>
+<td align="right">1.65445</td>
+<td align="right">1.75157</td>
+<td align="right">44.98221</td>
+<td align="right">0.25999</td>
+</tr>
+<tr class="even">
+<td align="left">b003601Some ed after H.S.</td>
+<td align="right">9.15489</td>
+<td align="right">1.85547</td>
+<td align="right">4.93399</td>
+<td align="right">25.78984</td>
+<td align="right">0.00012</td>
+</tr>
+<tr class="odd">
+<td align="left">b003601I Don’t Know</td>
+<td align="right">-4.12084</td>
+<td align="right">1.52672</td>
+<td align="right">-2.69914</td>
+<td align="right">37.56060</td>
+<td align="right">0.03108</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="adjusting-p-values-from-multiple-sources" class="section level3" number="8.1.2">
+<h3>
+<span class="header-section-number">8.1.2</span> Adjusting <em>p</em>-Values From Multiple Sources<a class="anchor" aria-label="anchor" href="#adjusting-p-values-from-multiple-sources"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sometimes several values must be adjusted at once. In these cases, the <code>p.adjust</code> function must be called with all the <em>p</em>-values the researcher wishes to adjust together.</p>
+<p>For example, if one wishes to adjust values from two regressions and an additional value from another test, all these <em>p</em>-values must be put into a single vector and adjusted as a set. Therefore, <em>p</em>-value adjustments called on smaller portions of regressions/tests independently may return incorrect adjusted <em>p</em>-values and could result in an incorrect inference.</p>
+<p>In this example, the coefficients from <code>b003501</code> and <code>b003601</code>—each from independent regressions—as well as another <em>p</em>-value of 0.02 are adjusted.</p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003501</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="va">lm2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003601</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="co"># pvalues data.frame with missing values</span>
+<span class="co"># values of coef that are not in this initial call but will be added</span>
+<span class="va">pvalues</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>source<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"lm2a"</span>,<span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"lm2b"</span>,<span class="fl">3</span><span class="op">)</span>, <span class="st">"otherp"</span><span class="op">)</span>,
+                      coef<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>,<span class="fl">7</span><span class="op">)</span>,
+                      p<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">7</span><span class="op">)</span>,
+                      stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>This code is careful to note where the values came from to help avoid transcription errors. The <code>pvalues</code> object is then populated using <em>p</em>-values and coefficients from the <code>lm2a</code> and <code>lm2b</code> linear regression objects, rows 1–3 and 4–6 for each, respectively.</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># load in values from lm2a</span>
+<span class="va">lm2aCoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm2a</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span>
+<span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lm2aCoef</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">]</span>
+<span class="va">pvalues</span><span class="op">$</span><span class="va">coef</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">lm2aCoef</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
+<span class="co"># load in values from lm2b</span>
+<span class="va">lm2bCoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm2b</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span>
+<span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lm2bCoef</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">]</span>
+<span class="va">pvalues</span><span class="op">$</span><span class="va">coef</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">lm2aCoef</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<p>The additional <em>p</em>-value due for adjustment is included in row 7:</p>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># load in other p-value</span>
+<span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.02</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">pvalues</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Pr(&gt;|t|)"</span>
+<span class="co"># check matrix</span>
+<span class="va">pvalues</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table804">Table 8.4. </span>Unadjusted <em>p</em>-values </caption>
+<thead><tr class="header">
+<th align="left">source</th>
+<th align="left">coef</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">lm2a</td>
+<td align="left">b003501Graduated H.S.</td>
+<td align="right">0.0000088</td>
+</tr>
+<tr class="even">
+<td align="left">lm2a</td>
+<td align="left">b003501Some ed after H.S.</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">lm2a</td>
+<td align="left">b003501I Don’t Know</td>
+<td align="right">0.0295389</td>
+</tr>
+<tr class="even">
+<td align="left">lm2b</td>
+<td align="left">b003501Graduated H.S.</td>
+<td align="right">0.0000144</td>
+</tr>
+<tr class="odd">
+<td align="left">lm2b</td>
+<td align="left">b003501Some ed after H.S.</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">lm2b</td>
+<td align="left">b003501I Don’t Know</td>
+<td align="right">0.0013006</td>
+</tr>
+<tr class="odd">
+<td align="left">otherp</td>
+<td align="left"></td>
+<td align="right">0.0200000</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now that the aforementioned <em>p</em>-values are included in the same vector, they are adjusted via <code>p.adjust</code> using the Benjamini and Hochberg method:</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pvalues</span><span class="op">[</span>,<span class="st">"Adjusted Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">pvalues</span><span class="op">[</span>,<span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span>
+<span class="va">pvalues</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:table805">Table 8.5. </span>Adjusted <em>p</em>-values </caption>
+<thead><tr class="header">
+<th align="left">source</th>
+<th align="left">coef</th>
+<th align="right">Pr(&gt;|t|)</th>
+<th align="right">Adjusted Pr(&gt;|t|)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">lm2a</td>
+<td align="left">b003501Graduated H.S.</td>
+<td align="right">0.0000088</td>
+<td align="right">0.0000205</td>
+</tr>
+<tr class="even">
+<td align="left">lm2a</td>
+<td align="left">b003501Some ed after H.S.</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">lm2a</td>
+<td align="left">b003501I Don’t Know</td>
+<td align="right">0.0295389</td>
+<td align="right">0.0295389</td>
+</tr>
+<tr class="even">
+<td align="left">lm2b</td>
+<td align="left">b003501Graduated H.S.</td>
+<td align="right">0.0000144</td>
+<td align="right">0.0000253</td>
+</tr>
+<tr class="odd">
+<td align="left">lm2b</td>
+<td align="left">b003501Some ed after H.S.</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">lm2b</td>
+<td align="left">b003501I Don’t Know</td>
+<td align="right">0.0013006</td>
+<td align="right">0.0018208</td>
+</tr>
+<tr class="odd">
+<td align="left">otherp</td>
+<td align="left"></td>
+<td align="right">0.0200000</td>
+<td align="right">0.0233333</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>NOTE:</em> The <code>EdSurvey</code> package produces <em>p</em>-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.</p>
+</div>
+</div>
+<div id="multivariate-regression-with-mvrlm.sdf" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Multivariate Regression With <code>mvrlm.sdf</code><a class="anchor" aria-label="anchor" href="#multivariate-regression-with-mvrlm.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p>A multivariate regression model can be fit to fully account for the complex sample design used for NCES data by using <code>mvrlm.sdf</code>. This function implements an estimator that correctly handles multiple dependent variables that are continuous (such as plausible values), which allows for variance estimation using the jackknife replication method.</p>
+<p>The vertical line symbol <code>|</code> separates dependent variables on the left-hand side of formula. In the following example, a multivariate regression is fit with two subject scales as the outcome variables (<code>algebra</code> and <code>geometry</code>) by two predictor variables signifying gender and a survey item concerning the ability to identify the best unit of area (<code>dsex</code> and <code>m072801</code>):</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mvrlm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mvrlm.sdf.html">mvrlm.sdf</a></span><span class="op">(</span><span class="va">algebra</span> <span class="op">|</span> <span class="va">geometry</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">m072801</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mvrlm1</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: algebra | geometry ~ dsex + m072801</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; jrrIMax: </span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: </span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 3287</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; algebra </span>
+<span class="co">#&gt;                         coef        se         t    dof</span>
+<span class="co">#&gt; (Intercept)        258.32980   2.38447 108.33839 42.729</span>
+<span class="co">#&gt; dsexFemale           6.94298   1.51265   4.58995 49.897</span>
+<span class="co">#&gt; m072801B *          24.78260   2.23171  11.10475 67.935</span>
+<span class="co">#&gt; m072801C            11.75561   2.97489   3.95162 64.737</span>
+<span class="co">#&gt; m072801D           -12.88466   6.55887  -1.96446 12.131</span>
+<span class="co">#&gt; m072801E             1.96793   5.38314   0.36557 21.275</span>
+<span class="co">#&gt; m072801Not Reached -33.52297  17.46008  -1.91998 10.968</span>
+<span class="co">#&gt;                     Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)        &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexFemale         3.021e-05 ***</span>
+<span class="co">#&gt; m072801B *         &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; m072801C           0.0001945 ***</span>
+<span class="co">#&gt; m072801D           0.0728026 .  </span>
+<span class="co">#&gt; m072801E           0.7182938    </span>
+<span class="co">#&gt; m072801Not Reached 0.0812328 .  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; geometry </span>
+<span class="co">#&gt;                          coef         se          t     dof</span>
+<span class="co">#&gt; (Intercept)        255.351767   2.368025 107.833211 33.7224</span>
+<span class="co">#&gt; dsexFemale           5.407780   1.584977   3.411898 35.8676</span>
+<span class="co">#&gt; m072801B *          22.369806   2.212790  10.109321 57.1693</span>
+<span class="co">#&gt; m072801C             8.850143   3.647400   2.426425 51.3747</span>
+<span class="co">#&gt; m072801D            -9.260011   5.873402  -1.576601 12.8849</span>
+<span class="co">#&gt; m072801E            -0.185649   5.919666  -0.031361 23.9251</span>
+<span class="co">#&gt; m072801Not Reached -31.782791  23.915420  -1.328966  5.1159</span>
+<span class="co">#&gt;                     Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)        &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexFemale          0.001613 ** </span>
+<span class="co">#&gt; m072801B *         2.442e-14 ***</span>
+<span class="co">#&gt; m072801C            0.018796 *  </span>
+<span class="co">#&gt; m072801D            0.139113    </span>
+<span class="co">#&gt; m072801E            0.975242    </span>
+<span class="co">#&gt; m072801Not Reached  0.240046    </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual correlation matrix:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;          algebra geometry</span>
+<span class="co">#&gt; algebra     1.00     0.85</span>
+<span class="co">#&gt; geometry    0.85     1.00</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Multiple R-squared by dependent variable: </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  algebra geometry </span>
+<span class="co">#&gt;   0.0926   0.0858</span></code></pre></div>
+<p>The <code>mvrlm.sdf</code> documentation provides examples to compare the regression outputs. See <code><a href="https://rdrr.io/pkg/EdSurvey/man/mvrlm.sdf.html">?mvrlm.sdf</a></code> for an overview of additional details that can be accessed through components of the returned object. In addition, the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-Statistics.pdf"><em>Statistical Methods Used in EdSurvey</em></a> goes into further detail by describing estimation of the reported statistics.</p>
+</div>
+<div id="logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf" class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Logistic Regression Analysis With <code>glm.sdf</code>, <code>logit.sdf</code>, and <code>probit.sdf</code><a class="anchor" aria-label="anchor" href="#logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p>A logistic regression model can be fit to fully account for the complex sample design used for NCES data by using <code>glm.sdf</code>, <code>logit.sdf</code>, and <code>probit.sdf</code>. These functions predict binary outcomes from a set of predictor variables factoring in appropriate weights and variance estimates. <code>glm.sdf</code> is an umbrella function that currently fits logit and probit models. Alternatively, users can choose <code>logit.sdf</code> or <code>probit.sdf</code> functions for binomial outcomes.</p>
+<p>The following example demonstrates how to use <code>logit.sdf</code> to predict the number of books at home with student gender. The example arguments are generalizable to <code>glm.sdf</code> and <code>probit.sdf</code>. For more information about how to use the latter two functions, check their help files by calling <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?glm.sdf</a></code> and <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?probit.sdf</a></code>, respectively.</p>
+<p>In <code>logit.sdf</code>, although some variables might already be binary, the function <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (<code>dsex</code>) to the outcome variable: number of books at home (<code>b013801</code>), which is dichotomized with the level matching “more than 100 books at home” (<code>"&gt;100"</code>) as the outcome level:</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b013801</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"&gt;100"</span><span class="op">)</span> <span class="op">~</span> <span class="va">dsex</span>,
+                    weightVar <span class="op">=</span> <span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">logit1</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: b013801 ~ dsex</span>
+<span class="co">#&gt; Family: binomial (logit)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16359</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                   coef         se          t    dof</span>
+<span class="co">#&gt; (Intercept)  -0.920421   0.046355 -19.855835 60.636</span>
+<span class="co">#&gt; dsexFemale    0.178274   0.050129   3.556331 54.578</span>
+<span class="co">#&gt;              Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept) &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexFemale  0.0007863 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<p>The log odds of having more than 100 books at home (versus less than or equal to 100 books) increases by <code>0.178274</code> for female students compared with male students.</p>
+<p>Logistic regression results can be further interpreted with the assistance of the <code>oddsRatio</code> and <code>waldTest</code> functions.</p>
+<div id="recovering-odds-ratios" class="section level3" number="8.3.1">
+<h3>
+<span class="header-section-number">8.3.1</span> Recovering Odds Ratios<a class="anchor" aria-label="anchor" href="#recovering-odds-ratios"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>oddsRatio</code> helper function converts coefficients from an <code>EdSurvey</code> logit regression model to odds ratios. Odds ratios are useful for understanding the real likelihood of an event occurring based on a transformation to the log odds returned in a logistic model.</p>
+<p>In <code>EdSurvey</code>, odds ratios can be returned by specifying the logistic model object (<code>logit1</code>).</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/oddsRatio.html">oddsRatio</a></span><span class="op">(</span><span class="va">logit1</span><span class="op">)</span>
+<span class="co">#&gt;                    OR      2.5%     97.5%</span>
+<span class="co">#&gt; (Intercept) 0.3983511 0.3630823 0.4370459</span>
+<span class="co">#&gt; dsexFemale  1.1951531 1.0809029 1.3214796</span></code></pre></div>
+<p>The odds of having more than 100 books at home (versus less than or equal to 100 books) increases by <code>1.1951531</code> for female students compared with male students.</p>
+</div>
+<div id="wald-tests" class="section level3" number="8.3.2">
+<h3>
+<span class="header-section-number">8.3.2</span> Wald Tests<a class="anchor" aria-label="anchor" href="#wald-tests"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>waldTest</code> function allows the user to test composite hypotheses—those with multiple coefficients involved—even when the data include plausible values. Because there is no likelihood test for plausible values or residuals of large-scale assessment data analysis, the Wald test fills the role of the likelihood ratio test, analysis of variance, and the F-test.</p>
+<p>Wald tests can be run by specifying the model and coefficients. The second coefficient in our <code>logit1</code> model object (<code>Female</code>) is tested in the following example:</p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/waldTest.html">waldTest</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">logit1</span>, coefficients <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; Wald test:</span>
+<span class="co">#&gt; ----------</span>
+<span class="co">#&gt; H0:</span>
+<span class="co">#&gt; dsexFemale = 0</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Chi-square test:</span>
+<span class="co">#&gt; X2 = 12.6, df = 1, P(&gt; X2) = 0.00038</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; F test:</span>
+<span class="co">#&gt; W = 12.6, df1 = 1, df2 = 62, P(&gt; W) = 0.00073</span></code></pre></div>
+<p>To learn more about conducting Wald tests, consult the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf"><em>Methods and Overview of Using EdSurvey for Running Wald Tests</em></a>.</p>
+</div>
+</div>
+<div id="quantile-regression-analysis-with-rq.sdf" class="section level2" number="8.4">
+<h2>
+<span class="header-section-number">8.4</span> Quantile Regression Analysis with <code>rq.sdf</code><a class="anchor" aria-label="anchor" href="#quantile-regression-analysis-with-rq.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>rq.sdf</code> function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to <code>lm.sdf</code>, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.</p>
+<p>To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the <code>tau</code> argument (in this example <code>tau = 0.8</code>); all other arguments are otherwise consistent with <code>lm.sdf</code>, except for <code>returnVarEstInputs</code>, <code>returnNumberOfPSU</code>, and <code>standardizeWithSamplingVar</code>, which are not available.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rq.sdf.html">rq.sdf</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data<span class="op">=</span><span class="va">sdf</span>, tau <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">rq1</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: composite ~ dsex + b017451</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; tau: 0.8</span>
+<span class="co">#&gt; jrrIMax: 1</span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16331</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                                 coef       se        t</span>
+<span class="co">#&gt; (Intercept)                 299.7680   1.8103 165.5883</span>
+<span class="co">#&gt; dsexFemale                   -4.6280   1.2908  -3.5852</span>
+<span class="co">#&gt; b017451Once every few weeks   6.5880   1.9086   3.4518</span>
+<span class="co">#&gt; b017451About once a week     12.4800   2.2959   5.4359</span>
+<span class="co">#&gt; b0174512 or 3 times a week   16.5420   2.4616   6.7201</span>
+<span class="co">#&gt; b017451Every day             12.7420   1.6932   7.5253</span>
+<span class="co">#&gt;                                dof  Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)                 29.389 &lt; 2.2e-16 ***</span>
+<span class="co">#&gt; dsexFemale                  58.617 0.0006868 ***</span>
+<span class="co">#&gt; b017451Once every few weeks 46.045 0.0012041 ** </span>
+<span class="co">#&gt; b017451About once a week    67.782 8.032e-07 ***</span>
+<span class="co">#&gt; b0174512 or 3 times a week  29.867 1.943e-07 ***</span>
+<span class="co">#&gt; b017451Every day            50.343 8.717e-10 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  </span>
+<span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<p>For further details on quantile regression models and how they are implemented in R, see the vignette from the <code>quantreg</code> package (accessible by the <code>vignette("rq", package="quantreg")</code>), on which the <code>rq.sdf</code> function is built.</p>
+</div>
+<div id="mixed-models-with-mixed.sdf" class="section level2" number="8.5">
+<h2>
+<span class="header-section-number">8.5</span> Mixed Models With <code>mixed.sdf</code><a class="anchor" aria-label="anchor" href="#mixed-models-with-mixed.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>EdSurvey</code> features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. <code>EdSurvey</code> fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the <code>WeMix</code> package.</p>
+<p>This example illustrates how the user might implement student-level weighting when using a survey (NAEP in this example) that does not have a weighting scheme previously implemented.</p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Subset data to a sample of interest</span>
+<span class="va">sdf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">scrpsu</span> <span class="op">&lt;</span> <span class="fl">500</span><span class="op">)</span>
+
+<span class="co"># Extract variables of interest to a light.edsurvey.data.frame</span>
+<span class="va">lsdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span><span class="va">sdf2</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>,<span class="st">"dsex"</span>,<span class="st">"b017451"</span>,<span class="st">"scrpsu"</span>,<span class="st">"origwt"</span>,<span class="st">"smsrswt"</span><span class="op">)</span>,
+                addAttributes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># Transform weights using your method (Note that this method is not recommended for NAEP)</span>
+<span class="va">lsdf</span><span class="op">$</span><span class="va">pwt1</span> <span class="op">&lt;-</span> <span class="va">lsdf</span><span class="op">$</span><span class="va">origwt</span><span class="op">/</span><span class="va">lsdf</span><span class="op">$</span><span class="va">smsrswt</span>
+<span class="va">lsdf</span><span class="op">$</span><span class="va">pwt2</span> <span class="op">&lt;-</span> <span class="va">lsdf</span><span class="op">$</span><span class="va">smsrswt</span>
+
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">scrpsu</span><span class="op">)</span>, data<span class="op">=</span><span class="va">lsdf</span>,
+                weightVar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pwt1'</span>, <span class="st">'pwt2'</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; mixed.sdf(formula = composite ~ dsex + b017451 + (1 | scrpsu), </span>
+<span class="co">#&gt;     data = lsdf, weightVars = c("pwt1", "pwt2"))</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: composite ~ dsex + b017451 + (1 | scrpsu)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Plausible Values: 5</span>
+<span class="co">#&gt; Number of Groups:</span>
+<span class="co">#&gt;  Level  Group n size mean wgt sum wgt</span>
+<span class="co">#&gt;      2 scrpsu     22    1.281   28.19</span>
+<span class="co">#&gt;      1    Obs    492    1.598  786.25</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Variance terms:</span>
+<span class="co">#&gt;  Level    Group        Name Variance Std. Error Std.Dev.</span>
+<span class="co">#&gt;      2   scrpsu (Intercept)    558.6     204.64    23.63</span>
+<span class="co">#&gt;      1 Residual                876.8      74.69    29.61</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fixed Effects:</span>
+<span class="co">#&gt;                             Estimate Std. Error t value</span>
+<span class="co">#&gt; (Intercept)                  266.795      8.200  32.537</span>
+<span class="co">#&gt; dsexFemale                    -1.179      2.998  -0.393</span>
+<span class="co">#&gt; b017451Once every few weeks    2.173      6.954   0.312</span>
+<span class="co">#&gt; b017451About once a week       9.809      4.472   2.193</span>
+<span class="co">#&gt; b0174512 or 3 times a week    10.863      6.098   1.781</span>
+<span class="co">#&gt; b017451Every day               6.792      7.365   0.922</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Intraclass Correlation= 0.389</span></code></pre></div>
+<p>The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students’ gender as a covariate, using TIMSS 2015 datasets.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co">#Use all plausible values</span>
+<span class="va">TIMSS15USA</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">edsurveyHome</span>, <span class="st">"TIMSS/2015"</span><span class="op">)</span>, countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span>, gradeLvl <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span>
+<span class="co">#&gt; Found cached data for country code "usa".</span>
+<span class="va">mix1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">mmat</span> <span class="op">~</span> <span class="va">itsex</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">idschool</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">TIMSS15USA</span>,
+                  weightVar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"totwgt"</span>,<span class="st">"schwgt"</span><span class="op">)</span>, weightTransformation<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mix1</span><span class="op">)</span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; mixed.sdf(formula = mmat ~ itsex + (1 | idschool), data = TIMSS15USA, </span>
+<span class="co">#&gt;     weightVars = c("totwgt", "schwgt"), weightTransformation = FALSE)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: mmat ~ itsex + (1 | idschool)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Plausible Values: 5</span>
+<span class="co">#&gt; Number of Groups:</span>
+<span class="co">#&gt;  Level    Group n size mean wgt sum wgt</span>
+<span class="co">#&gt;      2 idschool    250    255.9   63971</span>
+<span class="co">#&gt;      1      Obs  10029    374.6 3757302</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Variance terms:</span>
+<span class="co">#&gt;  Level    Group        Name Variance Std. Error Std.Dev.</span>
+<span class="co">#&gt;      2 idschool (Intercept)     1758      173.7    41.93</span>
+<span class="co">#&gt;      1 Residual                 4672      105.3    68.35</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fixed Effects:</span>
+<span class="co">#&gt;             Estimate Std. Error t value</span>
+<span class="co">#&gt; (Intercept)  536.042      3.767 142.288</span>
+<span class="co">#&gt; itsexMALE      6.091      1.500   4.061</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Intraclass Correlation= 0.273</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># uses only one plausible value</span>
+<span class="va">mix2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">asmmat01</span> <span class="op">~</span> <span class="va">itsex</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">idschool</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">TIMSS15USA</span>,
+                  weightVar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"totwgt"</span>,<span class="st">"schwgt"</span><span class="op">)</span>, weightTransformation<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mix2</span><span class="op">)</span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; mixed.sdf(formula = asmmat01 ~ itsex + (1 | idschool), data = TIMSS15USA, </span>
+<span class="co">#&gt;     weightVars = c("totwgt", "schwgt"), weightTransformation = FALSE)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Formula: asmmat01 ~ itsex + (1 | idschool)</span>
+<span class="co">#&gt; Number of Groups:</span>
+<span class="co">#&gt;  Level    Group n size mean wgt sum wgt</span>
+<span class="co">#&gt;      2 idschool    250    255.9   63971</span>
+<span class="co">#&gt;      1      Obs  10029    374.6 3757302</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Variance terms:</span>
+<span class="co">#&gt;  Level    Group        Name Variance Std. Error Std.Dev.</span>
+<span class="co">#&gt;      2 idschool (Intercept)     1713      173.7    41.39</span>
+<span class="co">#&gt;      1 Residual                 4658      105.3    68.25</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fixed Effects:</span>
+<span class="co">#&gt;             Estimate Std. Error t value</span>
+<span class="co">#&gt; (Intercept)  536.847      3.668 146.349</span>
+<span class="co">#&gt; itsexMALE      5.726      1.442   3.972</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; lnl=-21290221.51</span>
+<span class="co">#&gt; Intraclass Correlation= 0.269</span></code></pre></div>
+<p>For further guidance and use cases for mixed-effects models in <code>EdSurvey</code>, see the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-Mixed_Models.pdf"><em>Methods Used for Estimating Mixed-Effects Models in EdSurvey</em></a>. For examples of how NCES recommends using weighted mixed-effects models, as well as their summary of the mathematical background and the description of the insufficiency of hierarchical linear models in this case, see Appendix D in the NCES working paper on analysis of TIMSS data at <a href="https://nces.ed.gov/pubs2001/200105.pdf"><em>Using TIMSS to Analyze Correlates of Performance Variation in Mathematics</em></a>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></div>
+<div class="next"><a href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#models"><span class="header-section-number">8</span> Models</a></li>
+<li>
+<a class="nav-link" href="#regression-analysis-with-lm.sdf"><span class="header-section-number">8.1</span> Regression Analysis With lm.sdf</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#calculating-multiple-comparisons-in-lm.sdf"><span class="header-section-number">8.1.1</span> Calculating Multiple Comparisons in lm.sdf</a></li>
+<li><a class="nav-link" href="#adjusting-p-values-from-multiple-sources"><span class="header-section-number">8.1.2</span> Adjusting p-Values From Multiple Sources</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#multivariate-regression-with-mvrlm.sdf"><span class="header-section-number">8.2</span> Multivariate Regression With mvrlm.sdf</a></li>
+<li>
+<a class="nav-link" href="#logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf"><span class="header-section-number">8.3</span> Logistic Regression Analysis With glm.sdf, logit.sdf, and probit.sdf</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#recovering-odds-ratios"><span class="header-section-number">8.3.1</span> Recovering Odds Ratios</a></li>
+<li><a class="nav-link" href="#wald-tests"><span class="header-section-number">8.3.2</span> Wald Tests</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#quantile-regression-analysis-with-rq.sdf"><span class="header-section-number">8.4</span> Quantile Regression Analysis with rq.sdf</a></li>
+<li><a class="nav-link" href="#mixed-models-with-mixed.sdf"><span class="header-section-number">8.5</span> Mixed Models With mixed.sdf</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/master/08-models.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/master/08-models.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

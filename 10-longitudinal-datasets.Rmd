@@ -1,0 +1,266 @@
+```{r loadEdSurvey10, echo=FALSE, message=FALSE}
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+# Longitudinal Datasets
+
+Data from large-scale educational assessment programs require special statistical methods for analysis. Because of their scope and complexity, `EdSurvey` gives users functions to perform analyses that account for complex sample survey designs. This chapter provides some analysis guidelines and tips that apply to most NCES longitudinal data, using the Early Childhood Longitudinal Study, Kindergarten Class of 2010--11 (ECLS-K:2011) as the example data. 
+
+## Using `EdSurvey` to Access ECLS-K:2011 Data for Analysis
+
+Refer to [Chapter 4](#dataAccess) for how to download and read in a specific longitudinal dataset of interest. The following example shows how to download the ECLS-K:2011 Kindergarten--Fifth Grade public-use data file:
+
+```{r downloadECLSK, eval = FALSE}
+downloadECLS_K(years = 2011, root = "C:/", cache=FALSE)
+```
+
+To load the ECLS-K:2011 data for fifth graders and create an `edsurvey.data.frame`, select the pathway to the ECLS-K:2011 data folder and assign it the name  `eclsk11` with this call: 
+
+```{r readECLS, results='hide', echo = FALSE}
+eclsk11 <- readECLS_K2011(paste0(edsurveyHome,"ECLS_K/2011"))
+```
+
+```{r readECLSshown, eval = FALSE}
+eclsk11 <- readECLS_K2011("C:/ECLS_K/2011")
+```
+
+The function may take several minutes to run the first time; subsequent calls to `readECLS_K2011` are stored on the user's drive for easy access and near instant retrieval. Once read in, users can analyze and merge data from the ECLS-K:2011 dataset after loading the data into the R working environment.
+
+## Retrieving Survey Weights
+
+The variables associated with survey weights can be seen from the `showWeights` functions, respectively, when setting the `verbose` argument to `TRUE`.
+
+```{r weights, results='hide'}
+showWeights(data = eclsk11, verbose = TRUE)
+```
+
+In this version, the (lengthy) results are not shown, but the user can easily see the results by running the same code. Selecting the survey weights is especially important for ECLS-K and ECLS-K:2011. Once selected, users can specify the survey weight using the `weightVar` argument in `EdSurvey` analytical functions.
+
+To learn more about selecting sample weights for analyses using ECLS:K-2011 data, consult the **Calculation and Use of Sample Weights** section of the *Public-Use Data File User's Manuals* for the respective public-use file of interest. The [*ECLS-K:2011 Kindergarten--Fifth Grade User's Manual, Public Version*](https://nces.ed.gov/pubs2019/2019051.pdf) is relevant for the K--5 data used in this chapter. Alternative releases are on the NCES site: [*ECLS-K:2011 Public-Use Data File User's Manuals*](https://nces.ed.gov/ecls/dataproducts.asp).
+
+## Retrieving Stratum and PSU Variables  
+
+The functions `getStratumVar` and `getPSUVar` return the default stratum variable name or a PSU variable associated with a weight variable. Because ECLS-K:2011 does not have default weights, users need to specify a weight to return the associated psu/stratum variables. For example, the total student weight from the ninth round `weightVar = "w9c29p_9a0"` returns the following:
+
+```{r stratumPsuECLS}
+getStratumVar(data = eclsk11, weightVar = "w9c29p_9a0")
+getPSUVar(data = eclsk11, weightVar = "w9c29p_9a0")
+```
+
+These arguments are quite useful for accessing the variables associated with the weights in longitudinal surveys.
+
+## Recoding Data
+
+Data recoding is especially important when performing analyses with ECLS:K-2011 data. By default, `EdSurvey` omits special values, such as multiple entries, skipped values, or `NA`s. Typically, this setting helps users by dropping the levels of factors not typically included in regressions, tables, correlations, and other analyses. For ECLS:K-2011, this default setting requires careful consideration. There are many instances in which user should keep special values for their analyses; in these cases, recoding the data is advised.
+
+In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate skips, and unit nonresponse.
+
+```{r table1001, echo = FALSE}
+library(kableExtra)
+tab <- data.frame(Value = c(-1, -2, -4, -5, -7, -8, -9, "(blank)"), Description = c("Not applicable, including legitimate skips","Data suppressed (public-use data file only)", "Data suppressed due to administration error", "Item not asked in School Administrator Questionnaire Form B", "Refused (a type of item nonresponse)","Don't know (a type of item nonresponse)","Not ascertained (a type of item nonresponse)","System missing, including unit nonresponse"))
+knitr::kable(tab, row.names = FALSE, caption = "Missing value codes used in the ECLS-K:2011 data file \\label{tab:SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.}")
+htmltools::a(href = "https://nces.ed.gov/ecls/kindergarten2011.asp", "SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.")
+```
+
+The method for recoding these values appears later in this chapter in _Recoding Variables in a Dataset_ in the **Retrieving Data for Further Manipulation With getData** section of this chapter. 
+
+## Removing Special Values
+
+`EdSurvey` uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set `omittedLevels = FALSE` when running your analysis. You can then remove levels that you want to remove with a call to `subset`, as discussed in the "Subsetting the Data" section in [Chapter 3](#subsettingData).
+
+
+## Explore Variable Distributions With `summary2`
+
+The `summary2` function produces weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. By default, the estimates are not weighted. For example, the variable `x9povty_i` ("Imputed poverty level") returns the following output: 
+
+```{r summary2CategoricalECLS}
+summary2(eclsk11, "x9povty_i")
+```
+
+By default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+
+```{r summary2CategoricalOmittedECLS}
+summary2(eclsk11, "x9povty_i", omittedLevels = TRUE)
+```
+
+The `summary2` function returns the weighted number of cases, the weighted percentage, and the weighted standard error for a categorical variable when specified in the argument `weightVar`, here using the total student weight from the 9th round `weightVar = "w9c29p_9a0"`:
+
+```{r summary2CategoricalWeightsIncluded}
+summary2(eclsk11, "x9povty_i", weightVar = "w9c29p_9a0")
+```
+
+## Retrieving Data for Further Manipulation With `getData`
+
+### Retrieving a Set of Variables in a Dataset
+
+Although `EdSurvey` allows for rudimentary data manipulation and analysis directly on a `edsurvey.data.frame` connection, the function `getData()` can extract a dataset of variables for manipulation and analyses as with other `data.frame` objects. This object---referred to as a  `light.edsurvey.data.frame`---can then be used with packaged `EdSurvey` analytical functions.
+
+Variables are extracted from an `edsurvey.data.frame` and returned as a `light.edsurvey.data.frame` by specifying a set of variable names in `varnames` or by entering a formula in `formula`.[^helpgetData]
+
+To access and manipulate data the `x_chsex_r` ("Sex of students"), the weight variable `w5cf5pf_50`, `p5sumsch` ("Child attended summer school"), and `p5nhrprm` ("Hours per day child attended summer school") variables in `eclsk11`, call `getData`.
+
+```{r getDataECLS}
+gddat <- getData(data = eclsk11, varnames = c("x_chsex_r", "w5cf5pf_50", "x12sesl",
+                                              "p5sumsch", "p5nhrprm"), 
+                                 omittedLevels = FALSE, addAttributes = TRUE)
+```
+
+By default, setting `omittedLevels` to `TRUE` removes special values, such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set `omittedLevels` to `FALSE` to recode special values in an example that follows.
+
+The argument `addAttributes = TRUE` ensures that the analysis functions shown so far can continue to be used with the resulting dataset: `gddat`.
+
+### Retrieving All Variables in a Dataset
+
+To extract all the data in an `edsurvey.data.frame`, define the `varnames` argument as `names(eclsk11)`, which will query all variables. Setting the argument `omittedLevels = FALSE` ensures that values that would normally be removed are included:
+
+```{r retrieveAllVariables,message = FALSE, warning=FALSE, eval=FALSE}
+lsdf0 <- getData(data = eclsk11, varnames = colnames(eclsk11), addAttributes = TRUE,
+                 omittedLevels = FALSE)
+dim(lsdf0) 
+dim(eclsk11)
+```
+
+Additional details on the features of the `getData` function appear in the vignette titled [*Using the `getData` Function in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-getData.pdf).
+
+### Recoding Variables in a Dataset {#recodingVariables}
+
+As mentioned earlier, data recoding is of particular importance when performing analyses with ECLS:K-2011 data given the complexity of its survey design on the dataset. `EdSurvey` offers methods of recoding data to fit these needs.
+
+Let's suppose you desire to explore student performance in mathematics based on the number of hours/day a parent reported their child attended summer school (`p5nhrprm`). We'd first need to recode that variable so that students who did not attend summer school (where `p5sumsch` coded as a `2: NO`) are included in the analytic subset with 0 minutes.
+
+The `table` function is a simple method of ascertaining the number of values for each level of a variable in a dataset. Using the table function for the `p5nhrprm` variable indicates that parents reported their child attending summer school anywhere from 2 to 7 hours per day:
+
+```{r gddatrecodetable}
+table(gddat$p5nhrprm,useNA = "ifany")
+```
+
+To include children who attended summer school for 0 hours per day---those who were skipped by the design of the survey---recode `p5nhrprm` values to zero where `p5sumsch == "2: NO"`:
+
+```{r gddatrecode}
+gddat$p5nhrprm <- ifelse(gddat$p5sumsch == "2: NO", 0, gddat$p5nhrprm)
+table(gddat$p5nhrprm,useNA = "ifany")
+```
+
+Alternatively, for demonstration purposes, a researcher also may choose to recode the `-1` values for the `p5nhrprm` variable directly:
+
+```{r gddatrecode2}
+gddat$p5nhrprm <- ifelse(gddat$p5nhrprm == "-1: NOT APPLICABLE*", 0, gddat$p5nhrprm)
+table(gddat$p5nhrprm,useNA = "ifany")
+```
+
+A second example of recoding a variable in response to a skip pattern pertains to the frequency that (a) a child does homework (the variable `p9hmwork`) and (b) a parent/someone else helps (the variable `p9hlphwk`). The `levelsSDF` function is useful to show a variable's levels and their unweighted *n* sizes.
+
+```{r gddatrecodetable2}
+levelsSDF("p9hmwork",eclsk11)
+levelsSDF("p9hlphwk",eclsk11)
+```
+
+The skip pattern for this sequence of survey questions is as follows: If `p9hmwork == "1: NEVER"` then `p9hlphwk` is skipped and coded `"-1: NOT APPLICABLE"`. To include this subset of data in the analysis, the variable `p9hlphwk` can be recoded to `0`. First, retrieve the data via `getData` (along with a few other variables for a subsequent example) to recode using `ifelse`:
+
+```{r gddatrecode22}
+mvData <- getData(data = eclsk11, varnames = c("p9hmwork", "p9hlphwk", "x_chsex_r",
+                                              "x9rscalk5", "x9mscalk5", "w9c29p_9t90"), 
+                                 omittedLevels = FALSE, addAttributes = TRUE)
+mvData$p9hlphwk <- ifelse(mvData$p9hmwork == "1: NEVER" &
+                          mvData$p9hlphwk == "-1: NOT APPLICABLE", 0,
+                          mvData$p9hlphwk)
+```
+
+Then use `table` to view the counts of each level.
+```{r tablemvData}
+table(mvData$p9hlphwk,useNA = "ifany")
+```
+
+Now the `294` cases of the variable `mvData$p9hmwork == "1: NEVER"` are included as a level in our recoded `mvData$p9hlphwk`.
+
+
+With a few recoding steps, the appropriate value levels can be included in the dataset in preparation for analysis with `EdSurvey`. To find more information about special values specific to ECLS-K:2011, consult the _Missing Values_ section of the [*ECLS-K:2011 Public-Use Data File User's Manual*](https://nces.ed.gov/ecls/dataproducts.asp).
+
+
+#### Applying `rebindAttributes` to Use `EdSurvey` Functions With Manipulated Data Frames
+
+A helper function that pairs well with `getData` is `rebindAttributes`. This function allows users to reassign the attributes from a survey dataset to a data frame that might have had its attributes stripped during the manipulation process. After rebinding attributes, all variables---including those outside the original dataset---are available for use in `EdSurvey` analytical functions.
+
+The `p9hlphwk` variable from the _Recoding Variables in a Dataset_ section of [this chapter](#recodingVariables) has been recoded using the `ifelse` function; therefore, the following example will display how to apply survey attributes to this object for analysis.
+
+Using the `mvData` object created earlier, apply `rebindAttributes` from the attribute data `eclsk11` to the manipulated data frame `mvData`. The new variables are now available for `EdSurvey` analytical functions:
+
+```{r rebindAttributesECLS}
+mvData <- rebindAttributes(mvData, eclsk11)
+lm2 <- lm.sdf(formula = x9rscalk5 ~ x_chsex_r + p9hlphwk, data = mvData,
+              weightVar = "w9c29p_9t90")
+summary(lm2)
+```
+
+More information on the `rebindAttributes` function is available in [Chapter 9](#analysisOutsideEdSurvey).
+
+## Making a Table With `edsurveyTable`
+
+Summary tables can be created in `EdSurvey` using the `edsurveyTable` function. A call to `edsurveyTable`[^helpedsurveyTable] with two variables, `x_chsex_r` ("Sex of students") and `p9curmar` ("Current marital status"), creates a table that shows the number and percentage of students by gender and their parent's current marital status. Percentages add up to 100 within each gender. 
+
+[^helpedsurveyTable]: Use `?edsurveyTable` for details on default `edsurveyTable` arguments.
+
+```{r edsurveyTableECLS, cache=FALSE}
+es1 <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
+                     weightVar = "w9c29p_9t90",
+                     varMethod = "jackknife")
+```
+
+This `edsurveyTable` is saved as the object `es1`, and the resulting table can be displayed by printing the object:
+
+```{r table1002, echo=FALSE}
+knitr::kable(x = es1$data, digits = 7, row.names = FALSE,
+             caption = "Weighted and Unweighted Sample Size, Percentage
+             Distribution, and Standard Error of Percentage Distribution
+             of Children by Students' Gender and Their Parents' Marital Status \\label{tab:summaryTableECLSK}")
+
+```
+
+Given that the previous analysis uses parent data from Round 9, the weight variable `"w9c29p_9a0"` also might be appropriate. Both `"w9c29p_9t90"`  and `"w9c29p_9a0"` could be used for this analysis, although both include nonresponse adjustments for additional data components or rounds of data collection than those of interest in the current analysis. Therefore, analysts need to determine which weight they prefer to use because there is no weight that adjusts for nonresponse for only the sources used in this analysis. Successive analyses in this chapter that mix Round 9 child and parent variables might substitute the selected weight chosen. Note the slight differences in `*n* used` and results. Consult the *4.3.1 Types of Sample Weights* section of the [*ECLS-K:2011 Kindergarten--Fifth Grade User's Manual, Public Version*](https://nces.ed.gov/pubs2019/2019051.pdf) for additional guidance on choosing the most appropriate sample weight for an analysis.
+
+
+```{r edsurveyTable2ECLS, cache=FALSE}
+es1p <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
+                     weightVar = "w9c29p_9a0",
+                     varMethod = "jackknife")
+```
+
+```{r table1003,  echo=FALSE}
+knitr::kable(x = es1p$data, digits = 7, row.names = FALSE,
+             caption = "Weighted and Unweighted Sample Size, Percentage
+             Distribution, and Standard Error of Percentage Distribution of
+             Children by Students' Gender and Their Parents' Marital Status---Using Parent Weights \\label{tab:summaryTableECLSK2}")
+```
+
+The function also features variance estimation by setting the `varMethod` argument.[^helplmsdf] As shown in the previous example, the default `varMethod = "jackknife"` indicates that the call used the jackknife method for variance estimation. By setting `varMethod = "Taylor"`, the same `edsurveyTable` call in the previous example can return results using Taylor series variance estimation:
+
+```{r edsurveyTableTaylorECLS, cache=FALSE}
+es1t <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
+                      weightVar = "w9c29p_9t90",
+                      varMethod = "Taylor")
+```
+```{r table1004, echo=FALSE}
+knitr::kable(x = es1t$data, digits = 7, row.names = FALSE, caption = "Weighted and Unweighted Sample Size, Percentage Distribution, and Standard Error of Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status---Taylor Series \\label{tab:summaryTableECLSK3}")
+
+```
+
+[^helplmsdf]: See the documentation for `lm.sdf` for details on the variance calculation.
+
+If the percentages do not add up to 100 at the desired level, adjust the `pctAggregationLevel` argument to change the aggregation level. By default, `pctAggregationLevel = 1`, indicating that the formula will be aggregated at each level of the first variable in the call; in our previous example, this is `x_chsex_r`. Setting `pctAggregationLevel = 0` aggregates at each level of each variable in the call.
+
+The calculation of means and standard errors requires computation time that the user may not want to wait for. If you wish to simply see a table of the levels and the *N* sizes, set the `returnMeans` and `returnSepct` arguments to `FALSE` to omit those columns as follows:
+
+```{r edsurveyTable1bECLS, cache=FALSE}
+es1b <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
+                      weightVar = "w9c29p_9t90", jrrIMax = Inf,
+                      returnMeans = FALSE, returnSepct = FALSE)
+```
+
+In this `edsurveyTable`, the resulting table can be displayed by printing the object:
+
+```{r table1005, echo=FALSE}
+knitr::kable(x = es1b$data, digits = 7, row.names = FALSE, caption = "Weighted and Unweighted Sample Size and Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status \\label{tab:summaryTableECLSK4}")
+```
+
+For more details on the arguments in the `edsurveyTable` function, look at the examples using `?edsurveyTable`.

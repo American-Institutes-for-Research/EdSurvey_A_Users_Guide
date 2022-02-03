@@ -1,0 +1,10 @@
+book_filename: "EdSurvey_A_Users_Guide"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+  label:
+    fig: !expr function(i) paste0('Figure ', i, ". ")
+    tab: !expr function(i) paste0('Table ', i, ". ")

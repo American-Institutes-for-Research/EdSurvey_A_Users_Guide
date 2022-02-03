@@ -1,0 +1,296 @@
+# Philosophy of Analysis {#philosophyOfAnalysis}
+
+This chapter explains the main use cases for `EdSurvey`. To facilitate the learning process, we recommend the workflow detailed in the following infographic:
+
+```{r workflow, echo=FALSE, fig.align='center', out.width="70%"}
+## to render epub, out.width needs to be a number value
+## ```{r workflow, echo=FALSE, fig.align='center', out.width=500}
+knitr::include_graphics('images/edsurveyWorkflow.png')
+```
+
+The workflow has the following steps:
+
+1.	Install and load the package. 
+2.	Access the data. 
+3.	Understand the data. 
+4.	Manipulate the data. 
+5.	Run the analysis.
+
+First, use `EdSurvey` to download publicly available data and read in data; then move to understand the data, including tasks such as look at or search the codebook; explore the data, including tasks such as summarizing variables; and then analyze the data either inside `EdSurvey` or with other R packages.
+
+The previous chapter detailed installation and loading of the `EdSurvey` library; this chapter explores the subsequent steps.
+
+## Download or License Data
+
+Although the bulk of this book will focus on NAEP data, `EdSurvey` includes a family of download functions for NCES publicly available data files, including the following:
+
+
+- TIMSS: Trends in International Mathematics and Science Study and TIMSS Advanced (`downloadTIMSS`, `downloadTIMSSAdv`)
+- PIRLS: Progress in International Reading Literacy Study (`downloadPIRLS`)
+- ePIRLS: Electronic Progress in International Reading Literacy Study (`download_ePIRLS`)
+- CIVED: The Civic Education Study 1999 and International Civic and Citizenship Study (`downloadCivEDICCS`)
+- ICILS: International Computer and Information Literacy Study (`downloadICILS`)
+- PISA: The Programme for International Student Assessment (`downloadPISA`)
+- PIAAC: Programme for the International Assessment of Adult Competencies (`downloadPIAAC`)
+- TALIS: Teaching and Learning International Survey (`downloadTALIS`)
+- ECLS: Early Childhood Longitudinal Study (`downloadECLS_K`)
+- ELS: Education Longitudinal Study (`downloadELS`)
+- HSLS: High School Longitudinal Study of 2009 (`downloadHSLS`)
+- NHES: National Household Education Surveys (`downloadNHES`)
+- SSOCS: School Survey on Crime and Safety (`downloadSSOCS`)
+
+
+For example, the `downloadTIMSS` function will download publicly available TIMSS data to a directory that the user specifies e.g., `"C:/Data"`). One also can manually download desirable survey data from their respective websites.
+
+```{r download, eval = FALSE}
+downloadTIMSS(years = 2015, root = "C:/", cache=FALSE)
+```
+
+For restricted datasets such as NAEP, please follow their restricted-use instructions to save the whole intact data folder to a directory and read the data from there.
+
+## Reading in Data
+
+Once the data are prepared for your system, the read family of functions will open a connection to the specified data file to conduct your analysis. The read functions are as follows:
+
+- TIMSS and TIMSS Advanced (`readTIMSS`, `readTIMSSAdv`)
+- PIRLS (`readPIRLS`)
+- ePIRLS (`read_ePIRLS`)
+- CIVED (`readCivEDICCS`)
+- ICILS (`readICILS`)
+- PISA (`readPISA`)
+- PIAAC (`readPIAAC`)
+- TALIS (`readTALIS`)
+- ECLS (`readECLS_K2011` and `readECLS_K1998`)
+- ELS: Education Longitudinal Study (`readELS`)
+- BTLS: Beginning Teacher Longitudinal Study (`readBTLS`)
+- HSLS (`readHSLS`)
+- NHES (`readNHES`)
+- SSOCS (`readSSOCS`)
+
+For example, you can access the 2015 TIMSS data by the `readTIMSS` function, selecting a data `path`, the vector of `countries`, and `gradeLvl` of interest:
+
+```{r timss15, message=FALSE, eval=FALSE}
+TIMSS15 <- readTIMSS(path = "C:/TIMSS2015/", countries = c("usa"), gradeLvl = "4")
+```
+
+Each read function is unique given the differences across survey designs, but the functions typically follow a standard convention across functions for ease of use. To learn more about a particular read function, refer to [Chapter 4](#dataAccess), or use `help(package = "EdSurvey")` to find the survey of interest and refer to its help documentation for guidance.
+
+### Vignette Sample NCES Dataset
+
+To follow along with this vignette, load the NAEP Primer dataset `M36NT2PM` and assign it the name `sdf` with this call:
+  
+```{r readNAEP, source package}
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+This command uses a somewhat unusual way of identifying a file path (the `system.file` function). Because the Primer data are bundled with the NAEPprimer package, the `system.file` function finds it regardless of where the package is installed on a machine. All other datasets are referred to by their system path.
+
+### NCES Dataset
+
+To load a unique NCES dataset for analysis, select the pathway to the DAT file in the NAEP folder, which needs to be in the NCES standard folder directory titled `/Data`:
+
+```{r readNAEPvig, eval=FALSE}
+sdf2 <- readNAEP(filepath = '//.../Data/file.dat')
+```
+
+This function recognizes the naming convention used by NCES for NAEP file names to determine which sample design and assessment information are attached to the resulting `edsurvey.data.frame`. The `readNAEP` function transparently accesses the necessary sample information and silently attaches it to the data.[^noteEDS]
+
+[^noteEDS]: The `EdSurvey` package uses the `.fr2` file in the `/Select/Parms` folder to assign this information to the `edsurvey.data.frame`.
+
+It is possible that file pathways with special characters in your local directory could cause problems with reading data into R. Commonly used characters that require escapes include single quotation marks (`'`), double quotation marks (`"`), and backslashes (`\`). The most general solution to resolving these issues is adding an escape (i.e., the backslash key: `\`) before each character. For example, add an escape before the single quote used in `Nat'l`, as well as before each backslash as copied from the following hypothetical Windows file directory:
+
+```{r specialCharacters, eval=FALSE}
+# original
+"C:\2015 Nat'l Assessment Data\Data\file.dat"
+
+# updated with escapes:
+sdf2 <- readNAEP(filepath = "C:\\2015 Nat\'l Assessment Data\\Data\\file.dat")
+```
+
+An alternative option would involve using the `file.choose()` function to select the data file via a search window. The function opens your system's default file explorer to select a particular file. This file can be saved to an object, which in this example is `chosenFile`, which then can be read using `readNAEP`:
+
+```{r fileChoose, eval=FALSE}
+chosenFile <- file.choose()
+sdf2 <- readNAEP(filepath = chosenFile)
+```
+
+Once read in, both student and school data from an NCES dataset can be analyzed and merged after loading the data into the R working environment. The `readNAEP` function is built to connect with the student data file, but it silently holds file formatting for the school dataset when read. More details on retrieving school variables for analysis will be outlined later in this chapter with the `getData` function.
+
+##	Understand Data
+
+Information about an `edsurvey.data.frame` can be obtained in multiple ways. To get general data information, simply call print by typing the name of the `data.frame` object (i.e., `sdf`) in the console.
+
+```{r printSDF}
+sdf
+```
+
+Some basic functions that work on a `data.frame`, such as `dim`, `nrow`, and `ncol`, also work on an `edsurvey.data.frame`.[^whatisdim] They help check the dimensions of `sdf`.
+
+[^whatisdim]:Use `?function` in the R console to view documentation on base R and `EdSurvey` package functions (e.g.,  `?gsub` or `?lm.sdf`).
+
+
+```{r dataframelike, warning=FALSE}
+dim(x = sdf)
+nrow(x = sdf)
+ncol(x = sdf)
+```
+
+The `colnames` function can be used to list all variable names in the data:
+
+```{r names}
+colnames(x = sdf)
+```
+
+To conduct a more powerful search of NAEP data variables, use the `searchSDF` function, which returns variable names and labels from an `edsurvey.data.frame` based on a character string. The user can specify which data source (either "student" or "school") the user would like to search. For example, the following call to `searchSDF` searches for the character string `"book"` in the `edsurvey.data.frame` and specifies the `fileFormat` to search the student data file:
+
+```{r searchSDF}
+searchSDF(string = "book", data = sdf, fileFormat = "student")
+```
+
+The levels and labels for each variable search via `searchSDF()` also can be returned by setting `levels = TRUE`:
+
+```{r searchSDFLevels}
+searchSDF(string = "book", data = sdf, fileFormat = "student", levels = TRUE)
+```
+
+The `|` (OR) operator can be used to search several strings simultaneously:
+
+```{r searchSDLevels2}
+searchSDF(string="book|home|value", data=sdf)
+```
+
+A vector of strings is used to search for variables that contain multiple strings, such as both "book" and "home"; each string is present in the variable label and can be used to filter the results:
+
+```{r searchSDFLevels3}
+searchSDF(string=c("book","home"), data=sdf)
+```
+
+To return the levels and labels for a particular variable, use `levelsSDF()`:
+
+```{r levelsSDFLevels}
+levelsSDF(varnames = "b017451", data = sdf)
+```
+
+Access the full codebook using `showCodebook()` to retrieve the variable names, variable labels, and value labels of a survey. This function pairs well with the `View()` function to more easily explore a dataset: 
+
+```{r showCodebook, eval = FALSE}
+View(showCodebook(sdf))
+```
+
+Basic information about plausible values and weights in an `edsurvey.data.frame` can be seen in the `print` function. The variables associated with plausible values and weights can be seen from the `showPlausibleValues` and `showWeights` functions, respectively, when the `verbose` argument is set to `TRUE`:
+
+```{r pvAndWeights}
+showPlausibleValues(data = sdf, verbose = TRUE)
+showWeights(data = sdf, verbose = TRUE)
+```
+
+The functions `getStratumVar` and `getPSUVar` return the default stratum variable name or a primary sampling unit (PSU) variable associated with a weight variable.
+
+```{r stratumPsu}
+EdSurvey:::getStratumVar(data = sdf)
+EdSurvey:::getPSUVar(data = sdf)
+```
+
+These functions are quite useful for accessing the variables associated with the weights in longitudinal surveys.
+
+##	Explore Data
+
+### Subsetting the Data {#subsettingData}
+
+A subset of a dataset can be used with `EdSurvey` package functions. In this example, a summary table is created with `edsurveyTable` after filtering the sample to include only those students whose value in the `dsex` variable is male and race (as variable `sdracem`) is either the values 1 or 3 (White or Hispanic). Both value levels and labels can be used in `EdSurvey` package functions.
+
+```{r subset, cache=FALSE, warning=FALSE}
+sdfm <- subset(sdf, dsex == "Male" & (sdracem == 3 | sdracem == 1))
+es2 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
+```
+```{r printES2, eval=FALSE}
+es2
+```
+```{r table301, echo=FALSE}
+knitr::kable(x = es2$data, digits = 7, row.names = FALSE, caption = "Summary Table Subset \\label{tab:summaryTableSubset}")
+```
+
+### Explore Variable Distributions With `summary2`
+
+The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
+
+```{r summary2Weighted}
+summary2(sdf, "composite")
+```
+
+By specifying `weightVar = NULL`, the function prints out unweighted descriptive statistics for the selected variable or plausible values:
+
+```{r summary2Unweighted}
+summary2(sdf, "composite", weightVar = NULL)
+```
+
+For a categorical variable, the `summary2` function returns the weighted number of cases, the weighted percent, and the weighted standard error. For example, the variable `b017451` (frequency of students talking about
+studies at home) returns the following output:
+
+```{r summary2Categorical}
+summary2(sdf, "b017451")
+```
+
+Note that by default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+
+```{r summary2CategoricaOomitted}
+summary2(sdf, "b017451", omittedLevels = TRUE)
+```
+
+
+##	Read in for Analysis in EdSurvey
+
+
+### Retrieving Data for Further Manipulation With `getData`
+
+Users can extract and manipulate data by using the function `getData`. This function takes an `edsurvey.data.frame` and returns a `light.edsurvey.data.frame` containing the requested variables by either specifying a set of variable names in `varnames` or entering a formula in `formula`.[^helpgetData]
+
+[^helpgetData]: Use `?getData` for details on default `getData` arguments.
+
+To access and manipulate data for `dsex` and `b017451` variables in `sdf`, call `getData`. In the following code, the `head` function reveals only the first few rows of the resulting data:
+
+```{r getDatInit, cache=FALSE, warning=FALSE}
+gddat <- getData(data = sdf, varnames = c("dsex","b017451"),
+                 omittedLevels = TRUE)
+head(gddat)
+```
+
+By default, setting `omittedLevels` to `TRUE` removes special values such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations that are not typically included in analysis.
+
+### Retrieving All Variables in a Dataset
+
+To extract all data in an `edsurvey.data.frame`, define the `varnames` argument as `colnames(sdf)`, which will query all variables. Setting the arguments `omittedLevels` and `defaultConditions` to `FALSE` ensures that values that would normally be removed are included:
+
+```{r getAllData, eval = FALSE, warning=FALSE}
+lsdf0 <- getData(data = sdf, varnames = colnames(sdf), addAttributes = TRUE,
+                 omittedLevels = FALSE, defaultConditions = FALSE)
+dim(lsdf0) # excludes the one school variable in the sdf
+dim(sdf)
+```
+
+Once retrieved, this dataset can be used with all `EdSurvey` functions.
+
+##	Read in for Analysis Outside EdSurvey
+
+### Applying `rebindAttributes` to Use `EdSurvey` Functions With Manipulated Data Frames
+
+A helper function that pairs well with `getData` is `rebindAttributes`. This function allows users to reassign the attributes from a survey dataset to a data frame that might have had its attributes stripped during the manipulation process. After rebinding attributes, all variables---including those outside the original dataset---are available for use in `EdSurvey` analytical functions.
+
+For example, a user might want to run a linear model using `composite`, the default weight `origwt`, the variable `dsex`, and the categorical variable `b017451` recoded into a binary variable. To do so, we can return a portion of the `sdf` survey data as the `gddat` object. Next, use the base R function `ifelse` to conditionally recode the variable `b017451` by collapsing the levels `"Never or hardly ever"` and `"Once every few weeks"` into one level (`"Rarely"`) and all other levels into `"At least once a week"`.
+
+```{r rebindAttributesPrep, cache=FALSE, warning=FALSE}
+gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "origwt", "composite"),
+                 omittedLevels = TRUE)
+gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
+                                               "Once every few weeks"),
+                          "Rarely", "At least once a week")
+```
+
+From there, apply `rebindAttributes` from the attribute data `sdf` to the manipulated data frame `gddat`. The new variables are now available for use in `EdSurvey` analytical functions:
+
+```{r rebindAttributes, cache=FALSE, warning=FALSE}
+gddat <- rebindAttributes(gddat, sdf)
+lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
+summary(lm2)
+```

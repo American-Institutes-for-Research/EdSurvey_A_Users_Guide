@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/dataAccess.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="nces-information-page.html">NCES Information Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="active" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="dataAccess" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Data Access<a class="anchor" aria-label="anchor" href="#dataAccess"><i class="fas fa-link"></i></a>
+</h1>
+<p>To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets with <code>EdSurvey</code>, review the available study documentation to familiarize yourself with each unique study.</p>
+<p>Its good practice to keep source data in a structured folder scheme. For <code>EdSurvey</code> we recommend having one <code>root</code> data folder, subfolders for each study, and year/group folders within each study subfolder. For example, <code>C:/EdSurveyData</code> would be the <code>root</code> folder. Then <code>C:/EdSurveyData/TIMSS</code> would be the <code>TIMSS</code> study folder. Lastly, each year of TIMSS data would then have another subfolder such as <code>C:/EdSurveyData/TIMSS/2015</code>. This structure helps organize the data and is the method used by the <code>download</code> functions.</p>
+<div id="naep-national-assessment-of-educational-progress" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> NAEP: National Assessment of Educational Progress<a class="anchor" aria-label="anchor" href="#naep-national-assessment-of-educational-progress"><i class="fas fa-link"></i></a>
+</h2>
+<p>NAEP is a measure used to study U.S. student achievement in urban districts, states, and the nation in many subjects, including reading, mathematics, science, writing, and other subjects for Grades 4, 8, and 12. The assessments are sponsored by the NCES within the U.S. Department of Education and the Institute of Education Sciences (IES). Further study information can be found on the <a href="https://nces.ed.gov/nationsreportcard/">NAEP Webpage</a>. All NAEP datasets are restricted-use files from NCES; however, a publicly available sample dataset called NAEP Primer can be accessed through the R package <code>NAEPprimer</code>.</p>
+<p>NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the <code>readNAEP</code> function. Additional arguments to <code>readNAEP</code> include <code>defaultWeight</code>, <code>defaultPvs</code>, <code>omittedLevels</code>, and <code>frPath</code>. These arguments should be modified from their default values only in rare situations. Consult the <code>readNAEP</code> function documentation for more details on their use.</p>
+<p>Before beginning to analyze NAEP data, be sure to read the provided user guide and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis.</p>
+<p>When the <code>readNAEP</code> function is called, it locates the specified ASCII fixed-width data file (.dat) from the supplied <code>path</code> argument. The <code>readNAEP</code> function then scans for the data files (.dat) associated with the layout file (.fr2) located in the <code>Select/Parms</code> folder which contains all the information needed for parsing the data file. Lastly, the <code>readNAEP</code> function scans the folder for its associated school-level data file. The main student-level files have a naming scheme of <code>xxxxTxxx.dat</code>, whereas the school-level files have a naming scheme of <code>xxxxCxxx.dat</code>. The data are read in on the fly, and <code>EdSurvey</code> stores the file connection information, and associated meta-data without having to load the entire dataset into memory.</p>
+<div id="reading-naep-data" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> Reading NAEP Data<a class="anchor" aria-label="anchor" href="#reading-naep-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in the NAEP Primer data using the package NAEPprimer</span>
+<span class="va">naep.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#pointing to a NAEP restricted-use file directly by path</span>
+<span class="va">naep.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/NAEP/M36NT2PM.dat"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="ECLS-data" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> ECLS: Early Childhood Longitudinal Study<a class="anchor" aria-label="anchor" href="#ECLS-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>ECLS includes of three U.S. longitudinal studies. Two public-use datasets feature students beginning at the kindergarten level known as the ECLS-K studies. The first began with a sample of kindergarten students beginning in 1998 that were followed through grade 8 (i.e., ECLS-K). The second study was a group of kindergarten students beginning in 2011 through grade 5 (i.e., ECLS-K:2011). The final ECLS study is known as ECLS-B which followed children ages 9 months through their preschool level. The ECLS-B is a restricted-use dataset only. All three studies were sponsored by NCES. Further study information can be found on the <a href="https://nces.ed.gov/ecls/index.asp">NCES ECLS Study webpage</a>.</p>
+<p>Before beginning to analyze ECLS data, be sure to read the published user guides and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis. Be advised that are a large number of weight variables, so care must be used to select the appropriate weight for analysis.</p>
+<p>When a <code>readECLS_K1998</code>, <code>readECLS_K2011</code>, or <code>readECLS_B</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step will take significant time, because of the large size of the data files. The preparation involves parsing the SPSS (.sps) script file to gather all the relevant data and variable information and then outputting a fixed-width data (.txt) file suitable for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>The <code>downloadECLS</code> function downloads and extracts the ECLS data from the <a href="https://nces.ed.gov/OnlineCodebook">NCES Online Codebook</a> for the ECLS-K 1998 study. For the ECLS-K 2011 study, the files are downloaded from the <a href="https://nces.ed.gov/ecls/dataproducts.asp">NCES ECLS Study Data Products webpage</a>. For the ECLS-B study, the files are restricted-use and must be obtained through an IES restricted-use data license. Additional specifics on what files are required are detailed within the specific section for each study.</p>
+<div id="ecls-k" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> ECLS-K<a class="anchor" aria-label="anchor" href="#ecls-k"><i class="fas fa-link"></i></a>
+</h3>
+<p>The ECLS-K study mainly comprises of public-use study data at the student/child level. It also has files for school data, and teacher data that were gathered throughout the study. The student, school, and teacher data are to be analyzed separately; the data cannot be joined/merged together.</p>
+<p>The <code>downloadECLS</code> function downloads all the ECLS-K data from the <a href="https://nces.ed.gov/OnlineCodebook">NCES Online Codebook</a>. The format required for the <code>readECLS_K1998</code> function is a fixed-width data file (.dat), along with the NCES formatted text layout file (.txt) which includes all the relevant details about the data file.</p>
+<div id="obtaining-ecls-k-data" class="section level4" number="4.2.1.1">
+<h4>
+<span class="header-section-number">4.2.1.1</span> Obtaining ECLS-K Data<a class="anchor" aria-label="anchor" href="#obtaining-ecls-k-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#download ECLS-K data to the root folder</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span><span class="op">)</span>
+
+<span class="co">#if cache = TRUE, it will perform the data caching step now </span>
+<span class="co">#instead of the first readECLS_K2011 call</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-ecls-k-data" class="section level4" number="4.2.1.2">
+<h4>
+<span class="header-section-number">4.2.1.2</span> Reading ECLS-K Data<a class="anchor" aria-label="anchor" href="#reading-ecls-k-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#read in the student/child data file, specifying the files directly</span>
+<span class="va">eclsk98.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,
+                            filename <span class="op">=</span> <span class="st">"eclsk_98_99_k8_child_v1_0.dat"</span>,
+                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_child.txt"</span><span class="op">)</span>
+
+<span class="co">#by default, the filename is specified as 'eclsk_98_99_k8_child_v1_0.dat',</span>
+<span class="co">#and the default layoutFilename as 'Layout_k8_child.txt',</span>
+<span class="co">#so you can omit the filename and layoutFilename argument when using default filenames.</span>
+<span class="va">eclsk98.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span><span class="op">)</span>
+
+<span class="co">#read in the teacher data file, specifying the filename and its associated layout file</span>
+<span class="va">eclsk98.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,
+                            filename <span class="op">=</span> <span class="st">"ECLSK_98_99_K8_TCH_v1_0.dat"</span>,
+                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_tch.txt"</span><span class="op">)</span>
+
+<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
+<span class="va">eclsk98.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="ecls-k2011" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> ECLS-K:2011<a class="anchor" aria-label="anchor" href="#ecls-k2011"><i class="fas fa-link"></i></a>
+</h3>
+<p>The ECLS-K:2011 study mainly comprises of public-use study data at the student/child level. There are no additional data files at the school and teacher levels.</p>
+<p>The <code>downloadECLS</code> function downloads all the ECLS-K:2011 data from the <a href="https://nces.ed.gov/ecls/dataproducts.asp">NCES ECLS Study Data Products webpage</a>. The format required for the <code>readECLS_K2011</code> function is a fixed-width data file (.dat), along with the SPSS script syntax file (.sps), which includes all the relevant details about the fixed-width data file. An NCES formatted data layout file is currently not available for ECLS-K 2011, so users should use the SPSS script syntax file.</p>
+<div id="obtaining-ecls-k2011-data" class="section level4" number="4.2.2.1">
+<h4>
+<span class="header-section-number">4.2.2.1</span> Obtaining ECLS-K:2011 Data<a class="anchor" aria-label="anchor" href="#obtaining-ecls-k2011-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#download ECLS-K 2011 data to the root folder</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span>
+
+<span class="co">#if cache = TRUE, it will perform the data caching step now </span>
+<span class="co">#instead of the first readECLS_K2011 call</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-ecls-k2011-data" class="section level4" number="4.2.2.2">
+<h4>
+<span class="header-section-number">4.2.2.2</span> Reading ECLS-K:2011 Data<a class="anchor" aria-label="anchor" href="#reading-ecls-k2011-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#read in the student/child data, file specifying the files directly</span>
+<span class="va">eclsk11.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>,
+                            filename <span class="op">=</span> <span class="st">"childK5p.dat"</span>,
+                            layoutFilename <span class="op">=</span> <span class="st">"ECLSK2011_K5PUF.sps"</span><span class="op">)</span>
+
+<span class="co">#by default, the filename is specified as 'childK5p.dat',</span>
+<span class="co">#and the default layoutFilename as 'ECLSK2011_K5PUF.sps',</span>
+<span class="co">#so you can omit the filename and layoutFilename argument when using default filenames</span>
+<span class="va">eclsk11.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span><span class="op">)</span>
+
+<span class="co">#setting verbose = FALSE stops console message output (silent) of the function</span>
+<span class="va">eclsk11.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="ecls-b" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> ECLS-B<a class="anchor" aria-label="anchor" href="#ecls-b"><i class="fas fa-link"></i></a>
+</h3>
+<p>The ECLS-B study comprises of restricted-use study data at the child level. The format required for the <code>readECLS_B</code> function is a fixed-width data file (.dat), along with the SPSS script syntax file (.sps), which includes all the relevant details about the fixed-width data file. The SPSS script syntax (.sps) file must be generated using the ECLS-B supplied electronic codebook (ECB) program that is included with the ECLS-B restricted-use data. Using the ECB program you can select your variables and generate the SPSS script (.sps) syntax file from the tool.</p>
+<div id="reading-ecls_b-data" class="section level4" number="4.2.3.1">
+<h4>
+<span class="header-section-number">4.2.3.1</span> Reading ECLS_B Data<a class="anchor" aria-label="anchor" href="#reading-ecls_b-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#read in the ECLS-B data</span>
+<span class="va">eclsb.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_B.html">readECLS_B</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/ECLS_B"</span>,
+                      filename <span class="op">=</span> <span class="st">"ChildK07.dat"</span>,
+                      layoutFilename <span class="op">=</span> <span class="st">"eclsb.sps"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="els-education-longitudinal-study-of-2002" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> ELS: Education Longitudinal Study of 2002<a class="anchor" aria-label="anchor" href="#els-education-longitudinal-study-of-2002"><i class="fas fa-link"></i></a>
+</h2>
+<p>The ELS:2002 study was a U.S. longitudinal study designed to follow high school sophomores (Grade 10) in the fall 2002 school year with follow-ups every 2 years through high school into their college/adult paths. Follow-ups where conducted in 2004, 2006, and 2012. NCES sponsored the study. Further study information can be found on the <a href="https://nces.ed.gov/surveys/els2002/">NCES ELS Study webpage</a>.</p>
+<p>Before beginning to analyze with ELS data, be sure to read the published user guides and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis. Be advised that there are a large number of weight variables, so care must be used to select the appropriate weight for analysis.</p>
+<p>The data for ELS comprises two large student-level files (one student data file plus one file for weight replicates), which contain all the available variables across the data collections, as well three school-level data files for different study periods. The student and school data files cannot be merged or joined for analysis.</p>
+<p>When a <code>readELS</code> call is first used to read in the data, it will perform process the data to prepare it for <code>EdSurvey</code> on the first read call. This step will take significant time, because of the large size of the data files. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, then outputting a fixed-width (.txt) data file suitable for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>The <code>downloadELS</code> function downloads and extracts the ELS data from the <a href="https://nces.ed.gov/OnlineCodebook">NCES Online Codebook</a> in the SPSS data file format to the specified <code>root</code> folder.</p>
+<div id="obtaining-els-data" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> Obtaining ELS Data<a class="anchor" aria-label="anchor" href="#obtaining-els-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#download ELS:2002 data to the root folder</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span><span class="op">)</span>
+
+<span class="co">#if cache = TRUE, it will perform the data caching step now</span>
+<span class="co">#instead of the first readELS call</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-els-data" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> Reading ELS Data<a class="anchor" aria-label="anchor" href="#reading-els-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in the ELS student data file</span>
+<span class="va">els.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,
+                 filename <span class="op">=</span> <span class="st">"els_02_12_byf3pststu_v1_0.sav"</span>,
+                 wgtFilename <span class="op">=</span> <span class="st">"els_02_12_byf3stubrr_v1_0.sav"</span><span class="op">)</span>
+
+<span class="co">#by default the filename is specified as 'els_02_12_byf3pststu_v1_0.sav',</span>
+<span class="co">#and the default wgtFilename as 'els_02_12_byf3stubrr_v1_0.sav,'</span>
+<span class="co">#so you can omit the filename and wgtFilename argument when using default filenames</span>
+<span class="va">els.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span><span class="op">)</span>
+
+<span class="co">#to read in a school data file</span>
+<span class="co">#wgtFilename can either be omitted or set to 'NA' value as it's not applicable</span>
+<span class="va">els.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,
+                 filename <span class="op">=</span> <span class="st">"els_02_12_byf1sch_v1_0.sav"</span>,
+                 wgtFilename <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
+
+<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
+<span class="va">els.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="hsls-high-school-longitudinal-study-of-2009" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> HSLS: High School Longitudinal Study of 2009<a class="anchor" aria-label="anchor" href="#hsls-high-school-longitudinal-study-of-2009"><i class="fas fa-link"></i></a>
+</h2>
+<p>The HSLS:09 study was a U.S. longitudinal study designed to follow high school freshman (Grade 9) in the fall 2009 school year through high school into their adult roles. The study had four additional follow-up data collections. The first follow-up occurred in 2012 when the students were high school juniors (Grade 11). The next collection was done in 2013 when the students were high school seniors (Grade 12). Another collection was completed 3 years after high school graduation in 2016. The final collection was in 2017, which was 4 years after high school graduation, but the data have yet to be released. NCES sponsored the study. Further study information be found on the <a href="https://nces.ed.gov/surveys/hsls09/index.asp">NCES HSLS Study webpage</a>.</p>
+<p>Before beginning to analyze with HSLS data, be sure to read the published user guides and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis. Be advised that there are a large number of weight variables for HSLS, so care must be used to select the appropriate weight for analysis.</p>
+<p>The data for HSLS comprises of one large student-level file, which contains all the available variables across the data collections, as well as a school-level data file. The student and school data files are not meant to be merged, or joined, for analysis.</p>
+<p>When a <code>readHSLS</code> call is first used to read in the data, it will process the data to prepare it for the <code>EdSurvey</code> package on the first read call. This step will take significant time, because of the large size of the HSLS data files. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information and then outputting a fixed-width (.txt) data file suitable for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>The <code>downloadHSLS</code> function downloads and extracts the HSLS data from the <a href="https://nces.ed.gov/OnlineCodebook">NCES Online Codebook</a> in the SPSS data file format to the specified <code>root</code> folder.</p>
+<div id="obtaining-hsls-data" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Obtaining HSLS Data<a class="anchor" aria-label="anchor" href="#obtaining-hsls-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#download HSLS:09 data to the root folder</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span>
+
+<span class="co">#if cache = TRUE, it will perform the data caching step now</span>
+<span class="co">#instead of the first readHSLS call</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-hsls-data" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Reading HSLS Data<a class="anchor" aria-label="anchor" href="#reading-hsls-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in the HSLS student data file</span>
+<span class="va">hsls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
+                   filename <span class="op">=</span> <span class="st">"hsls_16_student_v1_0.sav"</span><span class="op">)</span>
+
+<span class="co">#by default the filename is specified as 'hsls_16_student_v1_0.sav', </span>
+<span class="co">#so you can omit the filename argument.</span>
+<span class="va">hsls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span><span class="op">)</span>
+
+<span class="co">#to read in the school data file</span>
+<span class="va">hsls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
+                   filename <span class="op">=</span> <span class="st">"hsls_09_school_v1_0.sav"</span><span class="op">)</span>
+
+<span class="co">#in rare instances (such as using restricted-use data),</span>
+<span class="co">#you also may need to specify a `weight` file </span>
+<span class="co">#that contains the study replicate weight variables</span>
+<span class="va">hsls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
+                   filename <span class="op">=</span> <span class="st">"student.sav"</span>, 
+                   wgtFilename <span class="op">=</span> <span class="st">"student_weight.sav"</span><span class="op">)</span>
+
+<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
+<span class="va">hsls.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="iccs-and-cived-international-civic-and-citizen-education-study-and-civic-education-study-1999" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> ICCS and CivED: International Civic and Citizen Education Study and Civic Education Study 1999<a class="anchor" aria-label="anchor" href="#iccs-and-cived-international-civic-and-citizen-education-study-and-civic-education-study-1999"><i class="fas fa-link"></i></a>
+</h2>
+<p>ICCS and CivED have been combined into the same set of data functions, because they both involve civic education. The CivED study was conducted in 1999 by <a href="https://www.iea.nl">IEA (International Association for the Evaluation of Educational Achievement)</a> and the Humboldt University of Berlin. The CivED study comprised primarily of Grade 8 students and also had a Grade 12 student component. The Grade 8 dataset included school and teacher information, as well as the ability to link student data with teacher and school level data. The Grade 12 data has student-level information only.</p>
+<p>The ICCS study was first implemented in 2009 with a follow-up cycle in 2016 and one in progress for 2022. <code>EdSurvey</code> currently supports the read-in and analysis of the 2009 and 2016 data. The ICCS study was coordinated with many partners, including, <a href="https://www.iea.nl">IEA (International Association for the Evaluation of Educational Achievement)</a>, <a href="https://www.acer.org/au">ACER (Australian Council for Educational Research)</a>, <a href="https://scienzeformazione.uniroma3.it/ricerca/laboratori-di-ricerca/laboratorio-di-pedagogia-sperimentale-lps/">LPS (Laboratorio di Pedagogia Sperimentale)</a> at Roma Tre University, and many other national centers. The ICCS study had a target population of students primarily in Grade 8, along with some data for students in Grade 9. Also available are school- and teacher-level data. Unlike most other IEA datasets, the ICCS study cannot link student-level data to teacher-level data, so the user must specify which <code>dataSet</code> they wish to analyze in the <code>readCivEDICCS</code> function argument.</p>
+<p>Before beginning to analyze CivED/ICCS data, be sure to read the published user guides and documentation provided by IEA to familiarize yourself with the study and apply their guidance for analysis. The user guide identifies the International Organization for Standardization (ISO) three-digit country codes that will be used as arguments for the <code>readCivEDICCS</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>.</p>
+<p>When a <code>readCivEDICCS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer. The preparation involves parsing the SPSS files (.sav) to gather all the relevant data and variable information, merging all necessary files, and then outputting to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>The <code>downloadCivEDICCS</code> function provides user instructions for downloading the datasets from the IEA Data Repository for both the CivED and ICCS studies.</p>
+<p>The <code>readCivEDICCS</code> function supports both datasets with all the study data, although care must be taken to correctly specify the correct parameters.</p>
+<div id="obtaining-cived-data" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Obtaining CivED Data<a class="anchor" aria-label="anchor" href="#obtaining-cived-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#View instructions for obtaining the CivED Study files from the IEA Data Repository</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">1999</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="obtaining-iccs-data" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Obtaining ICCS Data<a class="anchor" aria-label="anchor" href="#obtaining-iccs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#View instructions for obtaining the ICCS Study files from the IEA Data Repository</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-cived-data" class="section level3" number="4.5.3">
+<h3>
+<span class="header-section-number">4.5.3</span> Reading CivED Data<a class="anchor" aria-label="anchor" href="#reading-cived-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 8th-grade student data</span>
+<span class="co">#having dataSet = "student", includes School-, Student-, and Teacher-level </span>
+<span class="co">#information (because they can be merged).</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">cived.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
+                             countries <span class="op">=</span> <span class="st">"deu"</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year for 8th-grade student data</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">cived.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"cze"</span><span class="op">)</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path</span>
+<span class="co">#specifying the dataSet= "teacher", includes the Teacher and School levels only </span>
+<span class="co">#(because they can be merged)</span>
+<span class="va">cived.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
+                             countries <span class="op">=</span> <span class="st">"*"</span>,
+                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#for CivED there is a grade 12 dataset with only student-level data</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">cived.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cze"</span>, <span class="st">"est"</span><span class="op">)</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-iccs-data" class="section level3" number="4.5.4">
+<h3>
+<span class="header-section-number">4.5.4</span> Reading ICCS Data<a class="anchor" aria-label="anchor" href="#reading-iccs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 8th-grade student data</span>
+<span class="co">#having dataSet = "student", includes School- and Student-level data</span>
+<span class="co">#(they can be merged together).</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">iccs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
+                             countries <span class="op">=</span> <span class="st">"kor"</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#reading in a single country for a single year for 8th-grade teacher data</span>
+<span class="co">#having dataSet = "teacher", includes School- and Teacher-level data</span>
+<span class="co">#(they can be merged together).</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">iccs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
+                             countries <span class="op">=</span> <span class="st">"kor"</span>,
+                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#you must still specify the dataSet and gradeLvl arguments</span>
+<span class="co">#for the correct dataset to analyze</span>
+<span class="va">iccs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
+                             countries <span class="op">=</span> <span class="st">"*"</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#for ICCS there is a grade 9 dataset with only student-level data</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">iccs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="icils-international-computer-and-information-literacy-study" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> ICILS: International Computer and Information Literacy Study<a class="anchor" aria-label="anchor" href="#icils-international-computer-and-information-literacy-study"><i class="fas fa-link"></i></a>
+</h2>
+<p>The ICILS study is a global study that focuses on target populations of Grade 8 students to help understand aspects of their computer use and information literacy. The study has two cycles of public-use datasets from 2013 and 2018. The study partners are <a href="https://www.iea.nl">IEA (International Association for the Evaluation of Educational Achievement)</a> and <a href="https://www.acer.org/au">ACER (Australian Council for Educational Research)</a>. In addition to student-level data, data are collected for both the school and teacher levels. Student-level data cannot be directly joined to teacher-level data as part of the study design.</p>
+<p>The <code>downloadICILS</code> function provides instructions on obtaining the ICILS data from the <a href="https://www.iea.nl/data-tools/repository/icils">IEA Data Repository</a>. The <code>readICILS</code> function supports the SPSS (.sav) data file format.</p>
+<p>Before beginning to analyze ICILS data, be sure to read the published user guides and documentation provided by IEA/ACER to familiarize yourself with the study and apply their guidance for analysis. The user guide also identifies the ISO three-digit country codes that will be used as arguments for the <code>readICILS</code> function to read in specific countries. The three-digit ISO country codes can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>.</p>
+<p>When a <code>readICILS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code>. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>An <code>edsurvey.data.frame</code> of ICILS data will handle all the necessary merging/linking of school data to both student- and teacher-level data behind the scenes for the user. The <code>dataSet</code> argument must be specified as either <code>student</code> or <code>teacher</code> to indicate which set of data you wish to analyze. Both the <code>student</code> and <code>teacher</code> datasets can be merged to the <code>school</code> level data, which will be available for the user automatically.</p>
+<div id="obtaining-icils-data" class="section level3" number="4.6.1">
+<h3>
+<span class="header-section-number">4.6.1</span> Obtaining ICILS Data<a class="anchor" aria-label="anchor" href="#obtaining-icils-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#the downloadICILS function will display instructions for</span>
+<span class="co">#downloading the ICILS data from the IEA Data Repository</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadICILS.html">downloadICILS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-icils-data" class="section level3" number="4.6.2">
+<h3>
+<span class="header-section-number">4.6.2</span> Reading ICILS Data<a class="anchor" aria-label="anchor" href="#reading-icils-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for ICILS 2013 student data</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">icils.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
+                     countries <span class="op">=</span> <span class="st">"chl"</span>,
+                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year for teacher level data</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">icils.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
+                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"svk"</span>, <span class="st">"svn"</span><span class="op">)</span>,
+                     dataSet <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list of all found countries</span>
+<span class="va">icils.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
+                     countries <span class="op">=</span> <span class="st">"*"</span>,
+                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span>
+
+<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">icils.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ICILS/2013"</span>, 
+                                      <span class="st">"C:/EdSurveyData/ICILS/2018"</span><span class="op">)</span>, 
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"dnk"</span><span class="op">)</span>,
+                             dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="timss-trends-in-international-mathematics-and-science-study" class="section level2" number="4.7">
+<h2>
+<span class="header-section-number">4.7</span> TIMSS: Trends in International Mathematics and Science Study<a class="anchor" aria-label="anchor" href="#timss-trends-in-international-mathematics-and-science-study"><i class="fas fa-link"></i></a>
+</h2>
+<p>TIMSS is a global study focusing on target populations of Grade 4 and Grade 8 students. The study began in 1995 and has release cycles every 4 years comprising public-use datasets from 1995, 1999, 2003, 2007, 2011, 2015, and 2019 released in conjunction with the <a href="https://timssandpirls.bc.edu/">Boston College Lynch School of Education</a> and <a href="https://www.iea.nl">IEA</a>. In addition to the student assessment data, the database includes student, teacher, school, and curricular background data for both grades.</p>
+<p>The <code>downloadTIMSS</code> function downloads and unzips the data hosted by the <a href="https://timssandpirls.bc.edu/">Boston College TIMSS and PIRLS Database</a> for the following years: 2003, 2007, 2011, 2015, and 2019. The same data also can be found and manually downloaded from the <a href="https://www.iea.nl/index.php/data-tools/repository/timss">IEA Data Repository</a>. The required data format used by the <code>readTIMSS</code> function is the SPSS (.sav) file format version. Use the IEA Data Repository if you wish to obtain and analyze 1995 or 1999 data because the Boston College TIMSS Database does not provide SPSS (.sav) files for those study years.</p>
+<p>Before beginning to analyze TIMSS data, be sure to read the studies published user guides and documentation provided by Boston College and IEA to familiarize yourself with the study and apply their guidance for analysis. The user guide identifies the ISO three-digit country codes that will be used as arguments for the <code>readTIMSS</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. TIMSS data include other jurisdictions and subgroups that are not countries, and the published TIMSS documentation will include the specific codes needed if you wish to analyze those as well. The <code>readTIMSS</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>readTIMSS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>An <code>edsurvey.data.frame</code> of TIMSS data will handle all the necessary merging/linking of the school- and teacher-level data behind the scenes for the user, based on the variables requested in a function. For the Grade 8 data files, the teacher surveys have both a math and science component. The variable names duplicated between them have been modified to indicate if they are math or science by adding a <code>.math</code> and a <code>.sci</code> to the end of the variable name. For example the <code>btbg05e</code> variable is common in both the math and science teacher questionnaire. This variable has been renamed within <code>EdSurvey</code> to be <code>btbg05e.math</code> and <code>btbg05e.sci</code> to indicate the teacher questionnaire type and aid users in their analysis.</p>
+<p>In 2015, countries with less-developed education systems had the opportunity to participate in TIMSS Numeracy, which included items of lower difficulty. TIMSS Numeracy data are automatically included in <code>readTIMSS</code> for 2015 data, and <code>gradeLvl = 4</code> is specified.</p>
+<div id="obtaining-timss-data" class="section level3" number="4.7.1">
+<h3>
+<span class="header-section-number">4.7.1</span> Obtaining TIMSS Data<a class="anchor" aria-label="anchor" href="#obtaining-timss-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2011 and 2015 study years</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
+<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
+<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for silent output with no message output set the verbose argument to FALSE (verbose = FALSE).</span>
+<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE </span>
+<span class="co">#because you won't see the progress.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-timss-data" class="section level3" number="4.7.2">
+<h3>
+<span class="header-section-number">4.7.2</span> Reading TIMSS Data<a class="anchor" aria-label="anchor" href="#reading-timss-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 4th grade</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">timss.1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year for 8th grade</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">timss.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>,
+                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,
+                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">timss.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, 
+                             countries <span class="op">=</span> <span class="st">"*"</span>, 
+                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+
+<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">timss.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, 
+                              <span class="st">"C:/EdSurveyData/TIMSS/2011"</span><span class="op">)</span>, 
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span>,
+                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="timss-advanced-trends-in-international-mathematics-and-science-study" class="section level2" number="4.8">
+<h2>
+<span class="header-section-number">4.8</span> TIMSS Advanced: Trends in International Mathematics and Science Study<a class="anchor" aria-label="anchor" href="#timss-advanced-trends-in-international-mathematics-and-science-study"><i class="fas fa-link"></i></a>
+</h2>
+<p>TIMSS Advanced study is a global study that focuses on target populations of secondary school students in their final year, targeting their progress in advanced mathematics and advanced physics. The first study was conducted in 1995, with varying release years of public-use datasets from 1995, 2008, and 2015. The studies were conducted in conjunction with the <a href="https://timssandpirls.bc.edu/">Boston College Lynch School of Education</a> and <a href="https://www.iea.nl">IEA</a>. In addition to the student assessments and home questionnaires, the data includes a school questionnaire and a teacher-level questionnaires for both the math and physics datasets.</p>
+<p>The <code>downloadTIMSSAdv</code> function downloads and unzips the data hosted by the <a href="https://timssandpirls.bc.edu/">Boston College TIMSS and PIRLS Database</a> for the following years: 1995, 2008, and 2015. The same data also can be found and manually downloaded from the <a href="https://www.iea.nl/data-tools/repository/timssadvanced">IEA Data Repository</a>. The required data format used by the <code>readTIMSSAdv</code> function is the SPSS (.sav) file format version.</p>
+<p>Before beginning to analyze TIMSS Advanced data, be sure to read the published user guides and documentation provided by Boston College and IEA to familiarize yourself with the study and apply their guidance for analysis. The user guide also identifies the ISO three-digit country codes that will be used as arguments for the <code>readTIMSSAdv</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. TIMSS Advanced data include other jurisdictions and subgroups that are not countries, and the published TIMSS Advanced documentation includes the specific codes needed if you wish to analyze those as well. The <code>readTIMSSAdv</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>readTIMSSAdv</code> call is first used to read in the data, it will process the data to prepare it for the <code>EdSurvey</code> package on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>An <code>edsurvey.data.frame</code> of TIMSS data will handle all the necessary merging/linking of the school- and teacher-level data behind the scenes for the user, based on the variables requested in a function. Specify which subject you wish to analyze using the <code>subject</code> argument to select either <code>math</code> or <code>physics</code> for analysis.</p>
+<div id="obtaining-timss-advanced-data" class="section level3" number="4.8.1">
+<h3>
+<span class="header-section-number">4.8.1</span> Obtaining TIMSS Advanced Data<a class="anchor" aria-label="anchor" href="#obtaining-timss-advanced-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2008 and 2015 study years</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>, 
+                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
+<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
+<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,
+                 cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for silent output with no message output, set the verbose argument to FALSE (verbose = FALSE).</span>
+<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
+<span class="co">#because you won't see the progress.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,
+                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-timss-advanced-data" class="section level3" number="4.8.2">
+<h3>
+<span class="header-section-number">4.8.2</span> Reading TIMSS Advanced Data<a class="anchor" aria-label="anchor" href="#reading-timss-advanced-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year for the 'math' subject data</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">timssadv.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
+                           countries <span class="op">=</span> <span class="st">"usa"</span>, subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">timssadv.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
+                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fra"</span>, <span class="st">"ita"</span>, <span class="st">"svn"</span><span class="op">)</span>,
+                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">timssadv.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
+                           countries <span class="op">=</span> <span class="st">"*"</span>,
+                           subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span>
+
+<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">timssadv.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>, 
+                                    <span class="st">"C:/EdSurveyData/TIMSSAdv/2008"</span><span class="op">)</span>,
+                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nor"</span>, <span class="st">"swe"</span><span class="op">)</span>,
+                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="piaac-program-for-the-international-assessment-of-adult-competencies" class="section level2" number="4.9">
+<h2>
+<span class="header-section-number">4.9</span> PIAAC: Program for the International Assessment of Adult Competencies<a class="anchor" aria-label="anchor" href="#piaac-program-for-the-international-assessment-of-adult-competencies"><i class="fas fa-link"></i></a>
+</h2>
+<p>PIAAC is a global study that focuseson assessing adult skill competency. The study had one cycle with three data collection rounds. The first round was conducted in 2011–2012 with 24 countries. The second round was conducted in 2014–2015 with nine countries. The third round was conducted in 2017 with six countries. Only the United States had two rounds of collection (round 1 and round 3). The study was conducted by the Organization for Economic Co-operation and Development (OECD), and further study information can be found on the <a href="https://www.oecd.org/skills/piaac/">PIAAC website</a>.</p>
+<p>The <code>downloadPIAAC</code> function downloads and unzips the data hosted by the OECD for cycle one of the PIAAC study. The same data also can be found and manually downloaded from the <a href="https://www.oecd.org/skills/piaac/data/">PIAAC website</a>. The required data format used by the <code>readPIAAC</code> function is their comma seperated values (.csv) file format version. In addition, the <code>readPIAAC</code> function requires the provided Microsoft Excel International Codebook file to gather necessary details about the files and variables.</p>
+<p>Before beginning to analyze PIAAC data, be sure to read the published user guides and documentation provided by OECD to familiarize yourself with the study and to apply their guidance for analysis. The user guide identifies the ISO three-digit country codes that will be used as arguments for the <code>readPIAAC</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. The <code>readPIAAC</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>readPIAAC</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the CSV (.csv) files and codebook to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a CSV (.txt) data file for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<div id="obtaining-piaac-data" class="section level3" number="4.9.1">
+<h3>
+<span class="header-section-number">4.9.1</span> Obtaining PIAAC Data<a class="anchor" aria-label="anchor" href="#obtaining-piaac-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#obtain the data to analyze cycle 1 data.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
+<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
+<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for silent output with no message output, set the verbose argument </span>
+<span class="co">#to FALSE (verbose = FALSE).</span>
+<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
+<span class="co">#because you won't see the progress</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-piaac-data" class="section level3" number="4.9.2">
+<h3>
+<span class="header-section-number">4.9.2</span> Reading PIAAC Data<a class="anchor" aria-label="anchor" href="#reading-piaac-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">piaac.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"pol"</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">piaac.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, 
+                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"ltu"</span>, <span class="st">"tur"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">piaac.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span>
+
+<span class="co">#setting verbose to FALSE (verbose = FALSE) suppresses console message output.</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">piaac.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, 
+                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="pirls-and-epirls-progress-in-international-reading-literacy-study" class="section level2" number="4.10">
+<h2>
+<span class="header-section-number">4.10</span> PIRLS and ePIRLS: Progress in International Reading Literacy Study<a class="anchor" aria-label="anchor" href="#pirls-and-epirls-progress-in-international-reading-literacy-study"><i class="fas fa-link"></i></a>
+</h2>
+<div id="pirls" class="section level3" number="4.10.1">
+<h3>
+<span class="header-section-number">4.10.1</span> PIRLS<a class="anchor" aria-label="anchor" href="#pirls"><i class="fas fa-link"></i></a>
+</h3>
+<p>PIRLS study is a global study that focuses on a target population of Grade 4 students. The study began in 2001 and has release cycles every 5 years containing public-use datasets from 2001, 2006, 2011, and 2016, released in conjunction with the <a href="https://timssandpirls.bc.edu/">Boston College Lynch School of Education</a> and the <a href="https://www.iea.nl">IEA</a>. In addition to the student assessments, the dataset includes teacher, school, and home questionnaires for Grade 4.</p>
+<p>The <code>downloadPIRLS</code> function downloads and unzips the data hosted by the <a href="https://timssandpirls.bc.edu/">Boston College TIMSS and PIRLS Database</a> for the following years: 2001, 2006, 2011, and 2016. The same data also can be found and manually downloaded from <a href="https://www.iea.nl/index.php/data-tools/repository/pirls">IEA Data Repository</a>. The required data format used by the <code>readPIRLS</code> function is the SPSS (.sav) file format version.</p>
+<p>Before beginning to analyze PIRLS data, be sure to read the published user guides and documentation provided by Boston College and IEA to familiarize yourself with the study, and apply their guidance for analysis. The user guides also identify the ISO three-digit country codes that will be used as arguments for the <code>readPIRLS</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. PIRLS data include other jurisdictions and subgroups that are not countries, and the published PIRLS documentation will include the specific codes needed if you wish to analyze those as well. The <code>readPIRLS</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>readPIRLS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>An <code>edsurvey.data.frame</code> of PIRLS data will handle all the necessary merging/linking of the school- and teacher-level data behind the scenes for the user, based on the variables requested in a function.</p>
+<p>In 2016, countries with less-developed education systems had the opportunity to participate in PIRLS Literacy, which included passages and items of lower difficulty. PIRLS Literacy data are automatically included for <code>readPIRLS</code> when the 2016 dataset is specified.</p>
+<div id="obtaining-pirls-data" class="section level4" number="4.10.1.1">
+<h4>
+<span class="header-section-number">4.10.1.1</span> Obtaining PIRLS Data<a class="anchor" aria-label="anchor" href="#obtaining-pirls-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2011 and 2016 study years</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, 
+              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#if you wish to prepare to analyze all countries</span>
+<span class="co">#to have them ready for analysis,</span>
+<span class="co">#set the cache argument to TRUE (cache = TRUE).  </span>
+<span class="co">#Be prepared that this may take some time.</span>
+<span class="co">#setting the verbose argument to TRUE will keep you informed </span>
+<span class="co">#of the progress in the console.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, 
+              cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for silent output with no message output, set the verbose </span>
+<span class="co">#argument to FALSE (verbose = FALSE).</span>
+<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
+<span class="co">#because you won't see the progress.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>,
+              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-pirls-data" class="section level4" number="4.10.1.2">
+<h4>
+<span class="header-section-number">4.10.1.2</span> Reading PIRLS Data<a class="anchor" aria-label="anchor" href="#reading-pirls-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year</span>
+<span class="va">pirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">pirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>,
+                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fin"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">pirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, 
+                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span>
+
+<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">pirls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, 
+                                      <span class="st">"C:/EdSurveyData/PIRLS/2011"</span><span class="op">)</span>, 
+                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="epirls" class="section level3" number="4.10.2">
+<h3>
+<span class="header-section-number">4.10.2</span> ePIRLS<a class="anchor" aria-label="anchor" href="#epirls"><i class="fas fa-link"></i></a>
+</h3>
+<p>ePIRLS is a computer-based extension of the PIRLS study designed to assess students’ comprehension of online information. The ePIRLS study release coincided with the 2016 PIRLS and has only one public-use dataset available for 2016. ePIRLS was released in conjunction with the <a href="https://timssandpirls.bc.edu/">Boston College Lynch School of Education</a> and the <a href="https://www.iea.nl">IEA</a>. In addition to the student assessments, the dataset includes teacher, school, and home questionnaires for Grade 4.</p>
+<p>The <code>download_ePIRLS</code> function downloads and unzips the data hosted by the <a href="https://timssandpirls.bc.edu/">Boston College TIMSS and PIRLS Database</a> for 2016 only. The same data also can be found and manually downloaded from the <a href="https://www.iea.nl/index.php/data-tools/repository/pirls">IEA Data Repository</a>. The required data format used by the <code>readPIRLS</code> function is the SPSS (.sav) file format version.</p>
+<p>Before beginning to analyze ePIRLS data, be sure to read the published user guides and documentation provided by Boston College and IEA to familiarize yourself with the study and apply their guidance for analysis. The user guide identifies the ISO three-digit country codes that will be used as arguments for the <code>read_ePIRLS</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. ePIRLS data includes other jurisdictions and subgroups that are not countries, and the published ePIRLS documentation will include the specific codes needed if you wish to analyze those as well. The <code>read_ePIRLS</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>read_ePIRLS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS (.sav) files to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<p>An <code>edsurvey.data.frame</code> of ePIRLS data will handle all the necessary merging/linking of the school- and teacher-level data behind the scenes for the user, based on the variables requested in a function.</p>
+<div id="obtaining-epirls-data" class="section level4" number="4.10.2.1">
+<h4>
+<span class="header-section-number">4.10.2.1</span> Obtaining ePIRLS Data<a class="anchor" aria-label="anchor" href="#obtaining-epirls-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#obtain the data to analyze 2016 study year</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
+<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
+<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co">#for silent output with no message output </span>
+<span class="co">#set the verbose argument to FALSE (verbose = FALSE).</span>
+<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
+<span class="co">#because you won't see the progress.</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-epirls-data" class="section level4" number="4.10.2.2">
+<h4>
+<span class="header-section-number">4.10.2.2</span> Reading ePIRLS Data<a class="anchor" aria-label="anchor" href="#reading-epirls-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for a single year</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">epirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"irl"</span><span class="op">)</span>
+
+<span class="co">#reading in multiple countries for a single year</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">epirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>,
+                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"twn"</span>, <span class="st">"sgp"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">epirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, 
+                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="pisa-programme-for-international-student-assessment" class="section level2" number="4.11">
+<h2>
+<span class="header-section-number">4.11</span> PISA: Programme for International Student Assessment<a class="anchor" aria-label="anchor" href="#pisa-programme-for-international-student-assessment"><i class="fas fa-link"></i></a>
+</h2>
+<p>PISA is a global study that focuses on the progress of 15-year-old students in reading, mathematics, and science. The study currently has seven data collection years: 2000, 2003, 2006, 2009, 2012, 2015, and 2018. The study is conducted by the OECD, and further study information can be found on the <a href="https://www.oecd.org/pisa/">PISA website</a>.</p>
+<p>The <code>readPISA</code> function has an argument of <code>database</code>, which has a default value of <code>int</code> to specify the international database. For PISA 2012, there is also a <code>cba</code> (computer-based database) and a <code>fin</code> (financial literacy) database available for both 2012 and 2018. For PISA 2015, the financial literacy data are included within the <code>int</code> database.</p>
+<p>The <code>readPISA</code> function also has a <code>cognitive</code> argument that accepts values of <code>none</code>, <code>score</code> (the default), and <code>response</code> that are applicable for the years 2006, 2009, and 2012. See the <code><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">?readPISA</a></code> documentation for additional details.</p>
+<p>The <code>downloadPISA</code> function downloads the PISA international data files from the OECD data products. For the years 2000 through 2012, the data files consist of fixed-width (.txt) data files accompanied by SPSS script (.sps) syntax files used to parse the data files. For the 2015 and 2018 datasets, the data format required is SPSS data (.sav) files.</p>
+<p>Before beginning to analyze PISA data, be sure to read the studies published user guides and documentation provided by OECD to familiarize yourself with the study and apply their guidance for analysis. In the user guides, it also identifies the ISO three-digit country codes that will be used as arguments for the <code>readPISA</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. The <code>readPISA</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>For the PISA 2000 study, the study weights are subject specific. Each weight has different adjustment factors for reading, mathematics, and science based on the original subject source file. For example, the <code>w_fstuwt_read</code> weight is associated with the reading subject data file. Special case must be used to select the correct weight based on your specific analysis. See the OECD documentation for further details. Use the <code>showWeights</code> function to see all three student-level subject weights:</p>
+<ul>
+<li>w_fstuwt_read = Reading (default)</li>
+<li>w_fstuwt_scie = Science</li>
+<li>w_fstuwt_math = Mathematics</li>
+</ul>
+<p>When a <code>readPISA</code> call is first used to read in the data, it will process the data to prepare it for the <code>EdSurvey</code> package on the first read call. This step generally takes a few minutes for one country. However, if you are analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS data (.sav) (or fixed-width data files depending on year) and codebook to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<div id="obtaining-pisa-data" class="section level3" number="4.11.1">
+<h3>
+<span class="header-section-number">4.11.1</span> Obtaining PISA Data<a class="anchor" aria-label="anchor" href="#obtaining-pisa-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#download the PISA data for 2018</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
+
+<span class="co">#download both 2018 and 2015 data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2018</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#setting cache = TRUE will process all the PISA data and have it ready for EdSurvey</span>
+<span class="co">#this can take some time for all countries</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-pisa-data" class="section level3" number="4.11.2">
+<h3>
+<span class="header-section-number">4.11.2</span> Reading PISA Data<a class="anchor" aria-label="anchor" href="#reading-pisa-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country with default values specified</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">pisa.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, 
+                   countries <span class="op">=</span> <span class="st">"nzl"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
+
+<span class="co">#reading in a two countries</span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">pisa.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,
+                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nzl"</span>, <span class="st">"aus"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">pisa.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2015"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,
+                   countries <span class="op">=</span> <span class="st">"*"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
+
+<span class="co">#reading in PISA 2012 CBA database specifying cognitive = "none"</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">pisa.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"CBA"</span>,
+                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bel"</span>, <span class="st">"bra"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
+
+<span class="co">#can set multiple paths to read in many years of data</span>
+<span class="va">pisa.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2009"</span>,
+                            <span class="st">"C:/EdSurveyData/PISA/2012"</span>,
+                            <span class="st">"C:/EdSurveyData/PISA/2015"</span>,
+                            <span class="st">"C:/EdSurveyData/PISA/2018"</span><span class="op">)</span>,
+                            database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
+                   
+<span class="co">#setting verbose = FALSE suppresses console message output</span>
+<span class="va">pisa.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, 
+                   countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="pisa-yafs-programme-for-international-student-assessment-young-adult-follow-up-study" class="section level2" number="4.12">
+<h2>
+<span class="header-section-number">4.12</span> PISA YAFS: Programme for International Student Assessment Young Adult Follow-up Study<a class="anchor" aria-label="anchor" href="#pisa-yafs-programme-for-international-student-assessment-young-adult-follow-up-study"><i class="fas fa-link"></i></a>
+</h2>
+<p>PISA YAFS is a U.S. study that concluded in 2016. Its purpose was to follow up with the participants of the PISA 2012 U.S. cohort to help reevaluate their skills in both mathematics and reading as they transition into college, workforce, and adulthood. The study used an online study instrument designed by OECD for the PIAAC study to gather additional information on computer and Internet usage.</p>
+<p><code>EdSurvey</code> supports analyzing the PISA YAFS data as a stand-alone dataset and provides the ability to link the U.S. PISA 2012 data with the PISA YAFS data for more advanced analysis. An example of how to do this merge is provided here and can be found in the <code>readPISA_YAFS</code> documentation.</p>
+<p>The <code>downloadPISA_YAFS</code> function provides instructions of how to download the PISA YAFS data files and documentation.</p>
+<p>The <code>readPISA_YAFS</code> function requires that the data file be a fixed-width (.dat) file and requires the SPSS script file (.sps) to parse the data file. The <code>esdf_PISA2012_USA</code> parameter also can be specified, pointing to the <code>edsurvey.data.frame</code> object for the U.S. PISA 2012 data to return a merged <code>edsurvey.data.frame</code>.</p>
+<div id="obtaining-pisa-yafs-data" class="section level3" number="4.12.1">
+<h3>
+<span class="header-section-number">4.12.1</span> Obtaining PISA YAFS Data<a class="anchor" aria-label="anchor" href="#obtaining-pisa-yafs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#View instructions for obtaining PISA YAFS data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA_YAFS.html">downloadPISA_YAFS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-pisa-yafs-data" class="section level3" number="4.12.2">
+<h3>
+<span class="header-section-number">4.12.2</span> Reading PISA YAFS Data<a class="anchor" aria-label="anchor" href="#reading-pisa-yafs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Return an edsurvey.data.frame for only the PISA YAFS dataset.</span>
+<span class="co">#Either omit or set the esdf_PISA2012_USA to a NULL value.</span>
+<span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,
+                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,
+                      esdf_PISA2012_USA <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+  </code></pre></div>
+</div>
+<div id="link-pisa-yafs-data-to-pisa-2012" class="section level3" number="4.12.3">
+<h3>
+<span class="header-section-number">4.12.3</span> Link PISA YAFS Data to PISA 2012<a class="anchor" aria-label="anchor" href="#link-pisa-yafs-data-to-pisa-2012"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#If wanting to analyze the PISA YAFS dataset with the PISA 2012 </span>
+<span class="co">#U.S dataset, it should be read in first to an edsurvey.data.frame.</span>
+<span class="co">#Then pass the resulting edsurvey.data.frame as a parameter for the</span>
+<span class="co">#esdf_PISA2012_USA argument. No other edsurvey.data.frames are supported.</span>
+<span class="va">usa2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span>
+  
+<span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,
+                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,
+                      esdf_PISA2012_USA <span class="op">=</span> <span class="va">usa2012</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="talis-teaching-and-learning-international-survey" class="section level2" number="4.13">
+<h2>
+<span class="header-section-number">4.13</span> TALIS: Teaching and Learning International Survey<a class="anchor" aria-label="anchor" href="#talis-teaching-and-learning-international-survey"><i class="fas fa-link"></i></a>
+</h2>
+<p>TALIS survey is a global study that focuses on school teachers and leaders about working conditions and learning environments at their schools. The study currently has three data collection years: 2008, 2013, and 2018. The study is conducted by OECD and further study information can be found on the <a href="http://www.oecd.org/education/talis/">TALIS website</a>.</p>
+<p>The TALIS datasets have three <code>isced</code> levels of <code>a</code>, <code>b</code>, and <code>c</code>. The <code>a</code> level corresponds to the <code>Primary Level</code>. The <code>b</code> level corresponds to the <code>Lower Secondary Level</code>, and the <code>c</code> level is for <code>Upper Secondary Level</code>. Not all countries may have data at all <code>isced</code> levels. In addition, a <code>dataSet</code> argument allows you to specify <code>teacher</code> (the default) or <code>school</code> depending on what specific data you wish to analyze. The <code>teacher</code> level includes the <code>school</code> level data and handles it automatically, but the base unit of analysis is the <code>teacher</code>. Setting the <code>dataSet</code> argument to <code>school</code> causes it to ignore the <code>teacher</code> data and has the <code>school</code> data as the base unit for analysis.</p>
+<p>The <code>downloadTALIS</code> function provides instructions for downloading the datasets from OECD. The same data also can be found and manually downloaded from the <a href="https://www.oecd.org/skills/talis/">TALIS website</a> in their data section. The required data format used by the <code>readTALIS</code> function is the SPSS data (.sav) file format version.</p>
+<p>Before beginning to analyze TALIS data, be sure to read the published user guides and documentation provided by OECD to familiarize yourself with the study and apply their guidance for analysis. In the user guides, it also identifies the ISO three-digit country codes that will be used as arguments for the <code>readTALIS</code> function to read in specific countries. The three-digit ISO country codes also can be found using various online resources, including <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3">Wikipedia</a>. The <code>readTALIS</code> function also supports a wildcard character of <code>*</code> for the <code>countries</code> parameter, which will scan the specified <code>path</code> directories for all available countries.</p>
+<p>When a <code>readTALIS</code> call is first used to read in the data, it will process the data to prepare it for <code>EdSurvey</code> on the first read call. This step generally takes a few minutes for one country. However, if you’re analyzing all countries at once, the processing can take much longer initially. The preparation involves parsing the SPSS data (.sav) files and codebook to gather all the relevant data and variable information, merging all necessary files, and then outputting it to a fixed-width (.txt) data file for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<div id="obtaining-talis-data" class="section level3" number="4.13.1">
+<h3>
+<span class="header-section-number">4.13.1</span> Obtaining TALIS Data<a class="anchor" aria-label="anchor" href="#obtaining-talis-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#view instructions for obtaining TALIS 2008 data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2008</span><span class="op">)</span>
+
+<span class="co">#view instructions for obtaining TALIS 2013 data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-talis-data" class="section level3" number="4.13.2">
+<h3>
+<span class="header-section-number">4.13.2</span> Reading TALIS Data<a class="anchor" aria-label="anchor" href="#reading-talis-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single country for isced='b' and dataLevel='teacher'</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">talis.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2008"</span>, 
+                     countries <span class="op">=</span> <span class="st">"bra"</span>, isced <span class="op">=</span> <span class="st">"b"</span>, 
+                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
+
+<span class="co">#reading in a two countries for isced='c' and dataLevel='school'</span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">talis.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
+                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"mex"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"c"</span>, 
+                     dataLevel <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span>
+
+<span class="co">#use the wildcard to search for all available countries in the path. </span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">talis.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
+                     countries <span class="op">=</span> <span class="st">"*"</span>, isced <span class="op">=</span> <span class="st">"a"</span>, 
+                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
+
+<span class="co">#reading in countries from multiple file paths</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">talis.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TALIS/2008"</span>, 
+                              <span class="st">"C:/EdSurveyData/TALIS/2013"</span><span class="op">)</span>,
+                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"esp"</span>, <span class="st">"ita"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"b"</span>, 
+                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
+
+<span class="co">#isced defaults to a value of 'b' and dataLevel defaults to 'teacher'.</span>
+<span class="co">#setting verbose = FALSE suppresses console message output.</span>
+<span class="va">talis.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
+                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="nhes-national-household-education-surveys" class="section level2" number="4.14">
+<h2>
+<span class="header-section-number">4.14</span> NHES: National Household Education Surveys<a class="anchor" aria-label="anchor" href="#nhes-national-household-education-surveys"><i class="fas fa-link"></i></a>
+</h2>
+<p>The NHES program is a series of surveys conducted in the United States that focus on education topics for children and families. Topics include adult education, civic involvement, early childhood program participation, and parent and family involvement in education. The surveys are conducted every few years, and the topics covered vary by year. Detailed information about the NHES program can be found on the <a href="https://nces.ed.gov/nhes/">NHES website</a>. The NHES was conducted in 1991, 1993, 1995, 1996, 1999, 2001, 2003, 2005, 2007, 2012, 2016, and 2019.</p>
+<p>The <code>downloadNHES</code> function provides instructions for downloading the datasets from the <a href="https://nces.ed.gov/OnlineCodebook/">NCES Online Codebook</a>. The required data format used by the <code>readNHES</code> function is the SPSS data (.sav) file format version. The <code>readNHES</code> function is designed to work with the Online Codebook public-use files. Data obtained from other sources will require the SPSS format and will generally require setting the <code>surveyCode</code> parameter in the function. Users can use the <code>getNHES_SurveyInfo</code> function to retrieve the survey information/codes as a <code>data.frame</code> and the <code>viewNHES_SurveyCodes</code> function to print the survey codes and descriptions to the console.</p>
+<p>Before beginning to analyze NHES data, be sure to read the published user guides and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis found on the <a href="https://nces.ed.gov/nhes/">NHES website</a>.</p>
+<p>When a <code>readNHES</code> call is first run, it will process the data to prepare it for <code>EdSurvey</code> by preparing a cached version of the data. This step generally takes a few minutes for one survey. However, if you are analyzing all the survey data files at once, the processing can take much longer. The cache preparation involves parsing the SPSS data (.sav) files and codebook to gather all the relevant data and variable information, and then outputting it to a fixed-width (.txt) data file for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<div id="obtaining-nhes-data" class="section level3" number="4.14.1">
+<h3>
+<span class="header-section-number">4.14.1</span> Obtaining NHES Data<a class="anchor" aria-label="anchor" href="#obtaining-nhes-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#view instructions for obtaining NHES data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadNHES.html">downloadNHES</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-nhes-data" class="section level3" number="4.14.2">
+<h3>
+<span class="header-section-number">4.14.2</span> Reading NHES Data<a class="anchor" aria-label="anchor" href="#reading-nhes-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single file for Early Childhood Program Participation</span>
+<span class="co">#file obtained from Online Codebook, so surveyCode = "auto" works (the default)</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">nhes.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, 
+                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span>
+
+<span class="co">#reading in a two files across two years (2019 and 2016 ECCP)</span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,
+                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span>
+<span class="va">nhes.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>, 
+                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span>
+
+<span class="co">#setting the 'surveyCode' parameter explicitly if 'auto' fails.</span>
+<span class="co">#returns edsurvey.data.frame</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/viewNHES_SurveyCodes.html">viewNHES_SurveyCodes</a></span><span class="op">(</span><span class="op">)</span> 
+<span class="va">nhes.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, 
+                   surveyCode <span class="op">=</span> <span class="st">"ECPP_2019"</span><span class="op">)</span>
+
+<span class="co">#reading multiple files with explicit 'surveyCode' parameter</span>
+<span class="co">#returns an edsurvey.data.frame.list</span>
+<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,
+                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span>
+<span class="va">nhes.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>,
+                   surveyCode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ECPP_2019"</span>, <span class="st">"ECPP_2016"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="ssocs-school-survey-on-crime-and-safety" class="section level2" number="4.15">
+<h2>
+<span class="header-section-number">4.15</span> SSOCS: School Survey on Crime and Safety<a class="anchor" aria-label="anchor" href="#ssocs-school-survey-on-crime-and-safety"><i class="fas fa-link"></i></a>
+</h2>
+<p>The SSOCS is a set of surveys conducted in the United States at the school level involving crime and safety topics. The surveys are conducted every few years. Detailed information about the SSOCS program can be found on the <a href="https://nces.ed.gov/surveys/ssocs/index.asp">SSOCS website</a>. The SSOCS was conducted in 2000 (1999–2000), 2004 (2003–2004), 2006 (2005–2006), 2008 (2007–2008), 2010 (2009–2010), 2016 (2015–2016), and 2018 (2017–2018).</p>
+<p>The <code>downloadSSOCS</code> function provides instructions for downloading the datasets from the <a href="https://nces.ed.gov/surveys/ssocs/data_products.asp">SSOCS Data Product webpage</a>. The required data format used by the <code>readSSOCS</code> function is the SAS data (.sas7bdat) file format version. The <code>readSSOCS</code> function is designed to work with public-use files, and <code>EdSurvey</code> stores required meta data for the SSOCS data within the package based on the <code>year</code> parameter.</p>
+<p>Before beginning to analyze using SSOCS data, be sure to read the published user guides and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis found on the <a href="https://nces.ed.gov/surveys/ssocs/index.asp">SSOCS website</a>.</p>
+<p>When a <code>readSSOCS</code> call is first run, it will process the data to prepare it for <code>EdSurvey</code> by preparing a cached version of the data. This step generally takes a few minutes for one survey. However, if you are analyzing all the survey data files at once, the processing can take much longer. The preparation involves parsing the SAS data (.sas7bdat) files to gather all the relevant data and variable information, and then outputting it to a fixed-width (.txt) data file for use with <code>EdSurvey</code>. By using this data caching technique, <code>EdSurvey</code> can load required data on demand, and keeps a minimal memory footprint.</p>
+<div id="obtaining-ssocs-data" class="section level3" number="4.15.1">
+<h3>
+<span class="header-section-number">4.15.1</span> Obtaining SSOCS Data<a class="anchor" aria-label="anchor" href="#obtaining-ssocs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#view instructions for obtaining SSOCS data</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadSSOCS.html">downloadSSOCS</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="reading-ssocs-data" class="section level3" number="4.15.2">
+<h3>
+<span class="header-section-number">4.15.2</span> Reading SSOCS Data<a class="anchor" aria-label="anchor" href="#reading-ssocs-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#reading in a single file for 2018 survey</span>
+<span class="co">#returns a single edsurvey.data.frame</span>
+<span class="va">ssocs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, 
+                     years <span class="op">=</span> <span class="st">"2018"</span><span class="op">)</span>
+
+<span class="co">#reading in a two files across two years (2018 and 2016)</span>
+<span class="co">#returns edsurvey.data.frame.list</span>
+<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>,
+                 <span class="st">"C:/EdSurveyData/SSOCS/2016/pu_ssocs16.sas7bdat"</span><span class="op">)</span>
+<span class="va">ssocs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="va">importFiles</span>, 
+                     years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2018"</span>, <span class="st">"2016"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#setting the 'verbose = FALSE' parameter for silent output.</span>
+<span class="co">#returns edsurvey.data.frame</span>
+<span class="va">ssocs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, 
+                     years <span class="op">=</span> <span class="st">"2018"</span>,
+                     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></div>
+<div class="next"><a href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dataAccess"><span class="header-section-number">4</span> Data Access</a></li>
+<li>
+<a class="nav-link" href="#naep-national-assessment-of-educational-progress"><span class="header-section-number">4.1</span> NAEP: National Assessment of Educational Progress</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#reading-naep-data"><span class="header-section-number">4.1.1</span> Reading NAEP Data</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#ECLS-data"><span class="header-section-number">4.2</span> ECLS: Early Childhood Longitudinal Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ecls-k"><span class="header-section-number">4.2.1</span> ECLS-K</a></li>
+<li><a class="nav-link" href="#ecls-k2011"><span class="header-section-number">4.2.2</span> ECLS-K:2011</a></li>
+<li><a class="nav-link" href="#ecls-b"><span class="header-section-number">4.2.3</span> ECLS-B</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#els-education-longitudinal-study-of-2002"><span class="header-section-number">4.3</span> ELS: Education Longitudinal Study of 2002</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-els-data"><span class="header-section-number">4.3.1</span> Obtaining ELS Data</a></li>
+<li><a class="nav-link" href="#reading-els-data"><span class="header-section-number">4.3.2</span> Reading ELS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#hsls-high-school-longitudinal-study-of-2009"><span class="header-section-number">4.4</span> HSLS: High School Longitudinal Study of 2009</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-hsls-data"><span class="header-section-number">4.4.1</span> Obtaining HSLS Data</a></li>
+<li><a class="nav-link" href="#reading-hsls-data"><span class="header-section-number">4.4.2</span> Reading HSLS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#iccs-and-cived-international-civic-and-citizen-education-study-and-civic-education-study-1999"><span class="header-section-number">4.5</span> ICCS and CivED: International Civic and Citizen Education Study and Civic Education Study 1999</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-cived-data"><span class="header-section-number">4.5.1</span> Obtaining CivED Data</a></li>
+<li><a class="nav-link" href="#obtaining-iccs-data"><span class="header-section-number">4.5.2</span> Obtaining ICCS Data</a></li>
+<li><a class="nav-link" href="#reading-cived-data"><span class="header-section-number">4.5.3</span> Reading CivED Data</a></li>
+<li><a class="nav-link" href="#reading-iccs-data"><span class="header-section-number">4.5.4</span> Reading ICCS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#icils-international-computer-and-information-literacy-study"><span class="header-section-number">4.6</span> ICILS: International Computer and Information Literacy Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-icils-data"><span class="header-section-number">4.6.1</span> Obtaining ICILS Data</a></li>
+<li><a class="nav-link" href="#reading-icils-data"><span class="header-section-number">4.6.2</span> Reading ICILS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#timss-trends-in-international-mathematics-and-science-study"><span class="header-section-number">4.7</span> TIMSS: Trends in International Mathematics and Science Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-timss-data"><span class="header-section-number">4.7.1</span> Obtaining TIMSS Data</a></li>
+<li><a class="nav-link" href="#reading-timss-data"><span class="header-section-number">4.7.2</span> Reading TIMSS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#timss-advanced-trends-in-international-mathematics-and-science-study"><span class="header-section-number">4.8</span> TIMSS Advanced: Trends in International Mathematics and Science Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-timss-advanced-data"><span class="header-section-number">4.8.1</span> Obtaining TIMSS Advanced Data</a></li>
+<li><a class="nav-link" href="#reading-timss-advanced-data"><span class="header-section-number">4.8.2</span> Reading TIMSS Advanced Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#piaac-program-for-the-international-assessment-of-adult-competencies"><span class="header-section-number">4.9</span> PIAAC: Program for the International Assessment of Adult Competencies</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-piaac-data"><span class="header-section-number">4.9.1</span> Obtaining PIAAC Data</a></li>
+<li><a class="nav-link" href="#reading-piaac-data"><span class="header-section-number">4.9.2</span> Reading PIAAC Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#pirls-and-epirls-progress-in-international-reading-literacy-study"><span class="header-section-number">4.10</span> PIRLS and ePIRLS: Progress in International Reading Literacy Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#pirls"><span class="header-section-number">4.10.1</span> PIRLS</a></li>
+<li><a class="nav-link" href="#epirls"><span class="header-section-number">4.10.2</span> ePIRLS</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#pisa-programme-for-international-student-assessment"><span class="header-section-number">4.11</span> PISA: Programme for International Student Assessment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-pisa-data"><span class="header-section-number">4.11.1</span> Obtaining PISA Data</a></li>
+<li><a class="nav-link" href="#reading-pisa-data"><span class="header-section-number">4.11.2</span> Reading PISA Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#pisa-yafs-programme-for-international-student-assessment-young-adult-follow-up-study"><span class="header-section-number">4.12</span> PISA YAFS: Programme for International Student Assessment Young Adult Follow-up Study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-pisa-yafs-data"><span class="header-section-number">4.12.1</span> Obtaining PISA YAFS Data</a></li>
+<li><a class="nav-link" href="#reading-pisa-yafs-data"><span class="header-section-number">4.12.2</span> Reading PISA YAFS Data</a></li>
+<li><a class="nav-link" href="#link-pisa-yafs-data-to-pisa-2012"><span class="header-section-number">4.12.3</span> Link PISA YAFS Data to PISA 2012</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#talis-teaching-and-learning-international-survey"><span class="header-section-number">4.13</span> TALIS: Teaching and Learning International Survey</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-talis-data"><span class="header-section-number">4.13.1</span> Obtaining TALIS Data</a></li>
+<li><a class="nav-link" href="#reading-talis-data"><span class="header-section-number">4.13.2</span> Reading TALIS Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#nhes-national-household-education-surveys"><span class="header-section-number">4.14</span> NHES: National Household Education Surveys</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-nhes-data"><span class="header-section-number">4.14.1</span> Obtaining NHES Data</a></li>
+<li><a class="nav-link" href="#reading-nhes-data"><span class="header-section-number">4.14.2</span> Reading NHES Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#ssocs-school-survey-on-crime-and-safety"><span class="header-section-number">4.15</span> SSOCS: School Survey on Crime and Safety</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#obtaining-ssocs-data"><span class="header-section-number">4.15.1</span> Obtaining SSOCS Data</a></li>
+<li><a class="nav-link" href="#reading-ssocs-data"><span class="header-section-number">4.15.2</span> Reading SSOCS Data</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/master/04-data-access.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/master/04-data-access.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
