@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/methods.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="nces-information-page.html">NCES Information Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="active" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="methods" class="section level1" number="11">
+<h1>
+<span class="header-section-number">11</span> Statistical Methods Used in <code>EdSurvey</code><a class="anchor" aria-label="anchor" href="#methods"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-1" class="section level2" number="11.1">
+<h2>
+<span class="header-section-number">11.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter describes estimation procedures for <code>EdSurvey</code>. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the estimation of weighted mixed models with plausible values; the multivariate regression method; and the Wald test. The estimation of correlation coefficients appears in a vignette in the <code>wCorr</code> package.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See &lt;code&gt;vignette("wCorrFormulas",package="wCorr")&lt;/code&gt;&lt;/p&gt;'><sup>11</sup></a></p>
+<p>Which estimation procedure is used for any statistic appears in the Help file for the function that creates the statistic. For example, to find the estimation procedure used for the standard error of the regression coefficients, use <code><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">?lm.sdf</a></code> to see the manual entry.</p>
+<p>This chapter uses many symbols; a table of the symbols follows for reference. Terms used only once are defined immediately before or after equations, so they do not appear in this table.</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="24%">
+<col width="75%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">Symbol</th>
+<th align="left">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(A\)</span></td>
+<td align="left">A random variable</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="left">Another random variable</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(i\)</span></td>
+<td align="left">An index used for observations</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(j\)</span></td>
+<td align="left">An index used for jackknife replicates</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(J\)</span></td>
+<td align="left">The number of jackknife replicates</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(m\)</span></td>
+<td align="left">The number of plausible values</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(m^*\)</span></td>
+<td align="left">The number of plausible values used in a calculation</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="left">The number of units in the sample</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="left">An index used for plausible values</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(w_i\)</span></td>
+<td align="left">The <span class="math inline">\(i\)</span>th unit’s full sample weight</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x_i\)</span></td>
+<td align="left">The <span class="math inline">\(i\)</span>th unit’s value for some variable</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span></td>
+<td align="left">A matrix of predictor variables in a regression</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\boldsymbol{\mathbf{y}}\)</span></td>
+<td align="left">A vector of predicted variables in a regression</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\boldsymbol{\mathbf{\beta}}\)</span></td>
+<td align="left">The regression coefficients in a regression</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\epsilon\)</span></td>
+<td align="left">The residual term in a regression</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\gamma\)</span></td>
+<td align="left">The sampling variance multiplier</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mathcal{A}\)</span></td>
+<td align="left">The set of sampled units that is in a population of interest (e.g., Black females)</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\tilde{\mathcal{A}}\)</span></td>
+<td align="left">The set of population units that is in a population of interest (e.g., Black females)</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mathcal{U}\)</span></td>
+<td align="left">The set of sampled units that is in a population that contains <span class="math inline">\(\mathcal{A}\)</span> (e.g., Black individuals)</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\tilde{\mathcal{U}}\)</span></td>
+<td align="left">The set of population units that is in a population that contains <span class="math inline">\(\mathcal{A}\)</span> (e.g., Black individuals)</td>
+</tr>
+</tbody>
+</table></div>
+<p>The remainder of this chapter describes estimation procedures used in <code>EdSurvey</code>. Sections are organized as follows:</p>
+<ul>
+<li>estimation of means</li>
+<li>estimation of percentages</li>
+<li>the methods for weighted mixed models with plausible values</li>
+<li>the methods for multivariate multiple regression</li>
+<li>the Wald test method</li>
+</ul>
+<p>Each section starts by describing estimation of the statistic, followed by estimation procedures of the variances of the statistic. Separate sections address situations where plausible values are present and situations where plausible values are not present. For sections on variance estimation, separate sections address the jackknife or Taylor series variance estimators.</p>
+<p>In NAEP surveys where linking error is relevant, an alternative methodology for calculating standard errors is used. This methodology applies only for variables that end in <code>_linking</code> for example, <code>composite_linking</code>. For the NAEP linking error methods, see the <span id="linkingerror">next chapter</span>. All other methods are detailed in this chapter.</p>
+</div>
+<div id="estimation-of-weighted-means" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Estimation of Weighted Means<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-means"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section concerns the estimation of means, including regression coefficients and the standard errors of means and regression coefficients.</p>
+<div id="estimation-of-weighted-means-when-plausible-values-are-not-present" class="section level3" number="11.2.1">
+<h3>
+<span class="header-section-number">11.2.1</span> Estimation of Weighted Means When Plausible Values Are Not Present<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-means-when-plausible-values-are-not-present"><i class="fas fa-link"></i></a>
+</h3>
+<p>Weighted means are estimated according to
+<span class="math display">\[\begin{align}
+\mu_x = \frac{\sum_{i=1}^n w_i x_i}{\sum_{i=1}^n w_i}
+\end{align}\]</span>
+where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(w_i\)</span> are the outcome and weight, respectively, of the <span class="math inline">\(i\)</span>th unit, and <span class="math inline">\(n\)</span> is the total number of units in the sample.</p>
+<p>For regressions of the form
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{y}}=\boldsymbol{\mathbf{X\beta}} + \boldsymbol{\mathbf{\epsilon}}
+\end{align}\]</span>
+a weighted regression is used so that the estimated coefficients (<span class="math inline">\(\boldsymbol{\mathbf{\beta}}\)</span>) minimize the weighted square residuals:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{\beta}} = \mathrm{ArgMin}_{\boldsymbol{\mathbf{b}}} \sum_{i=1}^n w_i (y_i-\boldsymbol{\mathbf{X}}_i \boldsymbol{\mathbf{b}})^2
+\end{align}\]</span>
+where <span class="math inline">\(\boldsymbol{\mathbf{X}}_i\)</span> is the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, and <span class="math inline">\(\mathrm{ArgMin}_{\boldsymbol{\mathbf{b}}}\)</span> means that the value of <span class="math inline">\(\boldsymbol{\mathbf{b}}\)</span> minimizes the expression that follows it.</p>
+</div>
+<div id="estimation-of-weighted-means-when-plausible-values-are-present" class="section level3" number="11.2.2">
+<h3>
+<span class="header-section-number">11.2.2</span> Estimation of Weighted Means When Plausible Values Are Present<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-means-when-plausible-values-are-present"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the variable <span class="math inline">\(x\)</span> has plausible values, these then form the mean estimate (<span class="math inline">\(\mu\)</span>) according to
+<span class="math display">\[\begin{align}
+\mu = \frac{1}{m} \sum_{p=1}^{m} \frac{\sum_{i=1}^n w_i x_{ip}}{\sum_{i=1}^n w_i}
+\end{align}\]</span>
+where <span class="math inline">\(x_{ip}\)</span> is the <span class="math inline">\(p\)</span>th plausible value for the <span class="math inline">\(i\)</span>th unit’s outcome, with <span class="math inline">\(m\)</span> plausible values for each unit.</p>
+<p>For regressions, the coefficient estimates are simply averaged over the plausible values,
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{\beta}} = \frac{1}{m} \sum_{p=1}^{m} \boldsymbol{\mathbf{\beta}}_p
+\end{align}\]</span>
+where <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_p\)</span> is the vector of estimated regression coefficients, calculated using the <span class="math inline">\(p\)</span>th set of plausible values.</p>
+<div id="estimation-of-the-coefficient-of-determination-in-a-weighted-linear-regression" class="section level4" number="11.2.2.1">
+<h4>
+<span class="header-section-number">11.2.2.1</span> Estimation of the Coefficient of Determination in a Weighted Linear Regression<a class="anchor" aria-label="anchor" href="#estimation-of-the-coefficient-of-determination-in-a-weighted-linear-regression"><i class="fas fa-link"></i></a>
+</h4>
+<p>In regression analysis, statistics such as the coefficient of determination (i.e., <span class="math inline">\(R\)</span>-squared) are estimated across all observations. These statistics average the values across the regression runs (one per set of plausible values). For example,
+<span class="math display">\[\begin{align}
+R^2 = \frac{1}{m} \sum_{p=1}^m R^2_p
+\end{align}\]</span>
+where <span class="math inline">\(R^2_p\)</span> is the <span class="math inline">\(R\)</span>-squared value for the regression run with the <span class="math inline">\(p\)</span>th set of plausible values.</p>
+<p>For a particular regression, <span class="citation">(<a href="references.html#ref-Weisberg" role="doc-biblioref">Weisberg, 1985</a>, Eq. 2.31)</span> defined the <span class="math inline">\(R\)</span>-squared as
+<span class="math display">\[\begin{align}
+R^2 = 1 - \frac{RSS}{SYY}
+\end{align}\]</span>
+where <span class="math inline">\(RSS=\boldsymbol{\mathbf{e}}^T \boldsymbol{\mathbf{We}}\)</span> <span class="citation">(<a href="references.html#ref-Weisberg" role="doc-biblioref">Weisberg, 1985</a>, Eq. 4.2)</span>, and <span class="math inline">\(SYY=(\boldsymbol{\mathbf{y}}-\bar{y})^T \boldsymbol{\mathbf{W}} (\boldsymbol{\mathbf{y}}-\bar{y})\)</span>; <span class="math inline">\(\bar{y}\)</span> is the weighted mean of the outcome, and <span class="math inline">\(\boldsymbol{\mathbf{e}} = \boldsymbol{\mathbf{y}} - \boldsymbol{\mathbf{X\beta}}\)</span>.</p>
+</div>
+</div>
+<div id="estimation-of-standard-deviations" class="section level3" number="11.2.3">
+<h3>
+<span class="header-section-number">11.2.3</span> Estimation of Standard Deviations<a class="anchor" aria-label="anchor" href="#estimation-of-standard-deviations"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the user desires a measure of the dispersion of a variable with plausible values, the weighted variance estimate is calculated according to
+<span class="math display">\[\begin{align}
+\hat{s}^2 = \frac{\sum_{i=1}^{n} w_i (x_i - \mu_x)^2}{\sum_{i=1}^{n} w_i}
+\end{align}\]</span>
+where <span class="math inline">\(\mu_x\)</span> is the weighted mean. When there are several plausible values, average the variance across the plausible values (calculating <span class="math inline">\(\mu_x\)</span> per plausible value).</p>
+<p>The estimate of the standard deviation is the square root of the estimated variance.</p>
+</div>
+<div id="estimation-of-standardized-regression-coefficients" class="section level3" number="11.2.4">
+<h3>
+<span class="header-section-number">11.2.4</span> Estimation of Standardized Regression Coefficients<a class="anchor" aria-label="anchor" href="#estimation-of-standardized-regression-coefficients"><i class="fas fa-link"></i></a>
+</h3>
+<p>Using the definition of the standardized regression coefficients (<span class="math inline">\(b\)</span>),</p>
+<p><span class="math display">\[\begin{align}
+b_j = \frac{\tilde{\sigma}_y}{\tilde{\sigma}_{X_j}} \beta_j
+\end{align}\]</span>
+where <span class="math inline">\(b_j\)</span> is the standardized regression coefficient associated with the <span class="math inline">\(j\)</span>th regressor, <span class="math inline">\(\tilde{\sigma}_y\)</span> is the weighted standard deviation of the outcome variable, and <span class="math inline">\(\tilde{\sigma}_{X_j}\)</span> is the weighted standard deviation of the <span class="math inline">\(j\)</span>th regressor.</p>
+<div id="default-variance-estimation-of-standardized-regression-coefficients" class="section level4" number="11.2.4.1">
+<h4>
+<span class="header-section-number">11.2.4.1</span> Default Variance Estimation of Standardized Regression Coefficients<a class="anchor" aria-label="anchor" href="#default-variance-estimation-of-standardized-regression-coefficients"><i class="fas fa-link"></i></a>
+</h4>
+<p>The default standard error of the standardized regression coefficients then treats the standard error estimates as constants, as follows:</p>
+<p><span class="math display">\[\begin{align}
+\sigma_{b_j} = \frac{\sigma_y}{\sigma_{X_j}} \sigma_{\beta_j}
+\end{align}\]</span></p>
+</div>
+<div id="sampling-variance-estimation-of-standardized-regression-coefficients" class="section level4" number="11.2.4.2">
+<h4>
+<span class="header-section-number">11.2.4.2</span> Sampling Variance Estimation of Standardized Regression Coefficients<a class="anchor" aria-label="anchor" href="#sampling-variance-estimation-of-standardized-regression-coefficients"><i class="fas fa-link"></i></a>
+</h4>
+<p>An alternative method estimates the standardized regression coefficients using the same process but estimates their standard error, accounting for the design-based sampling variance.</p>
+<p>This method estimates the standardized regression coefficients per plausible value and jackknife replicate. When estimating the standardized regression coefficient for a plausible value, the overall variance of the outcome (<span class="math inline">\(\tilde{\sigma}{y}\)</span>) and the regressors (<span class="math inline">\(\tilde{\sigma}_{X_j}\)</span>) is used. For a jackknife replicate, the values of <span class="math inline">\(\tilde{\sigma}_y\)</span> and <span class="math inline">\(\tilde{\sigma}_{X_j}\)</span> are updated with the jackknife replicate weights.</p>
+<p>Estimating the variance for the standardized regression coefficient proceeds identically to estimating the variance of the regressors, and the weighted standard deviations also are updated with the jackknife replicate weights.</p>
+</div>
+</div>
+<div id="estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-jackknife-method" class="section level3" number="11.2.5">
+<h3>
+<span class="header-section-number">11.2.5</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Jackknife Method<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-jackknife-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the predicted value does not have plausible values and the requested variance method is jackknife, estimate the variance of the coefficients (<span class="math inline">\(\boldsymbol{\mathbf{V}}_J\)</span>) as follows:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_J=\boldsymbol{\mathbf{V}}_{jrr,0} = \gamma \sum_{j=1}^J (\boldsymbol{\mathbf{\beta}}_j - \boldsymbol{\mathbf{\beta}}_0)^2
+\end{align}\]</span>
+where <span class="math inline">\(\gamma\)</span> is a constant equal to one for the jackknife variance estimation method, its inclusion allows us to extend the equations to other variance estimation methods, such as balanced repeated replication <span class="citation">(<a href="references.html#ref-Wolter" role="doc-biblioref">Wolter, 2007</a>)</span> or Fay’s method <span class="citation">(<a href="references.html#ref-judkins" role="doc-biblioref">Judkins, 1990</a>)</span>; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_j\)</span> is the coefficient estimated with the <span class="math inline">\(j\)</span>th jackknife replicate weight; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_0\)</span> is the coefficient estimated with the sample weight; and <span class="math inline">\(J\)</span> is the total number of jackknife replicate weights.</p>
+<p>The covariance between <span class="math inline">\(\beta_l\)</span> and <span class="math inline">\(\beta_m\)</span> (<span class="math inline">\(C_{J;lm}\)</span>) is estimated as
+<span class="math display">\[\begin{align}
+C_{J;lm}=C_{jrr,0;lm} = \gamma \sum_{j=1}^J (\beta_{j;l} - \beta_{0;l})(\beta_{j;m} - \beta_{0;m})
+\end{align}\]</span>
+where subscripts after the semicolon indicate the matrix element (two subscripts) of the covariance matrix (<span class="math inline">\(\boldsymbol{\mathbf{C}}\)</span>) or the vector element (one subscript) for the estimate vector <span class="math inline">\(\boldsymbol{\mathbf{\beta}}\)</span>. The other subscripts are as with the variance estimation.</p>
+</div>
+<div id="estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-jackknife-method" class="section level3" number="11.2.6">
+<h3>
+<span class="header-section-number">11.2.6</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-jackknife-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the predicted value has plausible values and the requested variance method is jackknife, estimate the
+variance (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{JP}\)</span>) as the sum of a variance component from
+the plausible values (also called imputation values so that the variance term is called
+<span class="math inline">\(\boldsymbol{\mathbf{V}}_{imp}\)</span>) and estimate the sampling variance using plausible values (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,P}\)</span>) according to the following formula:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{JP}=\boldsymbol{\mathbf{V}}_{imp} + \boldsymbol{\mathbf{V}}_{jrr,P}
+\end{align}\]</span></p>
+<p>The sampling variance is
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \boldsymbol{\mathbf{V}}_{jrr,p} \ 
+\end{align}\]</span>
+In this equation, <span class="math inline">\(m^*\)</span> is a number that can be as small as one or as large as the number of plausible values.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This option is included because any value for &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; gives an estimate of &lt;span class="math inline"&gt;\(\boldsymbol{\mathbf{V}}_{jrr}\)&lt;/span&gt; with the same properties as larger values of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; (they are unbiased under the same conditions), but larger values of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; can take substantially longer to compute. The value of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; is set with the &lt;code&gt;jrrIMax&lt;/code&gt; argument; note that &lt;code&gt;jrrIMax&lt;/code&gt; affects the estimation of only &lt;span class="math inline"&gt;\(V_{jrr}\)&lt;/span&gt;.&lt;/p&gt;'><sup>12</sup></a> In the previous equation, <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,P}\)</span> is the average of <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,p}\)</span> over the plausible values, and the values of <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,p}\)</span> are calculated in a way analogous to <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,0}\)</span> in the previous section, except that the <span class="math inline">\(p\)</span>th plausible values are used within each step:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{jrr,p} = \gamma \sum_{j=1}^{J} (\boldsymbol{\mathbf{\beta}}_{jp} - \boldsymbol{\mathbf{\beta}}_{0p})^2
+\end{align}\]</span></p>
+<p>The imputation variance is estimated according to <span class="citation"><a href="references.html#ref-rubin" role="doc-biblioref">Rubin</a> (<a href="references.html#ref-rubin" role="doc-biblioref">1987</a>)</span>:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{imp} = \frac{m+1}{m(m-1)} \sum_{p=1}^m (\boldsymbol{\mathbf{\beta}}_p - \boldsymbol{\mathbf{\beta}})^2
+\end{align}\]</span>
+where <span class="math inline">\(m\)</span> is the number of plausible values, <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_p\)</span> is the vector of coefficients calculated with the <span class="math inline">\(p\)</span>th set of plausible values, and <span class="math inline">\(\boldsymbol{\mathbf{\beta}}\)</span> is the estimated coefficient vector averaged over all plausible values.</p>
+<p>Covariance terms between <span class="math inline">\(\beta_l\)</span> and <span class="math inline">\(\beta_m\)</span> are estimated according to
+<span class="math display">\[\begin{align}
+C_{JP;lm}=C_{imp;lm} + C_{jrr,P;lm}
+\end{align}\]</span>
+where subscripts after a semicolon indicate the indexes of the covariance term being identified:
+<span class="math display">\[\begin{align}
+C_{jrr,p;lm} = \gamma \sum_{j=1}^{J} (\beta_{jp;l} - \beta_{0p;l}) (\beta_{jp;m} - \beta_{0p;m})
+\end{align}\]</span>
+and
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{C}}_{imp;lm} = \frac{m+1}{m(m-1)} \sum_{p=1}^m (\beta_{p;l} - \beta_{l}) (\beta_{p;m} - \beta_{m})
+\end{align}\]</span>
+where <span class="math inline">\(\beta_l\)</span> and <span class="math inline">\(\beta_m\)</span> are the estimates averaged across all the plausible values.</p>
+</div>
+<div id="estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-taylor-series-method" class="section level3" number="11.2.7">
+<h3>
+<span class="header-section-number">11.2.7</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-taylor-series-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the predicted value does not have plausible values and the requested variance method is the Taylor series, the variance of the coefficients (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{T}\)</span>) is estimated as<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is a slight generalization of &lt;span class="citation"&gt;(&lt;a href="references.html#ref-binder" role="doc-biblioref"&gt;Binder, 1983&lt;/a&gt;)&lt;/span&gt; to the weighted case, which is derived in more detail and with notation more closely aligned to Binder in the AM manual &lt;span class="citation"&gt;(&lt;a href="references.html#ref-cohen02" role="doc-biblioref"&gt;American Institutes for Research and Jon Cohen, n.d.&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;'><sup>13</sup></a>.
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{T}=\boldsymbol{\mathbf{V}}_{Taylor,0}(\boldsymbol{\mathbf{\beta}}) = \boldsymbol{\mathbf{D}}^T \boldsymbol{\mathbf{Z D}}
+\end{align}\]</span>
+<span class="math inline">\(\boldsymbol{\mathbf{V}}_T\)</span> is a matrix, so the variance estimates are along the diagonal, whereas covariances are the off-diagonal elements. Then <span class="math inline">\(\boldsymbol{\mathbf{V}}_T\)</span> is estimated by
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{D}}= (\boldsymbol{\mathbf{X}}^T \boldsymbol{\mathbf{W X}})^{-1}
+\end{align}\]</span>
+<span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span> is the matrix of regressors, the <span class="math inline">\(\boldsymbol{\mathbf{W}}\)</span> matrix is a diagonal matrix with the <span class="math inline">\(i\)</span>th weight in the <span class="math inline">\(i\)</span>th diagonal element,
+and
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{Z}} = \sum_{j=1}^{J} \frac{n_s}{n_s-1} \sum_{u=1}^{n_s} \boldsymbol{\mathbf{z}}_{uj} \boldsymbol{\mathbf{z}}_{uj}^T
+\end{align}\]</span>
+where the inner sum is over the sampled PSUs (<span class="math inline">\(u\)</span>), of which there are <span class="math inline">\(n_s\)</span>, and the outer sum is over all units in the jackknife replicate strata (<span class="math inline">\(j\)</span>), of which there are still <span class="math inline">\(J\)</span>. Only strata with at least two PSUs that have students are included in the sum; others are simply excluded.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt; This leads to a downward bias in the estimated variance. When the number of units excluded by this rule is proportionally small, the bias also should be proportionally small.&lt;/p&gt;"><sup>14</sup></a> For a mean, <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> is a scalar; for a regression, <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> is a vector with an entry for each regressor. In what follows, when the estimand is a mean, <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span> simply would be a column vector of ones.</p>
+<p>Define the estimated residual vector (<span class="math inline">\(\boldsymbol{\mathbf{e}}\)</span>) as
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{e}} = \boldsymbol{\mathbf{y}}-\boldsymbol{\mathbf{X\beta}}
+\end{align}\]</span>
+and define the term
+<span class="math display">\[\begin{align}
+U_{ik} = e_i X_{ik} w_{i}
+\end{align}\]</span>
+where <span class="math inline">\(i\)</span> indexes the matrix row (observation) and <span class="math inline">\(k\)</span> indexes the matrix column (regressor). Then the <span class="math inline">\(k\)</span>th entry of <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> is given by
+<span class="math display">\[\begin{align}
+z_{ujk} = \sum_{i\in\mathcal{Q}_{uj}}^{n_s} \left[U_{ik} - \left( \frac{1}{n_s}\sum_{i'\in\mathcal{Q}_{j}}^{n_s} U_{i'k} \right) \right]
+\end{align}\]</span>
+where <span class="math inline">\(\mathcal{Q}_{uj}\)</span> is the indices for observations in the <span class="math inline">\(u\)</span>th PSU of the <span class="math inline">\(j\)</span>th stratum, and <span class="math inline">\(\mathcal{Q}_{j}\)</span> is the indices for observations in the <span class="math inline">\(j\)</span>th stratum (across all PSUs). Thus, when two PSUs are selected per stratum, the value of <span class="math inline">\(\boldsymbol{\mathbf{z}}\)</span> will be related by <span class="math inline">\(\boldsymbol{\mathbf{z}}_{1j}= \operatorname{-}\boldsymbol{\mathbf{z}}_{2j}\)</span>.</p>
+</div>
+<div id="estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-taylor-series-method" class="section level3" number="11.2.8">
+<h3>
+<span class="header-section-number">11.2.8</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Taylor Series Method<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-taylor-series-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the predicted value has plausible values and the requested variance method is the Taylor series, the variance of the coefficients (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{TP}\)</span>) is estimated as
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{TP}=\boldsymbol{\mathbf{V}}_{Taylor,P}(\boldsymbol{\mathbf{\beta}}) + \boldsymbol{\mathbf{V}}_{imp}
+\end{align}\]</span>
+where the equation for <span class="math inline">\(\boldsymbol{\mathbf{V}}_{imp}\)</span> and <span class="math inline">\(\boldsymbol{\mathbf{C}}_{imp}\)</span> is given in the section on the jackknife variance estimator and where
+<span class="math inline">\(\boldsymbol{\mathbf{V}}_{Taylor,P}\)</span> is averaged over the plausible values according to
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{Taylor,P} = \frac{1}{m} \sum_{p=1}^m \boldsymbol{\mathbf{V}}_{Taylor}(\boldsymbol{\mathbf{\beta}}_p)
+\end{align}\]</span>
+where <span class="math inline">\(\boldsymbol{\mathbf{V}}_{Taylor}(\boldsymbol{\mathbf{\beta}}_p)\)</span> is calculated as in the previous section, using the <span class="math inline">\(p\)</span>th plausible values to form <span class="math inline">\(\boldsymbol{\mathbf{e}}\)</span>, so that
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{e}}=\boldsymbol{\mathbf{y}}_p - \boldsymbol{\mathbf{X\beta}}_p
+\end{align}\]</span>
+The remainder of the calculation of <span class="math inline">\(U_{ik}\)</span> and <span class="math inline">\(z_{ujk}\)</span> is otherwise identical.</p>
+</div>
+<div id="estimation-of-standard-errors-of-differences-of-means" class="section level3" number="11.2.9">
+<h3>
+<span class="header-section-number">11.2.9</span> Estimation of Standard Errors of Differences of Means<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-differences-of-means"><i class="fas fa-link"></i></a>
+</h3>
+<p>Occasionally, two means (<span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>) are calculated for potentially overlapping groups. When this calculation is done, the difference (<span class="math inline">\(\Delta = \mu_1 - \mu_2\)</span>) may be of interest. When a covariance term is available, estimate the variance of this difference by using the formula
+<span class="math display">\[\begin{align}
+\sigma_{\Delta}^2 = \sigma_1^2 + \sigma_2^2 - 2 \sigma_{12}
+\end{align}\]</span>
+where <span class="math inline">\(\sigma_{12}\)</span> is the covariance of <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>.</p>
+<p>When no covariance term is available, the approximate equation is used, such that
+<span class="math display">\[\begin{align}
+\sigma_{\Delta}^2 = \sigma_1^2 + \sigma_2^2 - 2  p \sigma_m^2
+\end{align}\]</span>
+where a subscript of <span class="math inline">\(m\)</span> is used to indicate the subset that has more observations, and <span class="math inline">\(p\)</span> is the ratio of the number of observations used in calculating both <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> divided by the <span class="math inline">\(n\)</span> size of the larger of the two samples.</p>
+<p>When one group is a subset of the other, this is a part-whole comparison. Part-whole comparisons in the NAEP context apply to comparisons between jurisdictions (e.g., a state versus the nation). Please use caution when implementing this method with other types of gap comparisons.</p>
+</div>
+</div>
+<div id="estimation-of-weighted-percentages" class="section level2" number="11.3">
+<h2>
+<span class="header-section-number">11.3</span> Estimation of Weighted Percentages<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-percentages"><i class="fas fa-link"></i></a>
+</h2>
+<p>Percentages estimate the proportion of individuals in a group who have some characteristic (e.g., the percentage of Black students who are female). This often is called a “domain.” In the population, the universe is the set <span class="math inline">\(\tilde{\mathcal{U}}\)</span>; in the example, <span class="math inline">\(\tilde{\mathcal{U}}\)</span> is Black students who are eligible for sampling. The tilde indicates that this set is in the population.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;When the tilde is not present, the set comprises only those individuals in the sample.&lt;/p&gt;"><sup>15</sup></a> The sought-after percentage is then the percentage of individuals in the subset <span class="math inline">\(\tilde{\mathcal{A}} \subseteq \tilde{\mathcal{U}}\)</span>. In the example, <span class="math inline">\(\tilde{\mathcal{A}}\)</span> is the set of Black females who are eligible for sampling. The percentage for which an estimate is desired is then 100 times the number of individuals in <span class="math inline">\(\tilde{\mathcal{A}}\)</span> divided by the number of individuals in <span class="math inline">\(\tilde{\mathcal{U}}\)</span>. Mathematically,
+<span class="math display">\[\begin{align}
+\Pi=100 \times \frac{|\tilde{\mathcal{A}}|}{|\tilde{\mathcal{U}|}}
+\end{align}\]</span>
+where <span class="math inline">\(|\cdot|\)</span> is the cardinality, or the count of the number of members in a set. In this example, <span class="math inline">\(\tilde{\mathcal{U}}\)</span> was itself a subset of the entire eligible population. In other cases, <span class="math inline">\(\tilde{\mathcal{U}}\)</span> simply could be the population of eligible individuals. Then the value <span class="math inline">\(\Pi\)</span> would represent the percentage of eligible individuals who were Black females.</p>
+<p>The remainder of this section describes statistics meant to estimate <span class="math inline">\(\Pi\)</span> and the variance of those estimates.</p>
+<div id="estimation-of-weighted-percentages-when-plausible-values-are-not-present" class="section level3" number="11.3.1">
+<h3>
+<span class="header-section-number">11.3.1</span> Estimation of Weighted Percentages When Plausible Values Are Not Present<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-percentages-when-plausible-values-are-not-present"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the sample, units are identified as in <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> (where the tilde is dropped to indicate sampled sets) and the estimator is<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The notation &lt;span class="math inline"&gt;\(i \in \mathcal{A}\)&lt;/span&gt; is a bit of an abuse of notation. Strictly speaking, it is the unit in &lt;span class="math inline"&gt;\(\mathcal{A}\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(\mathcal{U}\)&lt;/span&gt;, not the indices.&lt;/p&gt;'><sup>16</sup></a>
+<span class="math display">\[\begin{align}
+\pi=100 \times \frac{\sum_{i \in \mathcal{A}} w_i }{\sum_{i \in \mathcal{U}} w_i }
+\end{align}\]</span>
+where <span class="math inline">\(\pi\)</span> is the estimated percentage.</p>
+<p>Another statistic of interest is the weighted sample size of <span class="math inline">\(\mathcal{A}\)</span>, or an estimate of the number of individuals in the population who are members of <span class="math inline">\(\tilde{\mathcal{A}}\)</span>. This is calculated with <span class="math inline">\(\sum_{i \in \mathcal{A}} w_i\)</span>.</p>
+</div>
+<div id="estimation-of-weighted-percentages-when-plausible-values-are-present" class="section level3" number="11.3.2">
+<h3>
+<span class="header-section-number">11.3.2</span> Estimation of Weighted Percentages When Plausible Values Are Present<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-percentages-when-plausible-values-are-present"><i class="fas fa-link"></i></a>
+</h3>
+<p>If membership in <span class="math inline">\(\mathcal{A}\)</span> or both <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> depends on a measured score being in a range, then the value of <span class="math inline">\(\Pi\)</span> is estimated once for each set of plausible values (indexed by <span class="math inline">\(p\)</span>) by
+<span class="math display">\[\begin{align}
+\pi=100 \times \frac{1}{m} \sum_{p=1}^m \frac{\sum_{i \in \mathcal{A}_p} w_i }{\sum_{i \in \mathcal{U}_p} w_i }
+\end{align}\]</span>
+When membership in <span class="math inline">\(\mathcal{U}\)</span> is not associated with the plausible value, <span class="math inline">\(\mathcal{U}_p\)</span> will be the same for all sets of plausible values. The same applies to <span class="math inline">\(\mathcal{A}_p\)</span>.</p>
+</div>
+<div id="estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-jackknife-method" class="section level3" number="11.3.3">
+<h3>
+<span class="header-section-number">11.3.3</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Not Present, Using the Jackknife Method<a class="anchor" aria-label="anchor" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-jackknife-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When membership in <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> is not dependent on plausible values and the requested variance method is jackknife, estimate the variance of the percentage (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{\pi,J}\)</span>) as follows:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{\pi,J}=100^2 \times \boldsymbol{\mathbf{V}}_{jrr,f,0}
+\end{align}\]</span>
+where the jackknife variance of the fraction is given by
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{jrr,f,0} = \gamma \sum_{j=1}^J \left( \frac{\sum_{i\in\mathcal{A}} w_{ij} }{\sum_{i\in\mathcal{U}} w_{ij} } -  \frac{\sum_{i\in\mathcal{A}} w_i }{\sum_{i\in\mathcal{U}} w_i } \right)^2
+\end{align}\]</span>
+The subscript <span class="math inline">\(j\)</span> indicates that the weights for the <span class="math inline">\(j\)</span>th jackknife replicates are being used, and weights that do not contain a second subscript are the student full sample weights.</p>
+</div>
+<div id="estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-present-using-the-jackknife-method" class="section level3" number="11.3.4">
+<h3>
+<span class="header-section-number">11.3.4</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Present, Using the Jackknife Method<a class="anchor" aria-label="anchor" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-present-using-the-jackknife-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When membership in <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> depends on plausible values and the requested variance method is jackknife, estimate the variance of the percentage (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{\pi,JP}\)</span>) as follows:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{\pi,TP}=100^2 \times \left( \boldsymbol{\mathbf{V}}_{jrr,f,P} + \boldsymbol{\mathbf{V}}_{imp,f}\right)
+\end{align}\]</span>
+The only modification to <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,f}\)</span> to make it <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,f,P}\)</span> is that the sets <span class="math inline">\(\mathcal{A}\)</span> and <span class="math inline">\(\mathcal{U}\)</span> must be modified to regard one set of plausible values.
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{jrr,f,P}=\gamma \frac{1}{m^*} \sum_{p=1}^{m^*} \sum_{j=1}^J \left( \frac{\sum_{i\in\mathcal{A}_p} w_{ij} }{\sum_{i\in\mathcal{U}_p} w_{ij} } -  \frac{\sum_{i\in\mathcal{A}_p} w_i }{\sum_{i\in\mathcal{U}_p} w_i } \right)^2
+\end{align}\]</span>
+where the subscript <span class="math inline">\(j\)</span> indicates that the weights for the <span class="math inline">\(j\)</span>th jackknife replicates are used, weights that do not contain a second subscript are the student full sample weights, and the subscript <span class="math inline">\(p\)</span> indicates the plausible values being used. In some situations, the <span class="math inline">\(\mathcal{A}_p\)</span> will be identical to each other across all plausible values, and the <span class="math inline">\(\mathcal{U}_p\)</span> will be identical to each other in a broader set of situations.</p>
+<p>The value of <span class="math inline">\(V_{imp,f}\)</span> is given by
+<span class="math display">\[\begin{align}
+V_{imp,f}=\frac{m+1}{m(m-1)}\sum_{p=1}^m \left( \frac{\sum_{i \in \mathcal{A}_p} w_i }{\sum_{i \in \mathcal{U}_p} w_i } - \frac{1}{m} \sum_{p'=1}^m \frac{\sum_{i \in \mathcal{A}_{p'}} w_i }{\sum_{i \in \mathcal{U}_{p'}} w_i } \right)^2
+\end{align}\]</span>
+so that the second sum is simply the average over all plausible values and represents the estimate itself (<span class="math inline">\(\pi\)</span>). Thus, the expression could be rewritten slightly more compactly as follows:
+<span class="math display">\[\begin{align}
+V_{imp,f}=\frac{m+1}{m(m-1)}\sum_{p=1}^m \left( \frac{\sum_{i \in \mathcal{A}_p} w_i }{\sum_{i \in \mathcal{U}_p} w_i } - \frac{\pi}{100} \right)^2
+\end{align}\]</span></p>
+</div>
+<div id="estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-taylor-series-method" class="section level3" number="11.3.5">
+<h3>
+<span class="header-section-number">11.3.5</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Not Present, Using the Taylor Series Method<a class="anchor" aria-label="anchor" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-taylor-series-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>When membership in <span class="math inline">\(\tilde{\mathcal{A}}\)</span> and <span class="math inline">\(\tilde{\mathcal{U}}\)</span> does not depend on plausible values and the requested variance method is the Taylor series, estimate the variance–covariance matrix <span class="math inline">\(\boldsymbol{\mathbf{V}}_{\pi,JP}\)</span> of the coefficients as follows:
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{V}}_{\pi,T}=100^2 \times
+\begin{bmatrix}
+  \boldsymbol{\mathbf{DZD}} &amp; -\boldsymbol{\mathbf{DZD 1}} \\
+  -\boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD}} &amp; \boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD 1}}
+\end{bmatrix}
+\end{align}\]</span>
+where the block matrix has elements <span class="math inline">\(DZD \in \mathbb{R}^{(c-1) \times (c-1)}\)</span>; the <span class="math inline">\(c\)</span>th row and column are then products of <span class="math inline">\(DZD\)</span> and the vector <span class="math inline">\(\boldsymbol{\mathbf{1}} \in \mathbb{R}^{c-1}\)</span> has a one in every element; the definition of <span class="math inline">\(\boldsymbol{\mathbf{D}}\)</span> is the inverse of a matrix of derivatives of a score vector taken with respect to <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>; and <span class="math inline">\(Z\)</span> is a variance estimate of the proportions based on the sample survey. This calculation is based on results derived here, following <span class="citation"><a href="references.html#ref-binder" role="doc-biblioref">Binder</a> (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span>.</p>
+<p>The score function in question is
+<span class="math display">\[\begin{align}
+S(\pi_h) = \left( \sum_{i=1}^{n} w_i {\rm 1\kern -2.85 pxI}({\rm unit\ }i{\rm \ is\ in\ class\ }h) \right) - \left(  \sum_{i=1}^{n}  \pi_h w_i \right)
+\end{align}\]</span>
+Setting the score function to zero and solving yields the parameter estimator shown in the section “Estimation of Weighted Percentages When Plausible Values Are Present,” less the factor of 100 that converts a proportion to a percentage.</p>
+<p>For the first <span class="math inline">\(c-1\)</span> elements of <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>, when solving this function for <span class="math inline">\(\pi_h\)</span>, the solution is the estimate of <span class="math inline">\(\pi_h\)</span> shown earlier:
+<span class="math display">\[\begin{align}
+\pi_h = \frac{\sum_{i=1}^{n} w_i {\rm 1\kern -2.85 pxI}({\rm unit\ }i{\rm \ is\ in\ class\ }h)}{\sum_{i=1}^{n}  w_i}
+\end{align}\]</span>
+For <span class="math inline">\(\pi_c\)</span>, the definition is that
+<span class="math display">\[\begin{align}
+\pi_c = 1-\sum_{k=1}^{c-1} \pi_k
+\end{align}\]</span>
+and with some algebraic rearrangement, this equation becomes
+<span class="math display">\[\begin{align}
+=  \frac{\sum_{i=1}^{n} w_i {\rm 1\kern -2.85 pxI}({\rm unit\ }i{\rm \ is\ in\ class\ }c)}{\sum_{i=1}^{n}  w_i}
+\end{align}\]</span></p>
+<p>The value of <span class="math inline">\(D\)</span> is then the derivative of <span class="math inline">\(S(\pi)\)</span> with respect to <span class="math inline">\(\pi\)</span>. Because this derivative must be calculated in total equilibrium (so that all the percentages add up to 100), this is done for the first <span class="math inline">\(c-1\)</span> items, and the variance of <span class="math inline">\(\pi_c\)</span> is separately calculated. Taking the derivative of <span class="math inline">\(S(\pi)\)</span> and then inverting it shows that <span class="math inline">\(\boldsymbol{\mathbf{D}} \in \mathbb{R}^{(c-1) \times (c-1)}\)</span> is a diagonal matrix with entries <span class="math inline">\(\frac{1}{\sum_{i=1}^{n} w_i}\)</span>.</p>
+<p>Then the <span class="math inline">\(\boldsymbol{\mathbf{Z}}\)</span> matrix accounts is given by
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{Z}}=\sum_{s=1}^{N_s} \frac{n_s}{n_s-1} \sum_{j=1}^{n_s} \boldsymbol{\mathbf{U}}_{sk}^T \boldsymbol{\mathbf{U}}_{sk}
+\end{align}\]</span>
+where <span class="math inline">\(N_s\)</span> is the number of strata, <span class="math inline">\(n_s\)</span> is the
+number of PSUs in a stratum, and
+<span class="math inline">\(\boldsymbol{\mathbf{U}}_{sk}\)</span> is the vector of mean score deviates given by
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{U}}_{sk} = \sum_{l=1}^{n_{sk}} \boldsymbol{\mathbf{S}}_{skl}(\boldsymbol{\mathbf{\pi}}) - \frac{1}{n_s} \sum_{j=1}^{n_s} \sum_{l=1}^{n_{sj}} \boldsymbol{\mathbf{S}}_{sjl}(\boldsymbol{\mathbf{\pi}})
+\end{align}\]</span>
+where <span class="math inline">\(n_{sk}\)</span> is the number of observations in PSU <span class="math inline">\(k\)</span> and in stratum <span class="math inline">\(s\)</span>, <span class="math inline">\(l\)</span> is an index for individuals within the stratum and PSU, and the score vector is given by
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{S}}_{skl}(\boldsymbol{\mathbf{\pi}}) = w_{skl} \boldsymbol{\mathbf{e}}_{skl} - w_{skl} \boldsymbol{\mathbf{\pi}}
+\end{align}\]</span>
+where <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> is a vector that is 0 in all entries except for a single 1 for the class that the unit is in. For example, if a respondent is a male and the possible levels are (“Female,” “Male”), then their level of <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> would be <span class="math inline">\((0,1)^T\)</span>.</p>
+<p>This gives the covariance matrix for the first <span class="math inline">\(c-1\)</span> elements of the <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span> vector. Using the usual formula for variance and covariance, it is easy to see that the variance for the final row and column is as shown at the beginning of this section.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;However, the matrix does not need to be calculated in this fashion. Instead, the final row and column (the covariance terms associated with the value &lt;span class="math inline"&gt;\(\pi_c\)&lt;/span&gt;) do not need to be dropped; simply include them in the formulation of &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(S\)&lt;/span&gt;, along with every other term.&lt;/p&gt;&lt;p&gt;Two heuristic arguments are offered for this. First, the variance terms are all exchangeable, so the same formula that applies to the first term applies to the final term under reordering. Thus, any term in the covariance matrix can be found by simply permuting the covariance matrix so that the term is not in the &lt;span class="math inline"&gt;\(c\)&lt;/span&gt;th row or column. As such, the method for calculating the upper left portion of the block matrix clearly applies to the &lt;span class="math inline"&gt;\(c\)&lt;/span&gt;th row and column, which can be calculated directly. Some experiments with NAEP data show that the two methods agree.&lt;/p&gt;&lt;p&gt;The second heuristic argument is that the values of &lt;span class="math inline"&gt;\(\pi_h\)&lt;/span&gt; already meet the requirement of summing up to one when the score vector is set equal to zero and solved. This means that the constraint does not need to be imposed a second time.&lt;/p&gt;'><sup>17</sup></a></p>
+</div>
+</div>
+<div id="estimation-of-degrees-of-freedom" class="section level2" number="11.4">
+<h2>
+<span class="header-section-number">11.4</span> Estimation of Degrees of Freedom<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section and the next two subsections describe how to estimate degrees of freedom when a statistic is calculated entirely with one survey. Then a description follows of how to poll degrees of freedom when a statistic is calculated across two cohorts or samples.</p>
+<p>One method of estimating the degrees of freedom for education survey results is to find the sum of the number of PSUs (schools) and subtract the number of strata from the number of PSUs. For NAEP surveys, this results in an estimate of 62.</p>
+<p>However, many estimates do not use variation across all PSUs, so expect the degrees of freedom to be smaller.</p>
+<div id="estimation-of-degrees-of-freedom-using-the-jackknife" class="section level3" number="11.4.1">
+<h3>
+<span class="header-section-number">11.4.1</span> Estimation of Degrees of Freedom, Using the Jackknife<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-using-the-jackknife"><i class="fas fa-link"></i></a>
+</h3>
+<p>When the jackknife estimator is used, the Welch-Satterthwaite (WS) degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>) is <span class="citation">(<a href="references.html#ref-Satterthwaite" role="doc-biblioref">Satterthwaite, 1946</a>; <a href="references.html#ref-Welch" role="doc-biblioref">Welch, 1947</a>)</span>
+<span class="math display">\[\begin{align}
+dof_{WS} = \frac{1}{m^*} \sum_{p=1}^{m^*} \frac{ \left[ \sum_{j=1}^{J} \left[ (A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^2 \right]^2 }{ \sum_{j=1}^{J}  \left[(A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^4  }
+\end{align}\]</span>
+where <span class="math inline">\(A_{jp}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the <span class="math inline">\(j\)</span>th jackknife replicate value and the <span class="math inline">\(p\)</span>th plausible value, and <span class="math inline">\(A_{0p}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the full sample weights and the <span class="math inline">\(p\)</span>th plausible value. The same is true for the <span class="math inline">\(B\)</span> subscripts. For a regression coefficient, <span class="math inline">\((A_{jp} - A_{0p}) - (B_{jp} - B_{0p})\)</span> is replaced by the <span class="math inline">\(j\)</span>th deviate from the full sample weight coefficient <span class="math inline">\(\beta_{jp} - \beta_{0p}\)</span>.</p>
+<p>The <span class="citation"><a href="references.html#ref-Johnson" role="doc-biblioref">Johnson &amp; Rust</a> (<a href="references.html#ref-Johnson" role="doc-biblioref">1992</a>)</span> corrected degrees of freedom (<span class="math inline">\(dof_{JR}\)</span>) is</p>
+<p><span class="math display">\[\begin{align}
+dof_{JR} = \left(3.16 - \frac{2.77}{\sqrt{J}} \right) dof_{WS}
+\end{align}\]</span></p>
+</div>
+<div id="estimation-of-degrees-of-freedom-using-the-taylor-series" class="section level3" number="11.4.2">
+<h3>
+<span class="header-section-number">11.4.2</span> Estimation of Degrees of Freedom, Using the Taylor Series<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-using-the-taylor-series"><i class="fas fa-link"></i></a>
+</h3>
+<p>For the Taylor series estimator, the degrees of freedom estimator also uses the WS degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>). However, because the jackknife replicate estimates are not available, a different equation is used. The WS weights require an estimate of the degrees of freedom per group; when using the jackknife variance estimator, this was estimated using the jackknife replicate weights. For the Taylor series, this is estimated per stratum.</p>
+<p>Following <span class="citation"><a href="references.html#ref-binder" role="doc-biblioref">Binder</a> (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span> and <span class="citation"><a href="references.html#ref-cohen02" role="doc-biblioref">American Institutes for Research and Jon Cohen</a> (<a href="references.html#ref-cohen02" role="doc-biblioref">n.d.</a>)</span>, the contribution <span class="math inline">\(c_s\)</span> to the degrees of freedom from stratum <span class="math inline">\(s\)</span> is defined as <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> from the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method”:
+<span class="math display">\[\begin{align}
+c_s = w_s \frac{n_s}{n_s-1} \sum_{u=1}^{n_s} \boldsymbol{\mathbf{z}}_{uj} \boldsymbol{\mathbf{z}}_{uj}^T
+\end{align}\]</span>
+where <span class="math inline">\(u\)</span> indexes the PSUs in the stratum, of which there are <span class="math inline">\(n_s\)</span>, and <span class="math inline">\(w_s\)</span> is the stratum weight, or the sum, in that stratum, of all the unit’s full sample weights. The stratum weight is not used in the calculation of estimated degrees of freedom for the jackknife but is applied here to approximately account for the size of the stratum in the degrees of freedom calculation. Using the <span class="math inline">\(c_s\)</span> values, the degrees of freedom is
+<span class="math display">\[\begin{align}
+dof_{WS} = \frac{\left(\sum c_s \right)^2}{\sum c_s^2}
+\end{align}\]</span>
+With multiple plausible values, the average of <span class="math inline">\(dof_{WS}\)</span> across the plausible values is used.</p>
+</div>
+<div id="estimation-of-degrees-of-freedom-for-statistics-pooled-across-multiple-surveys" class="section level3" number="11.4.3">
+<h3>
+<span class="header-section-number">11.4.3</span> Estimation of Degrees of Freedom for Statistics Pooled Across Multiple Surveys<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-for-statistics-pooled-across-multiple-surveys"><i class="fas fa-link"></i></a>
+</h3>
+<p>When estimating a statistic from two surveys, a different formula is used. In this case, a statistic from each survey is combined into the final estimate; for example, a difference in means would use a mean estimate from each survey. The degrees of freedom for this pooled statistic is
+<span class="math display">\[\begin{align}
+dof = \frac{\left(s_1^2 + s_2^2 \right)^2}{ \frac{s_1^4}{dof_1} + \frac{s_2^4}{dof_2} }
+\end{align}\]</span>
+where <span class="math inline">\(s_1^2\)</span> and <span class="math inline">\(dof_1\)</span> are the squared standard error and degrees of freedom, respectively, of the statistic calculated from the first survey, and <span class="math inline">\(s_2^2\)</span> and <span class="math inline">\(dof_2\)</span> are the squared standard error and degrees of freedom, respectively, of the statistic calculated from the second survey. These intermediate degrees of freedom would be calculated as described in one of the previous two sections.</p>
+</div>
+</div>
+<div id="estimation-of-weighted-mixed-models" class="section level2" number="11.5">
+<h2>
+<span class="header-section-number">11.5</span> Estimation of Weighted Mixed Models<a class="anchor" aria-label="anchor" href="#estimation-of-weighted-mixed-models"><i class="fas fa-link"></i></a>
+</h2>
+<p>Analysts estimate weighted mixed models, by plausible value, using the <code>WeMix</code> package. The results are combined as described in this section.</p>
+<p>Estimate the fixed effects from the <code>WeMix</code> results by using
+<span class="math display">\[\begin{align}
+\boldsymbol{\mathbf{\beta}} = \frac{1}{M} \sum_{p=1}^M \boldsymbol{\mathbf{\beta}}_p 
+\end{align}\]</span>
+where <span class="math inline">\(p\)</span> indexes the plausible values, of which there are <span class="math inline">\(M\)</span>. The same formula is used to estimate the variance of the random effects.</p>
+<div id="weighted-mixed-model-variance-estimation" class="section level3" number="11.5.1">
+<h3>
+<span class="header-section-number">11.5.1</span> Weighted Mixed Model Variance Estimation<a class="anchor" aria-label="anchor" href="#weighted-mixed-model-variance-estimation"><i class="fas fa-link"></i></a>
+</h3>
+<p>The standard error of the mixed effects is cluster robust and already aggregated to the highest cluster level in the model. We recommend that the highest level align with the sampling design, for example, school in a study that selects schools. Then the cluster robust variance estimator includes the sampling design, and the sampling variance can be estimated by simply averaging it across the plausible values. This is true for both the fixed effects and the variances of the random effects.</p>
+<p>The imputation variance is then calculated using Rubin’s rule. Only the formula for the fixed effects is shown, but the same rule applies to the estimated variance of the random effects.
+<span class="math display">\[\begin{align}
+V_{\rm imp} = \frac{M+1}{M(M-1)} \sum_{p=1}^M (\boldsymbol{\mathbf{\beta}}_p - \boldsymbol{\mathbf{\beta}}) (\boldsymbol{\mathbf{\beta}}_p - \boldsymbol{\mathbf{\beta}})^{\prime}
+\end{align}\]</span>
+where <span class="math inline">\(V_{imp}\)</span> is the imputation covariance matrix. The total covariance is the sum of the sampling covariance and the imputation covariance.
+<span class="math display">\[\begin{align}
+V = V_{\rm imp} + V_{\rm smp}
+\end{align}\]</span>
+The variance is the diagonal of the covariance matrix.</p>
+</div>
+</div>
+<div id="multivariate-regression" class="section level2" number="11.6">
+<h2>
+<span class="header-section-number">11.6</span> Multivariate Regression<a class="anchor" aria-label="anchor" href="#multivariate-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>For multivariate regression of the form
+<span class="math display">\[ \boldsymbol{\mathbf{Y}}=\boldsymbol{\mathbf{XB}} + \boldsymbol{\mathbf{E}}\]</span></p>
+<p><span class="math inline">\(\boldsymbol{\mathbf{Y}}\)</span> is a matrix of <span class="math inline">\(n\)</span> observations on <span class="math inline">\(s\)</span> dependent variables; <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span> is a matrix with columns for <span class="math inline">\(k\)</span>+1 independent variables; <span class="math inline">\(\boldsymbol{\mathbf{B}}\)</span> is a matrix of regression coefficients, one column for each dependent variable; and <span class="math inline">\(\boldsymbol{\mathbf{E}}\)</span> is a matrix of errors. A weighted regression is used so that the estimated coefficients (<span class="math inline">\(\boldsymbol{\mathbf{\hat{B}}}\)</span>) minimize the trace of the weighted residual sum of squares and cross-products matrix:</p>
+<p><span class="math display">\[\boldsymbol{\mathbf{\hat{B}}} = \mathrm{ArgMin}_{\boldsymbol{\mathbf{B}}}\ \ tr((\boldsymbol{\mathbf{Y}}-\boldsymbol{\mathbf{X}} \boldsymbol{\mathbf{B}})^T \boldsymbol{\mathbf{W}} (\boldsymbol{\mathbf{Y}}-\boldsymbol{\mathbf{X}} \boldsymbol{\mathbf{B}}))\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mathbf{X}}_i\)</span> is the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span>, <span class="math inline">\(\boldsymbol{\mathbf{Y}}_i\)</span> is the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(\boldsymbol{\mathbf{Y}}\)</span>, <span class="math inline">\(\boldsymbol{\mathbf{W}}\)</span> is a diagonal matrix of the weights, and <span class="math inline">\(\mathrm{ArgMin}_{\boldsymbol{\mathbf{B}}}\)</span> means the value of <span class="math inline">\(\boldsymbol{\mathbf{B}}\)</span> minimizes the expression that follows it.</p>
+<div id="estimation" class="section level3" number="11.6.1">
+<h3>
+<span class="header-section-number">11.6.1</span> Estimation<a class="anchor" aria-label="anchor" href="#estimation"><i class="fas fa-link"></i></a>
+</h3>
+<p>The methods used to estimate coefficients, variance, and covariance for multivariate multiple regression are similar to those used in univariate multiple regression.</p>
+<div id="coefficient-estimation" class="section level4" number="11.6.1.1">
+<h4>
+<span class="header-section-number">11.6.1.1</span> Coefficient Estimation<a class="anchor" aria-label="anchor" href="#coefficient-estimation"><i class="fas fa-link"></i></a>
+</h4>
+<p>The coefficient estimation in <code>mvrlm.sdf</code> produces the same coefficient estimates as when the regressions are run separately using <code>lm.sdf</code> as detailed in this chapter.</p>
+</div>
+<div id="variance-estimation" class="section level4" number="11.6.1.2">
+<h4>
+<span class="header-section-number">11.6.1.2</span> Variance Estimation<a class="anchor" aria-label="anchor" href="#variance-estimation"><i class="fas fa-link"></i></a>
+</h4>
+<p>The variance estimation in <code>mvrlm.sdf</code> produces the same standard error estimates as when the regressions are run separately using <code>lm.sdf</code>.</p>
+<p>When the predicted value does not have plausible values, the variance of the coefficients is estimated according to the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Jackknife Method.”</p>
+<p>When plausible values are present, the variance of the coefficients is estimated according to the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method.”</p>
+</div>
+<div id="residual-variancecovariance-matrix-estimation" class="section level4" number="11.6.1.3">
+<h4>
+<span class="header-section-number">11.6.1.3</span> Residual Variance–Covariance Matrix Estimation<a class="anchor" aria-label="anchor" href="#residual-variancecovariance-matrix-estimation"><i class="fas fa-link"></i></a>
+</h4>
+<p>In addition to estimating the regression coefficients for each dependent variable, the <code>mvrlm.sdf</code> model also produces residual covariance estimates for the dependent variables. The residual variance–covariance matrix is a <span class="math inline">\(s \times s\)</span> matrix for a model with <span class="math inline">\(s\)</span> dependent variables that summarizes residuals within and between dependent variables.</p>
+<p>The residuals for the <span class="math inline">\(i\)</span>th dependent variable are calculated as follows:</p>
+<p><span class="math display">\[ \boldsymbol{\mathbf{R_i}} = \boldsymbol{\mathbf{Y_i}}-\boldsymbol{\mathbf{X}}\boldsymbol{\mathbf{\hat{\beta}_i}} \]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mathbf{Y_i}}\)</span> is the <span class="math inline">\(p \times n\)</span> matrix of plausible values for the <span class="math inline">\(i\)</span>th dependent variable, <span class="math inline">\(\boldsymbol{\mathbf{X}}\)</span> is the <span class="math inline">\(k \times n\)</span> matrix of independent variables, and <span class="math inline">\(\boldsymbol{\mathbf{\hat{\beta}_i}}\)</span> is the <span class="math inline">\(p \times k\)</span> matrix of estimated coefficients for the <span class="math inline">\(p\)</span> plausible values and the <span class="math inline">\(k\)</span> independent variables. When the <span class="math inline">\(i\)</span>th dependent variable has no plausible values, <span class="math inline">\(\boldsymbol{\mathbf{R_i}}\)</span> is simply the vector of residuals for that variable.</p>
+<p>To calculate the residual variance–covariance matrix, summarize residuals across plausible values. For dependent variables with plausible values, the mean residual is taken across the plausible values for each observation, and the residual value is simply taken for dependent variables without plausible values. The residual vector for the <span class="math inline">\(i\)</span>th dependent variable is calculated as follows:</p>
+<p><span class="math display">\[ E_i = \frac{1}{p} \sum_{a=1}^{p} r_a\]</span></p>
+<p>where <span class="math inline">\(r_a\)</span> is the <span class="math inline">\(a\)</span>th column of the matrix of residuals <span class="math inline">\(\boldsymbol{\mathbf{R_i}}\)</span> for the <span class="math inline">\(i\)</span>th dependent variable. When the <span class="math inline">\(i\)</span>th dependent variable has no plausible values, <span class="math inline">\(\boldsymbol{\mathbf{E_i}}\)</span> is simply the vector of residuals for that variable.</p>
+<p>The <span class="math inline">\(s \times s\)</span> residual variance–covariance matrix is then calculated from the residual vectors for each dependent variable as follows:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    E^T_{1} E_1 &amp; E^T_{1} E_2 &amp; \dots  &amp; E^T_{1} E_s  \\
+    E^T_{2} E_1 &amp; E^T_{2} E_2 &amp; \dots  &amp; E^T_{2} E_s \\
+    \vdots &amp; \vdots  &amp; \ddots &amp; \vdots \\
+    E^T_{s} E_1 &amp; E^T_{s} E_2  &amp; \dots  &amp;E^T_{s} E_s 
+\end{bmatrix}
+ \]</span></p>
+</div>
+<div id="coefficient-variancecovariance-matrix-estimation" class="section level4" number="11.6.1.4">
+<h4>
+<span class="header-section-number">11.6.1.4</span> Coefficient Variance–Covariance Matrix Estimation<a class="anchor" aria-label="anchor" href="#coefficient-variancecovariance-matrix-estimation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Use the <code>vcov</code> method to find the coefficient variance–covariance matrix for marginal maximum likelihood models.</p>
+<p>In the univariate case, the coefficient matrix is a <span class="math inline">\(k \times k\)</span> symmetric matrix for a model with <span class="math inline">\(k\)</span> regression coefficients, whereas the variance–covariance matrix for the multivariate case is a <span class="math inline">\(sk \times sk\)</span> symmetric block matrix, where the <span class="math inline">\(k \times k\)</span> blocks on the diagonal represent the variance–covariance values within each dependent variable (these values match those in the variance–covariance matrix from a corresponding univariate model), whereas the <span class="math inline">\(k \times k\)</span> off-diagonal blocks represent the variance–covariance values across dependent variables.</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    \boldsymbol{\mathbf{V_1}} &amp; \boldsymbol{\mathbf{C_{1,2}}} &amp; \dots &amp; \boldsymbol{\mathbf{C_{1,s}}}  \\
+    \boldsymbol{\mathbf{C_{2,1}}} &amp; \boldsymbol{\mathbf{V_2}} &amp; \dots  &amp; \boldsymbol{\mathbf{C_{2,s}}} \\
+    \vdots &amp; \vdots  &amp; \ddots &amp; \vdots \\
+    \boldsymbol{\mathbf{C_{s,1}}} &amp; \boldsymbol{\mathbf{C_{s,2}}} &amp; \dots  &amp; \boldsymbol{\mathbf{V_s}}
+\end{bmatrix}
+\]</span></p>
+<p>The diagonal blocks <span class="math inline">\(\boldsymbol{\mathbf{V_i}}\)</span> are <span class="math inline">\(k \times k\)</span> matrices of the following form for the <span class="math inline">\(i\)</span>th dependent variable:</p>
+<p><span class="math display">\[ V_i = V_{jrr} + V_{imp} \]</span></p>
+<p>When the variable does not have plausible values, <span class="math inline">\(V_{imp}\)</span> is 0.</p>
+<p>The off-diagonal blocks <span class="math inline">\(C_{a,b}\)</span> are <span class="math inline">\(k \times k\)</span> matrices of the following form for dependent variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>:</p>
+<p><span class="math display">\[ C_{a,b} = C_{jrr} + C_{imp} \]</span></p>
+<p>When one variable does not have plausible values, <span class="math inline">\(C_{imp}\)</span> is 0.</p>
+</div>
+</div>
+</div>
+<div id="wald-tests-1" class="section level2" number="11.7">
+<h2>
+<span class="header-section-number">11.7</span> Wald Tests<a class="anchor" aria-label="anchor" href="#wald-tests-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>The Wald test is a statistical test of estimated parameters in a model, with the null hypothesis being a set of parameters (<span class="math inline">\(\beta\)</span>) is equal to some values (<span class="math inline">\(\beta_0\)</span>).<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The Wald test also can test hypotheses about contrasts between parameters, but the &lt;code&gt;waldTest&lt;/code&gt; function in &lt;code&gt;EdSurvey&lt;/code&gt; does not support contrasts.&lt;/p&gt;"><sup>18</sup></a> In the default case, where the null hypothesis value of the parameters is 0, if the test does not reject the null hypothesis, removing the variables from the model will not substantially harm the fit of that model.</p>
+<p>The formula for the test statistic of a single parameter is as follows:</p>
+<p><span class="math display">\[W=\frac{(\hat{\beta} - \beta_0)^2}{Var(\hat{\beta)}}\]</span></p>
+<p>where <span class="math inline">\(W\)</span> is the Wald test statistic, and <span class="math inline">\(Var(\hat{\beta})\)</span> is the variance estimate of <span class="math inline">\(\hat{\beta}\)</span>.</p>
+<p>The Wald test statistic for multiple parameters is equal to</p>
+<p><span class="math display">\[ W =(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{\beta}}} - \boldsymbol{\mathbf{r}})'(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{V}}}\boldsymbol{\mathbf{R}}')^{-1}(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{\beta}}} - \boldsymbol{\mathbf{r}}) \]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mathbf{R}}\)</span> and <span class="math inline">\(\boldsymbol{\mathbf{r}}\)</span> are a matrix and vector, respectively, used to specify a null hypothesis, and <span class="math inline">\(\hat{\boldsymbol{\mathbf{V}}}\)</span> is the variance estimator for <span class="math inline">\(\hat{\boldsymbol{\mathbf{\beta}}}\)</span>.</p>
+<p>The resulting test statistic can be tested against a chi-square distribution or an F-distribution. The chi-square distribution is preferable to the F-distribution when the number of degrees of freedom is large, whereas the F-test is preferable when the number of degrees of freedom is small <span class="citation">(<a href="references.html#ref-korng" role="doc-biblioref">Korn &amp; Graubard, 1990</a>)</span>.</p>
+<p>For the chi-square test, the degrees of freedom value is equal to the number of parameters being tested, and the test statistic is the unadjusted value of <span class="math inline">\(W\)</span>:</p>
+<p><span class="math display">\[ W \sim \chi^2(p) \]</span></p>
+<p>For the F-test, two scenarios dictate the use of two different adjustments for the test statistics, along with two different values for the denominator degrees of freedom.</p>
+<p>For the NAEP and other international assessments in <code>EdSurvey</code>, when collecting data using a multistage stratified sampling design, the test statistic is adjusted based on the sampling parameters:</p>
+<p><span class="math display">\[ W_{adj} = (d - p + 1) W / (pd)\]</span></p>
+<p>where <span class="math inline">\(d\)</span> is the number of PSUs minus the number of strata, and <span class="math inline">\(p\)</span> is the number of parameters tested. The adjusted test statistic is then compared with the F-distribution with <span class="math inline">\(p\)</span> and <span class="math inline">\((d - p - 1)\)</span> degrees of freedom (Korn &amp; Graubard, 1990):</p>
+<p><span class="math display">\[ W_{adj} \sim F(p, d - p - 1)\]</span></p>
+<p>When data are collected using a single-stage stratified sampling design (e.g., some countries in the PIAAC data), the test statistic is as follows:</p>
+<p><span class="math display">\[ W_{adj} = W / p\]</span></p>
+<p>The adjusted test statistic is then compared with the F-distribution with <span class="math inline">\(p\)</span> and <span class="math inline">\(d\)</span> degrees of freedom, where <span class="math inline">\(d\)</span> is the residual degrees of freedom in the model and <span class="math inline">\(p\)</span> is the number of parameters being tested:</p>
+<p><span class="math display">\[ W_{adj} \sim F(p, d)\]</span></p>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></div>
+<div class="next"><a href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#methods"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="nav-link" href="#introduction-1"><span class="header-section-number">11.1</span> Introduction</a></li>
+<li>
+<a class="nav-link" href="#estimation-of-weighted-means"><span class="header-section-number">11.2</span> Estimation of Weighted Means</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estimation-of-weighted-means-when-plausible-values-are-not-present"><span class="header-section-number">11.2.1</span> Estimation of Weighted Means When Plausible Values Are Not Present</a></li>
+<li><a class="nav-link" href="#estimation-of-weighted-means-when-plausible-values-are-present"><span class="header-section-number">11.2.2</span> Estimation of Weighted Means When Plausible Values Are Present</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-deviations"><span class="header-section-number">11.2.3</span> Estimation of Standard Deviations</a></li>
+<li><a class="nav-link" href="#estimation-of-standardized-regression-coefficients"><span class="header-section-number">11.2.4</span> Estimation of Standardized Regression Coefficients</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-jackknife-method"><span class="header-section-number">11.2.5</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Jackknife Method</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-jackknife-method"><span class="header-section-number">11.2.6</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-taylor-series-method"><span class="header-section-number">11.2.7</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-present-using-the-taylor-series-method"><span class="header-section-number">11.2.8</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Taylor Series Method</a></li>
+<li><a class="nav-link" href="#estimation-of-standard-errors-of-differences-of-means"><span class="header-section-number">11.2.9</span> Estimation of Standard Errors of Differences of Means</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimation-of-weighted-percentages"><span class="header-section-number">11.3</span> Estimation of Weighted Percentages</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estimation-of-weighted-percentages-when-plausible-values-are-not-present"><span class="header-section-number">11.3.1</span> Estimation of Weighted Percentages When Plausible Values Are Not Present</a></li>
+<li><a class="nav-link" href="#estimation-of-weighted-percentages-when-plausible-values-are-present"><span class="header-section-number">11.3.2</span> Estimation of Weighted Percentages When Plausible Values Are Present</a></li>
+<li><a class="nav-link" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-jackknife-method"><span class="header-section-number">11.3.3</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Not Present, Using the Jackknife Method</a></li>
+<li><a class="nav-link" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-present-using-the-jackknife-method"><span class="header-section-number">11.3.4</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Present, Using the Jackknife Method</a></li>
+<li><a class="nav-link" href="#estimation-of-the-standard-error-of-weighted-percentages-when-plausible-values-are-not-present-using-the-taylor-series-method"><span class="header-section-number">11.3.5</span> Estimation of the Standard Error of Weighted Percentages When Plausible Values Are Not Present, Using the Taylor Series Method</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimation-of-degrees-of-freedom"><span class="header-section-number">11.4</span> Estimation of Degrees of Freedom</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estimation-of-degrees-of-freedom-using-the-jackknife"><span class="header-section-number">11.4.1</span> Estimation of Degrees of Freedom, Using the Jackknife</a></li>
+<li><a class="nav-link" href="#estimation-of-degrees-of-freedom-using-the-taylor-series"><span class="header-section-number">11.4.2</span> Estimation of Degrees of Freedom, Using the Taylor Series</a></li>
+<li><a class="nav-link" href="#estimation-of-degrees-of-freedom-for-statistics-pooled-across-multiple-surveys"><span class="header-section-number">11.4.3</span> Estimation of Degrees of Freedom for Statistics Pooled Across Multiple Surveys</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimation-of-weighted-mixed-models"><span class="header-section-number">11.5</span> Estimation of Weighted Mixed Models</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#weighted-mixed-model-variance-estimation"><span class="header-section-number">11.5.1</span> Weighted Mixed Model Variance Estimation</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#multivariate-regression"><span class="header-section-number">11.6</span> Multivariate Regression</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#estimation"><span class="header-section-number">11.6.1</span> Estimation</a></li></ul>
+</li>
+<li><a class="nav-link" href="#wald-tests-1"><span class="header-section-number">11.7</span> Wald Tests</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/master/11-statistical-methodology.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/master/11-statistical-methodology.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

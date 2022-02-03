@@ -1,0 +1,83 @@
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+}
+
+.book .book-body .page-wrapper .page-inner section {
+  line-height: 1.7;
+  font-size: 1.6rem;
+}
+
+/*p, li {
+  font-family: 'Times New Roman', serif;
+}
+
+text {
+  font-family: 'Times New Roman', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+}*/
+
+p code {
+  white-space: inherit;
+}
+
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+caption {
+  caption-side: top;
+}
+
+p.caption {
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+@font-face{
+    font-family: 'Publico Text';
+    src: url('./truetype/PublicoText-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face{
+    font-family: 'Publico Text Semibold';
+    src: url('./truetype/PublicoText-Semibold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face{
+    font-family: 'Publico Text';
+    src: url('./truetype/PublicoText-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+body{
+  font-family: "Publico Text";
+}
+
+code {
+  font-family: 'Consolas', monospace;
+}
+
+.inline-figure {
+    border: solid 1px #ffffff;
+    margin-bottom: 1rem;
+}

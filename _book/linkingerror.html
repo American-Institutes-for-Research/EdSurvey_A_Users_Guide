@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 12 NAEP Linking Error | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="12.1 Introduction Students who take paper-based assessments (PBAs) and digitally based assessments (DBAs) may experience items in different ways—for example, an item may be more or less difficult...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 12 NAEP Linking Error | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/linkingerror.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="12.1 Introduction Students who take paper-based assessments (PBAs) and digitally based assessments (DBAs) may experience items in different ways—for example, an item may be more or less difficult...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 12 NAEP Linking Error | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:description" content="12.1 Introduction Students who take paper-based assessments (PBAs) and digitally based assessments (DBAs) may experience items in different ways—for example, an item may be more or less difficult...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="nces-information-page.html">NCES Information Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="active" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="linkingerror" class="section level1" number="12">
+<h1>
+<span class="header-section-number">12</span> NAEP Linking Error<a class="anchor" aria-label="anchor" href="#linkingerror"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introduction-2" class="section level2" number="12.1">
+<h2>
+<span class="header-section-number">12.1</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Students who take paper-based assessments (PBAs) and digitally based assessments (DBAs) may experience items in different ways—for example, an item may be more or less difficult in the DBA format than in the PBA format. To account for this, NCES drew two nationally representative samples and administered one as a PBA and the other as a DBA. Because the samples were both nationally representative, the overall mean can be assumed to be equivalent, and the two samples were linked under stochastic equivalence. However, this linking introduced additional variance, and linking error accounts for the additional variance, from the change in modes. The methodology assumes that the mode effect is the same for the entire sample and accounts for the variance introduced resulting from to the change in mode.</p>
+<p><code>EdSurvey</code> implements the method, developed by NCES and described in this chapter, to account for linking error in assessments that have combined PBA and DBA formats. As of June 2021, these assessments include 2018 Grade 8 Civics, Geography, and U.S. History; 2019 Science Grade 4 and Grade 8; and 2019 Grade 12 Mathematics and Reading. This method is not relevant to 2017 Grade 4 and Grade 8 Mathematics and Reading. <code>EdSurvey</code> implements linking error for these studies, but this process is not described here.</p>
+<p>Three groups of plausible values are used to estimate statistics and capture linking error in variance estimation:</p>
+<ul>
+<li>A first group of plausible values is used to estimate the quantity of interest.</li>
+<li>A second group of plausible values is used to estimate sampling variance.</li>
+<li>A third group of plausible values is used to estimate imputation variance.</li>
+</ul>
+<p>NCES distributes NAEP data with only the first group of plausible values present, so the second and third groups must be calculated before estimating the linking error variance. All three groups exist for each subject scale (e.g., composite, univariate) and each subscale (when present). Although the user does not work with the theta values directly, the values are used in intermediate steps and appear on the files. The theta scores are available in <code>EdSurvey</code>.</p>
+<p>This chapter begins by describing how to use <code>EdSurvey</code> to calculate the linking error and then describes the formulas used to calculate linking error.</p>
+</div>
+<div id="in-edsurvey" class="section level2" number="12.2">
+<h2>
+<span class="header-section-number">12.2</span> In EdSurvey<a class="anchor" aria-label="anchor" href="#in-edsurvey"><i class="fas fa-link"></i></a>
+</h2>
+<p>Beginning with <code>EdSurvey</code> 2.7, the NAEP linking error formulas have been implemented in most <code>EdSurvey</code> analytical functions, including <code>edsurveyTable</code>, <code>achievementLevels</code>, <code>percentile</code>, <code>gap</code>, <code>cor.sdf</code>, <code>rq.sdf</code>, <code>lm.sdf</code>, <code>logit.sdf</code>, <code>probit.sdf</code>, and <code>waldTest</code> (when applied to the results of these methods) but not in <code>summary2</code>, <code>mixed.sdf</code>, <code>mml.sdf</code>, or <code>mvrlm.sdf</code>. Users of <code>EdSurvey</code> can account for the linking error simply by using <code>_linking</code> outcomes in place of the subject scale or subscale. They also are listed separately when calling <code>showPlausibleValues</code>. For example, a table can be generated with or without linking error as follows.</p>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://www.air.org/project/nces-data-r-project-edsurvey">EdSurvey</a></span><span class="op">)</span> <span class="co"># must be 2.7.0 or higher</span>
+<span class="va">math12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="st">"path/to/Data/M50NT3AT.dat"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showPlausibleValues.html">showPlausibleValues</a></span><span class="op">(</span><span class="va">math12</span><span class="op">)</span>
+<span class="co"># Results, not accounting for DBA-PBA linking</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span>, data<span class="op">=</span><span class="va">math12</span><span class="op">)</span>
+<span class="co"># Results, accounting for DBA-PBA linking</span>
+<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span><span class="va">composite_linking</span> <span class="op">~</span> <span class="va">dsex</span>, data<span class="op">=</span><span class="va">math12</span><span class="op">)</span></code></pre></div>
+<p>A few limitations exist for the linking error procedure. First, it does not allow Taylor series variance estimation. Second, the value <code>jrrIMax</code> must always be one. Attempting to use <code>EdSurvey</code> with Taylor series variance estimation or <code>jrrIMax</code> greater than one will result in an error.</p>
+<p>Also, because NCES does not provide all the necessary variables (shown in the next section) in the NAEP data, reading in data is slowed by computing the additional intermediate and linking error variables (often taking several minutes), and calculations are slower when the linking error is calculated.</p>
+<div id="formulas" class="section level3" number="12.2.1">
+<h3>
+<span class="header-section-number">12.2.1</span> Formulas<a class="anchor" aria-label="anchor" href="#formulas"><i class="fas fa-link"></i></a>
+</h3>
+<p>This section shows the formulas used by <code>EdSurvey</code> to compute statistics while accounting for linking error.</p>
+<div id="estimation-1" class="section level4" number="12.2.1.1">
+<h4>
+<span class="header-section-number">12.2.1.1</span> Estimation<a class="anchor" aria-label="anchor" href="#estimation-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>A statistic is estimated using the usual scale score plausible values by calculating the statistic with the full sample weights and averaging the statistic across the plausible values.
+<span class="math display">\[\begin{equation} 
+Q = \frac{\sum_{j=1}^J Q_j}{J}
+\end{equation}\]</span>
+where <span class="math inline">\(Q\)</span> is the estimated statistic; <span class="math inline">\(Q_j\)</span> is the statistic estimated with the <span class="math inline">\(j\)</span>th set of plausible values, of which there are <span class="math inline">\(J\)</span>; and all estimates are weighted results from the full sample weights (<code>origwt</code> on NAEP).</p>
+</div>
+<div id="overview-of-naep-linking-error-methodology" class="section level4" number="12.2.1.2">
+<h4>
+<span class="header-section-number">12.2.1.2</span> Overview of NAEP Linking Error Methodology<a class="anchor" aria-label="anchor" href="#overview-of-naep-linking-error-methodology"><i class="fas fa-link"></i></a>
+</h4>
+<p>For this exercise, we will use the DBA student’s theta scores and scale them to the PBA reporting scale with an equation of the form
+<span class="math display">\[\begin{equation} 
+  X = b + a \theta
+\end{equation}\]</span>
+where <span class="math inline">\(X\)</span> is the scale score, <span class="math inline">\(b\)</span> is the location parameter, <span class="math inline">\(a\)</span> is the scale parameter, and <span class="math inline">\(\theta\)</span> is the theta score. Although it is possible to map scale scores directly from one reporting scale to another, that more complicated procedure is neither described nor needed for this exercise.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Although &lt;code&gt;EdSurvey&lt;/code&gt; transforms DBA theta scale plausible values to the PBA reporting scale for linking error estimation, the NAEP data companion describes an equivalent method that maps the DBA reporting scale to the PBA reporting scale instead. As such, the transformation coefficient tables provided in the NAEP data product also reflect the transformation from the DBA reporting scale to the PBA reporting scale. The two methods are equivalent because both would yield identical transformed DBA plausible values (on the PBA reporting scale) as intermediates for subsequent linking error estimation.&lt;/p&gt;"><sup>19</sup></a></p>
+<p>The values <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are chosen so that students who took the DBA will have their <span class="math inline">\(\theta\)</span> scores mapped to the same mean and standard deviation as students who took the PBA. This scaling is performed by imputation indexing for the imputation variance and by replicate weighting for the sampling variance, as described in the next two subsections.</p>
+<p>As is typical with the NAEP, scores are scaled by subscale and then the composite score is a weighted combination of
+<span class="math display">\[\begin{equation} 
+  X_c = \sum_{k=1}^{K} \beta_k \cdot X_k
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(X_c\)</span> is the composite scale score, <span class="math inline">\(\beta_k\)</span> is the weight applied to the <span class="math inline">\(k\)</span>th subscale, and <span class="math inline">\(X_k\)</span> is the <span class="math inline">\(k\)</span>th subscale scale score. The sum of the <span class="math inline">\(\beta\)</span> values is always one. If there are no subscales, the overall (sometimes also called univariate) score can be used in the following subsections, and the number of subscales is simply one.</p>
+<p>Students who took the DBA will have the variable <code>dbapba</code> set to <code>"DBA"</code>, and students who took the PBA will have the variable set to <code>"PBA"</code>.</p>
+<div id="imputation-variance" class="section level5" number="12.2.1.2.1">
+<h5>
+<span class="header-section-number">12.2.1.2.1</span> Imputation Variance<a class="anchor" aria-label="anchor" href="#imputation-variance"><i class="fas fa-link"></i></a>
+</h5>
+<p>Ideally, the imputation variance would be summed over all possible combinations of the 20 PBA and 20 DBA imputations, which is far more than can be reasonably calculated. To minimize computation time, only five permutations of the plausible values are chosen; these permutations are shown in Table 12.1, where the row number is the index of the DBA plausible values to use, and the cell value is the index of the PBA plausible values to use.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:PERM">Table 12.1. </span>Permutation Table </caption>
+<thead><tr class="header">
+<th align="right">Row</th>
+<th align="right">Col. 1</th>
+<th align="right">Col. 2</th>
+<th align="right">Col. 3</th>
+<th align="right">Col. 4</th>
+<th align="right">Col. 5</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">14</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">11</td>
+<td align="right">4</td>
+<td align="right">14</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">18</td>
+<td align="right">3</td>
+<td align="right">7</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">15</td>
+<td align="right">9</td>
+<td align="right">9</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">20</td>
+<td align="right">11</td>
+<td align="right">20</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">17</td>
+<td align="right">10</td>
+<td align="right">13</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">7</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">16</td>
+<td align="right">17</td>
+<td align="right">8</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">9</td>
+<td align="right">12</td>
+<td align="right">19</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">6</td>
+<td align="right">13</td>
+<td align="right">11</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">11</td>
+<td align="right">19</td>
+<td align="right">7</td>
+<td align="right">19</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">13</td>
+<td align="right">13</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">18</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">13</td>
+<td align="right">18</td>
+<td align="right">10</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">15</td>
+<td align="right">5</td>
+<td align="right">20</td>
+<td align="right">6</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">16</td>
+<td align="right">16</td>
+<td align="right">7</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">17</td>
+<td align="right">17</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">15</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="right">18</td>
+<td align="right">18</td>
+<td align="right">9</td>
+<td align="right">16</td>
+<td align="right">3</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">19</td>
+<td align="right">19</td>
+<td align="right">8</td>
+<td align="right">14</td>
+<td align="right">5</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="right">17</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table></div>
+<p>The data already have the plausible values used for estimation on it but need the imputation variance and sampling variance plausible values added.</p>
+<p>The algorithm for generating the imputation variance plausible values is as follows:</p>
+<ul>
+<li>Define <span class="math inline">\(w_{DBA}\)</span> as the vector of weights for students who took the DBA. The vector has length <span class="math inline">\(n_{DBA}\)</span>.</li>
+<li>Define <span class="math inline">\(w_{PBA}\)</span> as the vector of weights for students who took the PBA. The vector has length <span class="math inline">\(n_{PBA}\)</span>.</li>
+<li>For each column (<span class="math inline">\(n\)</span>) of the permutation table and for each row (<span class="math inline">\(j\)</span>) of the permutation table
+<ul>
+<li>For each subscale (<span class="math inline">\(k\)</span>)
+<ul>
+<li>Define <span class="math inline">\(X_k\)</span> as the vector of the <span class="math inline">\(k\)</span>th subscale, scale score plausible values for all students who took the PBA. Select the plausible value based on the element in Table 1 for this row and column (the <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span>th element from the permutation table).</li>
+<li>Define <span class="math inline">\(\theta_k\)</span> as the vector of the <span class="math inline">\(k\)</span>th subscale, theta score <span class="math inline">\(j\)</span> (the <span class="math inline">\(j\)</span>th theta score plausible value) for all students who took the DBA.</li>
+<li>Define <span class="math inline">\(\mu_t = \frac{\sum w_{DBA} \theta_k}{\sum w_{DBA}}\)</span>
+</li>
+<li>Define <span class="math inline">\(s_t = \sqrt{ \frac{\sum w_{DBA} (\theta_k - \mu_t)^2}{\sum w_{DBA}}}\)</span>
+</li>
+<li>Define <span class="math inline">\(\mu_x = \frac{\sum w_{PBA} X_k}{\sum w_{PBA}}\)</span>
+</li>
+<li>Define <span class="math inline">\(s_x = \sqrt{ \frac{\sum w_{PBA} (X_k - \mu_x)^2}{\sum w_{PBA}}}\)</span>
+</li>
+<li>Generate a new scale score for the DBA students, centered at the mean for the PBA students using <span class="math inline">\(X_k^\prime = b + a\theta_k\)</span>, where <span class="math inline">\(a=\frac{s_x}{s_t}\)</span> and <span class="math inline">\(b=\mu_x - a \mu_t\)</span>.</li>
+<li>The <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span>th imputation variance plausible value for subscale <span class="math inline">\(k\)</span> is <span class="math inline">\(X_k^\prime\)</span> for students who took the DBA and <span class="math inline">\(X_k\)</span> for students who took the PBA.</li>
+</ul>
+</li>
+<li>Generate the composite for DBA students using the composite formula <span class="math inline">\(X_c^\prime = \sum_k \beta_k X_k^\prime\)</span>.</li>
+<li>The <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span>th imputation variance plausible value for the composite is <span class="math inline">\(X_c^\prime\)</span> for students who took the DBA and <span class="math inline">\(X_c\)</span> for students who took the PBA.</li>
+</ul>
+</li>
+</ul>
+<p>The previous steps need to be performed only once. Then, for each statistic, the imputation variance is calculated as follows. Using the imputation variance plausible values, the linking imputation variance is then calculated per permutation (column) and then averaged across the permutations.</p>
+<ul>
+<li>For each column (<span class="math inline">\(n\)</span>) of the permutation table for each row (<span class="math inline">\(j\)</span>) of the permutation table,
+<ul>
+<li>Calculate the statistic in question using the <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span>th imputation variance plausible values and the full sample weights, call this <span class="math inline">\(Q_{jn}\)</span>.</li>
+<li>Calculate <span class="math inline">\(Q_{\cdot n} = \frac{1}{J} \sum_{j=1}^J Q_{jn}\)</span>, where <span class="math inline">\(J\)</span> is the number of permutation table rows.</li>
+<li>Calculate <span class="math inline">\(V_{imp,n} = \frac{J+1}{J(J-1)} \sum_{j=1}^J \left(Q_{jn}-Q_{\cdot n}\right)^2\)</span>.</li>
+</ul>
+</li>
+<li>Calculate <span class="math inline">\(V_{imp} = \frac{1}{N} \sum_n^N V_{imp,n}\)</span>, where <span class="math inline">\(N\)</span> is the number of columns in the permutable table</li>
+</ul>
+<p>The value <span class="math inline">\(V_{imp}\)</span> is the estimated imputation variance for the statistic in question.</p>
+</div>
+<div id="sampling-variance" class="section level5" number="12.2.1.2.2">
+<h5>
+<span class="header-section-number">12.2.1.2.2</span> Sampling Variance<a class="anchor" aria-label="anchor" href="#sampling-variance"><i class="fas fa-link"></i></a>
+</h5>
+<p>Then generate the sampling variance plausible values, using only the first plausible value but reweighting using the replicate weights.</p>
+<ul>
+<li>For each subscale (<span class="math inline">\(k\)</span>),
+<ul>
+<li>Define <span class="math inline">\(X_k\)</span> as the vector of the <span class="math inline">\(k\)</span>th subscale, scale score plausible value for all students who took the PBA. Select the first plausible value.</li>
+<li>Define <span class="math inline">\(\theta_k\)</span> as the vector of theta scores for the <span class="math inline">\(k\)</span>th subscale for students who took the DBA. Select the first plausible value.</li>
+<li>For each replicate weight (<span class="math inline">\(i\)</span>),
+<ul>
+<li>Define <span class="math inline">\(w_{DBA}^{(i)}\)</span> as the vector of the <span class="math inline">\(i\)</span>th replicate weights for students who took the DBA. The vector has length <span class="math inline">\(n_{DBA}\)</span>.</li>
+<li>Define <span class="math inline">\(w_{PBA}^{(i)}\)</span> as the vector of the <span class="math inline">\(i\)</span>th replicate weights for students who took the PBA. The vector has length <span class="math inline">\(n_{PBA}\)</span>.</li>
+<li>Define <span class="math inline">\(\mu_t^{(i)} = \frac{\sum w_{DBA}^{(i)} \theta_k}{\sum w_{DBA}^{(i)}}\)</span>
+</li>
+<li>Define <span class="math inline">\(s_t^{(i)} = \sqrt{ \frac{\sum w_{DBA}^{(i)} (\theta_k - \mu_t^{(i)})^2}{\sum w_{DBA}^{(i)}}}\)</span>
+</li>
+<li>Define <span class="math inline">\(\mu_x^{(i)} = \frac{\sum w_{PBA}^{(i)} X_k}{\sum w_{PBA}^{(i)}}\)</span>
+</li>
+<li>Define <span class="math inline">\(s_x^{(i)} = \sqrt{ \frac{\sum w_{PBA}^{(i)} (X_k - \mu_x^{(i)})^2}{\sum w_{PBA}^{(i)}}}\)</span>
+</li>
+<li>Generate a new scale score for the DBA students, centered at the mean for the PBA students using <span class="math inline">\(X_k^{\prime(i)} = b^{(i)} + a^{(i)}\theta_k\)</span>, where <span class="math inline">\(a^{(i)}=\frac{s_x^{(i)}}{s_t^{(i)}}\)</span> and <span class="math inline">\(b^{(i)}=\mu_x^{(i)} - a^{(i)} \mu_t^{(i)}\)</span>.</li>
+<li>The <span class="math inline">\(i\)</span>th sampling variance plausible value is then <span class="math inline">\(X_k^{\prime(i)}\)</span> for students who took the DBA and <span class="math inline">\(X_k\)</span> for students who took the PBA.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>As previously, these steps need to be performed only once. Then for each statistic, the sampling variance is calculated as follows. Using the sampling variance plausible values, the linking sampling variance is then calculated per replicate weight and summed.</p>
+<ul>
+<li>For each replicate weight (<span class="math inline">\(i\)</span>), calculate <span class="math inline">\(Q_{i}\)</span> as the statistic in question using the <span class="math inline">\(i\)</span>th sampling variance plausible value and the <span class="math inline">\(i\)</span>th replicate weight.</li>
+<li>Calculate the mean <span class="math inline">\(Q_{\cdot}= \frac{1}{I} \sum_{i=1}^I Q_i\)</span>, where <span class="math inline">\(I\)</span> is the number of replicate weights.</li>
+<li>Calculate <span class="math inline">\(V_{samp} = \sum_{i=1}^I \left(Q_i - Q_{\cdot}\right)^2\)</span>.</li>
+</ul>
+<p>The value <span class="math inline">\(V_{samp}\)</span> is the estimated sampling variance for the statistic in question.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linkingerror"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="nav-link" href="#introduction-2"><span class="header-section-number">12.1</span> Introduction</a></li>
+<li>
+<a class="nav-link" href="#in-edsurvey"><span class="header-section-number">12.2</span> In EdSurvey</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#formulas"><span class="header-section-number">12.2.1</span> Formulas</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/master/12-NAEP-linking-error.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/master/12-NAEP-linking-error.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+```{r loadEdSurvey7, echo=FALSE, message=FALSE}
+library(EdSurvey)
+sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+```
+
+# Descriptive Statistics
+
+## Computing the Percentages of Students With `achievementLevels`
+
+The `achievementLevels` function computes the percentages of students' achievement levels or benchmarks defined by an assessment, including NAEP, TIMSS, and PISA. Take NAEP as an example: Each NAEP dataset's unique set of cut points for achievement levels (defined as *Basic, Proficient,* and *Advanced*) is in `EdSurvey`. Analysts can access these cut points using the `showCutPoints` function:
+
+```{r showCutPoints}
+showCutPoints(data = sdf)
+```
+
+The `achievementLevels` function applies the appropriate weights and variance estimation method for each `edsurvey.data.frame`, with several arguments for customizing the aggregation and output of the analysis results. Namely, by using these optional arguments, users can choose to generate the percentage of students performing at each achievement level (*discrete*) and at or above each achievement level (*cumulative*), calculate the percentage distribution of students by achievement levels (discrete or cumulative) and selected characteristics (specified in `aggregateBy`), and compute the percentage distribution of students by selected characteristics within a specific achievement level.
+
+The `achievementLevels` function can produce statistics at both the discrete and cumulative achievement levels. By default, the `achievementLevels` function produces results only by discrete achievement levels; when setting the `returnCumulative` argument to `TRUE`, the function generates results by both discrete and cumulative achievement levels.
+
+To compute overall results by achievement levels, use an NCES dataset's default plausible values in the `achievementVars` argument; using NAEP, for example, they are the five or 20 plausible values for the subject composite scale.
+
+```{r overallAchievementLevels}
+aLev0 <- achievementLevels(achievementVars = c("composite"),
+                           data = sdf, returnCumulative = TRUE)
+```
+```{r discrete1}
+aLev0$discrete
+```
+
+In the next example, the plausible values for `composite` and the variable `dsex` are used to calculate the achievement levels, which are aggregated by the variable `dsex` using `aggregateBy`.
+
+```{r achievementLevelsDsex}
+aLev1 <- achievementLevels(achievementVars = c("composite", "dsex"), aggregateBy = "dsex",
+                  data = sdf, returnCumulative = TRUE)
+```
+```{r discrete2}
+aLev1$discrete
+```
+
+Each level of the `dsex` variable aggregates to 100 for the results by discrete achievement levels. The object `aLev1` created in this call to `achievementLevels` is a `list` with two `data.frame`s: one for the discrete results and the other for the cumulative results. In the previously described code, `aLev1$discrete` shows only the discrete levels. To show the cumulative results, change the specified `data.frame`. For example,
+
+```{r cumulative}
+aLev1$cumulative
+```
+
+The `aggregateBy` argument sums the percentage of students by discrete achievement level up to 100 at the most disaggregated level specified by the analytical variables and determines the order of aggregation. For example, when using `dsex` and `iep` for analysis, `aggregateBy = c("dsex", "iep")` and `aggregateBy = c("iep", "dsex")` produce the same percentage but arrange the results in different ways depending on the order in the argument. When using `aggregateBy = c("iep", "dsex")`, the percentages add up to 100 within each category of `dsex` for each category of `iep`, respectively:
+
+```{r achievementLevels2}
+achievementLevels(achievementVars = c("composite", "dsex", "iep"),
+                  aggregateBy = c("iep", "dsex"), data = sdf)
+```
+
+Each unique value pair of the two variables (i.e., Yes + Male or No + Female) sums to 100 because of `aggregateBy`.
+
+*NOTE:* It is not appropriate to aggregate the results by only one variable when more than one variable is used in the analysis. The same variables used in the analysis also need to be used in the argument `aggregateBy()`, but their order can be changed to obtain the desired results.
+
+The `achievementLevels` function also can compute the percentage of students by selected characteristics within a specific achievement level. The object `aLev2` presents the percentage of students by sex within each achievement level (i.e., within each discrete and cumulative level).
+
+
+```{r aLev2Characteristics, cache=FALSE, warning=FALSE}
+aLev2 <- achievementLevels(achievementVars = c("composite", "dsex"),
+                           aggregateBy = "composite",
+                           data = sdf, returnCumulative = TRUE)
+aLev2$discrete
+aLev2$cumulative
+```
+
+The percentage of students within a specific achievement level can be aggregated by one or more variables. For example, the percentage of students classified as English learners (`lep`) is aggregated by `dsex` within each achievement level:
+
+```{r aLev3, cache=FALSE, warning=FALSE}
+aLev3 <- achievementLevels(achievementVars = c("composite", "dsex", "lep"),
+                           aggregateBy = c("dsex", "composite"),
+                           data = sdf, returnCumulative = TRUE)
+aLev3$discrete
+aLev3$cumulative
+```
+
+Users can set unique cut points that override the standard values in the `achievementLevels` function by using the `cut points` argument. In the example that follows, `aLev4` uses customized cut points of 267, 299, and 333. The object `aLev1` uses the standard cut points of `c(262, 299, 333)`. The values for *Proficient* and *Advanced* are unchanged across both objects, whereas the higher threshold to reach the *Basic* category in `aLev4` resulted in a higher percentage of male and female students being categorized as *Below Basic*.
+
+```{r aLev4Cutpoints, cache=FALSE, warning=FALSE}
+aLev4 <- achievementLevels(achievementVars = c("composite", "dsex"),
+                           aggregateBy = "dsex",
+                           data = sdf,
+                           cutpoints = c("Customized Basic" = 267, 
+                                         "Customized Proficient" = 299, 
+                                         "Customized Advanced" = 333),
+                           returnCumulative = TRUE)
+```
+
+```{r aLev4CutpointsCompare, cache=FALSE, warning=FALSE}
+aLev4$discrete
+aLev1$discrete
+```
+
+## Calculating Percentiles With `percentile`
+
+The percentile function compares a numeric vector of percentiles in the range 0 to 100 for a data year. For example, to compare the NAEP Primer's subject composite scale at the 10th, 25th, 50th, 75th, and 90th percentiles, include these as integers in the `percentiles` argument:
+
+```{r percentile}
+pct1 <- percentile(variable = "composite", percentiles = c(10, 25, 50, 75, 90), data = sdf)
+pct1
+```
+
+## Correlating Variables With `cor.sdf`
+
+`EdSurvey` features multiple correlation methods for data exploration and analysis that fully account for the complex sample design in NCES data by using the `cor.sdf` function. These features include the following correlation procedures:
+
+* Pearson product-moment correlations for continuous variables
+* Spearman rank correlation for ranked variables
+* polyserial correlations for one categorical and one continuous variable
+* polychoric correlations for two categorical variables
+* correlations among plausible values of the subject scales and subscales (marginal correlation coefficients, which uses the Pearson type)
+
+
+### Weighted Correlations
+
+In the following example, `b013801`, `t088001`, and the full sample weight `origwt` are read in to calculate the correlation using the Pearson method. Similar to other `EdSurvey` functions, the data are removed automatically from memory after the correlation is run.
+
+```{r corPearson, cache=FALSE, warning=FALSE}
+cor_pearson <- cor.sdf(x = "b013801", y = "t088001", data = sdf, 
+                    method = "Pearson", weightVar = "origwt")
+```
+
+It is important to note the order of levels to ensure that the correlations are functioning as intended. Printing a correlation object will provide a condensed summary of the correlation details and the order of levels for each variable:
+
+```{r cor, warning=FALSE}
+cor_pearson
+```
+
+Variables in `cor.sdf` can be recoded and reordered. Variable levels and values can be redefined given the desired specifications. For example, `b017451` and `t088001` are correlated using the Pearson method, with the levels `"2 or 3 times a week"` and `"Every day"` of the variable `b017451` being recoded to `"Frequently"` within a list of lists in the `recode` argument:
+
+```{r corRecode, cache=FALSE, warning=FALSE}
+cor_recode <- cor.sdf(x = "b017451", y = "t088001", data = sdf, 
+                      method = "Pearson", weightVar = "origwt",
+                      recode = list(b017451 = list(from = c("2 or 3 times a week", "Every day"),
+                                               to = c("Frequently"))))
+cor_recode
+```
+
+Recoding is useful when a level is very thinly populated (so it might merit combination with another level) or when changing the value label to something more appropriate for a particular analysis.
+
+The variables `b017451` and `t088001` are correlated using the Pearson method in the following example, with `t088001`'s values of `"Less than 3 hours", "3-4.9 hours", "5-6.9 hours", and "7 hours or more"` being reordered to `"7 hours or more", "5-6.9 hours", "3-4.9 hours", and "Less than 3 hours"` with the `"7 hours or more"` as the lowest level of the list:
+
+```{r corReorder, cache=FALSE, warning=FALSE}
+cor_reorder <- cor.sdf(x = "b017451", y = "t088001", data = sdf, 
+                       method = "Pearson", weightVar = "origwt",
+                       reorder = list(t088001 = c("7 hours or more", "5-6.9 hours",
+                                                  "3-4.9 hours", "Less than 3 hours")))
+cor_reorder
+```
+
+Changing the order of the levels might be useful to modify a variable that is out of order or when reversing the orientation of a series. The `reorder` argument also is suitable when implemented in conjunction with recoded levels.
+
+*NOTE:* As an alternative, recoding can be completed within [`getData`](https://www.air.org/sites/default/files/EdSurvey-getData.pdf). To see additional examples of recoding and reordering, use `?cor.sdf` in the R console.
+
+The marginal correlation coefficient among plausible values of the subject scales and subscales can be calculated using the `cor.sdf` function and the Pearson method. The subject subscales `num_oper` and `algebra` are correlated in this example:
+
+
+```{r corMarginal, cache=FALSE, warning=FALSE}
+cor3_mcc <- cor.sdf(x = "num_oper", y = "algebra", data = sdf, method = "Pearson")
+cor3_mcc
+```
+
+Use the `showPlausibleValues` function to return the plausible values of an `edsurvey.data.frame` to calculate the correlation coefficients between subject scales or subscales.
+
+The `cor.sdf` function features multiple methods for data exploration and analysis using correlations. The following example shows the differences in correlation coefficients among the Pearson, Spearman, and polychoric methods using a `subset` of the `edsurvey.data.frame` data, in which `dsex == 1` (saved as the `sdf_dnf` object), `b017451`, `pared`, and the full sample weight `origwt`:
+
+
+```{r corContinuous, cache=FALSE, warning=FALSE}
+sdf_dnf <- subset(sdf, dsex == 1)
+cor_pearson <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
+                    method = "Pearson", weightVar = "origwt")
+cor_spearman <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
+                    method = "Spearman", weightVar = "origwt")
+cor_polychoric <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
+                    method = "Polychoric", weightVar = "origwt")
+```
+
+```{r corComparison, warning=FALSE}
+cbind(Correlation = c(Pearson = cor_pearson$correlation,
+                    Spearman = cor_spearman$correlation,
+                    Polychoric = cor_polychoric$correlation))
+```
+
+Plausible values for subject scales and subscales also can be correlated with variables using the `cor.sdf` function. In this case, the five plausible values for `composite`, `b017451`, and the full sample weight `origwt` are read in to calculate the correlation coefficients using the Pearson, Spearman, and polyserial methods:
+
+```{r corCategorical, cache=FALSE, warning=FALSE}
+cor_pearson2 <- cor.sdf(x = "composite", y = "b017451", data = sdf_dnf, 
+                    method = "Pearson", weightVar = "origwt")
+cor_spearman2 <- cor.sdf(x = "composite", y = "b017451", data = sdf_dnf, 
+                    method = "Spearman", weightVar = "origwt")
+cor_polyserial2 <- cor.sdf(x = "composite", y = "b017451", data = sdf_dnf, 
+                    method = "Polyserial", weightVar = "origwt")
+```
+
+```{r corComparison2, warning=FALSE}
+cbind(Correlation = c(Pearson = cor_pearson2$correlation,
+                      Spearman = cor_spearman2$correlation,
+                      Polyserial = cor_polyserial2$correlation))
+```
+
+### Unweighted Correlations
+
+The `cor.sdf` function also features the ability to perform correlations without accounting for weights. The `cor.sdf` function automatically accounts for the default sample weights of the NCES dataset read for analysis in `weightVar = "default"` but can be modified by setting `weightVar = NULL`. The following example shows the correlation coefficients of the Pearson and Spearman methods of the variables `pared` and `b017451` while excluding weights:
+
+```{r correlationUnweighted, cache=FALSE, warning=FALSE}
+cor_pearson_unweighted <- cor.sdf(x = "b017451", y = "pared", data = sdf,
+                                  method = "Pearson", weightVar = NULL)
+cor_pearson_unweighted
+cor_spearman_unweighted <- cor.sdf(x = "b017451", y = "pared", data = sdf,
+                                   method = "Spearman", weightVar = NULL)
+cor_spearman_unweighted
+```
+
+## Preparing an `edsurvey.data.frame.list` for Cross Datasets Comparisons
+
+Previous examples demonstrated analyses using one dataset, but most `EdSurvey` functions---including `summary2`, `achievementLevels`, and `percentile`---support the analysis of multiple datasets at one time through an `edsurvey.data.frame.list`.  The `edsurvey.data.frame.list` appends `edsurvey.data.frame` objects into one list, which is useful for looking at data, for example, across time or geographically, and reduces repetition in function calls. For instance, four NAEP mathematics assessments from different years can be combined into an `edsurvey.data.frame.list` to make a single call to analysis functions for ease of use in comparing, formatting, and/or plotting output data. Data from various countries in an international study can be integrated into an `edsurvey.data.frame.list` for further analysis.
+
+To prepare an `edsurvey.data.frame.list` for cross datasets analysis, it is necessary to ensure that variable information is consistent across each `edsurvey.data.frame`. When comparing groups across data years, it is not uncommon for variable names and labels to change. For example, some data years feature a split-sample design based on accommodations status, thereby containing differences in frequently used demographic variables between samples as well as across data years. Two useful functions in determining these inconsistencies are `searchSDF()` and `levelsSDF()`, which return variable names, labels, and levels based on a character string.
+
+
+### Combining Several `edsurvey.data.frame` Objects Into a Single Object
+
+After standardizing variables between each `edsurvey.data.frame`, they are combined into an `edsurvey.data.frame.list` and are ready for analysis. In the following example, `sdf` is subset into four datasets, appended into an `edsurvey.data.frame.list`, and assigned unique labels: 
+
+
+```{r sdfl}
+
+# make four subsets of sdf by a location variable-scrpsu, "Scrambled PSU and school code"
+sdfA <- subset(sdf, scrpsu %in% c(5, 45, 56))
+sdfB <- subset(sdf, scrpsu %in% c(75, 76, 78))
+sdfC <- subset(sdf, scrpsu %in% 100:200)
+sdfD <- subset(sdf, scrpsu %in% 201:300)
+
+#combine four datasets to an `edsurvey.data.frame.list`
+sdfl <- edsurvey.data.frame.list(datalist = list(sdfA, sdfB, sdfC, sdfD),
+                                 labels = c("A locations","B locations",
+                                          "C locations","D locations"))
+```
+
+This `edsurvey.data.frame.list` can now be analyzed in other `EdSurvey` functions.
+
+### Recommended Workflow for Standardizing Variables in Cross Datasets Comparisons
+
+Although `EdSurvey` features several methods to resolve inconsistencies across `edsurvey.data.frame`s, the following approach is recommended:
+
+1. Connect to each dataset using a read function, such as `readNAEP()`.
+2. Recode each discrepant variable name and level using `recode.sdf()` and `rename.sdf()`.
+3. Combine datasets into one `edsurvey.data.frame.list` object.
+4. Analyze datasets using the `edsurvey.data.frame.list` object.
+
+*NOTE:* It also is possible to retrieve and recode variables with the [`getData`](https://www.air.org/sites/default/files/EdSurvey-getData.pdf) function; further details and examples of this method appear in the vignette titled *Using the `getData` Function in EdSurvey*.
+
+## Estimating the Difference in Two Statistics With `gap`
+
+Gap analysis is a term often used in NAEP that refers to a methodology that estimates the difference between two statistics (e.g., mean scores, achievement level percentages, percentiles, and student group percentages) for two groups in a population. A gap occurs when one group outperforms the other group, such that the difference between the two statistics is statistically significant (i.e., the difference is larger than the margin of error).
+
+The gap analysis can be comparisons 
+
+- between groups (e.g., male students versus female students) by or across years, 
+- of the same group between years (e.g., male students in 2017 versus in 2019), or
+- between jurisdictions (e.g., two states, district versus home state, state versus national public) by or across years. 
+
+Independent tests with an alpha level of .05 are performed for most of these types of comparisons. For comparisons between jurisdictions, a dependent test is used for the case in which one jurisdiction is contained in another (e.g., state versus national public).
+
+It is typical to test two statistics (e.g., two groups or 2 years) at a time; if you want to test more than that, multiple comparison procedures should be applied for more conservative results. For more information on gap analysis and multiple comparison, see [*Drawing Inferences From NAEP Results*](https://nces.ed.gov/nationsreportcard/tdw/analysis/infer.asp).
+
+### Performing Gap Analysis and Understanding the Summary Output
+
+The following example demonstrates the `gap` function, comparing the gender difference in achievement:
+
+
+```{r gap}
+mathGap <- gap(variable = "composite", data = sdf,
+               groupA = dsex == "Male", groupB = dsex == "Female")
+
+mathGap
+```
+
+
+The gap output contains three blocks: labels, percentage, and results. 
+
+ * The first block, labels, shows the definition of groups A and B, along with a reminder of the full data *n* count (`nFullData`) and the *n* count of the number of individuals who are in the two subgroups with valid scores (`nUsed`). 
+ * The second block, percentage, shows the percentage of individuals who fall into each category, with omitted levels removed. 
+ * The third block, results, shows the estimated outcomes from the two groups listed in the columns `estimateA` and `estimateB`. The `diffAB` column shows the estimated difference between the two groups, and the `diffABse` column shows the standard error of the difference. *t*-test significance results show in `difABpValue`, with the degrees of freedom following. When sampling survey respondents through cluster sampling designs (e.g., a design involving sampling students from the same classrooms or schools), these respondents have more in common than randomly selected individuals. Therefore, `EdSurvey` calculates a covariance between groups from the same assessment sample (same assessment and year), which appears in the `covAB` column. Even when selecting respondents through simple random sampling, little harm occurs in estimating the covariance because it will be close to zero.
+
+Users can choose to return only the `data.frame` detailing the results using
+
+```{r gapSummary}
+mathGap$results
+```
+
+### Gap Analysis Across Years
+
+For illustration purposes, we first generate two fake datasets for Year 1 and Year 2 to use in examples. You can skip this step if you already have cross-year datasets handy.
+
+```{r gapPrep, warning=FALSE}
+set.seed(42)
+year1 <- EdSurvey:::copyDataToTemp(f0 = "M32NT2PM")
+year2 <- EdSurvey:::copyDataToTemp(f0 = "M40NT2PM")
+```
+
+The following example demonstrates the `gap` function, comparing the gender gap between `year1` and `year2` datasets, which are appended into an `edsurvey.data.frame.list`:
+
+```{r gap2}
+# combine two datasets
+mathList <- edsurvey.data.frame.list(datalist = list(year1, year2),
+                                     labels = c("math year1", "math year2"))
+# perform cross year analysis between gender
+mathGap2 <- gap(variable = "composite", data = mathList,
+               groupA = dsex == "Male", groupB = dsex == "Female")
+```
+
+Each gap output contains a `data.frame` detailing the results of the analyses, which are returned using the following:
+
+```{r gapSummary2}
+mathGap2$results
+```
+
+When the data argument is an `edsurvey.data.frame.list`, the summary results include the following information:
+
+* the group means (`estimateA`/`estimateB`) and standard errors (`estimateAse`/`estimateBse`) across a variable (typically data years)
+* the difference between the values of `estimateA` and `estimateB`, as well as its respective standard errors and *p*-value (each starting with `diffAB`)
+* the difference between the values of `estimateA` across a variable compared with the reference dataset, as well as its respective standard errors and *p*-value (each starting with `diffAA`)
+* the difference within the values of `estimateB` across a variable compared with the reference dataset, as well as its respective standard errors and *p*-value (each starting with `diffBB`)
+* the difference between the difference of `estimateA`  and `estimateB` across a variable compared with the reference dataset, as well as its respective standard errors and *p*-value (each starting with `diffABAB`)
+* the value `sameSurvey`, which indicates if a line in the data output uses the same survey as the reference line (a logical:  `TRUE`/`FALSE`)
+
+For example, in `mathGap2$results`,
+
+* The gap in mean mathematics scores between the `dsex` variables in Year 1 (`diffAB`) is `2.358576`.
+* The gap in mean mathematics scores within the `dsex` variables across data years where `groupA = "Male"` (`diffAA`) is `0.4342073`.
+* The gap in mean mathematics scores within the `dsex` variables across data years where `groupB = "Female"` (`diffBB`) is `0.5395077`.
+* The gap in mean mathematics scores between the `dsex` variables across data years (`diffABAB`) is `-0.1053004`.
+
+In addition to the summary results, the gap output also contains a `data.frame` of percentage gaps, in a format matching the `data.frame` of the previous results. This is returned by using the following:
+
+```{r gapPercentages}
+mathGap2$percentage
+```
+
+### Gap Analysis of Jurisdictions
+
+Comparisons of district, state, and national jurisdictions also can be performed using the `gap` function. The next example demonstrates how to compare multiple datasets, each from a jurisdiction, using the `edsurvey.data.frame.list` object `sdfl`, created previously and representing data from four locations.
+
+
+```{r gapLocation}
+mathlocGap <- gap(variable = "composite", data = sdfl,
+               groupA = dsex == "Male", groupB = dsex == "Female")
+
+mathlocGap$results
+```
+
+In NAEP, the jurisdiction information is included in a single restricted-use data file. The following examples illustrate, using NAEP, how to conduct comparisons between (a) states, (b) a state versus the nation, and (c) a district versus the home state. 
+
+```{r gapJurisdictions, eval = FALSE}
+# comparisons of two states
+mathStateGap <- gap(variable = "composite", data = mathList,
+                    fips == "California", fips == "Virginia")
+
+# comparisons of state to all public schools in nation
+mathList <- subset(mathList, schtyp2 == "Public")
+mathStateNationGap <- gap(variable = "composite", data = mathList,
+                          fips == "California", schtyp2 == "Public")
+
+# comparisons of district to state
+mathStateDistrictGap <- gap("composite", data = mathList,
+                            distcod == "Los Angeles", fips == "California")
+```
+
+### Gap Analysis of Achievement Levels and Percentiles
+
+Gap analysis also may be performed across achievement levels and percentiles by specifying the values in the `achievementLevel` or `percentiles` arguments, respectively. Using our previous `edsurvey.data.frame.list` object (`mathList`), setting `achievementLevel=c("Basic", "Proficient", "Advanced")` will perform comparisons between groups by and across years for each achievement level value.
+
+
+```{r gapAL}
+mathALGap <- gap(variable = "composite", data = mathList,
+                 groupA = dsex == "Male", groupB = dsex == "Female",
+                 achievementLevel = c("Basic", "Proficient", "Advanced"))
+mathALGap$results
+```
+
+Similarly, setting `percentiles = c(10, 25, 50, 75, 90)` will perform comparisons between groups by and across years for each percentile value.
+
+```{r gapPercentiles}
+mathPercentilesGap <- gap(variable = "composite", data = mathList,
+                          groupA = dsex == "Male", groupB = dsex == "Female",
+                          percentiles = c(10, 25, 50, 75, 90))
+mathPercentilesGap$results
+```
+
+### Multiple Comparisons
+
+When making groups or families of comparisons in a single analysis, such as comparing White students with minority student groups in terms of test scores, the probability of finding significance by chance for at least one comparison increases with the family size or the number of comparisons. Multiple methods exist to adjust *p*-values to hold the significance level for a set of comparisons at a particular level (e.g., 0.05), and such adjustments are called multiple comparison procedures. NAEP employs two procedures: the Benjamini-Hochberg false discovery rate (FDR) procedure [@BenjaminiHochberg] and the Bonferroni procedure. The Bonferroni procedure was used prior to the 1996 assessment. Thereafter, NAEP has used the FDR procedure. A detailed explanation of the NAEP multiple comparison procedures can be found at [Comparison of Multiple Groups](https://nces.ed.gov/nationsreportcard/tdw/analysis/2000_2001/infer_multiplecompare.aspx).
+
+Typically, the number of comparisons is determined as the number of possible statistical tests in a single analysis. However, in NAEP reports, when comparing multiple years and multiple jurisdictions (e.g., multiple states versus the United States as a whole), usually neither the number of years nor the number of jurisdictions counts toward the number of comparisons.
+
+The next example illustrates how to adjust the *p*-values using the Bonferroni and FDR procedures through R's `p.adjust` function. First, generate the gaps comparing the achievement differences (`"composite"`) between one race/ethnicity group (in this case `'White'`) and the other five levels of `sdracem`.
+
+
+```{r results}
+levelResults1 <- gap(variable = "composite", data = sdf, groupA = sdracem == "White",
+                     groupB = sdracem == "Black")
+levelResults2 <- gap(variable = "composite", data = sdf, groupA = sdracem == "White",
+                     groupB = sdracem == "Hispanic")
+levelResults3 <- gap(variable = "composite", data = sdf, groupA = sdracem == "White",
+                     groupB = sdracem == "Asian/Pacific Island")
+levelResults4 <- gap(variable = "composite", data = sdf, groupA = sdracem == "White",
+                     groupB = sdracem == "Amer Ind/Alaska Natv")
+levelResults5 <- gap(variable = "composite", data = sdf, groupA = sdracem == "White",
+                     groupB = sdracem == "Other")
+
+```
+
+We'll append these results to a list and use a for-loop to retrieve the `results` `data.frame` from each gap object (`levelResults1` through `levelResults5`). For clarity, we'll also create two new variables showing the comparison levels.
+
+```{r resultsList}
+resultsList <- list(levelResults1, levelResults2, levelResults3, levelResults4, levelResults5)
+
+fullResults <- data.frame()
+for(i in 1:length(resultsList)) {
+  fullResults <- rbind(fullResults, resultsList[[i]]$results)
+}
+fullResults$levelA <- c("White")
+fullResults$levelB <- c("Black", "Hispanic", "Asian/Pacific Island", "Amer Ind/Alaska Natv", "Other")
+fullResults
+```
+
+Once reshaped, the *p*-values in each gap result can be adjusted via `p.adjust()`. The following examples show both the Bonferroni and FDR adjustment methods:
+
+```{r fullResults}
+fullResults$diffABpValueBon <- p.adjust(fullResults$diffABpValue, method = "bonferroni")
+fullResults$diffABpValueFDR <- p.adjust(fullResults$diffABpValue, method = "BH")
+fullResults
+```

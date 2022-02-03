@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Descriptive Statistics | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="7.1 Computing the Percentages of Students With achievementLevels The achievementLevels function computes the percentages of students’ achievement levels or benchmarks defined by an assessment,...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Descriptive Statistics | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/descriptive-statistics.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="7.1 Computing the Percentages of Students With achievementLevels The achievementLevels function computes the percentages of students’ achievement levels or benchmarks defined by an assessment,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Descriptive Statistics | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:description" content="7.1 Computing the Percentages of Students With achievementLevels The achievementLevels function computes the percentages of students’ achievement levels or benchmarks defined by an assessment,...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="nces-information-page.html">NCES Information Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="active" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="descriptive-statistics" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Descriptive Statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
+</h1>
+<div id="computing-the-percentages-of-students-with-achievementlevels" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Computing the Percentages of Students With <code>achievementLevels</code><a class="anchor" aria-label="anchor" href="#computing-the-percentages-of-students-with-achievementlevels"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>achievementLevels</code> function computes the percentages of students’ achievement levels or benchmarks defined by an assessment, including NAEP, TIMSS, and PISA. Take NAEP as an example: Each NAEP dataset’s unique set of cut points for achievement levels (defined as <em>Basic, Proficient,</em> and <em>Advanced</em>) is in <code>EdSurvey</code>. Analysts can access these cut points using the <code>showCutPoints</code> function:</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showCutPoints.html">showCutPoints</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="co">#&gt; Achievement Levels:</span>
+<span class="co">#&gt;   Mathematics:  262, 299, 333</span></code></pre></div>
+<p>The <code>achievementLevels</code> function applies the appropriate weights and variance estimation method for each <code>edsurvey.data.frame</code>, with several arguments for customizing the aggregation and output of the analysis results. Namely, by using these optional arguments, users can choose to generate the percentage of students performing at each achievement level (<em>discrete</em>) and at or above each achievement level (<em>cumulative</em>), calculate the percentage distribution of students by achievement levels (discrete or cumulative) and selected characteristics (specified in <code>aggregateBy</code>), and compute the percentage distribution of students by selected characteristics within a specific achievement level.</p>
+<p>The <code>achievementLevels</code> function can produce statistics at both the discrete and cumulative achievement levels. By default, the <code>achievementLevels</code> function produces results only by discrete achievement levels; when setting the <code>returnCumulative</code> argument to <code>TRUE</code>, the function generates results by both discrete and cumulative achievement levels.</p>
+<p>To compute overall results by achievement levels, use an NCES dataset’s default plausible values in the <code>achievementVars</code> argument; using NAEP, for example, they are the five or 20 plausible values for the subject composite scale.</p>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span><span class="op">)</span>,
+                           data <span class="op">=</span> <span class="va">sdf</span>, returnCumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev0</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;   composite_Level      N      wtdN   Percent StandardError</span>
+<span class="co">#&gt; 1     Below Basic 5731.2 5779.5052 34.132690     0.9744207</span>
+<span class="co">#&gt; 2        At Basic 6695.6 6580.2181 38.861552     0.7115633</span>
+<span class="co">#&gt; 3   At Proficient 3666.0 3694.7565 21.820549     0.6342187</span>
+<span class="co">#&gt; 4     At Advanced  822.2  877.9837  5.185209     0.4007991</span></code></pre></div>
+<p>In the next example, the plausible values for <code>composite</code> and the variable <code>dsex</code> are used to calculate the achievement levels, which are aggregated by the variable <code>dsex</code> using <code>aggregateBy</code>.</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>, <span class="st">"dsex"</span><span class="op">)</span>, aggregateBy <span class="op">=</span> <span class="st">"dsex"</span>,
+                  data <span class="op">=</span> <span class="va">sdf</span>, returnCumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev1</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;   composite_Level   dsex      N      wtdN   Percent</span>
+<span class="co">#&gt; 1     Below Basic   Male 2880.8 2865.6455 33.666050</span>
+<span class="co">#&gt; 2        At Basic   Male 3266.2 3236.4034 38.021772</span>
+<span class="co">#&gt; 3   At Proficient   Male 1877.2 1910.7861 22.448213</span>
+<span class="co">#&gt; 4     At Advanced   Male  461.8  499.1392  5.863965</span>
+<span class="co">#&gt; 5     Below Basic Female 2850.4 2913.8597 34.604399</span>
+<span class="co">#&gt; 6        At Basic Female 3429.4 3343.8146 39.710456</span>
+<span class="co">#&gt; 7   At Proficient Female 1788.8 1783.9704 21.186066</span>
+<span class="co">#&gt; 8     At Advanced Female  360.4  378.8444  4.499079</span>
+<span class="co">#&gt;   StandardError</span>
+<span class="co">#&gt; 1     1.0951825</span>
+<span class="co">#&gt; 2     0.9537470</span>
+<span class="co">#&gt; 3     0.7257305</span>
+<span class="co">#&gt; 4     0.5081607</span>
+<span class="co">#&gt; 5     1.1154848</span>
+<span class="co">#&gt; 6     0.8650729</span>
+<span class="co">#&gt; 7     0.8148916</span>
+<span class="co">#&gt; 8     0.3888590</span></code></pre></div>
+<p>Each level of the <code>dsex</code> variable aggregates to 100 for the results by discrete achievement levels. The object <code>aLev1</code> created in this call to <code>achievementLevels</code> is a <code>list</code> with two <code>data.frame</code>s: one for the discrete results and the other for the cumulative results. In the previously described code, <code>aLev1$discrete</code> shows only the discrete levels. To show the cumulative results, change the specified <code>data.frame</code>. For example,</p>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev1</span><span class="op">$</span><span class="va">cumulative</span>
+<span class="co">#&gt;          composite_Level   dsex      N      wtdN   Percent</span>
+<span class="co">#&gt; 1            Below Basic   Male 2880.8 2865.6455 33.666050</span>
+<span class="co">#&gt; 2      At or Above Basic   Male 5605.2 5646.3287 66.333950</span>
+<span class="co">#&gt; 3 At or Above Proficient   Male 2339.0 2409.9253 28.312178</span>
+<span class="co">#&gt; 4            At Advanced   Male  461.8  499.1392  5.863965</span>
+<span class="co">#&gt; 5            Below Basic Female 2850.4 2913.8597 34.604399</span>
+<span class="co">#&gt; 6      At or Above Basic Female 5578.6 5506.6295 65.395601</span>
+<span class="co">#&gt; 7 At or Above Proficient Female 2149.2 2162.8149 25.685145</span>
+<span class="co">#&gt; 8            At Advanced Female  360.4  378.8444  4.499079</span>
+<span class="co">#&gt;   StandardError</span>
+<span class="co">#&gt; 1     1.0951825</span>
+<span class="co">#&gt; 2     1.0951825</span>
+<span class="co">#&gt; 3     0.8635866</span>
+<span class="co">#&gt; 4     0.5081607</span>
+<span class="co">#&gt; 5     1.1154848</span>
+<span class="co">#&gt; 6     1.1154848</span>
+<span class="co">#&gt; 7     1.0073379</span>
+<span class="co">#&gt; 8     0.3888590</span></code></pre></div>
+<p>The <code>aggregateBy</code> argument sums the percentage of students by discrete achievement level up to 100 at the most disaggregated level specified by the analytical variables and determines the order of aggregation. For example, when using <code>dsex</code> and <code>iep</code> for analysis, <code>aggregateBy = c("dsex", "iep")</code> and <code>aggregateBy = c("iep", "dsex")</code> produce the same percentage but arrange the results in different ways depending on the order in the argument. When using <code>aggregateBy = c("iep", "dsex")</code>, the percentages add up to 100 within each category of <code>dsex</code> for each category of <code>iep</code>, respectively:</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>, <span class="st">"dsex"</span>, <span class="st">"iep"</span><span class="op">)</span>,
+                  aggregateBy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"iep"</span>, <span class="st">"dsex"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; AchievementVars: composite, dsex, iep</span>
+<span class="co">#&gt; aggregateBy: iep, dsex</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Achievement Level Cutpoints:</span>
+<span class="co">#&gt; 262 299 333 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Plausible values: 5</span>
+<span class="co">#&gt; jrrIMax: 1</span>
+<span class="co">#&gt; Weight variable: 'origwt'</span>
+<span class="co">#&gt; Variance method: jackknife</span>
+<span class="co">#&gt; JK replicates: 62</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16907</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Discrete</span>
+<span class="co">#&gt;  composite_Level   dsex iep      N       wtdN    Percent</span>
+<span class="co">#&gt;      Below Basic   Male Yes  810.2  753.47862 66.4635116</span>
+<span class="co">#&gt;         At Basic   Male Yes  281.6  282.52828 24.9215056</span>
+<span class="co">#&gt;    At Proficient   Male Yes   72.8   85.69544  7.5590995</span>
+<span class="co">#&gt;      At Advanced   Male Yes    9.4   11.97026  1.0558833</span>
+<span class="co">#&gt;      Below Basic Female Yes  471.2  465.33346 76.4954517</span>
+<span class="co">#&gt;         At Basic Female Yes  108.8  106.71734 17.5430994</span>
+<span class="co">#&gt;    At Proficient Female Yes   31.2   34.36986  5.6500084</span>
+<span class="co">#&gt;      At Advanced Female Yes    2.8    1.89454  0.3114405</span>
+<span class="co">#&gt;      Below Basic   Male  No 2067.6 2111.69806 28.6261355</span>
+<span class="co">#&gt;         At Basic   Male  No 2982.6 2952.86086 40.0289211</span>
+<span class="co">#&gt;    At Proficient   Male  No 1804.4 1825.09062 24.7408909</span>
+<span class="co">#&gt;      At Advanced   Male  No  452.4  487.16896  6.6040524</span>
+<span class="co">#&gt;      Below Basic Female  No 2379.0 2448.49754 31.3451478</span>
+<span class="co">#&gt;         At Basic Female  No 3318.8 3236.55190 41.4336531</span>
+<span class="co">#&gt;    At Proficient Female  No 1757.4 1749.56228 22.3975264</span>
+<span class="co">#&gt;      At Advanced Female  No  356.8  376.79678  4.8236727</span>
+<span class="co">#&gt;  StandardError</span>
+<span class="co">#&gt;      2.0061208</span>
+<span class="co">#&gt;      2.0783210</span>
+<span class="co">#&gt;      1.4614600</span>
+<span class="co">#&gt;      0.7673700</span>
+<span class="co">#&gt;      2.9245271</span>
+<span class="co">#&gt;      2.0864253</span>
+<span class="co">#&gt;      1.6430596</span>
+<span class="co">#&gt;      0.2601418</span>
+<span class="co">#&gt;      1.0630715</span>
+<span class="co">#&gt;      1.0125447</span>
+<span class="co">#&gt;      0.7840337</span>
+<span class="co">#&gt;      0.5558956</span>
+<span class="co">#&gt;      1.2051321</span>
+<span class="co">#&gt;      0.9207178</span>
+<span class="co">#&gt;      0.8954779</span>
+<span class="co">#&gt;      0.4233201</span></code></pre></div>
+<p>Each unique value pair of the two variables (i.e., Yes + Male or No + Female) sums to 100 because of <code>aggregateBy</code>.</p>
+<p><em>NOTE:</em> It is not appropriate to aggregate the results by only one variable when more than one variable is used in the analysis. The same variables used in the analysis also need to be used in the argument <code>aggregateBy()</code>, but their order can be changed to obtain the desired results.</p>
+<p>The <code>achievementLevels</code> function also can compute the percentage of students by selected characteristics within a specific achievement level. The object <code>aLev2</code> presents the percentage of students by sex within each achievement level (i.e., within each discrete and cumulative level).</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>, <span class="st">"dsex"</span><span class="op">)</span>,
+                           aggregateBy <span class="op">=</span> <span class="st">"composite"</span>,
+                           data <span class="op">=</span> <span class="va">sdf</span>, returnCumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">aLev2</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;   composite_Level   dsex      N      wtdN  Percent</span>
+<span class="co">#&gt; 1     Below Basic   Male 2880.8 2865.6455 49.58289</span>
+<span class="co">#&gt; 2        At Basic   Male 3266.2 3236.4034 49.18383</span>
+<span class="co">#&gt; 3   At Proficient   Male 1877.2 1910.7861 51.71616</span>
+<span class="co">#&gt; 4     At Advanced   Male  461.8  499.1392 56.85063</span>
+<span class="co">#&gt; 5     Below Basic Female 2850.4 2913.8597 50.41711</span>
+<span class="co">#&gt; 6        At Basic Female 3429.4 3343.8146 50.81617</span>
+<span class="co">#&gt; 7   At Proficient Female 1788.8 1783.9704 48.28384</span>
+<span class="co">#&gt; 8     At Advanced Female  360.4  378.8444 43.14937</span>
+<span class="co">#&gt;   StandardError</span>
+<span class="co">#&gt; 1     0.9486797</span>
+<span class="co">#&gt; 2     0.8020508</span>
+<span class="co">#&gt; 3     1.1913055</span>
+<span class="co">#&gt; 4     2.0076502</span>
+<span class="co">#&gt; 5     0.9486797</span>
+<span class="co">#&gt; 6     0.8020508</span>
+<span class="co">#&gt; 7     1.1913055</span>
+<span class="co">#&gt; 8     2.0076502</span>
+<span class="va">aLev2</span><span class="op">$</span><span class="va">cumulative</span>
+<span class="co">#&gt;          composite_Level   dsex      N      wtdN  Percent</span>
+<span class="co">#&gt; 1            Below Basic   Male 2880.8 2865.6455 49.58289</span>
+<span class="co">#&gt; 2      At or Above Basic   Male 5605.2 5646.3287 50.62629</span>
+<span class="co">#&gt; 3 At or Above Proficient   Male 2339.0 2409.9253 52.70200</span>
+<span class="co">#&gt; 4            At Advanced   Male  461.8  499.1392 56.85063</span>
+<span class="co">#&gt; 5            Below Basic Female 2850.4 2913.8597 50.41711</span>
+<span class="co">#&gt; 6      At or Above Basic Female 5578.6 5506.6295 49.37371</span>
+<span class="co">#&gt; 7 At or Above Proficient Female 2149.2 2162.8149 47.29800</span>
+<span class="co">#&gt; 8            At Advanced Female  360.4  378.8444 43.14937</span>
+<span class="co">#&gt;   StandardError</span>
+<span class="co">#&gt; 1     0.9486797</span>
+<span class="co">#&gt; 2     0.6131937</span>
+<span class="co">#&gt; 3     1.0576369</span>
+<span class="co">#&gt; 4     2.0076502</span>
+<span class="co">#&gt; 5     0.9486797</span>
+<span class="co">#&gt; 6     0.6131937</span>
+<span class="co">#&gt; 7     1.0576369</span>
+<span class="co">#&gt; 8     2.0076502</span></code></pre></div>
+<p>The percentage of students within a specific achievement level can be aggregated by one or more variables. For example, the percentage of students classified as English learners (<code>lep</code>) is aggregated by <code>dsex</code> within each achievement level:</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>, <span class="st">"dsex"</span>, <span class="st">"lep"</span><span class="op">)</span>,
+                           aggregateBy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"composite"</span><span class="op">)</span>,
+                           data <span class="op">=</span> <span class="va">sdf</span>, returnCumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">aLev3</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;    composite_Level   dsex lep      N       wtdN    Percent</span>
+<span class="co">#&gt; 1      Below Basic   Male Yes  355.8  436.03778 15.2177175</span>
+<span class="co">#&gt; 2         At Basic   Male Yes  138.4  156.75146  4.8455620</span>
+<span class="co">#&gt; 3    At Proficient   Male Yes   27.6   31.75786  1.6620312</span>
+<span class="co">#&gt; 4      At Advanced   Male Yes    1.2    0.75590  0.1514407</span>
+<span class="co">#&gt; 5      Below Basic Female Yes  334.2  422.06640 14.4853587</span>
+<span class="co">#&gt; 6         At Basic Female Yes   96.4  102.80364  3.0744683</span>
+<span class="co">#&gt; 7    At Proficient Female Yes   19.2   22.69640  1.2722408</span>
+<span class="co">#&gt; 8      At Advanced Female Yes    1.2    1.80846  0.4773622</span>
+<span class="co">#&gt; 9      Below Basic   Male  No 2523.8 2429.29192 84.7822825</span>
+<span class="co">#&gt; 10        At Basic   Male  No 3125.0 3078.19756 95.1544380</span>
+<span class="co">#&gt; 11   At Proficient   Male  No 1849.6 1879.02820 98.3379688</span>
+<span class="co">#&gt; 12     At Advanced   Male  No  460.6  498.38332 99.8485593</span>
+<span class="co">#&gt; 13     Below Basic Female  No 2515.4 2491.67850 85.5146413</span>
+<span class="co">#&gt; 14        At Basic Female  No 3332.8 3240.98230 96.9255317</span>
+<span class="co">#&gt; 15   At Proficient Female  No 1769.6 1761.27402 98.7277592</span>
+<span class="co">#&gt; 16     At Advanced Female  No  359.2  377.03598 99.5226378</span>
+<span class="co">#&gt;    StandardError</span>
+<span class="co">#&gt; 1      1.6567088</span>
+<span class="co">#&gt; 2      0.7683424</span>
+<span class="co">#&gt; 3      0.5680079</span>
+<span class="co">#&gt; 4      0.1976280</span>
+<span class="co">#&gt; 5      1.6957678</span>
+<span class="co">#&gt; 6      0.7676397</span>
+<span class="co">#&gt; 7      0.4289833</span>
+<span class="co">#&gt; 8      0.7919682</span>
+<span class="co">#&gt; 9      1.6567088</span>
+<span class="co">#&gt; 10     0.7683424</span>
+<span class="co">#&gt; 11     0.5680079</span>
+<span class="co">#&gt; 12     0.1976280</span>
+<span class="co">#&gt; 13     1.6957678</span>
+<span class="co">#&gt; 14     0.7676397</span>
+<span class="co">#&gt; 15     0.4289833</span>
+<span class="co">#&gt; 16     0.7919682</span>
+<span class="va">aLev3</span><span class="op">$</span><span class="va">cumulative</span>
+<span class="co">#&gt;           composite_Level   dsex lep      N       wtdN</span>
+<span class="co">#&gt; 1             Below Basic   Male Yes  355.8  436.03778</span>
+<span class="co">#&gt; 2       At or Above Basic   Male Yes  167.2  189.26522</span>
+<span class="co">#&gt; 3  At or Above Proficient   Male Yes   28.8   32.51376</span>
+<span class="co">#&gt; 4             At Advanced   Male Yes    1.2    0.75590</span>
+<span class="co">#&gt; 5             Below Basic Female Yes  334.2  422.06640</span>
+<span class="co">#&gt; 6       At or Above Basic Female Yes  116.8  127.30850</span>
+<span class="co">#&gt; 7  At or Above Proficient Female Yes   20.4   24.50486</span>
+<span class="co">#&gt; 8             At Advanced Female Yes    1.2    1.80846</span>
+<span class="co">#&gt; 9             Below Basic   Male  No 2523.8 2429.29192</span>
+<span class="co">#&gt; 10      At or Above Basic   Male  No 5435.2 5455.60908</span>
+<span class="co">#&gt; 11 At or Above Proficient   Male  No 2310.2 2377.41152</span>
+<span class="co">#&gt; 12            At Advanced   Male  No  460.6  498.38332</span>
+<span class="co">#&gt; 13            Below Basic Female  No 2515.4 2491.67850</span>
+<span class="co">#&gt; 14      At or Above Basic Female  No 5461.6 5379.29230</span>
+<span class="co">#&gt; 15 At or Above Proficient Female  No 2128.8 2138.31000</span>
+<span class="co">#&gt; 16            At Advanced Female  No  359.2  377.03598</span>
+<span class="co">#&gt;       Percent StandardError</span>
+<span class="co">#&gt; 1  15.2177175     1.6567088</span>
+<span class="co">#&gt; 2   3.3528686     0.5358274</span>
+<span class="co">#&gt; 3   1.3491605     0.4574292</span>
+<span class="co">#&gt; 4   0.1514407     0.1976280</span>
+<span class="co">#&gt; 5  14.4853587     1.6957678</span>
+<span class="co">#&gt; 6   2.3119254     0.5208317</span>
+<span class="co">#&gt; 7   1.1330078     0.4270291</span>
+<span class="co">#&gt; 8   0.4773622     0.7919682</span>
+<span class="co">#&gt; 9  84.7822825     1.6567088</span>
+<span class="co">#&gt; 10 96.6471314     0.5358274</span>
+<span class="co">#&gt; 11 98.6508395     0.4574292</span>
+<span class="co">#&gt; 12 99.8485593     0.1976280</span>
+<span class="co">#&gt; 13 85.5146413     1.6957678</span>
+<span class="co">#&gt; 14 97.6880746     0.5208317</span>
+<span class="co">#&gt; 15 98.8669922     0.4270291</span>
+<span class="co">#&gt; 16 99.5226378     0.7919682</span></code></pre></div>
+<p>Users can set unique cut points that override the standard values in the <code>achievementLevels</code> function by using the <code>cut points</code> argument. In the example that follows, <code>aLev4</code> uses customized cut points of 267, 299, and 333. The object <code>aLev1</code> uses the standard cut points of <code>c(262, 299, 333)</code>. The values for <em>Proficient</em> and <em>Advanced</em> are unchanged across both objects, whereas the higher threshold to reach the <em>Basic</em> category in <code>aLev4</code> resulted in a higher percentage of male and female students being categorized as <em>Below Basic</em>.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/achievementLevels.html">achievementLevels</a></span><span class="op">(</span>achievementVars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"composite"</span>, <span class="st">"dsex"</span><span class="op">)</span>,
+                           aggregateBy <span class="op">=</span> <span class="st">"dsex"</span>,
+                           data <span class="op">=</span> <span class="va">sdf</span>,
+                           cutpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Customized Basic"</span> <span class="op">=</span> <span class="fl">267</span>, 
+                                         <span class="st">"Customized Proficient"</span> <span class="op">=</span> <span class="fl">299</span>, 
+                                         <span class="st">"Customized Advanced"</span> <span class="op">=</span> <span class="fl">333</span><span class="op">)</span>,
+                           returnCumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aLev4</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;            composite_Level   dsex      N      wtdN</span>
+<span class="co">#&gt; 1   Below Customized Basic   Male 3285.0 3262.6418</span>
+<span class="co">#&gt; 2      At Customized Basic   Male 2862.0 2839.4071</span>
+<span class="co">#&gt; 3 At Customized Proficient   Male 1877.2 1910.7861</span>
+<span class="co">#&gt; 4   At Customized Advanced   Male  461.8  499.1392</span>
+<span class="co">#&gt; 5   Below Customized Basic Female 3284.8 3324.5956</span>
+<span class="co">#&gt; 6      At Customized Basic Female 2995.0 2933.0787</span>
+<span class="co">#&gt; 7 At Customized Proficient Female 1788.8 1783.9704</span>
+<span class="co">#&gt; 8   At Customized Advanced Female  360.4  378.8444</span>
+<span class="co">#&gt;     Percent StandardError</span>
+<span class="co">#&gt; 1 38.330025     1.2149501</span>
+<span class="co">#&gt; 2 33.357798     0.9636501</span>
+<span class="co">#&gt; 3 22.448213     0.7257305</span>
+<span class="co">#&gt; 4  5.863965     0.5081607</span>
+<span class="co">#&gt; 5 39.482215     1.1460243</span>
+<span class="co">#&gt; 6 34.832640     0.7304983</span>
+<span class="co">#&gt; 7 21.186066     0.8148916</span>
+<span class="co">#&gt; 8  4.499079     0.3888590</span>
+<span class="va">aLev1</span><span class="op">$</span><span class="va">discrete</span>
+<span class="co">#&gt;   composite_Level   dsex      N      wtdN   Percent</span>
+<span class="co">#&gt; 1     Below Basic   Male 2880.8 2865.6455 33.666050</span>
+<span class="co">#&gt; 2        At Basic   Male 3266.2 3236.4034 38.021772</span>
+<span class="co">#&gt; 3   At Proficient   Male 1877.2 1910.7861 22.448213</span>
+<span class="co">#&gt; 4     At Advanced   Male  461.8  499.1392  5.863965</span>
+<span class="co">#&gt; 5     Below Basic Female 2850.4 2913.8597 34.604399</span>
+<span class="co">#&gt; 6        At Basic Female 3429.4 3343.8146 39.710456</span>
+<span class="co">#&gt; 7   At Proficient Female 1788.8 1783.9704 21.186066</span>
+<span class="co">#&gt; 8     At Advanced Female  360.4  378.8444  4.499079</span>
+<span class="co">#&gt;   StandardError</span>
+<span class="co">#&gt; 1     1.0951825</span>
+<span class="co">#&gt; 2     0.9537470</span>
+<span class="co">#&gt; 3     0.7257305</span>
+<span class="co">#&gt; 4     0.5081607</span>
+<span class="co">#&gt; 5     1.1154848</span>
+<span class="co">#&gt; 6     0.8650729</span>
+<span class="co">#&gt; 7     0.8148916</span>
+<span class="co">#&gt; 8     0.3888590</span></code></pre></div>
+</div>
+<div id="calculating-percentiles-with-percentile" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Calculating Percentiles With <code>percentile</code><a class="anchor" aria-label="anchor" href="#calculating-percentiles-with-percentile"><i class="fas fa-link"></i></a>
+</h2>
+<p>The percentile function compares a numeric vector of percentiles in the range 0 to 100 for a data year. For example, to compare the NAEP Primer’s subject composite scale at the 10th, 25th, 50th, 75th, and 90th percentiles, include these as integers in the <code>percentiles</code> argument:</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pct1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/percentile.html">percentile</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, percentiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">90</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span>
+<span class="va">pct1</span>
+<span class="co">#&gt; Percentile</span>
+<span class="co">#&gt; Call: percentile(variable = "composite", percentiles = c(10, 25, 50, </span>
+<span class="co">#&gt;     75, 90), data = sdf)</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16915</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  percentile estimate        se       df confInt.ci_lower</span>
+<span class="co">#&gt;          10 227.7226 1.0585355 39.78256         225.2284</span>
+<span class="co">#&gt;          25 251.9626 1.0179363 42.53475         249.7120</span>
+<span class="co">#&gt;          50 277.4784 1.1375443 51.15378         275.7035</span>
+<span class="co">#&gt;          75 301.1827 0.9141083 70.56403         299.4265</span>
+<span class="co">#&gt;          90 321.9303 0.9061950 62.07559         319.9351</span>
+<span class="co">#&gt;  confInt.ci_upper</span>
+<span class="co">#&gt;          230.0172</span>
+<span class="co">#&gt;          254.0142</span>
+<span class="co">#&gt;          279.1926</span>
+<span class="co">#&gt;          302.8973</span>
+<span class="co">#&gt;          324.0329</span></code></pre></div>
+</div>
+<div id="correlating-variables-with-cor.sdf" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Correlating Variables With <code>cor.sdf</code><a class="anchor" aria-label="anchor" href="#correlating-variables-with-cor.sdf"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>EdSurvey</code> features multiple correlation methods for data exploration and analysis that fully account for the complex sample design in NCES data by using the <code>cor.sdf</code> function. These features include the following correlation procedures:</p>
+<ul>
+<li>Pearson product-moment correlations for continuous variables</li>
+<li>Spearman rank correlation for ranked variables</li>
+<li>polyserial correlations for one categorical and one continuous variable</li>
+<li>polychoric correlations for two categorical variables</li>
+<li>correlations among plausible values of the subject scales and subscales (marginal correlation coefficients, which uses the Pearson type)</li>
+</ul>
+<div id="weighted-correlations" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Weighted Correlations<a class="anchor" aria-label="anchor" href="#weighted-correlations"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the following example, <code>b013801</code>, <code>t088001</code>, and the full sample weight <code>origwt</code> are read in to calculate the correlation using the Pearson method. Similar to other <code>EdSurvey</code> functions, the data are removed automatically from memory after the correlation is run.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_pearson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b013801"</span>, y <span class="op">=</span> <span class="st">"t088001"</span>, data <span class="op">=</span> <span class="va">sdf</span>, 
+                    method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b013801" to a continuous variable.</span>
+<span class="co">#&gt; Converting "t088001" to a continuous variable.</span></code></pre></div>
+<p>It is important to note the order of levels to ensure that the correlations are functioning as intended. Printing a correlation object will provide a condensed summary of the correlation details and the order of levels for each variable:</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_pearson</span>
+<span class="co">#&gt; Method: Pearson</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 14492</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: -0.07269657</span>
+<span class="co">#&gt; Standard Error: 0.02022161</span>
+<span class="co">#&gt; Confidence Interval: [-0.1134367, -0.03171236]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation Levels:</span>
+<span class="co">#&gt;   Levels for Variable 'b013801' (Lowest level first):</span>
+<span class="co">#&gt;     1. 0-10</span>
+<span class="co">#&gt;     2. 11-25</span>
+<span class="co">#&gt;     3. 26-100</span>
+<span class="co">#&gt;     4. &gt;100</span>
+<span class="co">#&gt;   Levels for Variable 't088001' (Lowest level first):</span>
+<span class="co">#&gt;     1. Less than 3 hours</span>
+<span class="co">#&gt;     2. 3-4.9 hours</span>
+<span class="co">#&gt;     3. 5-6.9 hours</span>
+<span class="co">#&gt;     4. 7 hours or more</span></code></pre></div>
+<p>Variables in <code>cor.sdf</code> can be recoded and reordered. Variable levels and values can be redefined given the desired specifications. For example, <code>b017451</code> and <code>t088001</code> are correlated using the Pearson method, with the levels <code>"2 or 3 times a week"</code> and <code>"Every day"</code> of the variable <code>b017451</code> being recoded to <code>"Frequently"</code> within a list of lists in the <code>recode</code> argument:</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_recode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"t088001"</span>, data <span class="op">=</span> <span class="va">sdf</span>, 
+                      method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span>,
+                      recode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>b017451 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2 or 3 times a week"</span>, <span class="st">"Every day"</span><span class="op">)</span>,
+                                               to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Frequently"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b017451" to a continuous variable.</span>
+<span class="co">#&gt; Converting "t088001" to a continuous variable.</span>
+<span class="va">cor_recode</span>
+<span class="co">#&gt; Method: Pearson</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 14468</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: -0.01949923</span>
+<span class="co">#&gt; Standard Error: 0.01198974</span>
+<span class="co">#&gt; Confidence Interval: [-0.04386941, 0.004894141]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation Levels:</span>
+<span class="co">#&gt;   Levels for Variable 'b017451' (Lowest level first):</span>
+<span class="co">#&gt;     1. Never or hardly ever</span>
+<span class="co">#&gt;     2. Once every few weeks</span>
+<span class="co">#&gt;     3. About once a week</span>
+<span class="co">#&gt;     4. Frequently</span>
+<span class="co">#&gt;   Levels for Variable 't088001' (Lowest level first):</span>
+<span class="co">#&gt;     1. Less than 3 hours</span>
+<span class="co">#&gt;     2. 3-4.9 hours</span>
+<span class="co">#&gt;     3. 5-6.9 hours</span>
+<span class="co">#&gt;     4. 7 hours or more</span></code></pre></div>
+<p>Recoding is useful when a level is very thinly populated (so it might merit combination with another level) or when changing the value label to something more appropriate for a particular analysis.</p>
+<p>The variables <code>b017451</code> and <code>t088001</code> are correlated using the Pearson method in the following example, with <code>t088001</code>’s values of <code>"Less than 3 hours", "3-4.9 hours", "5-6.9 hours", and "7 hours or more"</code> being reordered to <code>"7 hours or more", "5-6.9 hours", "3-4.9 hours", and "Less than 3 hours"</code> with the <code>"7 hours or more"</code> as the lowest level of the list:</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_reorder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"t088001"</span>, data <span class="op">=</span> <span class="va">sdf</span>, 
+                       method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span>,
+                       reorder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>t088001 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"7 hours or more"</span>, <span class="st">"5-6.9 hours"</span>,
+                                                  <span class="st">"3-4.9 hours"</span>, <span class="st">"Less than 3 hours"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b017451" to a continuous variable.</span>
+<span class="co">#&gt; Converting "t088001" to a continuous variable.</span>
+<span class="va">cor_reorder</span>
+<span class="co">#&gt; Method: Pearson</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 14468</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: 0.02048827</span>
+<span class="co">#&gt; Standard Error: 0.01241005</span>
+<span class="co">#&gt; Confidence Interval: [-0.004827359, 0.04577766]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation Levels:</span>
+<span class="co">#&gt;   Levels for Variable 'b017451' (Lowest level first):</span>
+<span class="co">#&gt;     1. Never or hardly ever</span>
+<span class="co">#&gt;     2. Once every few weeks</span>
+<span class="co">#&gt;     3. About once a week</span>
+<span class="co">#&gt;     4. 2 or 3 times a week</span>
+<span class="co">#&gt;     5. Every day</span>
+<span class="co">#&gt;   Levels for Variable 't088001' (Lowest level first):</span>
+<span class="co">#&gt;     1. 7 hours or more</span>
+<span class="co">#&gt;     2. 5-6.9 hours</span>
+<span class="co">#&gt;     3. 3-4.9 hours</span>
+<span class="co">#&gt;     4. Less than 3 hours</span></code></pre></div>
+<p>Changing the order of the levels might be useful to modify a variable that is out of order or when reversing the orientation of a series. The <code>reorder</code> argument also is suitable when implemented in conjunction with recoded levels.</p>
+<p><em>NOTE:</em> As an alternative, recoding can be completed within <a href="https://www.air.org/sites/default/files/EdSurvey-getData.pdf"><code>getData</code></a>. To see additional examples of recoding and reordering, use <code><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">?cor.sdf</a></code> in the R console.</p>
+<p>The marginal correlation coefficient among plausible values of the subject scales and subscales can be calculated using the <code>cor.sdf</code> function and the Pearson method. The subject subscales <code>num_oper</code> and <code>algebra</code> are correlated in this example:</p>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor3_mcc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"num_oper"</span>, y <span class="op">=</span> <span class="st">"algebra"</span>, data <span class="op">=</span> <span class="va">sdf</span>, method <span class="op">=</span> <span class="st">"Pearson"</span><span class="op">)</span>
+<span class="va">cor3_mcc</span>
+<span class="co">#&gt; Method: Pearson</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16915</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: 0.8924728</span>
+<span class="co">#&gt; Standard Error: 0.004867251</span>
+<span class="co">#&gt; Confidence Interval: [0.8822278, 0.901873]</span></code></pre></div>
+<p>Use the <code>showPlausibleValues</code> function to return the plausible values of an <code>edsurvey.data.frame</code> to calculate the correlation coefficients between subject scales or subscales.</p>
+<p>The <code>cor.sdf</code> function features multiple methods for data exploration and analysis using correlations. The following example shows the differences in correlation coefficients among the Pearson, Spearman, and polychoric methods using a <code>subset</code> of the <code>edsurvey.data.frame</code> data, in which <code>dsex == 1</code> (saved as the <code>sdf_dnf</code> object), <code>b017451</code>, <code>pared</code>, and the full sample weight <code>origwt</code>:</p>
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sdf_dnf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">dsex</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">cor_pearson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b017451" to a continuous variable.</span>
+<span class="co">#&gt; Converting "pared" to a continuous variable.</span>
+<span class="va">cor_spearman</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Spearman"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span>
+<span class="va">cor_polychoric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Polychoric"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson</span><span class="op">$</span><span class="va">correlation</span>,
+                    Spearman <span class="op">=</span> <span class="va">cor_spearman</span><span class="op">$</span><span class="va">correlation</span>,
+                    Polychoric <span class="op">=</span> <span class="va">cor_polychoric</span><span class="op">$</span><span class="va">correlation</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;            Correlation</span>
+<span class="co">#&gt; Pearson     0.08027069</span>
+<span class="co">#&gt; Spearman    0.06655288</span>
+<span class="co">#&gt; Polychoric  0.06972564</span></code></pre></div>
+<p>Plausible values for subject scales and subscales also can be correlated with variables using the <code>cor.sdf</code> function. In this case, the five plausible values for <code>composite</code>, <code>b017451</code>, and the full sample weight <code>origwt</code> are read in to calculate the correlation coefficients using the Pearson, Spearman, and polyserial methods:</p>
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_pearson2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"composite"</span>, y <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b017451" to a continuous variable.</span>
+<span class="va">cor_spearman2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"composite"</span>, y <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Spearman"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span>
+<span class="va">cor_polyserial2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"composite"</span>, y <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, 
+                    method <span class="op">=</span> <span class="st">"Polyserial"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson2</span><span class="op">$</span><span class="va">correlation</span>,
+                      Spearman <span class="op">=</span> <span class="va">cor_spearman2</span><span class="op">$</span><span class="va">correlation</span>,
+                      Polyserial <span class="op">=</span> <span class="va">cor_polyserial2</span><span class="op">$</span><span class="va">correlation</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;            Correlation</span>
+<span class="co">#&gt; Pearson      0.1031247</span>
+<span class="co">#&gt; Spearman     0.1148983</span>
+<span class="co">#&gt; Polyserial   0.1044407</span></code></pre></div>
+</div>
+<div id="unweighted-correlations" class="section level3" number="7.3.2">
+<h3>
+<span class="header-section-number">7.3.2</span> Unweighted Correlations<a class="anchor" aria-label="anchor" href="#unweighted-correlations"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>cor.sdf</code> function also features the ability to perform correlations without accounting for weights. The <code>cor.sdf</code> function automatically accounts for the default sample weights of the NCES dataset read for analysis in <code>weightVar = "default"</code> but can be modified by setting <code>weightVar = NULL</code>. The following example shows the correlation coefficients of the Pearson and Spearman methods of the variables <code>pared</code> and <code>b017451</code> while excluding weights:</p>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cor_pearson_unweighted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf</span>,
+                                  method <span class="op">=</span> <span class="st">"Pearson"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+<span class="co">#&gt; Converting "b017451" to a continuous variable.</span>
+<span class="co">#&gt; Converting "pared" to a continuous variable.</span>
+<span class="va">cor_pearson_unweighted</span>
+<span class="co">#&gt; Method: Pearson</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16278</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: 0.05316366</span>
+<span class="co">#&gt; Standard Error: NA</span>
+<span class="co">#&gt; Confidence Interval: [NA]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation Levels:</span>
+<span class="co">#&gt;   Levels for Variable 'b017451' (Lowest level first):</span>
+<span class="co">#&gt;     1. Never or hardly ever</span>
+<span class="co">#&gt;     2. Once every few weeks</span>
+<span class="co">#&gt;     3. About once a week</span>
+<span class="co">#&gt;     4. 2 or 3 times a week</span>
+<span class="co">#&gt;     5. Every day</span>
+<span class="co">#&gt;   Levels for Variable 'pared' (Lowest level first):</span>
+<span class="co">#&gt;     1. Did not finish H.S.</span>
+<span class="co">#&gt;     2. Graduated H.S.</span>
+<span class="co">#&gt;     3. Some ed after H.S.</span>
+<span class="co">#&gt;     4. Graduated college</span>
+<span class="co">#&gt;     5. I Don't Know</span>
+<span class="va">cor_spearman_unweighted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf</span>,
+                                   method <span class="op">=</span> <span class="st">"Spearman"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+<span class="va">cor_spearman_unweighted</span>
+<span class="co">#&gt; Method: Spearman</span>
+<span class="co">#&gt; full data n: 17606</span>
+<span class="co">#&gt; n used: 16278</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation: 0.04283483</span>
+<span class="co">#&gt; Standard Error: NA</span>
+<span class="co">#&gt; Confidence Interval: [NA]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Correlation Levels:</span>
+<span class="co">#&gt;   Levels for Variable 'b017451' (Lowest level first):</span>
+<span class="co">#&gt;     1. Never or hardly ever</span>
+<span class="co">#&gt;     2. Once every few weeks</span>
+<span class="co">#&gt;     3. About once a week</span>
+<span class="co">#&gt;     4. 2 or 3 times a week</span>
+<span class="co">#&gt;     5. Every day</span>
+<span class="co">#&gt;   Levels for Variable 'pared' (Lowest level first):</span>
+<span class="co">#&gt;     1. Did not finish H.S.</span>
+<span class="co">#&gt;     2. Graduated H.S.</span>
+<span class="co">#&gt;     3. Some ed after H.S.</span>
+<span class="co">#&gt;     4. Graduated college</span>
+<span class="co">#&gt;     5. I Don't Know</span></code></pre></div>
+</div>
+</div>
+<div id="preparing-an-edsurvey.data.frame.list-for-cross-datasets-comparisons" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Preparing an <code>edsurvey.data.frame.list</code> for Cross Datasets Comparisons<a class="anchor" aria-label="anchor" href="#preparing-an-edsurvey.data.frame.list-for-cross-datasets-comparisons"><i class="fas fa-link"></i></a>
+</h2>
+<p>Previous examples demonstrated analyses using one dataset, but most <code>EdSurvey</code> functions—including <code>summary2</code>, <code>achievementLevels</code>, and <code>percentile</code>—support the analysis of multiple datasets at one time through an <code>edsurvey.data.frame.list</code>. The <code>edsurvey.data.frame.list</code> appends <code>edsurvey.data.frame</code> objects into one list, which is useful for looking at data, for example, across time or geographically, and reduces repetition in function calls. For instance, four NAEP mathematics assessments from different years can be combined into an <code>edsurvey.data.frame.list</code> to make a single call to analysis functions for ease of use in comparing, formatting, and/or plotting output data. Data from various countries in an international study can be integrated into an <code>edsurvey.data.frame.list</code> for further analysis.</p>
+<p>To prepare an <code>edsurvey.data.frame.list</code> for cross datasets analysis, it is necessary to ensure that variable information is consistent across each <code>edsurvey.data.frame</code>. When comparing groups across data years, it is not uncommon for variable names and labels to change. For example, some data years feature a split-sample design based on accommodations status, thereby containing differences in frequently used demographic variables between samples as well as across data years. Two useful functions in determining these inconsistencies are <code><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF()</a></code> and <code><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF()</a></code>, which return variable names, labels, and levels based on a character string.</p>
+<div id="combining-several-edsurvey.data.frame-objects-into-a-single-object" class="section level3" number="7.4.1">
+<h3>
+<span class="header-section-number">7.4.1</span> Combining Several <code>edsurvey.data.frame</code> Objects Into a Single Object<a class="anchor" aria-label="anchor" href="#combining-several-edsurvey.data.frame-objects-into-a-single-object"><i class="fas fa-link"></i></a>
+</h3>
+<p>After standardizing variables between each <code>edsurvey.data.frame</code>, they are combined into an <code>edsurvey.data.frame.list</code> and are ready for analysis. In the following example, <code>sdf</code> is subset into four datasets, appended into an <code>edsurvey.data.frame.list</code>, and assigned unique labels:</p>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># make four subsets of sdf by a location variable-scrpsu, "Scrambled PSU and school code"</span>
+<span class="va">sdfA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">scrpsu</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">45</span>, <span class="fl">56</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sdfB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">scrpsu</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">76</span>, <span class="fl">78</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sdfC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">scrpsu</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fl">100</span><span class="op">:</span><span class="fl">200</span><span class="op">)</span>
+<span class="va">sdfD</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="va">scrpsu</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fl">201</span><span class="op">:</span><span class="fl">300</span><span class="op">)</span>
+
+<span class="co">#combine four datasets to an `edsurvey.data.frame.list`</span>
+<span class="va">sdfl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurvey.data.frame.list.html">edsurvey.data.frame.list</a></span><span class="op">(</span>datalist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">sdfA</span>, <span class="va">sdfB</span>, <span class="va">sdfC</span>, <span class="va">sdfD</span><span class="op">)</span>,
+                                 labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A locations"</span>,<span class="st">"B locations"</span>,
+                                          <span class="st">"C locations"</span>,<span class="st">"D locations"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>This <code>edsurvey.data.frame.list</code> can now be analyzed in other <code>EdSurvey</code> functions.</p>
+</div>
+<div id="recommended-workflow-for-standardizing-variables-in-cross-datasets-comparisons" class="section level3" number="7.4.2">
+<h3>
+<span class="header-section-number">7.4.2</span> Recommended Workflow for Standardizing Variables in Cross Datasets Comparisons<a class="anchor" aria-label="anchor" href="#recommended-workflow-for-standardizing-variables-in-cross-datasets-comparisons"><i class="fas fa-link"></i></a>
+</h3>
+<p>Although <code>EdSurvey</code> features several methods to resolve inconsistencies across <code>edsurvey.data.frame</code>s, the following approach is recommended:</p>
+<ol style="list-style-type: decimal">
+<li>Connect to each dataset using a read function, such as <code><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP()</a></code>.</li>
+<li>Recode each discrepant variable name and level using <code><a href="https://rdrr.io/pkg/EdSurvey/man/recode.sdf.html">recode.sdf()</a></code> and <code><a href="https://rdrr.io/pkg/EdSurvey/man/rename.sdf.html">rename.sdf()</a></code>.</li>
+<li>Combine datasets into one <code>edsurvey.data.frame.list</code> object.</li>
+<li>Analyze datasets using the <code>edsurvey.data.frame.list</code> object.</li>
+</ol>
+<p><em>NOTE:</em> It also is possible to retrieve and recode variables with the <a href="https://www.air.org/sites/default/files/EdSurvey-getData.pdf"><code>getData</code></a> function; further details and examples of this method appear in the vignette titled <em>Using the <code>getData</code> Function in EdSurvey</em>.</p>
+</div>
+</div>
+<div id="estimating-the-difference-in-two-statistics-with-gap" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Estimating the Difference in Two Statistics With <code>gap</code><a class="anchor" aria-label="anchor" href="#estimating-the-difference-in-two-statistics-with-gap"><i class="fas fa-link"></i></a>
+</h2>
+<p>Gap analysis is a term often used in NAEP that refers to a methodology that estimates the difference between two statistics (e.g., mean scores, achievement level percentages, percentiles, and student group percentages) for two groups in a population. A gap occurs when one group outperforms the other group, such that the difference between the two statistics is statistically significant (i.e., the difference is larger than the margin of error).</p>
+<p>The gap analysis can be comparisons</p>
+<ul>
+<li>between groups (e.g., male students versus female students) by or across years,</li>
+<li>of the same group between years (e.g., male students in 2017 versus in 2019), or</li>
+<li>between jurisdictions (e.g., two states, district versus home state, state versus national public) by or across years.</li>
+</ul>
+<p>Independent tests with an alpha level of .05 are performed for most of these types of comparisons. For comparisons between jurisdictions, a dependent test is used for the case in which one jurisdiction is contained in another (e.g., state versus national public).</p>
+<p>It is typical to test two statistics (e.g., two groups or 2 years) at a time; if you want to test more than that, multiple comparison procedures should be applied for more conservative results. For more information on gap analysis and multiple comparison, see <a href="https://nces.ed.gov/nationsreportcard/tdw/analysis/infer.asp"><em>Drawing Inferences From NAEP Results</em></a>.</p>
+<div id="performing-gap-analysis-and-understanding-the-summary-output" class="section level3" number="7.5.1">
+<h3>
+<span class="header-section-number">7.5.1</span> Performing Gap Analysis and Understanding the Summary Output<a class="anchor" aria-label="anchor" href="#performing-gap-analysis-and-understanding-the-summary-output"><i class="fas fa-link"></i></a>
+</h3>
+<p>The following example demonstrates the <code>gap</code> function, comparing the gender difference in achievement:</p>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>,
+               groupA <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Male"</span>, groupB <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span>
+
+<span class="va">mathGap</span>
+<span class="co">#&gt; Call: gap(variable = "composite", data = sdf, groupA = dsex == "Male", </span>
+<span class="co">#&gt;     groupB = dsex == "Female")</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Labels:</span>
+<span class="co">#&gt;  group       definition nFullData nUsed</span>
+<span class="co">#&gt;      A   dsex == "Male"     17606  8486</span>
+<span class="co">#&gt;      B dsex == "Female"     17606  8429</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Percentage:</span>
+<span class="co">#&gt;      pctA    pctAse     pctB    pctBse    diffAB      covAB</span>
+<span class="co">#&gt;  50.27015 0.5016796 49.72985 0.5016796 0.5402935 -0.2516824</span>
+<span class="co">#&gt;  diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt;  1.003359    0.5924778 53.45667</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Results:</span>
+<span class="co">#&gt;  estimateA estimateAse estimateB estimateBse   diffAB</span>
+<span class="co">#&gt;   276.7235   0.8207151  275.0458   0.9402535 1.677756</span>
+<span class="co">#&gt;      covAB  diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt;  0.5676583 0.6498719   0.01259479 53.70969</span></code></pre></div>
+<p>The gap output contains three blocks: labels, percentage, and results.</p>
+<ul>
+<li>The first block, labels, shows the definition of groups A and B, along with a reminder of the full data <em>n</em> count (<code>nFullData</code>) and the <em>n</em> count of the number of individuals who are in the two subgroups with valid scores (<code>nUsed</code>).</li>
+<li>The second block, percentage, shows the percentage of individuals who fall into each category, with omitted levels removed.</li>
+<li>The third block, results, shows the estimated outcomes from the two groups listed in the columns <code>estimateA</code> and <code>estimateB</code>. The <code>diffAB</code> column shows the estimated difference between the two groups, and the <code>diffABse</code> column shows the standard error of the difference. <em>t</em>-test significance results show in <code>difABpValue</code>, with the degrees of freedom following. When sampling survey respondents through cluster sampling designs (e.g., a design involving sampling students from the same classrooms or schools), these respondents have more in common than randomly selected individuals. Therefore, <code>EdSurvey</code> calculates a covariance between groups from the same assessment sample (same assessment and year), which appears in the <code>covAB</code> column. Even when selecting respondents through simple random sampling, little harm occurs in estimating the covariance because it will be close to zero.</li>
+</ul>
+<p>Users can choose to return only the <code>data.frame</code> detailing the results using</p>
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathGap</span><span class="op">$</span><span class="va">results</span>
+<span class="co">#&gt;   estimateA estimateAse estimateB estimateBse   diffAB</span>
+<span class="co">#&gt; 1  276.7235   0.8207151  275.0458   0.9402535 1.677756</span>
+<span class="co">#&gt;       covAB  diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt; 1 0.5676583 0.6498719   0.01259479 53.70969</span></code></pre></div>
+</div>
+<div id="gap-analysis-across-years" class="section level3" number="7.5.2">
+<h3>
+<span class="header-section-number">7.5.2</span> Gap Analysis Across Years<a class="anchor" aria-label="anchor" href="#gap-analysis-across-years"><i class="fas fa-link"></i></a>
+</h3>
+<p>For illustration purposes, we first generate two fake datasets for Year 1 and Year 2 to use in examples. You can skip this step if you already have cross-year datasets handy.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">year1</span> <span class="op">&lt;-</span> <span class="fu">EdSurvey</span><span class="fu">:::</span><span class="fu">copyDataToTemp</span><span class="op">(</span>f0 <span class="op">=</span> <span class="st">"M32NT2PM"</span><span class="op">)</span>
+<span class="va">year2</span> <span class="op">&lt;-</span> <span class="fu">EdSurvey</span><span class="fu">:::</span><span class="fu">copyDataToTemp</span><span class="op">(</span>f0 <span class="op">=</span> <span class="st">"M40NT2PM"</span><span class="op">)</span></code></pre></div>
+<p>The following example demonstrates the <code>gap</code> function, comparing the gender gap between <code>year1</code> and <code>year2</code> datasets, which are appended into an <code>edsurvey.data.frame.list</code>:</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># combine two datasets</span>
+<span class="va">mathList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurvey.data.frame.list.html">edsurvey.data.frame.list</a></span><span class="op">(</span>datalist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">year1</span>, <span class="va">year2</span><span class="op">)</span>,
+                                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"math year1"</span>, <span class="st">"math year2"</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># perform cross year analysis between gender</span>
+<span class="va">mathGap2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+               groupA <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Male"</span>, groupB <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span></code></pre></div>
+<p>Each gap output contains a <code>data.frame</code> detailing the results of the analyses, which are returned using the following:</p>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathGap2</span><span class="op">$</span><span class="va">results</span>
+<span class="co">#&gt;       labels estimateA estimateAse estimateB estimateBse</span>
+<span class="co">#&gt; 1 math year1  277.2735    1.014495  274.9149    1.040229</span>
+<span class="co">#&gt; 2 math year2  276.8393    1.056766  274.3754    1.114861</span>
+<span class="co">#&gt;     diffAB     covAB  diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt; 1 2.358576 0.3694072 1.1715210   0.05398869 27.44776</span>
+<span class="co">#&gt; 2 2.463876 0.7071580 0.9722933   0.01338217 74.24251</span>
+<span class="co">#&gt;      diffAA covAA diffAAse diffAApValue    dofAA    diffBB</span>
+<span class="co">#&gt; 1        NA    NA       NA           NA       NA        NA</span>
+<span class="co">#&gt; 2 0.4342073     0 1.464908    0.7678634 65.12246 0.5395077</span>
+<span class="co">#&gt;   covBB diffBBse diffBBpValue    dofBB   diffABAB covABAB</span>
+<span class="co">#&gt; 1    NA       NA           NA       NA         NA      NA</span>
+<span class="co">#&gt; 2     0 1.524792    0.7241024 117.9997 -0.1053004       0</span>
+<span class="co">#&gt;   diffABABse diffABABpValue  dofABAB sameSurvey</span>
+<span class="co">#&gt; 1         NA             NA       NA         NA</span>
+<span class="co">#&gt; 2   1.522437       0.945065 66.60037      FALSE</span></code></pre></div>
+<p>When the data argument is an <code>edsurvey.data.frame.list</code>, the summary results include the following information:</p>
+<ul>
+<li>the group means (<code>estimateA</code>/<code>estimateB</code>) and standard errors (<code>estimateAse</code>/<code>estimateBse</code>) across a variable (typically data years)</li>
+<li>the difference between the values of <code>estimateA</code> and <code>estimateB</code>, as well as its respective standard errors and <em>p</em>-value (each starting with <code>diffAB</code>)</li>
+<li>the difference between the values of <code>estimateA</code> across a variable compared with the reference dataset, as well as its respective standard errors and <em>p</em>-value (each starting with <code>diffAA</code>)</li>
+<li>the difference within the values of <code>estimateB</code> across a variable compared with the reference dataset, as well as its respective standard errors and <em>p</em>-value (each starting with <code>diffBB</code>)</li>
+<li>the difference between the difference of <code>estimateA</code> and <code>estimateB</code> across a variable compared with the reference dataset, as well as its respective standard errors and <em>p</em>-value (each starting with <code>diffABAB</code>)</li>
+<li>the value <code>sameSurvey</code>, which indicates if a line in the data output uses the same survey as the reference line (a logical: <code>TRUE</code>/<code>FALSE</code>)</li>
+</ul>
+<p>For example, in <code>mathGap2$results</code>,</p>
+<ul>
+<li>The gap in mean mathematics scores between the <code>dsex</code> variables in Year 1 (<code>diffAB</code>) is <code>2.358576</code>.</li>
+<li>The gap in mean mathematics scores within the <code>dsex</code> variables across data years where <code>groupA = "Male"</code> (<code>diffAA</code>) is <code>0.4342073</code>.</li>
+<li>The gap in mean mathematics scores within the <code>dsex</code> variables across data years where <code>groupB = "Female"</code> (<code>diffBB</code>) is <code>0.5395077</code>.</li>
+<li>The gap in mean mathematics scores between the <code>dsex</code> variables across data years (<code>diffABAB</code>) is <code>-0.1053004</code>.</li>
+</ul>
+<p>In addition to the summary results, the gap output also contains a <code>data.frame</code> of percentage gaps, in a format matching the <code>data.frame</code> of the previous results. This is returned by using the following:</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathGap2</span><span class="op">$</span><span class="va">percentage</span>
+<span class="co">#&gt;       labels     pctA    pctAse     pctB    pctBse</span>
+<span class="co">#&gt; 1 math year1 50.31267 0.7732424 49.68733 0.7732424</span>
+<span class="co">#&gt; 2 math year2 51.04887 0.7316137 48.95113 0.7316137</span>
+<span class="co">#&gt;      diffAB      covAB diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt; 1 0.6253492 -0.5979038 1.546485    0.6884604 34.19288</span>
+<span class="co">#&gt; 2 2.0977415 -0.5352586 1.463227    0.1569309 59.25477</span>
+<span class="co">#&gt;       diffAA covAA diffAAse diffAApValue    dofAA    diffBB</span>
+<span class="co">#&gt; 1         NA    NA       NA           NA       NA        NA</span>
+<span class="co">#&gt; 2 -0.7361961     0 1.064501    0.4911036 83.97934 0.7361961</span>
+<span class="co">#&gt;   covBB diffBBse diffBBpValue    dofBB  diffABAB covABAB</span>
+<span class="co">#&gt; 1    NA       NA           NA       NA        NA      NA</span>
+<span class="co">#&gt; 2     0 1.064501    0.4911036 83.97934 -1.472392       0</span>
+<span class="co">#&gt;   diffABABse diffABABpValue  dofABAB</span>
+<span class="co">#&gt; 1         NA             NA       NA</span>
+<span class="co">#&gt; 2   2.129002      0.4911036 83.97934</span></code></pre></div>
+</div>
+<div id="gap-analysis-of-jurisdictions" class="section level3" number="7.5.3">
+<h3>
+<span class="header-section-number">7.5.3</span> Gap Analysis of Jurisdictions<a class="anchor" aria-label="anchor" href="#gap-analysis-of-jurisdictions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Comparisons of district, state, and national jurisdictions also can be performed using the <code>gap</code> function. The next example demonstrates how to compare multiple datasets, each from a jurisdiction, using the <code>edsurvey.data.frame.list</code> object <code>sdfl</code>, created previously and representing data from four locations.</p>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathlocGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdfl</span>,
+               groupA <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Male"</span>, groupB <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Female"</span><span class="op">)</span>
+
+<span class="va">mathlocGap</span><span class="op">$</span><span class="va">results</span>
+<span class="co">#&gt;        labels estimateA estimateAse estimateB estimateBse</span>
+<span class="co">#&gt; 1 A locations  294.9192    6.158446  278.4914    4.998736</span>
+<span class="co">#&gt; 2 B locations  290.7389   19.347898  296.2575   18.361466</span>
+<span class="co">#&gt; 3 C locations  286.5300    3.707036  294.3619    3.838862</span>
+<span class="co">#&gt; 4 D locations  285.8196   37.473667  279.3090   17.786705</span>
+<span class="co">#&gt;      diffAB      covAB  diffABse diffABpValue    dofAB</span>
+<span class="co">#&gt; 1 16.427856  26.692493  3.086880  0.001331239 6.590889</span>
+<span class="co">#&gt; 2 -5.518624 340.429882  5.533971  0.353403676 6.678675</span>
+<span class="co">#&gt; 3 -7.831865   3.802534  4.568798  0.134082911 6.418453</span>
+<span class="co">#&gt; 4  6.510538 653.985648 20.314313  0.767500316 3.362254</span>
+<span class="co">#&gt;     diffAA      covAA  diffAAse diffAApValue    dofAA</span>
+<span class="co">#&gt; 1       NA         NA        NA           NA       NA</span>
+<span class="co">#&gt; 2 4.180366 84.7127213 15.583394    0.8012387 4.174503</span>
+<span class="co">#&gt; 3 8.389230  0.5497927  7.111187    0.2760963 7.105454</span>
+<span class="co">#&gt; 4 9.099644 -0.6240987 37.992768    0.8244191 3.404922</span>
+<span class="co">#&gt;        diffBB      covBB  diffBBse diffBBpValue     dofBB</span>
+<span class="co">#&gt; 1          NA         NA        NA           NA        NA</span>
+<span class="co">#&gt; 2 -17.7661140 59.0011184 15.624614   0.30822190  4.882245</span>
+<span class="co">#&gt; 3 -15.8704905 -0.2746742  6.346146   0.02943236 11.018163</span>
+<span class="co">#&gt; 4  -0.8176736 -0.2150138 18.487408   0.96692113  3.848665</span>
+<span class="co">#&gt;    diffABAB    covABAB diffABABse diffABABpValue  dofABAB</span>
+<span class="co">#&gt; 1        NA         NA         NA             NA       NA</span>
+<span class="co">#&gt; 2 21.946480 -5.1831666   7.107742    0.018774175 6.658063</span>
+<span class="co">#&gt; 3 24.259720 -0.2137924   5.552506    0.001956103 8.690019</span>
+<span class="co">#&gt; 4  9.917317 -2.5253958  20.670049    0.660489851 3.410698</span>
+<span class="co">#&gt;   sameSurvey</span>
+<span class="co">#&gt; 1         NA</span>
+<span class="co">#&gt; 2       TRUE</span>
+<span class="co">#&gt; 3       TRUE</span>
+<span class="co">#&gt; 4       TRUE</span></code></pre></div>
+<p>In NAEP, the jurisdiction information is included in a single restricted-use data file. The following examples illustrate, using NAEP, how to conduct comparisons between (a) states, (b) a state versus the nation, and (c) a district versus the home state.</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># comparisons of two states</span>
+<span class="va">mathStateGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+                    <span class="va">fips</span> <span class="op">==</span> <span class="st">"California"</span>, <span class="va">fips</span> <span class="op">==</span> <span class="st">"Virginia"</span><span class="op">)</span>
+
+<span class="co"># comparisons of state to all public schools in nation</span>
+<span class="va">mathList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/subset.html">subset</a></span><span class="op">(</span><span class="va">mathList</span>, <span class="va">schtyp2</span> <span class="op">==</span> <span class="st">"Public"</span><span class="op">)</span>
+<span class="va">mathStateNationGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+                          <span class="va">fips</span> <span class="op">==</span> <span class="st">"California"</span>, <span class="va">schtyp2</span> <span class="op">==</span> <span class="st">"Public"</span><span class="op">)</span>
+
+<span class="co"># comparisons of district to state</span>
+<span class="va">mathStateDistrictGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span><span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+                            <span class="va">distcod</span> <span class="op">==</span> <span class="st">"Los Angeles"</span>, <span class="va">fips</span> <span class="op">==</span> <span class="st">"California"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="gap-analysis-of-achievement-levels-and-percentiles" class="section level3" number="7.5.4">
+<h3>
+<span class="header-section-number">7.5.4</span> Gap Analysis of Achievement Levels and Percentiles<a class="anchor" aria-label="anchor" href="#gap-analysis-of-achievement-levels-and-percentiles"><i class="fas fa-link"></i></a>
+</h3>
+<p>Gap analysis also may be performed across achievement levels and percentiles by specifying the values in the <code>achievementLevel</code> or <code>percentiles</code> arguments, respectively. Using our previous <code>edsurvey.data.frame.list</code> object (<code>mathList</code>), setting <code>achievementLevel=c("Basic", "Proficient", "Advanced")</code> will perform comparisons between groups by and across years for each achievement level value.</p>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathALGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+                 groupA <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Male"</span>, groupB <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Female"</span>,
+                 achievementLevel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Basic"</span>, <span class="st">"Proficient"</span>, <span class="st">"Advanced"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mathALGap</span><span class="op">$</span><span class="va">results</span>
+<span class="co">#&gt;         achievementLevel     labels estimateA estimateAse</span>
+<span class="co">#&gt; 1      At or Above Basic math year1 66.870662   1.2335219</span>
+<span class="co">#&gt; 2      At or Above Basic math year2 66.008354   1.4761274</span>
+<span class="co">#&gt; 3 At or Above Proficient math year1 28.719053   1.2778962</span>
+<span class="co">#&gt; 4 At or Above Proficient math year2 28.469990   1.0605786</span>
+<span class="co">#&gt; 5            At Advanced math year1  6.111211   0.6868165</span>
+<span class="co">#&gt; 6            At Advanced math year2  5.833023   0.7136854</span>
+<span class="co">#&gt;   estimateB estimateBse   diffAB      covAB  diffABse</span>
+<span class="co">#&gt; 1 65.100350   1.3290706 1.770311 0.47346693 1.5300559</span>
+<span class="co">#&gt; 2 64.212592   1.2702205 1.795762 0.80498819 1.4773070</span>
+<span class="co">#&gt; 3 25.546317   1.1150117 3.172735 0.16683642 1.5945522</span>
+<span class="co">#&gt; 4 25.852175   1.2256185 2.617815 0.63726122 1.1629469</span>
+<span class="co">#&gt; 5  4.509459   0.5578078 1.601751 0.09886164 0.7649465</span>
+<span class="co">#&gt; 6  4.353453   0.4823550 1.479570 0.11276154 0.7186725</span>
+<span class="co">#&gt;   diffABpValue    dofAB    diffAA covAA  diffAAse</span>
+<span class="co">#&gt; 1   0.25305547 47.43947        NA    NA        NA</span>
+<span class="co">#&gt; 2   0.22899798 58.93240 0.8623073     0 1.9236757</span>
+<span class="co">#&gt; 3   0.05430082 35.80025        NA    NA        NA</span>
+<span class="co">#&gt; 4   0.02759747 68.48216 0.2490623     0 1.6606763</span>
+<span class="co">#&gt; 5   0.04228707 42.36482        NA    NA        NA</span>
+<span class="co">#&gt; 6   0.04512671 46.64694 0.2781884     0 0.9904867</span>
+<span class="co">#&gt;   diffAApValue     dofAA     diffBB covBB  diffBBse</span>
+<span class="co">#&gt; 1           NA        NA         NA    NA        NA</span>
+<span class="co">#&gt; 2    0.6559148  49.66853  0.8877581     0 1.8384474</span>
+<span class="co">#&gt; 3           NA        NA         NA    NA        NA</span>
+<span class="co">#&gt; 4    0.8810447 115.55769 -0.3058583     0 1.6569224</span>
+<span class="co">#&gt; 5           NA        NA         NA    NA        NA</span>
+<span class="co">#&gt; 6    0.7795513  79.05949  0.1560067     0 0.7374387</span>
+<span class="co">#&gt;   diffBBpValue     dofBB    diffABAB covABAB diffABABse</span>
+<span class="co">#&gt; 1           NA        NA          NA      NA         NA</span>
+<span class="co">#&gt; 2    0.6302057 102.66886 -0.02545076       0   2.126854</span>
+<span class="co">#&gt; 3           NA        NA          NA      NA         NA</span>
+<span class="co">#&gt; 4    0.8538879 109.77788  0.55492055       0   1.973586</span>
+<span class="co">#&gt; 5           NA        NA          NA      NA         NA</span>
+<span class="co">#&gt; 6    0.8331024  66.60928  0.12218164       0   1.049587</span>
+<span class="co">#&gt;   diffABABpValue   dofABAB sameSurvey</span>
+<span class="co">#&gt; 1             NA        NA         NA</span>
+<span class="co">#&gt; 2      0.9904753 104.21223      FALSE</span>
+<span class="co">#&gt; 3             NA        NA         NA</span>
+<span class="co">#&gt; 4      0.7793705  73.18939      FALSE</span>
+<span class="co">#&gt; 5             NA        NA         NA</span>
+<span class="co">#&gt; 6      0.9075937  87.93697      FALSE</span></code></pre></div>
+<p>Similarly, setting <code>percentiles = c(10, 25, 50, 75, 90)</code> will perform comparisons between groups by and across years for each percentile value.</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mathPercentilesGap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">mathList</span>,
+                          groupA <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Male"</span>, groupB <span class="op">=</span> <span class="va">dsex</span> <span class="op">==</span> <span class="st">"Female"</span>,
+                          percentiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mathPercentilesGap</span><span class="op">$</span><span class="va">results</span>
+<span class="co">#&gt;    percentiles     labels estimateA estimateAse estimateB</span>
+<span class="co">#&gt; 1           10 math year1  228.5492   0.9667854  227.0247</span>
+<span class="co">#&gt; 2           10 math year2  227.9186   2.4995864  226.2819</span>
+<span class="co">#&gt; 3           25 math year1  253.0893   0.9471983  250.9874</span>
+<span class="co">#&gt; 4           25 math year2  252.2491   1.3755823  250.0428</span>
+<span class="co">#&gt; 5           50 math year1  278.2843   1.3730106  276.9812</span>
+<span class="co">#&gt; 6           50 math year2  278.0656   1.6903894  276.3454</span>
+<span class="co">#&gt; 7           75 math year1  302.8779   1.3682276  299.6181</span>
+<span class="co">#&gt; 8           75 math year2  302.7776   0.8726368  299.9592</span>
+<span class="co">#&gt; 9           90 math year1  324.2191   1.7859545  320.1731</span>
+<span class="co">#&gt; 10          90 math year2  324.3229   1.8148749  319.6371</span>
+<span class="co">#&gt;    estimateBse   diffAB      covAB diffABse diffABpValue</span>
+<span class="co">#&gt; 1    2.2177507 1.524483 0.12874954 2.365501  0.524380292</span>
+<span class="co">#&gt; 2    2.2006815 1.636691 1.59047562 2.812469  0.567514040</span>
+<span class="co">#&gt; 3    1.5062090 2.101920 0.06906226 1.740036  0.231540228</span>
+<span class="co">#&gt; 4    1.3677150 2.206282 0.05717917 1.910108  0.253858464</span>
+<span class="co">#&gt; 5    0.9264616 1.303117 0.14110321 1.568848  0.411462617</span>
+<span class="co">#&gt; 6    1.3722702 1.720201 1.27774827 1.478190  0.250443398</span>
+<span class="co">#&gt; 7    1.1878050 3.259775 0.07671289 1.769040  0.073719644</span>
+<span class="co">#&gt; 8    1.0668784 2.818378 0.39727222 1.051275  0.009435823</span>
+<span class="co">#&gt; 9    1.2427261 4.046013 0.13587502 2.112404  0.075499842</span>
+<span class="co">#&gt; 10   1.3593064 4.685793 0.47512103 2.047252  0.026239504</span>
+<span class="co">#&gt;       dofAB     diffAA covAA diffAAse diffAApValue    dofAA</span>
+<span class="co">#&gt; 1  28.76492         NA    NA       NA           NA       NA</span>
+<span class="co">#&gt; 2  18.81623  0.6305664     0 2.680038    0.8155427 30.88172</span>
+<span class="co">#&gt; 3  63.44991         NA    NA       NA           NA       NA</span>
+<span class="co">#&gt; 4  47.38973  0.8401989     0 1.670153    0.6168345 57.62887</span>
+<span class="co">#&gt; 5  37.37699         NA    NA       NA           NA       NA</span>
+<span class="co">#&gt; 6  46.73963  0.2186734     0 2.177745    0.9203339 63.31403</span>
+<span class="co">#&gt; 7  35.58427         NA    NA       NA           NA       NA</span>
+<span class="co">#&gt; 8  60.84149  0.1002895     0 1.622819    0.9508935 72.08366</span>
+<span class="co">#&gt; 9  14.41527         NA    NA       NA           NA       NA</span>
+<span class="co">#&gt; 10 51.30331 -0.1038355     0 2.546253    0.9676270 52.23293</span>
+<span class="co">#&gt;        diffBB covBB diffBBse diffBBpValue     dofBB</span>
+<span class="co">#&gt; 1          NA    NA       NA           NA        NA</span>
+<span class="co">#&gt; 2   0.7427746     0 3.124327    0.8129968  53.19276</span>
+<span class="co">#&gt; 3          NA    NA       NA           NA        NA</span>
+<span class="co">#&gt; 4   0.9445612     0 2.034529    0.6434062 106.40957</span>
+<span class="co">#&gt; 5          NA    NA       NA           NA        NA</span>
+<span class="co">#&gt; 6   0.6357575     0 1.655735    0.7024377  56.57640</span>
+<span class="co">#&gt; 7          NA    NA       NA           NA        NA</span>
+<span class="co">#&gt; 8  -0.3411076     0 1.596593    0.8316963  49.70196</span>
+<span class="co">#&gt; 9          NA    NA       NA           NA        NA</span>
+<span class="co">#&gt; 10  0.5359443     0 1.841761    0.7717175  90.91000</span>
+<span class="co">#&gt;      diffABAB covABAB diffABABse diffABABpValue   dofABAB</span>
+<span class="co">#&gt; 1          NA      NA         NA             NA        NA</span>
+<span class="co">#&gt; 2  -0.1122082       0   3.674993      0.9757890  41.32595</span>
+<span class="co">#&gt; 3          NA      NA         NA             NA        NA</span>
+<span class="co">#&gt; 4  -0.1043623       0   2.583842      0.9678588 104.78313</span>
+<span class="co">#&gt; 5          NA      NA         NA             NA        NA</span>
+<span class="co">#&gt; 6  -0.4170841       0   2.155534      0.8470519  81.70437</span>
+<span class="co">#&gt; 7          NA      NA         NA             NA        NA</span>
+<span class="co">#&gt; 8   0.4413971       0   2.057834      0.8308790  60.72581</span>
+<span class="co">#&gt; 9          NA      NA         NA             NA        NA</span>
+<span class="co">#&gt; 10 -0.6397798       0   2.941682      0.8288465  43.44324</span>
+<span class="co">#&gt;    sameSurvey</span>
+<span class="co">#&gt; 1          NA</span>
+<span class="co">#&gt; 2       FALSE</span>
+<span class="co">#&gt; 3          NA</span>
+<span class="co">#&gt; 4       FALSE</span>
+<span class="co">#&gt; 5          NA</span>
+<span class="co">#&gt; 6       FALSE</span>
+<span class="co">#&gt; 7          NA</span>
+<span class="co">#&gt; 8       FALSE</span>
+<span class="co">#&gt; 9          NA</span>
+<span class="co">#&gt; 10      FALSE</span></code></pre></div>
+</div>
+<div id="multiple-comparisons" class="section level3" number="7.5.5">
+<h3>
+<span class="header-section-number">7.5.5</span> Multiple Comparisons<a class="anchor" aria-label="anchor" href="#multiple-comparisons"><i class="fas fa-link"></i></a>
+</h3>
+<p>When making groups or families of comparisons in a single analysis, such as comparing White students with minority student groups in terms of test scores, the probability of finding significance by chance for at least one comparison increases with the family size or the number of comparisons. Multiple methods exist to adjust <em>p</em>-values to hold the significance level for a set of comparisons at a particular level (e.g., 0.05), and such adjustments are called multiple comparison procedures. NAEP employs two procedures: the Benjamini-Hochberg false discovery rate (FDR) procedure <span class="citation">(<a href="references.html#ref-BenjaminiHochberg" role="doc-biblioref">Benjamini &amp; Hochberg, 1995</a>)</span> and the Bonferroni procedure. The Bonferroni procedure was used prior to the 1996 assessment. Thereafter, NAEP has used the FDR procedure. A detailed explanation of the NAEP multiple comparison procedures can be found at <a href="https://nces.ed.gov/nationsreportcard/tdw/analysis/2000_2001/infer_multiplecompare.aspx">Comparison of Multiple Groups</a>.</p>
+<p>Typically, the number of comparisons is determined as the number of possible statistical tests in a single analysis. However, in NAEP reports, when comparing multiple years and multiple jurisdictions (e.g., multiple states versus the United States as a whole), usually neither the number of years nor the number of jurisdictions counts toward the number of comparisons.</p>
+<p>The next example illustrates how to adjust the <em>p</em>-values using the Bonferroni and FDR procedures through R’s <code>p.adjust</code> function. First, generate the gaps comparing the achievement differences (<code>"composite"</code>) between one race/ethnicity group (in this case <code>'White'</code>) and the other five levels of <code>sdracem</code>.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">levelResults1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>, groupA <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"White"</span>,
+                     groupB <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"Black"</span><span class="op">)</span>
+<span class="va">levelResults2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>, groupA <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"White"</span>,
+                     groupB <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"Hispanic"</span><span class="op">)</span>
+<span class="va">levelResults3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>, groupA <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"White"</span>,
+                     groupB <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"Asian/Pacific Island"</span><span class="op">)</span>
+<span class="va">levelResults4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>, groupA <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"White"</span>,
+                     groupB <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"Amer Ind/Alaska Natv"</span><span class="op">)</span>
+<span class="va">levelResults5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/gap.html">gap</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="st">"composite"</span>, data <span class="op">=</span> <span class="va">sdf</span>, groupA <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"White"</span>,
+                     groupB <span class="op">=</span> <span class="va">sdracem</span> <span class="op">==</span> <span class="st">"Other"</span><span class="op">)</span></code></pre></div>
+<p>We’ll append these results to a list and use a for-loop to retrieve the <code>results</code> <code>data.frame</code> from each gap object (<code>levelResults1</code> through <code>levelResults5</code>). For clarity, we’ll also create two new variables showing the comparison levels.</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">resultsList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">levelResults1</span>, <span class="va">levelResults2</span>, <span class="va">levelResults3</span>, <span class="va">levelResults4</span>, <span class="va">levelResults5</span><span class="op">)</span>
+
+<span class="va">fullResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">resultsList</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">fullResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">rbind</a></span><span class="op">(</span><span class="va">fullResults</span>, <span class="va">resultsList</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">results</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="va">fullResults</span><span class="op">$</span><span class="va">levelA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"White"</span><span class="op">)</span>
+<span class="va">fullResults</span><span class="op">$</span><span class="va">levelB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Black"</span>, <span class="st">"Hispanic"</span>, <span class="st">"Asian/Pacific Island"</span>, <span class="st">"Amer Ind/Alaska Natv"</span>, <span class="st">"Other"</span><span class="op">)</span>
+<span class="va">fullResults</span>
+<span class="co">#&gt;   estimateA estimateAse estimateB estimateBse    diffAB</span>
+<span class="co">#&gt; 1   287.301   0.7991882  253.4925    1.349386 33.808504</span>
+<span class="co">#&gt; 2   287.301   0.7991882  259.8218    1.258471 27.479214</span>
+<span class="co">#&gt; 3   287.301   0.7991882  289.8092    3.290948 -2.508196</span>
+<span class="co">#&gt; 4   287.301   0.7991882  265.4023    3.630704 21.898677</span>
+<span class="co">#&gt; 5   287.301   0.7991882  281.3191    5.154681  5.981855</span>
+<span class="co">#&gt;         covAB diffABse diffABpValue    dofAB levelA</span>
+<span class="co">#&gt; 1  0.23565724 1.410046 0.000000e+00 40.83522  White</span>
+<span class="co">#&gt; 2  0.10045282 1.421811 0.000000e+00 27.01301  White</span>
+<span class="co">#&gt; 3  0.57184616 3.213308 4.473733e-01 14.78845  White</span>
+<span class="co">#&gt; 4 -0.02820715 3.725201 6.830990e-06 21.70421  White</span>
+<span class="co">#&gt; 5 -0.05243699 5.226310 2.615158e-01 29.74570  White</span>
+<span class="co">#&gt;                 levelB</span>
+<span class="co">#&gt; 1                Black</span>
+<span class="co">#&gt; 2             Hispanic</span>
+<span class="co">#&gt; 3 Asian/Pacific Island</span>
+<span class="co">#&gt; 4 Amer Ind/Alaska Natv</span>
+<span class="co">#&gt; 5                Other</span></code></pre></div>
+<p>Once reshaped, the <em>p</em>-values in each gap result can be adjusted via <code><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust()</a></code>. The following examples show both the Bonferroni and FDR adjustment methods:</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fullResults</span><span class="op">$</span><span class="va">diffABpValueBon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">fullResults</span><span class="op">$</span><span class="va">diffABpValue</span>, method <span class="op">=</span> <span class="st">"bonferroni"</span><span class="op">)</span>
+<span class="va">fullResults</span><span class="op">$</span><span class="va">diffABpValueFDR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">fullResults</span><span class="op">$</span><span class="va">diffABpValue</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span>
+<span class="va">fullResults</span>
+<span class="co">#&gt;   estimateA estimateAse estimateB estimateBse    diffAB</span>
+<span class="co">#&gt; 1   287.301   0.7991882  253.4925    1.349386 33.808504</span>
+<span class="co">#&gt; 2   287.301   0.7991882  259.8218    1.258471 27.479214</span>
+<span class="co">#&gt; 3   287.301   0.7991882  289.8092    3.290948 -2.508196</span>
+<span class="co">#&gt; 4   287.301   0.7991882  265.4023    3.630704 21.898677</span>
+<span class="co">#&gt; 5   287.301   0.7991882  281.3191    5.154681  5.981855</span>
+<span class="co">#&gt;         covAB diffABse diffABpValue    dofAB levelA</span>
+<span class="co">#&gt; 1  0.23565724 1.410046 0.000000e+00 40.83522  White</span>
+<span class="co">#&gt; 2  0.10045282 1.421811 0.000000e+00 27.01301  White</span>
+<span class="co">#&gt; 3  0.57184616 3.213308 4.473733e-01 14.78845  White</span>
+<span class="co">#&gt; 4 -0.02820715 3.725201 6.830990e-06 21.70421  White</span>
+<span class="co">#&gt; 5 -0.05243699 5.226310 2.615158e-01 29.74570  White</span>
+<span class="co">#&gt;                 levelB diffABpValueBon diffABpValueFDR</span>
+<span class="co">#&gt; 1                Black    0.000000e+00    0.000000e+00</span>
+<span class="co">#&gt; 2             Hispanic    0.000000e+00    0.000000e+00</span>
+<span class="co">#&gt; 3 Asian/Pacific Island    1.000000e+00    4.473733e-01</span>
+<span class="co">#&gt; 4 Amer Ind/Alaska Natv    3.415495e-05    1.138498e-05</span>
+<span class="co">#&gt; 5                Other    1.000000e+00    3.268948e-01</span></code></pre></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></div>
+<div class="next"><a href="models.html"><span class="header-section-number">8</span> Models</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#descriptive-statistics"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="nav-link" href="#computing-the-percentages-of-students-with-achievementlevels"><span class="header-section-number">7.1</span> Computing the Percentages of Students With achievementLevels</a></li>
+<li><a class="nav-link" href="#calculating-percentiles-with-percentile"><span class="header-section-number">7.2</span> Calculating Percentiles With percentile</a></li>
+<li>
+<a class="nav-link" href="#correlating-variables-with-cor.sdf"><span class="header-section-number">7.3</span> Correlating Variables With cor.sdf</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#weighted-correlations"><span class="header-section-number">7.3.1</span> Weighted Correlations</a></li>
+<li><a class="nav-link" href="#unweighted-correlations"><span class="header-section-number">7.3.2</span> Unweighted Correlations</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#preparing-an-edsurvey.data.frame.list-for-cross-datasets-comparisons"><span class="header-section-number">7.4</span> Preparing an edsurvey.data.frame.list for Cross Datasets Comparisons</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#combining-several-edsurvey.data.frame-objects-into-a-single-object"><span class="header-section-number">7.4.1</span> Combining Several edsurvey.data.frame Objects Into a Single Object</a></li>
+<li><a class="nav-link" href="#recommended-workflow-for-standardizing-variables-in-cross-datasets-comparisons"><span class="header-section-number">7.4.2</span> Recommended Workflow for Standardizing Variables in Cross Datasets Comparisons</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimating-the-difference-in-two-statistics-with-gap"><span class="header-section-number">7.5</span> Estimating the Difference in Two Statistics With gap</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#performing-gap-analysis-and-understanding-the-summary-output"><span class="header-section-number">7.5.1</span> Performing Gap Analysis and Understanding the Summary Output</a></li>
+<li><a class="nav-link" href="#gap-analysis-across-years"><span class="header-section-number">7.5.2</span> Gap Analysis Across Years</a></li>
+<li><a class="nav-link" href="#gap-analysis-of-jurisdictions"><span class="header-section-number">7.5.3</span> Gap Analysis of Jurisdictions</a></li>
+<li><a class="nav-link" href="#gap-analysis-of-achievement-levels-and-percentiles"><span class="header-section-number">7.5.4</span> Gap Analysis of Achievement Levels and Percentiles</a></li>
+<li><a class="nav-link" href="#multiple-comparisons"><span class="header-section-number">7.5.5</span> Multiple Comparisons</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/master/07-descriptive-statistics.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/master/07-descriptive-statistics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
