@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2022-02-03"
+date: "2022-02-09"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -67,12 +67,11 @@ American Institutes for Research
 Senior Research Scientist<br></br>
 National Center for Education Statistics
 
-**NCES 2021-044**<br></br>
 **U.S. DEPARTMENT OF EDUCATION**
 
-<img src="images/IESwname_color.png" width="50%" />
-
 # NCES Information Page {.unnumbered}
+
+_The research contained in this working paper was commissioned by the National Center for Education Statistics (NCES). It was conducted by the American Institutes for Research (AIR) in the framework of the Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004) which supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP). AIR is responsible for any error that this report may contain. Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government_
 
 **U.S. Department of Education**<br></br>
 Miguel A. Cardona<br></br>
@@ -90,20 +89,14 @@ The National Center for Education Statistics (NCES) is the primary federal entit
 
 NCES activities are designed to address high-priority education data needs; provide consistent, reliable, complete, and accurate indicators of education status and trends; and report timely, useful, and high-quality data to the U.S. Department of Education, the Congress, the states, other education policymakers, practitioners, data users, and the general public. Unless specifically noted, all information contained herein is in the public domain.
 
-We strive to make our products available in a variety of formats and in language that is appropriate to a variety of audiences. You, as our customer, are the best judge of our success in communicating information effectively. If you have any comments or suggestions about this or any other NCES product or report, we would like to hear from you. Please direct your comments to 
+We strive to make our products available in a variety of formats and in language that is appropriate to a variety of audiences. You, as our customer, are the best judge of our success in communicating information effectively. If you have any comments or suggestions about this or any other NCES product or report, we would like to hear from you. Please direct your comments to:
 
 NCES, IES, U.S. Department of Education<br></br>
 Potomac Center Plaza (PCP)<br></br>
 550 12th Street SW<br></br>
 Washington, DC 20202
 
-February 2022
-
-The NCES Home Page address is [http://nces.ed.gov](http://nces.ed.gov).
-The NCES Publications and Products address is [http://nces.ed.gov/pubsearch](http://nces.ed.gov/pubsearch).
-This publication is only available online. To download, view, and print the report as a PDF file, go to the NCES Publications and Products address shown above.
-
-This report was prepared for the National Center for Education Statistics under Contract No. ED-IES-12-D-0002 with American Institutes for Research Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government.
+This report was prepared for the National Center for Education Statistics under Contract No. ED-IES-12-D-0002 with American Institutes for Research. Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government.
 
 **Suggested Citation**
 Lee, M., Zhang, T., Bailey, P., Buehler, E., Fink, T., Huo, H., Lee, S., Liao, Y. and Sikali, E. (2022). _Analyzing NCES Data Using EdSurvey: A User’s Guide_ (NCES 2021-044). U.S. Department of Education. Washington, DC: National Center for Education Statistics. Retrieved [date] from [URL].
