@@ -1,4 +1,3 @@
-fig:coverImage
 tab:table301
 tab:table501
 tab:table502
