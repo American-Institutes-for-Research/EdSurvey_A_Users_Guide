@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2022-02-09"
+date: "2022-02-10"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -23,10 +23,7 @@ favicon: "favicon.ico"
 
 # Analyzing NCES Data Using EdSurvey: A User's Guide  {.unnumbered}
 
-<div class="figure" style="text-align: center">
-<img src="images/cover.png" alt="NCES 2021-044" width="70%" />
-<p class="caption">(\#fig:coverImage)NCES 2021-044</p>
-</div>
+<img src="images/cover.png" width="70%" style="display: block; margin: auto;" />
 
 ## Learning to Use `EdSurvey`
 
@@ -69,42 +66,8 @@ National Center for Education Statistics
 
 **U.S. DEPARTMENT OF EDUCATION**
 
-# NCES Information Page {.unnumbered}
 
 _The research contained in this working paper was commissioned by the National Center for Education Statistics (NCES). It was conducted by the American Institutes for Research (AIR) in the framework of the Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004) which supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP). AIR is responsible for any error that this report may contain. Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government_
-
-**U.S. Department of Education**<br></br>
-Miguel A. Cardona<br></br>
-_Secretary_
-
-**Institute of Education Sciences**<br></br>
-Mark Schneider<br></br>
-_Director_
-
-**National Center for Education Statistics**<br></br>
-Peggy G. Carr<br></br>
-_Commissioner_
-
-The National Center for Education Statistics (NCES) is the primary federal entity for collecting, analyzing, and reporting data related to education in the United States and other nations. It fulfills a congressional mandate to collect, collate, analyze, and report full and complete statistics on the condition of education in the United States; conduct and publish reports and specialized analyses of the meaning and significance of such statistics; assist state and local education agencies in improving their statistical systems; and review and report on education activities in foreign countries.
-
-NCES activities are designed to address high-priority education data needs; provide consistent, reliable, complete, and accurate indicators of education status and trends; and report timely, useful, and high-quality data to the U.S. Department of Education, the Congress, the states, other education policymakers, practitioners, data users, and the general public. Unless specifically noted, all information contained herein is in the public domain.
-
-We strive to make our products available in a variety of formats and in language that is appropriate to a variety of audiences. You, as our customer, are the best judge of our success in communicating information effectively. If you have any comments or suggestions about this or any other NCES product or report, we would like to hear from you. Please direct your comments to:
-
-NCES, IES, U.S. Department of Education<br></br>
-Potomac Center Plaza (PCP)<br></br>
-550 12th Street SW<br></br>
-Washington, DC 20202
-
-This report was prepared for the National Center for Education Statistics under Contract No. ED-IES-12-D-0002 with American Institutes for Research. Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government.
-
-**Suggested Citation**
-Lee, M., Zhang, T., Bailey, P., Buehler, E., Fink, T., Huo, H., Lee, S., Liao, Y. and Sikali, E. (2022). _Analyzing NCES Data Using EdSurvey: A User’s Guide_ (NCES 2021-044). U.S. Department of Education. Washington, DC: National Center for Education Statistics. Retrieved [date] from [URL].
-
-**Content Contact**<br></br>
-Emmanuel Sikali<br></br>
-(202) 245-7814<br></br>
-[Emmanuel.Sikali@ed.gov](Emmanuel.Sikali@ed.gov)
 
 # Preface {.unnumbered}
 
