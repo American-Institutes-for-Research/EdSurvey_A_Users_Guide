@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2022-02-10"
+date: "2022-02-28"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -66,8 +66,9 @@ National Center for Education Statistics
 
 **U.S. DEPARTMENT OF EDUCATION**
 
+_The content of this user’s guide was commissioned by the National Center for Education Statistics (NCES) and conducted by the American Institutes for Research (AIR) under Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004). Task Order 14 supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP)._
 
-_The research contained in this working paper was commissioned by the National Center for Education Statistics (NCES). It was conducted by the American Institutes for Research (AIR) in the framework of the Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004) which supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP). AIR is responsible for any error that this report may contain. Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government_
+_The authors are responsible for the contents of this guide, which is still under development. If you have any feedback, corrections, or suggestions for improvements to subsequent versions, please contact us at [https://github.com/American-Institutes-for-Research/EdSurvey/issues](https://github.com/American-Institutes-for-Research/EdSurvey/issues). Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government._
 
 # Preface {.unnumbered}
 
