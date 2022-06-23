@@ -43,22 +43,6 @@ bookdown:::preview_chapter("02-installation.Rmd") # Knit HTML of selected chapte
 
 This will start a local server of the full book but that updates only as changes are made to a single `Rmd` file. Note that other supplmentary files that any changes may affect, such as the References page, won't be updated by building a single chapter. More information about these functions are here: https://bookdown.org/yihui/bookdown/editing.html
 
-### Creating the epub
-
-1. Comment out the code block referencing the cover [here](https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/main/index.Rmd#L26-L28)
-
-2. `bookdown::render_book("index.Rmd", bookdown::epub_book())`
-
-#### Diagnosing issues with the epub
-
-I has success dianosing issues with the epub compilation using the [epubcheck](https://github.com/w3c/epubcheck) command line validator. Once initialized on your system run:
-
-`epubcheck EdSurvey_A_Users_Guide.epub`
-
-There are also GUIs available; see [the epubcheck GUI wiki](https://github.com/w3c/epubcheck/wiki/GUI). 
-
-As a final check I ensured the epubs were functioning correctly by uploading to my Google Play Books account, but once it returns no errors (warnings are okay) using `epubcheck` it should be good to go.
-
 ### Bookdown Resources
 
 - https://github.com/rstudio/bookdown
