@@ -58,6 +58,7 @@
 <li><a class="active" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
 <li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> “The EdSurvey suggestWeights Function”</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -307,27 +308,27 @@ System missing, including unit nonresponse
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span><span class="st">"p9hmwork"</span>,<span class="va">eclsk11</span><span class="op">)</span>
 <span class="co">#&gt; Levels for Variable 'p9hmwork' (Lowest level first):</span>
-<span class="co">#&gt;     1. 1: NEVER (n=294)</span>
-<span class="co">#&gt;     2. 2: LESS THAN ONCE A WEEK (n=381)</span>
-<span class="co">#&gt;     3. 3: 1 TO 2 TIMES A WEEK (n=1406)</span>
-<span class="co">#&gt;     4. 4: 3 TO 4 TIMES A WEEK (n=4236)</span>
-<span class="co">#&gt;     5. 5: 5 OR MORE TIMES A WEEK (n=3838)</span>
-<span class="co">#&gt;     -1. -1: NOT APPLICABLE* (n=51)</span>
-<span class="co">#&gt;     -7. -7: REFUSED* (n=1)</span>
-<span class="co">#&gt;     -8. -8: DON'T KNOW* (n=13)</span>
-<span class="co">#&gt;     -9. -9: NOT ASCERTAINED* (n=0)</span>
+<span class="co">#&gt;     1. 1: NEVER (n = 294)</span>
+<span class="co">#&gt;     2. 2: LESS THAN ONCE A WEEK (n = 381)</span>
+<span class="co">#&gt;     3. 3: 1 TO 2 TIMES A WEEK (n = 1406)</span>
+<span class="co">#&gt;     4. 4: 3 TO 4 TIMES A WEEK (n = 4236)</span>
+<span class="co">#&gt;     5. 5: 5 OR MORE TIMES A WEEK (n = 3838)</span>
+<span class="co">#&gt;     -1. -1: NOT APPLICABLE* (n = 51)</span>
+<span class="co">#&gt;     -7. -7: REFUSED* (n = 1)</span>
+<span class="co">#&gt;     -8. -8: DON'T KNOW* (n = 13)</span>
+<span class="co">#&gt;     -9. -9: NOT ASCERTAINED* (n = 0)</span>
 <span class="co">#&gt;     NOTE: * indicates an omitted level.</span>
 <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span><span class="st">"p9hlphwk"</span>,<span class="va">eclsk11</span><span class="op">)</span>
 <span class="co">#&gt; Levels for Variable 'p9hlphwk' (Lowest level first):</span>
-<span class="co">#&gt;     1. 1: NEVER (n=643)</span>
-<span class="co">#&gt;     2. 2: LESS THAN ONCE A WEEK (n=1786)</span>
-<span class="co">#&gt;     3. 3: 1 TO 2 TIMES A WEEK (n=3774)</span>
-<span class="co">#&gt;     4. 4: 3 TO 4 TIMES A WEEK (n=2558)</span>
-<span class="co">#&gt;     5. 5: 5 OR MORE TIMES A WEEK (n=1094)</span>
-<span class="co">#&gt;     -1. -1: NOT APPLICABLE* (n=359)</span>
-<span class="co">#&gt;     -7. -7: REFUSED* (n=2)</span>
-<span class="co">#&gt;     -8. -8: DON'T KNOW* (n=4)</span>
-<span class="co">#&gt;     -9. -9: NOT ASCERTAINED* (n=0)</span>
+<span class="co">#&gt;     1. 1: NEVER (n = 643)</span>
+<span class="co">#&gt;     2. 2: LESS THAN ONCE A WEEK (n = 1786)</span>
+<span class="co">#&gt;     3. 3: 1 TO 2 TIMES A WEEK (n = 3774)</span>
+<span class="co">#&gt;     4. 4: 3 TO 4 TIMES A WEEK (n = 2558)</span>
+<span class="co">#&gt;     5. 5: 5 OR MORE TIMES A WEEK (n = 1094)</span>
+<span class="co">#&gt;     -1. -1: NOT APPLICABLE* (n = 359)</span>
+<span class="co">#&gt;     -7. -7: REFUSED* (n = 2)</span>
+<span class="co">#&gt;     -8. -8: DON'T KNOW* (n = 4)</span>
+<span class="co">#&gt;     -9. -9: NOT ASCERTAINED* (n = 0)</span>
 <span class="co">#&gt;     NOTE: * indicates an omitted level.</span></code></pre></div>
 <p>The skip pattern for this sequence of survey questions is as follows: If <code>p9hmwork == "1: NEVER"</code> then <code>p9hlphwk</code> is skipped and coded <code>"-1: NOT APPLICABLE"</code>. To include this subset of data in the analysis, the variable <code>p9hlphwk</code> can be recoded to <code>0</code>. First, retrieve the data via <code>getData</code> (along with a few other variables for a subsequent example) to recode using <code>ifelse</code>:</p>
 <div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
@@ -1345,7 +1346,7 @@ PCT
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-28.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

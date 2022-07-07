@@ -13,7 +13,7 @@ library(EdSurvey)
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
-#> EdSurvey v2.7.1
+#> EdSurvey v2.7.9002
 #> 
 #> Attaching package: 'EdSurvey'
 #> The following objects are masked from 'package:base':

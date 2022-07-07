@@ -58,6 +58,7 @@
 <li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
 <li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> “The EdSurvey suggestWeights Function”</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -448,7 +449,10 @@
 <span class="co">#&gt; [17] "jkSumMultiplier"      "recodes"             </span>
 <span class="co">#&gt; [19] "dim0"                 "validateFactorLabels"</span>
 <span class="co">#&gt; [21] "reqDecimalConversion" "fr2Path"             </span>
-<span class="co">#&gt; [23] "cache"               </span>
+<span class="co">#&gt; [23] "dichotParamTab"       "polyParamTab"        </span>
+<span class="co">#&gt; [25] "adjustedData"         "testData"            </span>
+<span class="co">#&gt; [27] "scoreCard"            "scoreDict"           </span>
+<span class="co">#&gt; [29] "cache"               </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $class</span>
 <span class="co">#&gt; [1] "edsurvey.data.frame" "edsurvey.data"</span></code></pre></div>
@@ -504,13 +508,13 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>,
                              varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'composite'</span>, <span class="st">'dsex'</span>, <span class="st">'b017451'</span>, <span class="st">'origwt'</span><span class="op">)</span>,
                              addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, omittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; 9545568 bytes</span>
+<span class="co">#&gt; 9618256 bytes</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">lm7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>,
                           weightVar<span class="op">=</span><span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; 7170632 bytes</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">lm8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>,
                           weightVar<span class="op">=</span><span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; 2390816 bytes</span></code></pre></div>
+<span class="co">#&gt; 2463312 bytes</span></code></pre></div>
 <p>Although a manipulated <code>light.edsurvey.data.frame</code> requires nearly 10 MB of working memory to store both the <code>light.edsurvey.data.frame</code> and the regression model object (<code>lm7</code>), the resulting object of the same computation made directly from the <code>EdSurvey</code> database (<code>lm8</code>) holds only 5–7 kB. It is a good practice to remove unnecessary values saved in the global environment. Because we have stored many large data objects, let’s remove these before moving on.</p>
 <div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">df</span>,<span class="va">gddat</span>,<span class="va">eddat</span><span class="op">)</span>
@@ -595,7 +599,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-02-28.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -281,7 +281,10 @@ attributes(sdf)
 #> [17] "jkSumMultiplier"      "recodes"             
 #> [19] "dim0"                 "validateFactorLabels"
 #> [21] "reqDecimalConversion" "fr2Path"             
-#> [23] "cache"               
+#> [23] "dichotParamTab"       "polyParamTab"        
+#> [25] "adjustedData"         "testData"            
+#> [27] "scoreCard"            "scoreDict"           
+#> [29] "cache"               
 #> 
 #> $class
 #> [1] "edsurvey.data.frame" "edsurvey.data"
@@ -345,13 +348,13 @@ Because many NCES databases have hundreds of columns and millions of rows, `EdSu
 object.size(gddat <- getData(data = sdf,
                              varnames = c('composite', 'dsex', 'b017451', 'origwt'),
                              addAttributes = TRUE, omittedLevels = FALSE))
-#> 9545568 bytes
+#> 9618256 bytes
 object.size(lm7 <- lm.sdf(formula = composite ~ dsex + b017451,
                           weightVar='origwt', data = gddat))
 #> 7170632 bytes
 object.size(lm8 <- lm.sdf(formula = composite ~ dsex + b017451,
                           weightVar='origwt', data = sdf))
-#> 2390816 bytes
+#> 2463312 bytes
 ```
 
 Although a manipulated `light.edsurvey.data.frame` requires nearly 10 MB of working memory to store both the `light.edsurvey.data.frame` and the regression model object (`lm7`), the resulting object of the same computation made directly from the `EdSurvey` database (`lm8`) holds only 5--7 kB. It is a good practice to remove unnecessary values saved in the global environment. Because we have stored many large data objects, let's remove these before moving on.

@@ -539,7 +539,12 @@ The following two examples illustrate how to model the random intercept of mathe
 
 #Use all plausible values
 TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
-#> Found cached data for country code "usa".
+#> Found cached Grade 4 data for country code "usa: United States".
+#> edsurvey.data.frame data level detail:
+#> |---DataLevel----|----Rows----|--Columns---|---MergeType----|-------MatchedRecords-------|-OK-|
+#> |Student         |       10029|        1196|                |*base level*                | <U+2713>  |
+#> |>School         |       10029|         101|many:one        |10029 of 10029              | <U+2713>  |
+#> |>Teacher        |       12119|         745|one:many        |12119 of 12119              | <U+2713>  |
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
 summary(mix1)
