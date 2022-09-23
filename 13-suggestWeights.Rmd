@@ -1,4 +1,4 @@
-# "The EdSurvey `suggestWeights` Function"
+# The EdSurvey `suggestWeights` Function
 
 ## Introduction
 
@@ -19,7 +19,8 @@ As discussed earlier, it is important to weight the data in your analyses using 
 To use the `suggestWeights` function, the first step is to attach the `EdSurvey` package and load the ECLS-K:2011 data. For more information, see `EdSurvey`'s vignette on [Using EdSurvey to Analyze ECLS-K:2011 Data](https://www.air.org/sites/default/files/EdSurvey-ECLS.pdf). The following code attaches the `EdSurvey` package and reads in the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file with the parameters specified as follows:
 
 ```{r, results='hide', message=FALSE}
-library(EdSurvey)
+#library(EdSurvey)
+devtools::load_all("C:/GIT/EdSurvey_internal")
 eclsk11 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011", 
                           filename = "childK5p.dat", 
                           layoutFilename = "ECLSK2011_K5PUF.sps", 

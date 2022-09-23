@@ -7,7 +7,7 @@
 <title>Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/methods.html">
@@ -17,11 +17,37 @@
 <meta name="twitter:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta name="twitter:description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.16/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -58,7 +84,7 @@
 <li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
 <li><a class="active" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
-<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> “The EdSurvey suggestWeights Function”</a></li>
+<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -301,13 +327,13 @@ the plausible values (also called imputation values so that the variance term is
 \end{align}\]</span></p>
 <p>The sampling variance is
 <span class="math display">\[\begin{align}
-\boldsymbol{\mathbf{V}}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \boldsymbol{\mathbf{V}}_{jrr,p} \ 
-\end{align}\]</span>
+\boldsymbol{\mathbf{V}}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \boldsymbol{\mathbf{V}}_{jrr,p} \
+\end{align}\]</span>\end{align}
 In this equation, <span class="math inline">\(m^*\)</span> is a number that can be as small as one or as large as the number of plausible values.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This option is included because any value for &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; gives an estimate of &lt;span class="math inline"&gt;\(\boldsymbol{\mathbf{V}}_{jrr}\)&lt;/span&gt; with the same properties as larger values of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; (they are unbiased under the same conditions), but larger values of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; can take substantially longer to compute. The value of &lt;span class="math inline"&gt;\(m^*\)&lt;/span&gt; is set with the &lt;code&gt;jrrIMax&lt;/code&gt; argument; note that &lt;code&gt;jrrIMax&lt;/code&gt; affects the estimation of only &lt;span class="math inline"&gt;\(V_{jrr}\)&lt;/span&gt;.&lt;/p&gt;'><sup>12</sup></a> In the previous equation, <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,P}\)</span> is the average of <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,p}\)</span> over the plausible values, and the values of <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,p}\)</span> are calculated in a way analogous to <span class="math inline">\(\boldsymbol{\mathbf{V}}_{jrr,0}\)</span> in the previous section, except that the <span class="math inline">\(p\)</span>th plausible values are used within each step:
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_{jrr,p} = \gamma \sum_{j=1}^{J} (\boldsymbol{\mathbf{\beta}}_{jp} - \boldsymbol{\mathbf{\beta}}_{0p})^2
 \end{align}\]</span></p>
-<p>The imputation variance is estimated according to <span class="citation"><a href="references.html#ref-rubin" role="doc-biblioref">Rubin</a> (<a href="references.html#ref-rubin" role="doc-biblioref">1987</a>)</span>:
+<p>The imputation variance is estimated according to <span class="citation">Rubin (<a href="references.html#ref-rubin" role="doc-biblioref">1987</a>)</span>:
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_{imp} = \frac{m+1}{m(m-1)} \sum_{p=1}^m (\boldsymbol{\mathbf{\beta}}_p - \boldsymbol{\mathbf{\beta}})^2
 \end{align}\]</span>
@@ -473,7 +499,7 @@ V_{imp,f}=\frac{m+1}{m(m-1)}\sum_{p=1}^m \left( \frac{\sum_{i \in \mathcal{A}_p}
   -\boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD}} &amp; \boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD 1}}
 \end{bmatrix}
 \end{align}\]</span>
-where the block matrix has elements <span class="math inline">\(DZD \in \mathbb{R}^{(c-1) \times (c-1)}\)</span>; the <span class="math inline">\(c\)</span>th row and column are then products of <span class="math inline">\(DZD\)</span> and the vector <span class="math inline">\(\boldsymbol{\mathbf{1}} \in \mathbb{R}^{c-1}\)</span> has a one in every element; the definition of <span class="math inline">\(\boldsymbol{\mathbf{D}}\)</span> is the inverse of a matrix of derivatives of a score vector taken with respect to <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>; and <span class="math inline">\(Z\)</span> is a variance estimate of the proportions based on the sample survey. This calculation is based on results derived here, following <span class="citation"><a href="references.html#ref-binder" role="doc-biblioref">Binder</a> (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span>.</p>
+where the block matrix has elements <span class="math inline">\(DZD \in \mathbb{R}^{(c-1) \times (c-1)}\)</span>; the <span class="math inline">\(c\)</span>th row and column are then products of <span class="math inline">\(DZD\)</span> and the vector <span class="math inline">\(\boldsymbol{\mathbf{1}} \in \mathbb{R}^{c-1}\)</span> has a one in every element; the definition of <span class="math inline">\(\boldsymbol{\mathbf{D}}\)</span> is the inverse of a matrix of derivatives of a score vector taken with respect to <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>; and <span class="math inline">\(Z\)</span> is a variance estimate of the proportions based on the sample survey. This calculation is based on results derived here, following <span class="citation">Binder (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span>.</p>
 <p>The score function in question is
 <span class="math display">\[\begin{align}
 S(\pi_h) = \left( \sum_{i=1}^{n} w_i {\rm 1\kern -2.85 pxI}({\rm unit\ }i{\rm \ is\ in\ class\ }h) \right) - \left(  \sum_{i=1}^{n}  \pi_h w_i \right)
@@ -506,7 +532,7 @@ where <span class="math inline">\(n_{sk}\)</span> is the number of observations 
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{S}}_{skl}(\boldsymbol{\mathbf{\pi}}) = w_{skl} \boldsymbol{\mathbf{e}}_{skl} - w_{skl} \boldsymbol{\mathbf{\pi}}
 \end{align}\]</span>
-where <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> is a vector that is 0 in all entries except for a single 1 for the class that the unit is in. For example, if a respondent is a male and the possible levels are (“Female,” “Male”), then their level of <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> would be <span class="math inline">\((0,1)^T\)</span>.</p>
+where <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> is a vector that is 0 in all entries except for a single 1 for the class that the unit is in. For example, if a respondent is a male and the possible levels are (“Female”, “Male”), then their level of <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> would be <span class="math inline">\((0,1)^T\)</span>.</p>
 <p>This gives the covariance matrix for the first <span class="math inline">\(c-1\)</span> elements of the <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span> vector. Using the usual formula for variance and covariance, it is easy to see that the variance for the final row and column is as shown at the beginning of this section.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;However, the matrix does not need to be calculated in this fashion. Instead, the final row and column (the covariance terms associated with the value &lt;span class="math inline"&gt;\(\pi_c\)&lt;/span&gt;) do not need to be dropped; simply include them in the formulation of &lt;span class="math inline"&gt;\(D\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(S\)&lt;/span&gt;, along with every other term.&lt;/p&gt;&lt;p&gt;Two heuristic arguments are offered for this. First, the variance terms are all exchangeable, so the same formula that applies to the first term applies to the final term under reordering. Thus, any term in the covariance matrix can be found by simply permuting the covariance matrix so that the term is not in the &lt;span class="math inline"&gt;\(c\)&lt;/span&gt;th row or column. As such, the method for calculating the upper left portion of the block matrix clearly applies to the &lt;span class="math inline"&gt;\(c\)&lt;/span&gt;th row and column, which can be calculated directly. Some experiments with NAEP data show that the two methods agree.&lt;/p&gt;&lt;p&gt;The second heuristic argument is that the values of &lt;span class="math inline"&gt;\(\pi_h\)&lt;/span&gt; already meet the requirement of summing up to one when the score vector is set equal to zero and solved. This means that the constraint does not need to be imposed a second time.&lt;/p&gt;'><sup>17</sup></a></p>
 </div>
 </div>
@@ -526,7 +552,7 @@ where <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> is a ve
 dof_{WS} = \frac{1}{m^*} \sum_{p=1}^{m^*} \frac{ \left[ \sum_{j=1}^{J} \left[ (A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^2 \right]^2 }{ \sum_{j=1}^{J}  \left[(A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^4  }
 \end{align}\]</span>
 where <span class="math inline">\(A_{jp}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the <span class="math inline">\(j\)</span>th jackknife replicate value and the <span class="math inline">\(p\)</span>th plausible value, and <span class="math inline">\(A_{0p}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the full sample weights and the <span class="math inline">\(p\)</span>th plausible value. The same is true for the <span class="math inline">\(B\)</span> subscripts. For a regression coefficient, <span class="math inline">\((A_{jp} - A_{0p}) - (B_{jp} - B_{0p})\)</span> is replaced by the <span class="math inline">\(j\)</span>th deviate from the full sample weight coefficient <span class="math inline">\(\beta_{jp} - \beta_{0p}\)</span>.</p>
-<p>The <span class="citation"><a href="references.html#ref-Johnson" role="doc-biblioref">Johnson &amp; Rust</a> (<a href="references.html#ref-Johnson" role="doc-biblioref">1992</a>)</span> corrected degrees of freedom (<span class="math inline">\(dof_{JR}\)</span>) is</p>
+<p>The <span class="citation">Johnson &amp; Rust (<a href="references.html#ref-Johnson" role="doc-biblioref">1992</a>)</span> corrected degrees of freedom (<span class="math inline">\(dof_{JR}\)</span>) is</p>
 <p><span class="math display">\[\begin{align}
 dof_{JR} = \left(3.16 - \frac{2.77}{\sqrt{J}} \right) dof_{WS}
 \end{align}\]</span></p>
@@ -536,7 +562,7 @@ dof_{JR} = \left(3.16 - \frac{2.77}{\sqrt{J}} \right) dof_{WS}
 <span class="header-section-number">11.4.2</span> Estimation of Degrees of Freedom, Using the Taylor Series<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-using-the-taylor-series"><i class="fas fa-link"></i></a>
 </h3>
 <p>For the Taylor series estimator, the degrees of freedom estimator also uses the WS degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>). However, because the jackknife replicate estimates are not available, a different equation is used. The WS weights require an estimate of the degrees of freedom per group; when using the jackknife variance estimator, this was estimated using the jackknife replicate weights. For the Taylor series, this is estimated per stratum.</p>
-<p>Following <span class="citation"><a href="references.html#ref-binder" role="doc-biblioref">Binder</a> (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span> and <span class="citation"><a href="references.html#ref-cohen02" role="doc-biblioref">American Institutes for Research and Jon Cohen</a> (<a href="references.html#ref-cohen02" role="doc-biblioref">n.d.</a>)</span>, the contribution <span class="math inline">\(c_s\)</span> to the degrees of freedom from stratum <span class="math inline">\(s\)</span> is defined as <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> from the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method”:
+<p>Following <span class="citation">Binder (<a href="references.html#ref-binder" role="doc-biblioref">1983</a>)</span> and <span class="citation">American Institutes for Research and Jon Cohen (<a href="references.html#ref-cohen02" role="doc-biblioref">n.d.</a>)</span>, the contribution <span class="math inline">\(c_s\)</span> to the degrees of freedom from stratum <span class="math inline">\(s\)</span> is defined as <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> from the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method”:
 <span class="math display">\[\begin{align}
 c_s = w_s \frac{n_s}{n_s-1} \sum_{u=1}^{n_s} \boldsymbol{\mathbf{z}}_{uj} \boldsymbol{\mathbf{z}}_{uj}^T
 \end{align}\]</span>
@@ -564,7 +590,7 @@ where <span class="math inline">\(s_1^2\)</span> and <span class="math inline">\
 <p>Analysts estimate weighted mixed models, by plausible value, using the <code>WeMix</code> package. The results are combined as described in this section.</p>
 <p>Estimate the fixed effects from the <code>WeMix</code> results by using
 <span class="math display">\[\begin{align}
-\boldsymbol{\mathbf{\beta}} = \frac{1}{M} \sum_{p=1}^M \boldsymbol{\mathbf{\beta}}_p 
+\boldsymbol{\mathbf{\beta}} = \frac{1}{M} \sum_{p=1}^M \boldsymbol{\mathbf{\beta}}_p
 \end{align}\]</span>
 where <span class="math inline">\(p\)</span> indexes the plausible values, of which there are <span class="math inline">\(M\)</span>. The same formula is used to estimate the variance of the random effects.</p>
 <div id="weighted-mixed-model-variance-estimation" class="section level3" number="11.5.1">
@@ -628,9 +654,9 @@ The variance is the diagonal of the covariance matrix.</p>
     E^T_{1} E_1 &amp; E^T_{1} E_2 &amp; \dots  &amp; E^T_{1} E_s  \\
     E^T_{2} E_1 &amp; E^T_{2} E_2 &amp; \dots  &amp; E^T_{2} E_s \\
     \vdots &amp; \vdots  &amp; \ddots &amp; \vdots \\
-    E^T_{s} E_1 &amp; E^T_{s} E_2  &amp; \dots  &amp;E^T_{s} E_s 
+    E^T_{s} E_1 &amp; E^T_{s} E_2  &amp; \dots  &amp;E^T_{s} E_s
 \end{bmatrix}
- \]</span></p>
+\]</span></p>
 </div>
 <div id="coefficient-variancecovariance-matrix-estimation" class="section level4" number="11.6.1.4">
 <h4>
@@ -743,7 +769,7 @@ The variance is the diagonal of the covariance matrix.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-08-04.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-09-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -756,7 +782,7 @@ The variance is the diagonal of the covariance matrix.</p>
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

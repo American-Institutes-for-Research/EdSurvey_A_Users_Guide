@@ -7,7 +7,7 @@
 <title>Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/dataAccess.html">
@@ -17,11 +17,37 @@
 <meta name="twitter:title" content="Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta name="twitter:description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.16/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -58,7 +84,7 @@
 <li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
 <li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
-<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> “The EdSurvey suggestWeights Function”</a></li>
+<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -86,11 +112,11 @@
 <span class="header-section-number">4.1.1</span> Reading NAEP Data<a class="anchor" aria-label="anchor" href="#reading-naep-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in the NAEP Primer data using the package NAEPprimer</span>
-<span class="va">naep.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#pointing to a NAEP restricted-use file directly by path</span>
-<span class="va">naep.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/NAEP/M36NT2PM.dat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in the NAEP Primer data using the package NAEPprimer</span></span>
+<span><span class="va">naep.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#pointing to a NAEP restricted-use file directly by path</span></span>
+<span><span class="va">naep.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/NAEP/M36NT2PM.dat"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ECLS-data" class="section level2" number="4.2">
@@ -112,38 +138,38 @@
 <span class="header-section-number">4.2.1.1</span> Obtaining ECLS-K Data<a class="anchor" aria-label="anchor" href="#obtaining-ecls-k-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#download ECLS-K data to the root folder</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span><span class="op">)</span>
-
-<span class="co">#if cache = TRUE, it will perform the data caching step now </span>
-<span class="co">#instead of the first readECLS_K2011 call</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#download ECLS-K data to the root folder</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if cache = TRUE, it will perform the data caching step now </span></span>
+<span><span class="co">#instead of the first readECLS_K2011 call</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for no console (silent) output, you can set verbose = FALSE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">1998</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-ecls-k-data" class="section level4" number="4.2.1.2">
 <h4>
 <span class="header-section-number">4.2.1.2</span> Reading ECLS-K Data<a class="anchor" aria-label="anchor" href="#reading-ecls-k-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#read in the student/child data file, specifying the files directly</span>
-<span class="va">eclsk98.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,
-                            filename <span class="op">=</span> <span class="st">"eclsk_98_99_k8_child_v1_0.dat"</span>,
-                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_child.txt"</span><span class="op">)</span>
-
-<span class="co">#by default, the filename is specified as 'eclsk_98_99_k8_child_v1_0.dat',</span>
-<span class="co">#and the default layoutFilename as 'Layout_k8_child.txt',</span>
-<span class="co">#so you can omit the filename and layoutFilename argument when using default filenames.</span>
-<span class="va">eclsk98.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span><span class="op">)</span>
-
-<span class="co">#read in the teacher data file, specifying the filename and its associated layout file</span>
-<span class="va">eclsk98.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,
-                            filename <span class="op">=</span> <span class="st">"ECLSK_98_99_K8_TCH_v1_0.dat"</span>,
-                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_tch.txt"</span><span class="op">)</span>
-
-<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
-<span class="va">eclsk98.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#read in the student/child data file, specifying the files directly</span></span>
+<span><span class="va">eclsk98.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
+<span>                            filename <span class="op">=</span> <span class="st">"eclsk_98_99_k8_child_v1_0.dat"</span>,</span>
+<span>                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_child.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#by default, the filename is specified as 'eclsk_98_99_k8_child_v1_0.dat',</span></span>
+<span><span class="co">#and the default layoutFilename as 'Layout_k8_child.txt',</span></span>
+<span><span class="co">#so you can omit the filename and layoutFilename argument when using default filenames.</span></span>
+<span><span class="va">eclsk98.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#read in the teacher data file, specifying the filename and its associated layout file</span></span>
+<span><span class="va">eclsk98.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
+<span>                            filename <span class="op">=</span> <span class="st">"ECLSK_98_99_K8_TCH_v1_0.dat"</span>,</span>
+<span>                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_tch.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span></span>
+<span><span class="va">eclsk98.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ecls-k2011" class="section level3" number="4.2.2">
@@ -157,33 +183,33 @@
 <span class="header-section-number">4.2.2.1</span> Obtaining ECLS-K:2011 Data<a class="anchor" aria-label="anchor" href="#obtaining-ecls-k2011-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#download ECLS-K 2011 data to the root folder</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span>
-
-<span class="co">#if cache = TRUE, it will perform the data caching step now </span>
-<span class="co">#instead of the first readECLS_K2011 call</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#download ECLS-K 2011 data to the root folder</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if cache = TRUE, it will perform the data caching step now </span></span>
+<span><span class="co">#instead of the first readECLS_K2011 call</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for no console (silent) output, you can set verbose = FALSE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2011</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-ecls-k2011-data" class="section level4" number="4.2.2.2">
 <h4>
 <span class="header-section-number">4.2.2.2</span> Reading ECLS-K:2011 Data<a class="anchor" aria-label="anchor" href="#reading-ecls-k2011-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#read in the student/child data, file specifying the files directly</span>
-<span class="va">eclsk11.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>,
-                            filename <span class="op">=</span> <span class="st">"childK5p.dat"</span>,
-                            layoutFilename <span class="op">=</span> <span class="st">"ECLSK2011_K5PUF.sps"</span><span class="op">)</span>
-
-<span class="co">#by default, the filename is specified as 'childK5p.dat',</span>
-<span class="co">#and the default layoutFilename as 'ECLSK2011_K5PUF.sps',</span>
-<span class="co">#so you can omit the filename and layoutFilename argument when using default filenames</span>
-<span class="va">eclsk11.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span><span class="op">)</span>
-
-<span class="co">#setting verbose = FALSE stops console message output (silent) of the function</span>
-<span class="va">eclsk11.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#read in the student/child data, file specifying the files directly</span></span>
+<span><span class="va">eclsk11.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>,</span>
+<span>                            filename <span class="op">=</span> <span class="st">"childK5p.dat"</span>,</span>
+<span>                            layoutFilename <span class="op">=</span> <span class="st">"ECLSK2011_K5PUF.sps"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#by default, the filename is specified as 'childK5p.dat',</span></span>
+<span><span class="co">#and the default layoutFilename as 'ECLSK2011_K5PUF.sps',</span></span>
+<span><span class="co">#so you can omit the filename and layoutFilename argument when using default filenames</span></span>
+<span><span class="va">eclsk11.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function</span></span>
+<span><span class="va">eclsk11.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ecls-b" class="section level3" number="4.2.3">
@@ -196,10 +222,10 @@
 <span class="header-section-number">4.2.3.1</span> Reading ECLS_B Data<a class="anchor" aria-label="anchor" href="#reading-ecls_b-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#read in the ECLS-B data</span>
-<span class="va">eclsb.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_B.html">readECLS_B</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/ECLS_B"</span>,
-                      filename <span class="op">=</span> <span class="st">"ChildK07.dat"</span>,
-                      layoutFilename <span class="op">=</span> <span class="st">"eclsb.sps"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#read in the ECLS-B data</span></span>
+<span><span class="va">eclsb.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_B.html">readECLS_B</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/ECLS_B"</span>,</span>
+<span>                      filename <span class="op">=</span> <span class="st">"ChildK07.dat"</span>,</span>
+<span>                      layoutFilename <span class="op">=</span> <span class="st">"eclsb.sps"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -217,39 +243,39 @@
 <span class="header-section-number">4.3.1</span> Obtaining ELS Data<a class="anchor" aria-label="anchor" href="#obtaining-els-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#download ELS:2002 data to the root folder</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span><span class="op">)</span>
-
-<span class="co">#if cache = TRUE, it will perform the data caching step now</span>
-<span class="co">#instead of the first readELS call</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#download ELS:2002 data to the root folder</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if cache = TRUE, it will perform the data caching step now</span></span>
+<span><span class="co">#instead of the first readELS call</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for no console (silent) output, you can set verbose = FALSE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadELS.html">downloadELS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2002</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-els-data" class="section level3" number="4.3.2">
 <h3>
 <span class="header-section-number">4.3.2</span> Reading ELS Data<a class="anchor" aria-label="anchor" href="#reading-els-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in the ELS student data file</span>
-<span class="va">els.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,
-                 filename <span class="op">=</span> <span class="st">"els_02_12_byf3pststu_v1_0.sav"</span>,
-                 wgtFilename <span class="op">=</span> <span class="st">"els_02_12_byf3stubrr_v1_0.sav"</span><span class="op">)</span>
-
-<span class="co">#by default the filename is specified as 'els_02_12_byf3pststu_v1_0.sav',</span>
-<span class="co">#and the default wgtFilename as 'els_02_12_byf3stubrr_v1_0.sav,'</span>
-<span class="co">#so you can omit the filename and wgtFilename argument when using default filenames</span>
-<span class="va">els.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span><span class="op">)</span>
-
-<span class="co">#to read in a school data file</span>
-<span class="co">#wgtFilename can either be omitted or set to 'NA' value as it's not applicable</span>
-<span class="va">els.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,
-                 filename <span class="op">=</span> <span class="st">"els_02_12_byf1sch_v1_0.sav"</span>,
-                 wgtFilename <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
-
-<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
-<span class="va">els.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in the ELS student data file</span></span>
+<span><span class="va">els.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,</span>
+<span>                 filename <span class="op">=</span> <span class="st">"els_02_12_byf3pststu_v1_0.sav"</span>,</span>
+<span>                 wgtFilename <span class="op">=</span> <span class="st">"els_02_12_byf3stubrr_v1_0.sav"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#by default the filename is specified as 'els_02_12_byf3pststu_v1_0.sav',</span></span>
+<span><span class="co">#and the default wgtFilename as 'els_02_12_byf3stubrr_v1_0.sav,'</span></span>
+<span><span class="co">#so you can omit the filename and wgtFilename argument when using default filenames</span></span>
+<span><span class="va">els.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#to read in a school data file</span></span>
+<span><span class="co">#wgtFilename can either be omitted or set to 'NA' value as it's not applicable</span></span>
+<span><span class="va">els.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>,</span>
+<span>                 filename <span class="op">=</span> <span class="st">"els_02_12_byf1sch_v1_0.sav"</span>,</span>
+<span>                 wgtFilename <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span></span>
+<span><span class="va">els.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readELS.html">readELS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ELS/2002"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="hsls-high-school-longitudinal-study-of-2009" class="section level2" number="4.4">
@@ -266,42 +292,42 @@
 <span class="header-section-number">4.4.1</span> Obtaining HSLS Data<a class="anchor" aria-label="anchor" href="#obtaining-hsls-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#download HSLS:09 data to the root folder</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span>
-
-<span class="co">#if cache = TRUE, it will perform the data caching step now</span>
-<span class="co">#instead of the first readHSLS call</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for no console (silent) output, you can set verbose = FALSE</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#download HSLS:09 data to the root folder</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if cache = TRUE, it will perform the data caching step now</span></span>
+<span><span class="co">#instead of the first readHSLS call</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for no console (silent) output, you can set verbose = FALSE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadHSLS.html">downloadHSLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2009</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-hsls-data" class="section level3" number="4.4.2">
 <h3>
 <span class="header-section-number">4.4.2</span> Reading HSLS Data<a class="anchor" aria-label="anchor" href="#reading-hsls-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in the HSLS student data file</span>
-<span class="va">hsls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
-                   filename <span class="op">=</span> <span class="st">"hsls_16_student_v1_0.sav"</span><span class="op">)</span>
-
-<span class="co">#by default the filename is specified as 'hsls_16_student_v1_0.sav', </span>
-<span class="co">#so you can omit the filename argument.</span>
-<span class="va">hsls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span><span class="op">)</span>
-
-<span class="co">#to read in the school data file</span>
-<span class="va">hsls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
-                   filename <span class="op">=</span> <span class="st">"hsls_09_school_v1_0.sav"</span><span class="op">)</span>
-
-<span class="co">#in rare instances (such as using restricted-use data),</span>
-<span class="co">#you also may need to specify a `weight` file </span>
-<span class="co">#that contains the study replicate weight variables</span>
-<span class="va">hsls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, 
-                   filename <span class="op">=</span> <span class="st">"student.sav"</span>, 
-                   wgtFilename <span class="op">=</span> <span class="st">"student_weight.sav"</span><span class="op">)</span>
-
-<span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span>
-<span class="va">hsls.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in the HSLS student data file</span></span>
+<span><span class="va">hsls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, </span>
+<span>                   filename <span class="op">=</span> <span class="st">"hsls_16_student_v1_0.sav"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#by default the filename is specified as 'hsls_16_student_v1_0.sav', </span></span>
+<span><span class="co">#so you can omit the filename argument.</span></span>
+<span><span class="va">hsls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#to read in the school data file</span></span>
+<span><span class="va">hsls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, </span>
+<span>                   filename <span class="op">=</span> <span class="st">"hsls_09_school_v1_0.sav"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#in rare instances (such as using restricted-use data),</span></span>
+<span><span class="co">#you also may need to specify a `weight` file </span></span>
+<span><span class="co">#that contains the study replicate weight variables</span></span>
+<span><span class="va">hsls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, </span>
+<span>                   filename <span class="op">=</span> <span class="st">"student.sav"</span>, </span>
+<span>                   wgtFilename <span class="op">=</span> <span class="st">"student_weight.sav"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span></span>
+<span><span class="va">hsls.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readHSLS.html">readHSLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/HSLS/2009"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="iccs-and-cived-international-civic-and-citizen-education-study-and-civic-education-study-1999" class="section level2" number="4.5">
@@ -319,90 +345,90 @@
 <span class="header-section-number">4.5.1</span> Obtaining CivED Data<a class="anchor" aria-label="anchor" href="#obtaining-cived-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#View instructions for obtaining the CivED Study files from the IEA Data Repository</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">1999</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#View instructions for obtaining the CivED Study files from the IEA Data Repository</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">1999</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="obtaining-iccs-data" class="section level3" number="4.5.2">
 <h3>
 <span class="header-section-number">4.5.2</span> Obtaining ICCS Data<a class="anchor" aria-label="anchor" href="#obtaining-iccs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#View instructions for obtaining the ICCS Study files from the IEA Data Repository</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#View instructions for obtaining the ICCS Study files from the IEA Data Repository</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadCivEDICCS.html">downloadCivEDICCS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2009</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-cived-data" class="section level3" number="4.5.3">
 <h3>
 <span class="header-section-number">4.5.3</span> Reading CivED Data<a class="anchor" aria-label="anchor" href="#reading-cived-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 8th-grade student data</span>
-<span class="co">#having dataSet = "student", includes School-, Student-, and Teacher-level </span>
-<span class="co">#information (because they can be merged).</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">cived.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
-                             countries <span class="op">=</span> <span class="st">"deu"</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year for 8th-grade student data</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">cived.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"cze"</span><span class="op">)</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path</span>
-<span class="co">#specifying the dataSet= "teacher", includes the Teacher and School levels only </span>
-<span class="co">#(because they can be merged)</span>
-<span class="va">cived.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
-                             countries <span class="op">=</span> <span class="st">"*"</span>,
-                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#for CivED there is a grade 12 dataset with only student-level data</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">cived.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cze"</span>, <span class="st">"est"</span><span class="op">)</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year for 8th-grade student data</span></span>
+<span><span class="co">#having dataSet = "student", includes School-, Student-, and Teacher-level </span></span>
+<span><span class="co">#information (because they can be merged).</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">cived.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="st">"deu"</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year for 8th-grade student data</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">cived.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"cze"</span><span class="op">)</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path</span></span>
+<span><span class="co">#specifying the dataSet= "teacher", includes the Teacher and School levels only </span></span>
+<span><span class="co">#(because they can be merged)</span></span>
+<span><span class="va">cived.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for CivED there is a grade 12 dataset with only student-level data</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">cived.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cze"</span>, <span class="st">"est"</span><span class="op">)</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-iccs-data" class="section level3" number="4.5.4">
 <h3>
 <span class="header-section-number">4.5.4</span> Reading ICCS Data<a class="anchor" aria-label="anchor" href="#reading-iccs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 8th-grade student data</span>
-<span class="co">#having dataSet = "student", includes School- and Student-level data</span>
-<span class="co">#(they can be merged together).</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">iccs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
-                             countries <span class="op">=</span> <span class="st">"kor"</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#reading in a single country for a single year for 8th-grade teacher data</span>
-<span class="co">#having dataSet = "teacher", includes School- and Teacher-level data</span>
-<span class="co">#(they can be merged together).</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">iccs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
-                             countries <span class="op">=</span> <span class="st">"kor"</span>,
-                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#you must still specify the dataSet and gradeLvl arguments</span>
-<span class="co">#for the correct dataset to analyze</span>
-<span class="va">iccs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
-                             countries <span class="op">=</span> <span class="st">"*"</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#for ICCS there is a grade 9 dataset with only student-level data</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">iccs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year for 8th-grade student data</span></span>
+<span><span class="co">#having dataSet = "student", includes School- and Student-level data</span></span>
+<span><span class="co">#(they can be merged together).</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">iccs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in a single country for a single year for 8th-grade teacher data</span></span>
+<span><span class="co">#having dataSet = "teacher", includes School- and Teacher-level data</span></span>
+<span><span class="co">#(they can be merged together).</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">iccs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#you must still specify the dataSet and gradeLvl arguments</span></span>
+<span><span class="co">#for the correct dataset to analyze</span></span>
+<span><span class="va">iccs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for ICCS there is a grade 9 dataset with only student-level data</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">iccs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="icils-international-computer-and-information-literacy-study" class="section level2" number="4.6">
@@ -419,39 +445,39 @@
 <span class="header-section-number">4.6.1</span> Obtaining ICILS Data<a class="anchor" aria-label="anchor" href="#obtaining-icils-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#the downloadICILS function will display instructions for</span>
-<span class="co">#downloading the ICILS data from the IEA Data Repository</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadICILS.html">downloadICILS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#the downloadICILS function will display instructions for</span></span>
+<span><span class="co">#downloading the ICILS data from the IEA Data Repository</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadICILS.html">downloadICILS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-icils-data" class="section level3" number="4.6.2">
 <h3>
 <span class="header-section-number">4.6.2</span> Reading ICILS Data<a class="anchor" aria-label="anchor" href="#reading-icils-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for ICILS 2013 student data</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">icils.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
-                     countries <span class="op">=</span> <span class="st">"chl"</span>,
-                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year for teacher level data</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">icils.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
-                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"svk"</span>, <span class="st">"svn"</span><span class="op">)</span>,
-                     dataSet <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list of all found countries</span>
-<span class="va">icils.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,
-                     countries <span class="op">=</span> <span class="st">"*"</span>,
-                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span>
-
-<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">icils.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ICILS/2013"</span>, 
-                                      <span class="st">"C:/EdSurveyData/ICILS/2018"</span><span class="op">)</span>, 
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"dnk"</span><span class="op">)</span>,
-                             dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for ICILS 2013 student data</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">icils.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,</span>
+<span>                     countries <span class="op">=</span> <span class="st">"chl"</span>,</span>
+<span>                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year for teacher level data</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">icils.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,</span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"svk"</span>, <span class="st">"svn"</span><span class="op">)</span>,</span>
+<span>                     dataSet <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list of all found countries</span></span>
+<span><span class="va">icils.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICILS/2013"</span>,</span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">icils.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ICILS/2013"</span>, </span>
+<span>                                      <span class="st">"C:/EdSurveyData/ICILS/2018"</span><span class="op">)</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"dnk"</span><span class="op">)</span>,</span>
+<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="timss-trends-in-international-mathematics-and-science-study" class="section level2" number="4.7">
@@ -469,46 +495,46 @@
 <span class="header-section-number">4.7.1</span> Obtaining TIMSS Data<a class="anchor" aria-label="anchor" href="#obtaining-timss-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2011 and 2015 study years</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
-<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
-<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for silent output with no message output set the verbose argument to FALSE (verbose = FALSE).</span>
-<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE </span>
-<span class="co">#because you won't see the progress.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#obtain the data to analyze for both 2011 and 2015 study years</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span></span>
+<span><span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span></span>
+<span><span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for silent output with no message output set the verbose argument to FALSE (verbose = FALSE).</span></span>
+<span><span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE </span></span>
+<span><span class="co">#because you won't see the progress.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSS.html">downloadTIMSS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2015</span><span class="op">)</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-timss-data" class="section level3" number="4.7.2">
 <h3>
 <span class="header-section-number">4.7.2</span> Reading TIMSS Data<a class="anchor" aria-label="anchor" href="#reading-timss-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year for 4th grade</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">timss.1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year for 8th grade</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">timss.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>,
-                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,
-                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">timss.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, 
-                             countries <span class="op">=</span> <span class="st">"*"</span>, 
-                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">timss.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, 
-                              <span class="st">"C:/EdSurveyData/TIMSS/2011"</span><span class="op">)</span>, 
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span>,
-                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year for 4th grade</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">timss.1</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year for 8th grade</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">timss.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>,</span>
+<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
+<span>                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">timss.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="st">"*"</span>, </span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">timss.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, </span>
+<span>                              <span class="st">"C:/EdSurveyData/TIMSS/2011"</span><span class="op">)</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span>,</span>
+<span>                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="timss-advanced-trends-in-international-mathematics-and-science-study" class="section level2" number="4.8">
@@ -525,50 +551,50 @@
 <span class="header-section-number">4.8.1</span> Obtaining TIMSS Advanced Data<a class="anchor" aria-label="anchor" href="#obtaining-timss-advanced-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2008 and 2015 study years</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>, 
-                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
-<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
-<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,
-                 cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for silent output with no message output, set the verbose argument to FALSE (verbose = FALSE).</span>
-<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
-<span class="co">#because you won't see the progress.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,
-                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#obtain the data to analyze for both 2008 and 2015 study years</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>, </span>
+<span>                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span></span>
+<span><span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span></span>
+<span><span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,</span>
+<span>                 cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for silent output with no message output, set the verbose argument to FALSE (verbose = FALSE).</span></span>
+<span><span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span></span>
+<span><span class="co">#because you won't see the progress.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTIMSSAdv.html">downloadTIMSSAdv</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2008</span>, <span class="fl">2015</span><span class="op">)</span>,</span>
+<span>                 cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-timss-advanced-data" class="section level3" number="4.8.2">
 <h3>
 <span class="header-section-number">4.8.2</span> Reading TIMSS Advanced Data<a class="anchor" aria-label="anchor" href="#reading-timss-advanced-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year for the 'math' subject data</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">timssadv.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
-                           countries <span class="op">=</span> <span class="st">"usa"</span>, subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">timssadv.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
-                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fra"</span>, <span class="st">"ita"</span>, <span class="st">"svn"</span><span class="op">)</span>,
-                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">timssadv.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,
-                           countries <span class="op">=</span> <span class="st">"*"</span>,
-                           subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span>
-
-<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">timssadv.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>, 
-                                    <span class="st">"C:/EdSurveyData/TIMSSAdv/2008"</span><span class="op">)</span>,
-                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nor"</span>, <span class="st">"swe"</span><span class="op">)</span>,
-                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year for the 'math' subject data</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">timssadv.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,</span>
+<span>                           countries <span class="op">=</span> <span class="st">"usa"</span>, subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">timssadv.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,</span>
+<span>                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fra"</span>, <span class="st">"ita"</span>, <span class="st">"svn"</span><span class="op">)</span>,</span>
+<span>                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">timssadv.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>,</span>
+<span>                           countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                           subject <span class="op">=</span> <span class="st">"math"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">timssadv.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSSAdv.html">readTIMSSAdv</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSSAdv/2015"</span>, </span>
+<span>                                    <span class="st">"C:/EdSurveyData/TIMSSAdv/2008"</span><span class="op">)</span>,</span>
+<span>                           countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nor"</span>, <span class="st">"swe"</span><span class="op">)</span>,</span>
+<span>                           subject <span class="op">=</span> <span class="st">"physics"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="piaac-program-for-the-international-assessment-of-adult-competencies" class="section level2" number="4.9">
@@ -584,42 +610,42 @@
 <span class="header-section-number">4.9.1</span> Obtaining PIAAC Data<a class="anchor" aria-label="anchor" href="#obtaining-piaac-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#obtain the data to analyze cycle 1 data.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
-<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
-<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for silent output with no message output, set the verbose argument </span>
-<span class="co">#to FALSE (verbose = FALSE).</span>
-<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
-<span class="co">#because you won't see the progress</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#obtain the data to analyze cycle 1 data.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span></span>
+<span><span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span></span>
+<span><span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for silent output with no message output, set the verbose argument </span></span>
+<span><span class="co">#to FALSE (verbose = FALSE).</span></span>
+<span><span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span></span>
+<span><span class="co">#because you won't see the progress</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIAAC.html">downloadPIAAC</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, cycle <span class="op">=</span> <span class="fl">1</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-piaac-data" class="section level3" number="4.9.2">
 <h3>
 <span class="header-section-number">4.9.2</span> Reading PIAAC Data<a class="anchor" aria-label="anchor" href="#reading-piaac-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">piaac.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"pol"</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">piaac.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, 
-                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"ltu"</span>, <span class="st">"tur"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">piaac.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span>
-
-<span class="co">#setting verbose to FALSE (verbose = FALSE) suppresses console message output.</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">piaac.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, 
-                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">piaac.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"pol"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">piaac.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pol"</span>, <span class="st">"ltu"</span>, <span class="st">"tur"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">piaac.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting verbose to FALSE (verbose = FALSE) suppresses console message output.</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">piaac.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIAAC.html">readPIAAC</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIAAC/Cycle 1/"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="pirls-and-epirls-progress-in-international-reading-literacy-study" class="section level2" number="4.10">
@@ -641,49 +667,49 @@
 <span class="header-section-number">4.10.1.1</span> Obtaining PIRLS Data<a class="anchor" aria-label="anchor" href="#obtaining-pirls-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#obtain the data to analyze for both 2011 and 2016 study years</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, 
-              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#if you wish to prepare to analyze all countries</span>
-<span class="co">#to have them ready for analysis,</span>
-<span class="co">#set the cache argument to TRUE (cache = TRUE).  </span>
-<span class="co">#Be prepared that this may take some time.</span>
-<span class="co">#setting the verbose argument to TRUE will keep you informed </span>
-<span class="co">#of the progress in the console.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, 
-              cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for silent output with no message output, set the verbose </span>
-<span class="co">#argument to FALSE (verbose = FALSE).</span>
-<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
-<span class="co">#because you won't see the progress.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>,
-              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#obtain the data to analyze for both 2011 and 2016 study years</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, </span>
+<span>              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if you wish to prepare to analyze all countries</span></span>
+<span><span class="co">#to have them ready for analysis,</span></span>
+<span><span class="co">#set the cache argument to TRUE (cache = TRUE).  </span></span>
+<span><span class="co">#Be prepared that this may take some time.</span></span>
+<span><span class="co">#setting the verbose argument to TRUE will keep you informed </span></span>
+<span><span class="co">#of the progress in the console.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>, </span>
+<span>              cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for silent output with no message output, set the verbose </span></span>
+<span><span class="co">#argument to FALSE (verbose = FALSE).</span></span>
+<span><span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span></span>
+<span><span class="co">#because you won't see the progress.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPIRLS.html">downloadPIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2011</span>, <span class="fl">2016</span><span class="op">)</span>,</span>
+<span>              cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-pirls-data" class="section level4" number="4.10.1.2">
 <h4>
 <span class="header-section-number">4.10.1.2</span> Reading PIRLS Data<a class="anchor" aria-label="anchor" href="#reading-pirls-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year</span>
-<span class="va">pirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">pirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>,
-                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fin"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">pirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, 
-                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span>
-
-<span class="co">#specify multiple paths if wishing to read in multiple years.</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">pirls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, 
-                                      <span class="st">"C:/EdSurveyData/PIRLS/2011"</span><span class="op">)</span>, 
-                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year</span></span>
+<span><span class="va">pirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">pirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>,</span>
+<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fin"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">pirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">pirls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, </span>
+<span>                                      <span class="st">"C:/EdSurveyData/PIRLS/2011"</span><span class="op">)</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="epirls" class="section level3" number="4.10.2">
@@ -700,38 +726,38 @@
 <span class="header-section-number">4.10.2.1</span> Obtaining ePIRLS Data<a class="anchor" aria-label="anchor" href="#obtaining-epirls-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#obtain the data to analyze 2016 study year</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span>
-<span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span>
-<span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="co">#for silent output with no message output </span>
-<span class="co">#set the verbose argument to FALSE (verbose = FALSE).</span>
-<span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span>
-<span class="co">#because you won't see the progress.</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#obtain the data to analyze 2016 study year</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#if you wish to prepare to analyze all countries to have them ready for analysis,</span></span>
+<span><span class="co">#set the cache argument to TRUE (cache = TRUE).  Be prepared that this may take some time.</span></span>
+<span><span class="co">#setting the verbose argument to TRUE will keep you informed of the progress in the console.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#for silent output with no message output </span></span>
+<span><span class="co">#set the verbose argument to FALSE (verbose = FALSE).</span></span>
+<span><span class="co">#setting verbose to FALSE is not recommended if cache is set to TRUE, </span></span>
+<span><span class="co">#because you won't see the progress.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/download_ePIRLS.html">download_ePIRLS</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData"</span>, years <span class="op">=</span> <span class="fl">2016</span>, cache <span class="op">=</span> <span class="cn">FALSE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-epirls-data" class="section level4" number="4.10.2.2">
 <h4>
 <span class="header-section-number">4.10.2.2</span> Reading ePIRLS Data<a class="anchor" aria-label="anchor" href="#reading-epirls-data"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for a single year</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">epirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"irl"</span><span class="op">)</span>
-
-<span class="co">#reading in multiple countries for a single year</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">epirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>,
-                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"twn"</span>, <span class="st">"sgp"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">epirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, 
-                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for a single year</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">epirls.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, countries <span class="op">=</span> <span class="st">"irl"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in multiple countries for a single year</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">epirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>,</span>
+<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"twn"</span>, <span class="st">"sgp"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">epirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, </span>
+<span>                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -756,51 +782,51 @@
 <span class="header-section-number">4.11.1</span> Obtaining PISA Data<a class="anchor" aria-label="anchor" href="#obtaining-pisa-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#download the PISA data for 2018</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
-
-<span class="co">#download both 2018 and 2015 data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2018</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#setting cache = TRUE will process all the PISA data and have it ready for EdSurvey</span>
-<span class="co">#this can take some time for all countries</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#download the PISA data for 2018</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#download both 2018 and 2015 data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2018</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting cache = TRUE will process all the PISA data and have it ready for EdSurvey</span></span>
+<span><span class="co">#this can take some time for all countries</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA.html">downloadPISA</a></span><span class="op">(</span>root <span class="op">=</span> <span class="st">"C:/EdSurveyData/"</span>, years <span class="op">=</span> <span class="fl">2018</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-pisa-data" class="section level3" number="4.11.2">
 <h3>
 <span class="header-section-number">4.11.2</span> Reading PISA Data<a class="anchor" aria-label="anchor" href="#reading-pisa-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country with default values specified</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">pisa.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, 
-                   countries <span class="op">=</span> <span class="st">"nzl"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
-
-<span class="co">#reading in a two countries</span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">pisa.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,
-                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nzl"</span>, <span class="st">"aus"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">pisa.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2015"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,
-                   countries <span class="op">=</span> <span class="st">"*"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
-
-<span class="co">#reading in PISA 2012 CBA database specifying cognitive = "none"</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">pisa.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"CBA"</span>,
-                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bel"</span>, <span class="st">"bra"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
-
-<span class="co">#can set multiple paths to read in many years of data</span>
-<span class="va">pisa.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2009"</span>,
-                            <span class="st">"C:/EdSurveyData/PISA/2012"</span>,
-                            <span class="st">"C:/EdSurveyData/PISA/2015"</span>,
-                            <span class="st">"C:/EdSurveyData/PISA/2018"</span><span class="op">)</span>,
-                            database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span>
-                   
-<span class="co">#setting verbose = FALSE suppresses console message output</span>
-<span class="va">pisa.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, 
-                   countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country with default values specified</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">pisa.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, </span>
+<span>                   countries <span class="op">=</span> <span class="st">"nzl"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in a two countries</span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">pisa.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,</span>
+<span>                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nzl"</span>, <span class="st">"aus"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">pisa.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2015"</span>, database <span class="op">=</span> <span class="st">"INT"</span>,</span>
+<span>                   countries <span class="op">=</span> <span class="st">"*"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in PISA 2012 CBA database specifying cognitive = "none"</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">pisa.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"CBA"</span>,</span>
+<span>                   countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bel"</span>, <span class="st">"bra"</span><span class="op">)</span>, cognitive <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#can set multiple paths to read in many years of data</span></span>
+<span><span class="va">pisa.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2009"</span>,</span>
+<span>                            <span class="st">"C:/EdSurveyData/PISA/2012"</span>,</span>
+<span>                            <span class="st">"C:/EdSurveyData/PISA/2015"</span>,</span>
+<span>                            <span class="st">"C:/EdSurveyData/PISA/2018"</span><span class="op">)</span>,</span>
+<span>                            database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
+<span>                   </span>
+<span><span class="co">#setting verbose = FALSE suppresses console message output</span></span>
+<span><span class="va">pisa.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, </span>
+<span>                   countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="pisa-yafs-programme-for-international-student-assessment-young-adult-follow-up-study" class="section level2" number="4.12">
@@ -816,35 +842,35 @@
 <span class="header-section-number">4.12.1</span> Obtaining PISA YAFS Data<a class="anchor" aria-label="anchor" href="#obtaining-pisa-yafs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#View instructions for obtaining PISA YAFS data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA_YAFS.html">downloadPISA_YAFS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#View instructions for obtaining PISA YAFS data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadPISA_YAFS.html">downloadPISA_YAFS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-pisa-yafs-data" class="section level3" number="4.12.2">
 <h3>
 <span class="header-section-number">4.12.2</span> Reading PISA YAFS Data<a class="anchor" aria-label="anchor" href="#reading-pisa-yafs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#Return an edsurvey.data.frame for only the PISA YAFS dataset.</span>
-<span class="co">#Either omit or set the esdf_PISA2012_USA to a NULL value.</span>
-<span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,
-                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,
-                      esdf_PISA2012_USA <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-  </code></pre></div>
+<code class="sourceCode R"><span><span class="co">#Return an edsurvey.data.frame for only the PISA YAFS dataset.</span></span>
+<span><span class="co">#Either omit or set the esdf_PISA2012_USA to a NULL value.</span></span>
+<span><span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,</span>
+<span>                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,</span>
+<span>                      esdf_PISA2012_USA <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span>  </span></code></pre></div>
 </div>
 <div id="link-pisa-yafs-data-to-pisa-2012" class="section level3" number="4.12.3">
 <h3>
 <span class="header-section-number">4.12.3</span> Link PISA YAFS Data to PISA 2012<a class="anchor" aria-label="anchor" href="#link-pisa-yafs-data-to-pisa-2012"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#If wanting to analyze the PISA YAFS dataset with the PISA 2012 </span>
-<span class="co">#U.S dataset, it should be read in first to an edsurvey.data.frame.</span>
-<span class="co">#Then pass the resulting edsurvey.data.frame as a parameter for the</span>
-<span class="co">#esdf_PISA2012_USA argument. No other edsurvey.data.frames are supported.</span>
-<span class="va">usa2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span>
-  
-<span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,
-                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,
-                      esdf_PISA2012_USA <span class="op">=</span> <span class="va">usa2012</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#If wanting to analyze the PISA YAFS dataset with the PISA 2012 </span></span>
+<span><span class="co">#U.S dataset, it should be read in first to an edsurvey.data.frame.</span></span>
+<span><span class="co">#Then pass the resulting edsurvey.data.frame as a parameter for the</span></span>
+<span><span class="co">#esdf_PISA2012_USA argument. No other edsurvey.data.frames are supported.</span></span>
+<span><span class="va">usa2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,</span>
+<span>                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,</span>
+<span>                      esdf_PISA2012_USA <span class="op">=</span> <span class="va">usa2012</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="talis-teaching-and-learning-international-survey" class="section level2" number="4.13">
@@ -861,46 +887,46 @@
 <span class="header-section-number">4.13.1</span> Obtaining TALIS Data<a class="anchor" aria-label="anchor" href="#obtaining-talis-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#view instructions for obtaining TALIS 2008 data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2008</span><span class="op">)</span>
-
-<span class="co">#view instructions for obtaining TALIS 2013 data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#view instructions for obtaining TALIS 2008 data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2008</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#view instructions for obtaining TALIS 2013 data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadTALIS.html">downloadTALIS</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-talis-data" class="section level3" number="4.13.2">
 <h3>
 <span class="header-section-number">4.13.2</span> Reading TALIS Data<a class="anchor" aria-label="anchor" href="#reading-talis-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single country for isced='b' and dataLevel='teacher'</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">talis.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2008"</span>, 
-                     countries <span class="op">=</span> <span class="st">"bra"</span>, isced <span class="op">=</span> <span class="st">"b"</span>, 
-                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
-
-<span class="co">#reading in a two countries for isced='c' and dataLevel='school'</span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">talis.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
-                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"mex"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"c"</span>, 
-                     dataLevel <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span>
-
-<span class="co">#use the wildcard to search for all available countries in the path. </span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">talis.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
-                     countries <span class="op">=</span> <span class="st">"*"</span>, isced <span class="op">=</span> <span class="st">"a"</span>, 
-                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
-
-<span class="co">#reading in countries from multiple file paths</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">talis.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TALIS/2008"</span>, 
-                              <span class="st">"C:/EdSurveyData/TALIS/2013"</span><span class="op">)</span>,
-                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"esp"</span>, <span class="st">"ita"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"b"</span>, 
-                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span>
-
-<span class="co">#isced defaults to a value of 'b' and dataLevel defaults to 'teacher'.</span>
-<span class="co">#setting verbose = FALSE suppresses console message output.</span>
-<span class="va">talis.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, 
-                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single country for isced='b' and dataLevel='teacher'</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">talis.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2008"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="st">"bra"</span>, isced <span class="op">=</span> <span class="st">"b"</span>, </span>
+<span>                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in a two countries for isced='c' and dataLevel='school'</span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">talis.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"mex"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"c"</span>, </span>
+<span>                     dataLevel <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">talis.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span>, isced <span class="op">=</span> <span class="st">"a"</span>, </span>
+<span>                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in countries from multiple file paths</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">talis.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TALIS/2008"</span>, </span>
+<span>                              <span class="st">"C:/EdSurveyData/TALIS/2013"</span><span class="op">)</span>,</span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"esp"</span>, <span class="st">"ita"</span><span class="op">)</span>, isced <span class="op">=</span> <span class="st">"b"</span>, </span>
+<span>                     dataLevel <span class="op">=</span> <span class="st">"teacher"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#isced defaults to a value of 'b' and dataLevel defaults to 'teacher'.</span></span>
+<span><span class="co">#setting verbose = FALSE suppresses console message output.</span></span>
+<span><span class="va">talis.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTALIS.html">readTALIS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TALIS/2013"</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="nhes-national-household-education-surveys" class="section level2" number="4.14">
@@ -916,39 +942,39 @@
 <span class="header-section-number">4.14.1</span> Obtaining NHES Data<a class="anchor" aria-label="anchor" href="#obtaining-nhes-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#view instructions for obtaining NHES data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadNHES.html">downloadNHES</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#view instructions for obtaining NHES data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadNHES.html">downloadNHES</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-nhes-data" class="section level3" number="4.14.2">
 <h3>
 <span class="header-section-number">4.14.2</span> Reading NHES Data<a class="anchor" aria-label="anchor" href="#reading-nhes-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single file for Early Childhood Program Participation</span>
-<span class="co">#file obtained from Online Codebook, so surveyCode = "auto" works (the default)</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">nhes.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, 
-                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span>
-
-<span class="co">#reading in a two files across two years (2019 and 2016 ECCP)</span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,
-                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span>
-<span class="va">nhes.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>, 
-                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span>
-
-<span class="co">#setting the 'surveyCode' parameter explicitly if 'auto' fails.</span>
-<span class="co">#returns edsurvey.data.frame</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/viewNHES_SurveyCodes.html">viewNHES_SurveyCodes</a></span><span class="op">(</span><span class="op">)</span> 
-<span class="va">nhes.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, 
-                   surveyCode <span class="op">=</span> <span class="st">"ECPP_2019"</span><span class="op">)</span>
-
-<span class="co">#reading multiple files with explicit 'surveyCode' parameter</span>
-<span class="co">#returns an edsurvey.data.frame.list</span>
-<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,
-                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span>
-<span class="va">nhes.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>,
-                   surveyCode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ECPP_2019"</span>, <span class="st">"ECPP_2016"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single file for Early Childhood Program Participation</span></span>
+<span><span class="co">#file obtained from Online Codebook, so surveyCode = "auto" works (the default)</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">nhes.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, </span>
+<span>                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in a two files across two years (2019 and 2016 ECCP)</span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,</span>
+<span>                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span></span>
+<span><span class="va">nhes.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>, </span>
+<span>                   surveyCode <span class="op">=</span> <span class="st">"auto"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting the 'surveyCode' parameter explicitly if 'auto' fails.</span></span>
+<span><span class="co">#returns edsurvey.data.frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/viewNHES_SurveyCodes.html">viewNHES_SurveyCodes</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="va">nhes.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>, </span>
+<span>                   surveyCode <span class="op">=</span> <span class="st">"ECPP_2019"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading multiple files with explicit 'surveyCode' parameter</span></span>
+<span><span class="co">#returns an edsurvey.data.frame.list</span></span>
+<span><span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/NHES/2019/nhes_19_ecpp_v1_0.sav"</span>,</span>
+<span>                 <span class="st">"C:/EdSurveyData/NHES/2016/nhes_16_ecpp_v1_0.sav"</span><span class="op">)</span></span>
+<span><span class="va">nhes.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNHES.html">readNHES</a></span><span class="op">(</span>savFiles <span class="op">=</span> <span class="va">importFiles</span>,</span>
+<span>                   surveyCode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ECPP_2019"</span>, <span class="st">"ECPP_2016"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ssocs-school-survey-on-crime-and-safety" class="section level2" number="4.15">
@@ -964,31 +990,31 @@
 <span class="header-section-number">4.15.1</span> Obtaining SSOCS Data<a class="anchor" aria-label="anchor" href="#obtaining-ssocs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#view instructions for obtaining SSOCS data</span>
-<span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadSSOCS.html">downloadSSOCS</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#view instructions for obtaining SSOCS data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadSSOCS.html">downloadSSOCS</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-ssocs-data" class="section level3" number="4.15.2">
 <h3>
 <span class="header-section-number">4.15.2</span> Reading SSOCS Data<a class="anchor" aria-label="anchor" href="#reading-ssocs-data"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#reading in a single file for 2018 survey</span>
-<span class="co">#returns a single edsurvey.data.frame</span>
-<span class="va">ssocs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, 
-                     years <span class="op">=</span> <span class="st">"2018"</span><span class="op">)</span>
-
-<span class="co">#reading in a two files across two years (2018 and 2016)</span>
-<span class="co">#returns edsurvey.data.frame.list</span>
-<span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>,
-                 <span class="st">"C:/EdSurveyData/SSOCS/2016/pu_ssocs16.sas7bdat"</span><span class="op">)</span>
-<span class="va">ssocs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="va">importFiles</span>, 
-                     years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2018"</span>, <span class="st">"2016"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#setting the 'verbose = FALSE' parameter for silent output.</span>
-<span class="co">#returns edsurvey.data.frame</span>
-<span class="va">ssocs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, 
-                     years <span class="op">=</span> <span class="st">"2018"</span>,
-                     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#reading in a single file for 2018 survey</span></span>
+<span><span class="co">#returns a single edsurvey.data.frame</span></span>
+<span><span class="va">ssocs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, </span>
+<span>                     years <span class="op">=</span> <span class="st">"2018"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#reading in a two files across two years (2018 and 2016)</span></span>
+<span><span class="co">#returns edsurvey.data.frame.list</span></span>
+<span><span class="va">importFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>,</span>
+<span>                 <span class="st">"C:/EdSurveyData/SSOCS/2016/pu_ssocs16.sas7bdat"</span><span class="op">)</span></span>
+<span><span class="va">ssocs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="va">importFiles</span>, </span>
+<span>                     years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2018"</span>, <span class="st">"2016"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#setting the 'verbose = FALSE' parameter for silent output.</span></span>
+<span><span class="co">#returns edsurvey.data.frame</span></span>
+<span><span class="va">ssocs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readSSOCS.html">readSSOCS</a></span><span class="op">(</span>sasDataFiles <span class="op">=</span> <span class="st">"C:/EdSurveyData/SSOCS/2018/pu_ssocs18.sas7bdat"</span>, </span>
+<span>                     years <span class="op">=</span> <span class="st">"2018"</span>,</span>
+<span>                     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 
 </div>
 </div>
@@ -1108,7 +1134,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-08-04.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-09-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1121,7 +1147,7 @@
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
