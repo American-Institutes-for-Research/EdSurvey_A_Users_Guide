@@ -16,7 +16,7 @@ Please refer to the study-specific documentation for more comprehensive informat
 
 As discussed earlier, it is important to weight the data in your analyses using an appropriate sampling weight. However, with more than 100 base weights available in the ECLS-K:2011 data, you may find it difficult to choose. The `suggestWeights` function allows you to specify the variables you intend to use in an analysis, suggests a list of sample weights that may be appropriate for the analysis, and provides you with a head start to make informed decisions about weight selection.
 
-To use the `suggestWeights` function, the first step is to attach the `EdSurvey` package and load the ECLS-K:2011 data. For more information, see `EdSurvey`'s vignette on [Using EdSurvey to Analyze ECLS-K:2011 Data](https://www.air.org/sites/default/files/EdSurvey-ECLS.pdf). The following code attaches the `EdSurvey` package and reads in the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file with the parameters specified as follows:
+To use the `suggestWeights` function, the first step is to attach the `EdSurvey` package and load the ECLS-K:2011 data. For more information, see [10. Longitudinal Datasets][Longitudinal Datasets]. The following code attaches the `EdSurvey` package and reads in the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file with the parameters specified as follows:
 
 ```{r, results='hide', message=FALSE}
 #library(EdSurvey)
@@ -35,7 +35,7 @@ The following example demonstrates an analysis using child assessment data from 
 suggestWeights(c("x7mscalk5", "x8mscalk5", "x9mscalk5"), eclsk11)
 ```
 
-The weight returned by the `suggestWeights` function can be used in `EdSurvey`'s analytic functions for further analysis. For the ECLS-K:2011 study, `EdSurvey` uses all corresponding replicate weights and estimates the variance of the coefficients with the Jackknife method. Additional information on variance estimation of ECLS-K:2011 variables is available in the [Using EdSurvey to Analyze ECLS-K:2011 Data](https://www.air.org/sites/default/files/EdSurvey-ECLS.pdf) vignette.
+The weight returned by the `suggestWeights` function can be used in `EdSurvey`'s analytic functions for further analysis. For the ECLS-K:2011 study, `EdSurvey` uses all corresponding replicate weights and estimates the variance of the coefficients with the Jackknife method. Additional information on variance estimation of ECLS-K:2011 variables is available in [10. Longitudinal Datasets][Longitudinal Datasets].
 
 To print out additional information on weight suggestion, such as the number of cases with a valid main sampling weight, weight description, variables(s) used in weight suggestions and variable(s) that the user has specified but are not used in the weight suggestion, use the `verbose = TRUE` option:
 
