@@ -68,25 +68,7 @@
 </form>
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
-<li><a class="" href="cover-page.html">Cover Page</a></li>
-<li><a class="" href="preface.html">Preface</a></li>
-<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
-<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
-<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
-<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
-<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
-<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
-<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
-<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
-<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
-<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
-<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
-<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
-<li><a class="active" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+        <ul class="book-toc list-unstyled"><li><a class="" href="index.html"><span class="header-section-number">Chapter 13</span> The EdSurvey suggestWeights Function</a></li></ul>
 
         <div class="book-extra">
           <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
@@ -113,24 +95,23 @@
 </h2>
 <p>As discussed earlier, it is important to weight the data in your analyses using an appropriate sampling weight. However, with more than 100 base weights available in the ECLS-K:2011 data, you may find it difficult to choose. The <code>suggestWeights</code> function allows you to specify the variables you intend to use in an analysis, suggests a list of sample weights that may be appropriate for the analysis, and provides you with a head start to make informed decisions about weight selection.</p>
 <p>To use the <code>suggestWeights</code> function, the first step is to attach the <code>EdSurvey</code> package and load the ECLS-K:2011 data. For more information, see <a href="longitudinal-datasets.html#longitudinal-datasets">10. Longitudinal Datasets</a>. The following code attaches the <code>EdSurvey</code> package and reads in the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file with the parameters specified as follows:</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#library(EdSurvey)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/load_all.html">load_all</a></span><span class="op">(</span><span class="st">"C:/GIT/EdSurvey_internal"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.air.org/project/nces-data-r-project-edsurvey">EdSurvey</a></span><span class="op">)</span></span>
 <span><span class="va">eclsk11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, </span>
 <span>                          filename <span class="op">=</span> <span class="st">"childK5p.dat"</span>, </span>
 <span>                          layoutFilename <span class="op">=</span> <span class="st">"ECLSK2011_K5PUF.sps"</span>, </span>
 <span>                          verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Next, provide the variable(s) intended to use for the analysis. The <code>suggestWeights</code> function can suggest weight(s) from the variable(s) provided. If you create new variables or rename variables, you will need to enter the source variables used for creating these variables in <code>suggestWeights</code> because the function uses information from the original variable name to determine the component and the round before it returns suggested weight(s).</p>
 <p>The following example demonstrates an analysis using child assessment data from spring third grade. The weight <code>w9c790</code> would be suggested once the variables are specified. As shown in the ECLS-K:2011 <em>User’s Manual</em> <span class="citation">(<a href="references.html#ref-Tourangeau19" role="doc-biblioref">Tourangeau, 2019</a>)</span>, the weight <code>w9c790</code> is “child base weight adjusted for nonresponse associated with child assessment/child questionnaire data from spring third grade, spring fourth grade, and spring fifth grade (C7C8C9).”</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">suggestWeights</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x7mscalk5"</span>, <span class="st">"x8mscalk5"</span>, <span class="st">"x9mscalk5"</span><span class="op">)</span>, <span class="va">eclsk11</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/suggestWeights.html">suggestWeights</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x7mscalk5"</span>, <span class="st">"x8mscalk5"</span>, <span class="st">"x9mscalk5"</span><span class="op">)</span>, <span class="va">eclsk11</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Based on your specification, below is/are the suggested weight(s). But please double </span></span>
 <span><span class="co">#&gt;           check the manual to be sure to use the best weight for your analysis.</span></span>
 <span><span class="co">#&gt; [1] "w9c790"</span></span></code></pre></div>
 <p>The weight returned by the <code>suggestWeights</code> function can be used in <code>EdSurvey</code>’s analytic functions for further analysis. For the ECLS-K:2011 study, <code>EdSurvey</code> uses all corresponding replicate weights and estimates the variance of the coefficients with the Jackknife method. Additional information on variance estimation of ECLS-K:2011 variables is available in <a href="longitudinal-datasets.html#longitudinal-datasets">10. Longitudinal Datasets</a>.</p>
 <p>To print out additional information on weight suggestion, such as the number of cases with a valid main sampling weight, weight description, variables(s) used in weight suggestions and variable(s) that the user has specified but are not used in the weight suggestion, use the <code>verbose = TRUE</code> option:</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">suggestWeights</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1mscalk5"</span>, <span class="st">"x2mscalk5"</span>, <span class="st">"x3mscalk5"</span>, <span class="st">"x4mscalk5"</span>,</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/suggestWeights.html">suggestWeights</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1mscalk5"</span>, <span class="st">"x2mscalk5"</span>, <span class="st">"x3mscalk5"</span>, <span class="st">"x4mscalk5"</span>,</span>
 <span>    <span class="st">"x5mscalk5"</span>, <span class="st">"x6mscalk5"</span>, <span class="st">"x7mscalk5"</span>, <span class="st">"x8mscalk5"</span><span class="op">)</span>, <span class="va">eclsk11</span>,</span>
 <span>    verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Based on your specification, below is/are the suggested weight(s). But please double </span></span>
@@ -157,8 +138,8 @@
 <span><span class="co">#&gt; 8 x8mscalk5 Spring 2015 composite/derived variables</span></span>
 <span><span class="co">#&gt; [1] "w8cf8p_80"</span></span></code></pre></div>
 <p>Often, there are trade-offs for using one weight versus another among the possible weights, and you may want to compare using different weights before making a final decision. To display all applicable weights that adjust for nonresponse to more components than what are included in the analysis, which typically are more conservative with smaller sample size, use the <code>showAllWeightSuggestions = TRUE</code> option:</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">suggestWeights</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1mscalk5"</span>, <span class="st">"x2mscalk5"</span>, <span class="st">"x3mscalk5"</span>, <span class="st">"x4mscalk5"</span>,</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/suggestWeights.html">suggestWeights</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x1mscalk5"</span>, <span class="st">"x2mscalk5"</span>, <span class="st">"x3mscalk5"</span>, <span class="st">"x4mscalk5"</span>,</span>
 <span>    <span class="st">"x5mscalk5"</span>, <span class="st">"x6mscalk5"</span>, <span class="st">"x7mscalk5"</span>, <span class="st">"x8mscalk5"</span><span class="op">)</span>, <span class="va">eclsk11</span>,</span>
 <span>    showAllWeightSuggestions <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Based on your specification, below is/are the suggested weight(s). But please double </span></span>
@@ -269,30 +250,15 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="empty"></div>
+<div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-edsurvey-suggestweights-function"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
-<li><a class="nav-link" href="#introduction-3"><span class="header-section-number">13.1</span> Introduction</a></li>
-<li><a class="nav-link" href="#using-the-suggestweights-function-to-determine-the-weight"><span class="header-section-number">13.2</span> Using the suggestWeights Function to Determine the Weight</a></li>
-<li><a class="nav-link" href="#general-considerations-when-selecting-weights"><span class="header-section-number">13.3</span> General Considerations When Selecting Weights</a></li>
-<li><a class="nav-link" href="#inside-suggestweights"><span class="header-section-number">13.4</span> Inside suggestWeights</a></li>
-<li><a class="nav-link" href="#limitations"><span class="header-section-number">13.5</span> Limitations</a></li>
-<li><a class="nav-link" href="#appendix"><span class="header-section-number">13.6</span> APPENDIX</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-base-year-data-school-year-201011"><span class="header-section-number">13.7</span> Weights Developed for Use With the ECLS-K:2011 Base-Year Data: School Year 2010–11</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-first-grade-data-school-year-201112"><span class="header-section-number">13.8</span> Weights Developed for Use With the ECLS-K:2011 First-Grade Data: School Year 2011–12</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-second-grade-data"><span class="header-section-number">13.9</span> Weights Developed for Use With the ECLS-K:2011 Second-Grade Data</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-third-grade-data"><span class="header-section-number">13.10</span> Weights Developed for Use With the ECLS-K:2011 Third-Grade Data</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-fourth-grade-data"><span class="header-section-number">13.11</span> Weights Developed for Use With the ECLS-K:2011 Fourth-Grade Data</a></li>
-<li><a class="nav-link" href="#weights-developed-for-use-with-the-ecls-k2011-fifth-grade-data-spring-2016"><span class="header-section-number">13.12</span> Weights Developed for Use With the ECLS-K:2011 Fifth-Grade Data: Spring 2016</a></li>
-</ul>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/main/13-suggestWeights.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/main/13-suggestWeights.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
 </div>
     </nav>
@@ -312,34 +278,6 @@
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
-</script>
+</footer>
 </body>
 </html>

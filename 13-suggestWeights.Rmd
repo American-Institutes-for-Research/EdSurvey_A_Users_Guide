@@ -19,8 +19,7 @@ As discussed earlier, it is important to weight the data in your analyses using 
 To use the `suggestWeights` function, the first step is to attach the `EdSurvey` package and load the ECLS-K:2011 data. For more information, see [10. Longitudinal Datasets][Longitudinal Datasets]. The following code attaches the `EdSurvey` package and reads in the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file with the parameters specified as follows:
 
 ```{r, results='hide', message=FALSE}
-#library(EdSurvey)
-devtools::load_all("C:/GIT/EdSurvey_internal")
+library(EdSurvey)
 eclsk11 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011", 
                           filename = "childK5p.dat", 
                           layoutFilename = "ECLSK2011_K5PUF.sps", 
