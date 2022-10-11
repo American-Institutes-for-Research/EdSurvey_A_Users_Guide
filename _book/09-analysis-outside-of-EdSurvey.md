@@ -13,7 +13,9 @@ library(EdSurvey)
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
-#> EdSurvey v2.7.1
+#> Loading required package: Dire
+#> Dire v2.1.0
+#> EdSurvey v3.0.1
 #> 
 #> Attaching package: 'EdSurvey'
 #> The following objects are masked from 'package:base':

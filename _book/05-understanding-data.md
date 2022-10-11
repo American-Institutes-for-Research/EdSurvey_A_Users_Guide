@@ -16,67 +16,67 @@ The `colnames()` function will list all variable names in the data:
 
 ```r
 colnames(x = sdf)
-#>   [1] "year"    "cohort"  "scrpsu"  "dsex"    "iep"    
-#>   [6] "lep"     "ell3"    "sdracem" "pared"   "b003501"
-#>  [11] "b003601" "b013801" "b017001" "b017101" "b018101"
-#>  [16] "b018201" "b017451" "m815401" "m815501" "m815601"
-#>  [21] "m815801" "m815701" "rptsamp" "repgrp1" "repgrp2"
-#>  [26] "jkunit"  "origwt"  "srwt01"  "srwt02"  "srwt03" 
-#>  [31] "srwt04"  "srwt05"  "srwt06"  "srwt07"  "srwt08" 
-#>  [36] "srwt09"  "srwt10"  "srwt11"  "srwt12"  "srwt13" 
-#>  [41] "srwt14"  "srwt15"  "srwt16"  "srwt17"  "srwt18" 
-#>  [46] "srwt19"  "srwt20"  "srwt21"  "srwt22"  "srwt23" 
-#>  [51] "srwt24"  "srwt25"  "srwt26"  "srwt27"  "srwt28" 
-#>  [56] "srwt29"  "srwt30"  "srwt31"  "srwt32"  "srwt33" 
-#>  [61] "srwt34"  "srwt35"  "srwt36"  "srwt37"  "srwt38" 
-#>  [66] "srwt39"  "srwt40"  "srwt41"  "srwt42"  "srwt43" 
-#>  [71] "srwt44"  "srwt45"  "srwt46"  "srwt47"  "srwt48" 
-#>  [76] "srwt49"  "srwt50"  "srwt51"  "srwt52"  "srwt53" 
-#>  [81] "srwt54"  "srwt55"  "srwt56"  "srwt57"  "srwt58" 
-#>  [86] "srwt59"  "srwt60"  "srwt61"  "srwt62"  "smsrswt"
-#>  [91] "mrps11"  "mrps12"  "mrps13"  "mrps14"  "mrps15" 
-#>  [96] "mrps21"  "mrps22"  "mrps23"  "mrps24"  "mrps25" 
-#> [101] "mrps31"  "mrps32"  "mrps33"  "mrps34"  "mrps35" 
-#> [106] "mrps41"  "mrps42"  "mrps43"  "mrps44"  "mrps45" 
-#> [111] "mrps51"  "mrps52"  "mrps53"  "mrps54"  "mrps55" 
-#> [116] "mrpcm1"  "mrpcm2"  "mrpcm3"  "mrpcm4"  "mrpcm5" 
-#> [121] "m075201" "m075401" "m075601" "m019901" "m066201"
-#> [126] "m047301" "m046201" "m066401" "m020101" "m067401"
-#> [131] "m086101" "m047701" "m067301" "m048001" "m093701"
-#> [136] "m086001" "m051901" "m076001" "m046001" "m046101"
-#> [141] "m067701" "m046701" "m046901" "m047201" "m046601"
-#> [146] "m046801" "m067801" "m066601" "m067201" "m068003"
-#> [151] "m068005" "m068008" "m068007" "m068006" "m093601"
-#> [156] "m053001" "m047801" "m086301" "m085701" "m085901"
-#> [161] "m085601" "m085501" "m085801" "m019701" "m020001"
-#> [166] "m046301" "m047001" "m046501" "m066501" "m047101"
-#> [171] "m066301" "m067901" "m019601" "m051501" "m047901"
-#> [176] "m053101" "m143601" "m143701" "m143801" "m143901"
-#> [181] "m144001" "m144101" "m144201" "m144301" "m144401"
-#> [186] "m144501" "m144601" "m144701" "m144801" "m144901"
-#> [191] "m145001" "m145101" "m013431" "m0757cl" "m013131"
-#> [196] "m091701" "m072801" "m091501" "m091601" "m073501"
-#> [201] "m052401" "m075301" "m072901" "m013631" "m075801"
-#> [206] "m013731" "m013531" "m051801" "m093401" "m093801"
-#> [211] "m142001" "m142101" "m142201" "m142301" "m142401"
-#> [216] "m142501" "m142601" "m142701" "m142801" "m142901"
-#> [221] "m143001" "m143101" "m143201" "m143301" "m143401"
-#> [226] "m143501" "m105601" "m105801" "m105901" "m106001"
-#> [231] "m106101" "m106201" "m106301" "m106401" "m106501"
-#> [236] "m106601" "m106701" "m106801" "m106901" "m107001"
-#> [241] "m107101" "m107201" "m107401" "m107501" "m107601"
-#> [246] "m109801" "m110001" "m110101" "m110201" "m110301"
-#> [251] "m110401" "m110501" "m110601" "m110701" "m110801"
-#> [256] "m110901" "m111001" "m111201" "m111301" "m111401"
-#> [261] "m111501" "m111601" "m111801" "yrsexp"  "yrsmath"
-#> [266] "t089401" "t088001" "t090801" "t090802" "t090803"
-#> [271] "t090804" "t090805" "t090806" "t087501" "t088301"
-#> [276] "t088401" "t088501" "t088602" "t088603" "t088801"
-#> [281] "t088803" "t088804" "t088805" "t091502" "t091503"
-#> [286] "t091504" "c052801" "c052802" "c052804" "c052805"
-#> [291] "c052806" "c052807" "c052808" "c052701" "c046501"
-#> [296] "c044006" "c044007" "c052901" "c053001" "c053101"
-#> [301] "sscrpsu" "c052601"
+#>   [1] "ROWID"   "year"    "cohort"  "scrpsu"  "dsex"   
+#>   [6] "iep"     "lep"     "ell3"    "sdracem" "pared"  
+#>  [11] "b003501" "b003601" "b013801" "b017001" "b017101"
+#>  [16] "b018101" "b018201" "b017451" "m815401" "m815501"
+#>  [21] "m815601" "m815801" "m815701" "rptsamp" "repgrp1"
+#>  [26] "repgrp2" "jkunit"  "origwt"  "srwt01"  "srwt02" 
+#>  [31] "srwt03"  "srwt04"  "srwt05"  "srwt06"  "srwt07" 
+#>  [36] "srwt08"  "srwt09"  "srwt10"  "srwt11"  "srwt12" 
+#>  [41] "srwt13"  "srwt14"  "srwt15"  "srwt16"  "srwt17" 
+#>  [46] "srwt18"  "srwt19"  "srwt20"  "srwt21"  "srwt22" 
+#>  [51] "srwt23"  "srwt24"  "srwt25"  "srwt26"  "srwt27" 
+#>  [56] "srwt28"  "srwt29"  "srwt30"  "srwt31"  "srwt32" 
+#>  [61] "srwt33"  "srwt34"  "srwt35"  "srwt36"  "srwt37" 
+#>  [66] "srwt38"  "srwt39"  "srwt40"  "srwt41"  "srwt42" 
+#>  [71] "srwt43"  "srwt44"  "srwt45"  "srwt46"  "srwt47" 
+#>  [76] "srwt48"  "srwt49"  "srwt50"  "srwt51"  "srwt52" 
+#>  [81] "srwt53"  "srwt54"  "srwt55"  "srwt56"  "srwt57" 
+#>  [86] "srwt58"  "srwt59"  "srwt60"  "srwt61"  "srwt62" 
+#>  [91] "smsrswt" "mrps11"  "mrps12"  "mrps13"  "mrps14" 
+#>  [96] "mrps15"  "mrps21"  "mrps22"  "mrps23"  "mrps24" 
+#> [101] "mrps25"  "mrps31"  "mrps32"  "mrps33"  "mrps34" 
+#> [106] "mrps35"  "mrps41"  "mrps42"  "mrps43"  "mrps44" 
+#> [111] "mrps45"  "mrps51"  "mrps52"  "mrps53"  "mrps54" 
+#> [116] "mrps55"  "mrpcm1"  "mrpcm2"  "mrpcm3"  "mrpcm4" 
+#> [121] "mrpcm5"  "m075201" "m075401" "m075601" "m019901"
+#> [126] "m066201" "m047301" "m046201" "m066401" "m020101"
+#> [131] "m067401" "m086101" "m047701" "m067301" "m048001"
+#> [136] "m093701" "m086001" "m051901" "m076001" "m046001"
+#> [141] "m046101" "m067701" "m046701" "m046901" "m047201"
+#> [146] "m046601" "m046801" "m067801" "m066601" "m067201"
+#> [151] "m068003" "m068005" "m068008" "m068007" "m068006"
+#> [156] "m093601" "m053001" "m047801" "m086301" "m085701"
+#> [161] "m085901" "m085601" "m085501" "m085801" "m019701"
+#> [166] "m020001" "m046301" "m047001" "m046501" "m066501"
+#> [171] "m047101" "m066301" "m067901" "m019601" "m051501"
+#> [176] "m047901" "m053101" "m143601" "m143701" "m143801"
+#> [181] "m143901" "m144001" "m144101" "m144201" "m144301"
+#> [186] "m144401" "m144501" "m144601" "m144701" "m144801"
+#> [191] "m144901" "m145001" "m145101" "m013431" "m0757cl"
+#> [196] "m013131" "m091701" "m072801" "m091501" "m091601"
+#> [201] "m073501" "m052401" "m075301" "m072901" "m013631"
+#> [206] "m075801" "m013731" "m013531" "m051801" "m093401"
+#> [211] "m093801" "m142001" "m142101" "m142201" "m142301"
+#> [216] "m142401" "m142501" "m142601" "m142701" "m142801"
+#> [221] "m142901" "m143001" "m143101" "m143201" "m143301"
+#> [226] "m143401" "m143501" "m105601" "m105801" "m105901"
+#> [231] "m106001" "m106101" "m106201" "m106301" "m106401"
+#> [236] "m106501" "m106601" "m106701" "m106801" "m106901"
+#> [241] "m107001" "m107101" "m107201" "m107401" "m107501"
+#> [246] "m107601" "m109801" "m110001" "m110101" "m110201"
+#> [251] "m110301" "m110401" "m110501" "m110601" "m110701"
+#> [256] "m110801" "m110901" "m111001" "m111201" "m111301"
+#> [261] "m111401" "m111501" "m111601" "m111801" "yrsexp" 
+#> [266] "yrsmath" "t089401" "t088001" "t090801" "t090802"
+#> [271] "t090803" "t090804" "t090805" "t090806" "t087501"
+#> [276] "t088301" "t088401" "t088501" "t088602" "t088603"
+#> [281] "t088801" "t088803" "t088804" "t088805" "t091502"
+#> [286] "t091503" "t091504" "c052801" "c052802" "c052804"
+#> [291] "c052805" "c052806" "c052807" "c052808" "c052701"
+#> [296] "c046501" "c044006" "c044007" "c052901" "c053001"
+#> [301] "c053101" "sscrpsu" "c052601"
 ```
 
 To conduct a more powerful search of NAEP data variables, use the `searchSDF()` function, which returns variable names and labels from an `edsurvey.data.frame` based on a character string. The user can specify which data source (either "student" or "school") to search. For example, the following call to `searchSDF()` searches for the character string `"book"` in an `edsurvey.data.frame` and specifies the `fileFormat` to search the student data file:
@@ -172,13 +172,13 @@ To dive into a particular variable, use `levelsSDF()`. It returns the levels, th
 ```r
 levelsSDF(varnames = "b017451", data = sdf)
 #> Levels for Variable 'b017451' (Lowest level first):
-#>     1. Never or hardly ever (n=3837)
-#>     2. Once every few weeks (n=3147)
-#>     3. About once a week (n=2853)
-#>     4. 2 or 3 times a week (n=3362)
-#>     5. Every day (n=3132)
-#>     8. Omitted* (n=575)
-#>     0. Multiple* (n=9)
+#>     1. Never or hardly ever (n = 3837)
+#>     2. Once every few weeks (n = 3147)
+#>     3. About once a week (n = 2853)
+#>     4. 2 or 3 times a week (n = 3362)
+#>     5. Every day (n = 3132)
+#>     8. Omitted* (n = 575)
+#>     0. Multiple* (n = 9)
 #>     NOTE: * indicates an omitted level.
 ```
 
@@ -190,11 +190,11 @@ Some basic functions that work on a `data.frame`, such as `dim`, `nrow`, and `nc
 
 ```r
 dim(x = sdf)
-#> [1] 17606   302
+#> [1] 17606   303
 nrow(x = sdf)
 #> [1] 17606
 ncol(x = sdf)
-#> [1] 302
+#> [1] 303
 ```
 
 Basic information about plausible values and weights in an `edsurvey.data.frame` can be seen in the `print` function. The variables associated with plausible values and weights can be seen from the `showPlausibleValues` and `showWeights` functions, respectively, when setting the `verbose` argument to `TRUE`:
@@ -297,7 +297,7 @@ summary2(sdf, "composite")
 #> Estimates are weighted using the weight variable 'origwt'
 #>    Variable     N Weighted N   Min.  1st Qu.   Median
 #> 1 composite 16915   16932.46 126.11 251.9626 277.4784
-#>       Mean  3rd Qu.    Max.      SD NA's Zero-weights
+#>       Mean  3rd Qu.    Max.      SD NA's Zero weights
 #> 1 275.8892 301.1827 404.184 36.5713    0            0
 ```
 

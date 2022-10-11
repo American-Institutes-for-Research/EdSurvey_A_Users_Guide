@@ -305,48 +305,52 @@ summary(mvrlm1)
 #> Variance method: 
 #> JK replicates: 62
 #> full data n: 17606
-#> n used: 3287
+#> n used: 16915
 #> 
 #> Coefficients:
 #> 
 #> algebra 
 #>                         coef        se         t    dof
-#> (Intercept)        258.32980   2.38447 108.33839 42.729
-#> dsexFemale           6.94298   1.51265   4.58995 49.897
-#> m072801B *          24.78260   2.23171  11.10475 67.935
-#> m072801C            11.75561   2.97489   3.95162 64.737
-#> m072801D           -12.88466   6.55887  -1.96446 12.131
-#> m072801E             1.96793   5.38314   0.36557 21.275
-#> m072801Not Reached -33.52297  17.46008  -1.91998 10.968
+#> (Intercept)        258.60021   2.37825 108.73566 42.830
+#> dsexFemale           6.49222   1.51768   4.27772 52.594
+#> m072801B *          24.73912   2.23007  11.09343 67.824
+#> m072801C            11.68097   2.97770   3.92281 64.728
+#> m072801D           -12.88715   6.56876  -1.96188 12.101
+#> m072801E             1.98741   5.38193   0.36927 21.259
+#> m072801Omitted      -5.31108   9.43653  -0.56282 24.518
+#> m072801Not Reached -33.49285  17.44246  -1.92019 10.866
 #>                     Pr(>|t|)    
 #> (Intercept)        < 2.2e-16 ***
-#> dsexFemale         3.021e-05 ***
+#> dsexFemale         8.001e-05 ***
 #> m072801B *         < 2.2e-16 ***
-#> m072801C           0.0001945 ***
-#> m072801D           0.0728026 .  
-#> m072801E           0.7182938    
-#> m072801Not Reached 0.0812328 .  
+#> m072801C           0.0002143 ***
+#> m072801D           0.0731901 .  
+#> m072801E           0.7155757    
+#> m072801Omitted     0.5786675    
+#> m072801Not Reached 0.0814534 .  
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> geometry 
 #>                          coef         se          t     dof
-#> (Intercept)        255.351767   2.368025 107.833211 33.7224
-#> dsexFemale           5.407780   1.584977   3.411898 35.8676
-#> m072801B *          22.369806   2.212790  10.109321 57.1693
-#> m072801C             8.850143   3.647400   2.426425 51.3747
-#> m072801D            -9.260011   5.873402  -1.576601 12.8849
-#> m072801E            -0.185649   5.919666  -0.031361 23.9251
-#> m072801Not Reached -31.782791  23.915420  -1.328966  5.1159
+#> (Intercept)        255.501196   2.367237 107.932229 33.7717
+#> dsexFemale           5.158692   1.576222   3.272821 36.3082
+#> m072801B *          22.345782   2.212370  10.100380 57.1509
+#> m072801C             8.808899   3.646951   2.415414 51.2075
+#> m072801D            -9.261391   5.877839  -1.575646 12.8646
+#> m072801E            -0.174883   5.919771  -0.029542 23.9273
+#> m072801Omitted      -4.713822   7.345774  -0.641705 25.5050
+#> m072801Not Reached -31.766149  23.888495  -1.329768  5.1301
 #>                     Pr(>|t|)    
 #> (Intercept)        < 2.2e-16 ***
-#> dsexFemale          0.001613 ** 
-#> m072801B *         2.442e-14 ***
-#> m072801C            0.018796 *  
-#> m072801D            0.139113    
-#> m072801E            0.975242    
-#> m072801Not Reached  0.240046    
+#> dsexFemale          0.002341 ** 
+#> m072801B *         2.531e-14 ***
+#> m072801C            0.019324 *  
+#> m072801D            0.139370    
+#> m072801E            0.976677    
+#> m072801Omitted      0.526790    
+#> m072801Not Reached  0.239653    
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -354,13 +358,13 @@ summary(mvrlm1)
 #> Residual correlation matrix:
 #> 
 #>          algebra geometry
-#> algebra     1.00     0.85
-#> geometry    0.85     1.00
+#> algebra    1.000    0.849
+#> geometry   0.849    1.000
 #> 
 #> Multiple R-squared by dependent variable: 
 #> 
 #>  algebra geometry 
-#>   0.0926   0.0858
+#>   0.0944   0.0882
 ```
 
 The `mvrlm.sdf` documentation provides examples to compare the regression outputs. See `?mvrlm.sdf` for an overview of additional details that can be accessed through components of the returned object. In addition, the vignette titled [*Statistical Methods Used in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-Statistics.pdf) goes into further detail by describing estimation of the reported statistics.
@@ -539,7 +543,12 @@ The following two examples illustrate how to model the random intercept of mathe
 
 #Use all plausible values
 TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
-#> Found cached data for country code "usa".
+#> Found cached Grade 4 data for country code "usa: United States".
+#> edsurvey.data.frame data level detail:
+#> |---DataLevel----|----Rows----|--Columns---|---MergeType----|-------MatchedRecords-------|-OK-|
+#> |Student         |       10029|        1196|                |*base level*                | ✓  |
+#> |>School         |       10029|         101|many:one        |10029 of 10029              | ✓  |
+#> |>Teacher        |       12119|         745|one:many        |12119 of 12119              | ✓  |
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
 summary(mix1)

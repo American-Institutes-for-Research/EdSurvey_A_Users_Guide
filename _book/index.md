@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2022-09-26"
+date: "2022-10-11"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,7 +48,7 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**September 2022**
+**October 2022**
 
 **Michael Lee**<br></br>
 **Ting Zhang**<br></br>
@@ -72,7 +72,7 @@ _The authors are responsible for the contents of this guide, which is still unde
 
 # Preface {.unnumbered}
 
-_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 2.7.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
+_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 3.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
 
 The team also understands that programming might be intimidating to some education researchers. To lower the entry level of programming skills, this user’s guide provides comprehensive examples that are easy to follow and adaptable to many research questions and investigations. The team assumes that users of this manual have some basic understanding and knowledge of programming and R software. Experienced R users might find themselves equipped to jump to a specific section of interest. For those who do not have such knowledge yet, many courses are available in the public domain that will suffice for acquiring this prerequisite knowledge.
 
@@ -158,10 +158,15 @@ Dnk2015
 
 
 ```
-#> Found cached data for country code "dnk".
+#> Found cached Grade 4 data for country code "dnk: Denmark".
+#> edsurvey.data.frame data level detail:
+#> |---DataLevel----|----Rows----|--Columns---|---MergeType----|-------MatchedRecords-------|-OK-|
+#> |Student         |        3710|        1196|                |*base level*                | ✓  |
+#> |>School         |        3710|         101|many:one        |3710 of 3710                | ✓  |
+#> |>Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
 #> edsurvey.data.frame for 2015 TIMSS (Mathematics and
 #>   Science) in Denmark
-#> Dimensions: 5897 rows and 2042 columns.
+#> Dimensions: 5897 rows and 2043 columns.
 #> 
 #> There are 4 full sample weights in this
 #>   edsurvey.data.frame:
@@ -473,11 +478,11 @@ searchSDF(string = c("computer","homework","school"), data = Dnk2015, levels = T
 # Display levels of the variable "asbg10b"
 levelsSDF(varnames = "asbg10b", data = Dnk2015)
 #> Levels for Variable 'asbg10b' (Lowest level first):
-#>     1. EVERY DAY OR ALMOST EVERY DAY (n=840)
-#>     2. ONCE OR TWICE A WEEK (n=1368)
-#>     3. ONCE OR TWICE A MONTH (n=671)
-#>     4. NEVER OR ALMOST NEVER (n=603)
-#>     9. OMITTED OR INVALID* (n=122)
+#>     1. EVERY DAY OR ALMOST EVERY DAY (n = 840)
+#>     2. ONCE OR TWICE A WEEK (n = 1368)
+#>     3. ONCE OR TWICE A MONTH (n = 671)
+#>     4. NEVER OR ALMOST NEVER (n = 603)
+#>     9. OMITTED OR INVALID* (n = 122)
 #>     NOTE: * indicates an omitted level.
 ```
 

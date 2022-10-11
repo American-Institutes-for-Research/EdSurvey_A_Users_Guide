@@ -96,7 +96,7 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="preface" class="section level1 unnumbered">
 <h1>Preface<a class="anchor" aria-label="anchor" href="#preface"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Analyzing NCES Data Using <code>EdSurvey</code>: A User’s Guide</em> is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. <code>EdSurvey</code> was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 2.7.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.</p>
+<p><em>Analyzing NCES Data Using <code>EdSurvey</code>: A User’s Guide</em> is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. <code>EdSurvey</code> was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 3.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.</p>
 <p>The team also understands that programming might be intimidating to some education researchers. To lower the entry level of programming skills, this user’s guide provides comprehensive examples that are easy to follow and adaptable to many research questions and investigations. The team assumes that users of this manual have some basic understanding and knowledge of programming and R software. Experienced R users might find themselves equipped to jump to a specific section of interest. For those who do not have such knowledge yet, many courses are available in the public domain that will suffice for acquiring this prerequisite knowledge.</p>
 <div id="rationale-for-edsurvey" class="section level2" number="0.2">
 <h2>
@@ -170,10 +170,15 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <code class="sourceCode R"><span><span class="co">#Read Grade 4 Denmark 2015 TIMSS survey into the dataframe Dnk2015 </span></span>
 <span><span class="va">Dnk2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"~/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"dnk"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">Dnk2015</span></span></code></pre></div>
-<pre><code>#&gt; Found cached data for country code "dnk".
+<pre><code>#&gt; Found cached Grade 4 data for country code "dnk: Denmark".
+#&gt; edsurvey.data.frame data level detail:
+#&gt; |---DataLevel----|----Rows----|--Columns---|---MergeType----|-------MatchedRecords-------|-OK-|
+#&gt; |Student         |        3710|        1196|                |*base level*                | ✓  |
+#&gt; |&gt;School         |        3710|         101|many:one        |3710 of 3710                | ✓  |
+#&gt; |&gt;Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
 #&gt; edsurvey.data.frame for 2015 TIMSS (Mathematics and
 #&gt;   Science) in Denmark
-#&gt; Dimensions: 5897 rows and 2042 columns.
+#&gt; Dimensions: 5897 rows and 2043 columns.
 #&gt; 
 #&gt; There are 4 full sample weights in this
 #&gt;   edsurvey.data.frame:
@@ -459,11 +464,11 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <code class="sourceCode R"><span><span class="co"># Display levels of the variable "asbg10b"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"asbg10b"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'asbg10b' (Lowest level first):</span></span>
-<span><span class="co">#&gt;     1. EVERY DAY OR ALMOST EVERY DAY (n=840)</span></span>
-<span><span class="co">#&gt;     2. ONCE OR TWICE A WEEK (n=1368)</span></span>
-<span><span class="co">#&gt;     3. ONCE OR TWICE A MONTH (n=671)</span></span>
-<span><span class="co">#&gt;     4. NEVER OR ALMOST NEVER (n=603)</span></span>
-<span><span class="co">#&gt;     9. OMITTED OR INVALID* (n=122)</span></span>
+<span><span class="co">#&gt;     1. EVERY DAY OR ALMOST EVERY DAY (n = 840)</span></span>
+<span><span class="co">#&gt;     2. ONCE OR TWICE A WEEK (n = 1368)</span></span>
+<span><span class="co">#&gt;     3. ONCE OR TWICE A MONTH (n = 671)</span></span>
+<span><span class="co">#&gt;     4. NEVER OR ALMOST NEVER (n = 603)</span></span>
+<span><span class="co">#&gt;     9. OMITTED OR INVALID* (n = 122)</span></span>
 <span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
 <p>Please note that these estimates are weighted. To see the unweighted frequency table, use the option <code>weightVar = NULL</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -517,7 +522,7 @@ At the end of this manual, Chapters 11 and 12 detail some of the mathematics use
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-09-26.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

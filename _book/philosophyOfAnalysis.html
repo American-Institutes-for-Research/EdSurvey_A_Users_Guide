@@ -170,7 +170,9 @@
 <span><span class="co">#&gt; Loading required package: carData</span></span>
 <span><span class="co">#&gt; Loading required package: lfactors</span></span>
 <span><span class="co">#&gt; lfactors v1.0.4</span></span>
-<span><span class="co">#&gt; EdSurvey v2.7.1</span></span>
+<span><span class="co">#&gt; Loading required package: Dire</span></span>
+<span><span class="co">#&gt; Dire v2.1.0</span></span>
+<span><span class="co">#&gt; EdSurvey v3.0.1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'EdSurvey'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
@@ -209,7 +211,7 @@
 <code class="sourceCode R"><span><span class="va">sdf</span></span>
 <span><span class="co">#&gt; edsurvey.data.frame for 2005 NAEP (Mathematics) in</span></span>
 <span><span class="co">#&gt;   USA</span></span>
-<span><span class="co">#&gt; Dimensions: 17606 rows and 302 columns.</span></span>
+<span><span class="co">#&gt; Dimensions: 17606 rows and 303 columns.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; There is 1 full sample weight in this</span></span>
 <span><span class="co">#&gt;   edsurvey.data.frame:</span></span>
@@ -250,75 +252,75 @@
 <p>Some basic functions that work on a <code>data.frame</code>, such as <code>dim</code>, <code>nrow</code>, and <code>ncol</code>, also work on an <code>edsurvey.data.frame</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Use &lt;code&gt;?function&lt;/code&gt; in the R console to view documentation on base R and &lt;code&gt;EdSurvey&lt;/code&gt; package functions (e.g., &lt;code&gt;?gsub&lt;/code&gt; or &lt;code&gt;?lm.sdf&lt;/code&gt;).&lt;/p&gt;"><sup>2</sup></a> They help check the dimensions of <code>sdf</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 17606   302</span></span>
+<span><span class="co">#&gt; [1] 17606   303</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 17606</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 302</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 303</span></span></code></pre></div>
 <p>The <code>colnames</code> function can be used to list all variable names in the data:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   [1] "year"    "cohort"  "scrpsu"  "dsex"    "iep"    </span></span>
-<span><span class="co">#&gt;   [6] "lep"     "ell3"    "sdracem" "pared"   "b003501"</span></span>
-<span><span class="co">#&gt;  [11] "b003601" "b013801" "b017001" "b017101" "b018101"</span></span>
-<span><span class="co">#&gt;  [16] "b018201" "b017451" "m815401" "m815501" "m815601"</span></span>
-<span><span class="co">#&gt;  [21] "m815801" "m815701" "rptsamp" "repgrp1" "repgrp2"</span></span>
-<span><span class="co">#&gt;  [26] "jkunit"  "origwt"  "srwt01"  "srwt02"  "srwt03" </span></span>
-<span><span class="co">#&gt;  [31] "srwt04"  "srwt05"  "srwt06"  "srwt07"  "srwt08" </span></span>
-<span><span class="co">#&gt;  [36] "srwt09"  "srwt10"  "srwt11"  "srwt12"  "srwt13" </span></span>
-<span><span class="co">#&gt;  [41] "srwt14"  "srwt15"  "srwt16"  "srwt17"  "srwt18" </span></span>
-<span><span class="co">#&gt;  [46] "srwt19"  "srwt20"  "srwt21"  "srwt22"  "srwt23" </span></span>
-<span><span class="co">#&gt;  [51] "srwt24"  "srwt25"  "srwt26"  "srwt27"  "srwt28" </span></span>
-<span><span class="co">#&gt;  [56] "srwt29"  "srwt30"  "srwt31"  "srwt32"  "srwt33" </span></span>
-<span><span class="co">#&gt;  [61] "srwt34"  "srwt35"  "srwt36"  "srwt37"  "srwt38" </span></span>
-<span><span class="co">#&gt;  [66] "srwt39"  "srwt40"  "srwt41"  "srwt42"  "srwt43" </span></span>
-<span><span class="co">#&gt;  [71] "srwt44"  "srwt45"  "srwt46"  "srwt47"  "srwt48" </span></span>
-<span><span class="co">#&gt;  [76] "srwt49"  "srwt50"  "srwt51"  "srwt52"  "srwt53" </span></span>
-<span><span class="co">#&gt;  [81] "srwt54"  "srwt55"  "srwt56"  "srwt57"  "srwt58" </span></span>
-<span><span class="co">#&gt;  [86] "srwt59"  "srwt60"  "srwt61"  "srwt62"  "smsrswt"</span></span>
-<span><span class="co">#&gt;  [91] "mrps11"  "mrps12"  "mrps13"  "mrps14"  "mrps15" </span></span>
-<span><span class="co">#&gt;  [96] "mrps21"  "mrps22"  "mrps23"  "mrps24"  "mrps25" </span></span>
-<span><span class="co">#&gt; [101] "mrps31"  "mrps32"  "mrps33"  "mrps34"  "mrps35" </span></span>
-<span><span class="co">#&gt; [106] "mrps41"  "mrps42"  "mrps43"  "mrps44"  "mrps45" </span></span>
-<span><span class="co">#&gt; [111] "mrps51"  "mrps52"  "mrps53"  "mrps54"  "mrps55" </span></span>
-<span><span class="co">#&gt; [116] "mrpcm1"  "mrpcm2"  "mrpcm3"  "mrpcm4"  "mrpcm5" </span></span>
-<span><span class="co">#&gt; [121] "m075201" "m075401" "m075601" "m019901" "m066201"</span></span>
-<span><span class="co">#&gt; [126] "m047301" "m046201" "m066401" "m020101" "m067401"</span></span>
-<span><span class="co">#&gt; [131] "m086101" "m047701" "m067301" "m048001" "m093701"</span></span>
-<span><span class="co">#&gt; [136] "m086001" "m051901" "m076001" "m046001" "m046101"</span></span>
-<span><span class="co">#&gt; [141] "m067701" "m046701" "m046901" "m047201" "m046601"</span></span>
-<span><span class="co">#&gt; [146] "m046801" "m067801" "m066601" "m067201" "m068003"</span></span>
-<span><span class="co">#&gt; [151] "m068005" "m068008" "m068007" "m068006" "m093601"</span></span>
-<span><span class="co">#&gt; [156] "m053001" "m047801" "m086301" "m085701" "m085901"</span></span>
-<span><span class="co">#&gt; [161] "m085601" "m085501" "m085801" "m019701" "m020001"</span></span>
-<span><span class="co">#&gt; [166] "m046301" "m047001" "m046501" "m066501" "m047101"</span></span>
-<span><span class="co">#&gt; [171] "m066301" "m067901" "m019601" "m051501" "m047901"</span></span>
-<span><span class="co">#&gt; [176] "m053101" "m143601" "m143701" "m143801" "m143901"</span></span>
-<span><span class="co">#&gt; [181] "m144001" "m144101" "m144201" "m144301" "m144401"</span></span>
-<span><span class="co">#&gt; [186] "m144501" "m144601" "m144701" "m144801" "m144901"</span></span>
-<span><span class="co">#&gt; [191] "m145001" "m145101" "m013431" "m0757cl" "m013131"</span></span>
-<span><span class="co">#&gt; [196] "m091701" "m072801" "m091501" "m091601" "m073501"</span></span>
-<span><span class="co">#&gt; [201] "m052401" "m075301" "m072901" "m013631" "m075801"</span></span>
-<span><span class="co">#&gt; [206] "m013731" "m013531" "m051801" "m093401" "m093801"</span></span>
-<span><span class="co">#&gt; [211] "m142001" "m142101" "m142201" "m142301" "m142401"</span></span>
-<span><span class="co">#&gt; [216] "m142501" "m142601" "m142701" "m142801" "m142901"</span></span>
-<span><span class="co">#&gt; [221] "m143001" "m143101" "m143201" "m143301" "m143401"</span></span>
-<span><span class="co">#&gt; [226] "m143501" "m105601" "m105801" "m105901" "m106001"</span></span>
-<span><span class="co">#&gt; [231] "m106101" "m106201" "m106301" "m106401" "m106501"</span></span>
-<span><span class="co">#&gt; [236] "m106601" "m106701" "m106801" "m106901" "m107001"</span></span>
-<span><span class="co">#&gt; [241] "m107101" "m107201" "m107401" "m107501" "m107601"</span></span>
-<span><span class="co">#&gt; [246] "m109801" "m110001" "m110101" "m110201" "m110301"</span></span>
-<span><span class="co">#&gt; [251] "m110401" "m110501" "m110601" "m110701" "m110801"</span></span>
-<span><span class="co">#&gt; [256] "m110901" "m111001" "m111201" "m111301" "m111401"</span></span>
-<span><span class="co">#&gt; [261] "m111501" "m111601" "m111801" "yrsexp"  "yrsmath"</span></span>
-<span><span class="co">#&gt; [266] "t089401" "t088001" "t090801" "t090802" "t090803"</span></span>
-<span><span class="co">#&gt; [271] "t090804" "t090805" "t090806" "t087501" "t088301"</span></span>
-<span><span class="co">#&gt; [276] "t088401" "t088501" "t088602" "t088603" "t088801"</span></span>
-<span><span class="co">#&gt; [281] "t088803" "t088804" "t088805" "t091502" "t091503"</span></span>
-<span><span class="co">#&gt; [286] "t091504" "c052801" "c052802" "c052804" "c052805"</span></span>
-<span><span class="co">#&gt; [291] "c052806" "c052807" "c052808" "c052701" "c046501"</span></span>
-<span><span class="co">#&gt; [296] "c044006" "c044007" "c052901" "c053001" "c053101"</span></span>
-<span><span class="co">#&gt; [301] "sscrpsu" "c052601"</span></span></code></pre></div>
+<span><span class="co">#&gt;   [1] "ROWID"   "year"    "cohort"  "scrpsu"  "dsex"   </span></span>
+<span><span class="co">#&gt;   [6] "iep"     "lep"     "ell3"    "sdracem" "pared"  </span></span>
+<span><span class="co">#&gt;  [11] "b003501" "b003601" "b013801" "b017001" "b017101"</span></span>
+<span><span class="co">#&gt;  [16] "b018101" "b018201" "b017451" "m815401" "m815501"</span></span>
+<span><span class="co">#&gt;  [21] "m815601" "m815801" "m815701" "rptsamp" "repgrp1"</span></span>
+<span><span class="co">#&gt;  [26] "repgrp2" "jkunit"  "origwt"  "srwt01"  "srwt02" </span></span>
+<span><span class="co">#&gt;  [31] "srwt03"  "srwt04"  "srwt05"  "srwt06"  "srwt07" </span></span>
+<span><span class="co">#&gt;  [36] "srwt08"  "srwt09"  "srwt10"  "srwt11"  "srwt12" </span></span>
+<span><span class="co">#&gt;  [41] "srwt13"  "srwt14"  "srwt15"  "srwt16"  "srwt17" </span></span>
+<span><span class="co">#&gt;  [46] "srwt18"  "srwt19"  "srwt20"  "srwt21"  "srwt22" </span></span>
+<span><span class="co">#&gt;  [51] "srwt23"  "srwt24"  "srwt25"  "srwt26"  "srwt27" </span></span>
+<span><span class="co">#&gt;  [56] "srwt28"  "srwt29"  "srwt30"  "srwt31"  "srwt32" </span></span>
+<span><span class="co">#&gt;  [61] "srwt33"  "srwt34"  "srwt35"  "srwt36"  "srwt37" </span></span>
+<span><span class="co">#&gt;  [66] "srwt38"  "srwt39"  "srwt40"  "srwt41"  "srwt42" </span></span>
+<span><span class="co">#&gt;  [71] "srwt43"  "srwt44"  "srwt45"  "srwt46"  "srwt47" </span></span>
+<span><span class="co">#&gt;  [76] "srwt48"  "srwt49"  "srwt50"  "srwt51"  "srwt52" </span></span>
+<span><span class="co">#&gt;  [81] "srwt53"  "srwt54"  "srwt55"  "srwt56"  "srwt57" </span></span>
+<span><span class="co">#&gt;  [86] "srwt58"  "srwt59"  "srwt60"  "srwt61"  "srwt62" </span></span>
+<span><span class="co">#&gt;  [91] "smsrswt" "mrps11"  "mrps12"  "mrps13"  "mrps14" </span></span>
+<span><span class="co">#&gt;  [96] "mrps15"  "mrps21"  "mrps22"  "mrps23"  "mrps24" </span></span>
+<span><span class="co">#&gt; [101] "mrps25"  "mrps31"  "mrps32"  "mrps33"  "mrps34" </span></span>
+<span><span class="co">#&gt; [106] "mrps35"  "mrps41"  "mrps42"  "mrps43"  "mrps44" </span></span>
+<span><span class="co">#&gt; [111] "mrps45"  "mrps51"  "mrps52"  "mrps53"  "mrps54" </span></span>
+<span><span class="co">#&gt; [116] "mrps55"  "mrpcm1"  "mrpcm2"  "mrpcm3"  "mrpcm4" </span></span>
+<span><span class="co">#&gt; [121] "mrpcm5"  "m075201" "m075401" "m075601" "m019901"</span></span>
+<span><span class="co">#&gt; [126] "m066201" "m047301" "m046201" "m066401" "m020101"</span></span>
+<span><span class="co">#&gt; [131] "m067401" "m086101" "m047701" "m067301" "m048001"</span></span>
+<span><span class="co">#&gt; [136] "m093701" "m086001" "m051901" "m076001" "m046001"</span></span>
+<span><span class="co">#&gt; [141] "m046101" "m067701" "m046701" "m046901" "m047201"</span></span>
+<span><span class="co">#&gt; [146] "m046601" "m046801" "m067801" "m066601" "m067201"</span></span>
+<span><span class="co">#&gt; [151] "m068003" "m068005" "m068008" "m068007" "m068006"</span></span>
+<span><span class="co">#&gt; [156] "m093601" "m053001" "m047801" "m086301" "m085701"</span></span>
+<span><span class="co">#&gt; [161] "m085901" "m085601" "m085501" "m085801" "m019701"</span></span>
+<span><span class="co">#&gt; [166] "m020001" "m046301" "m047001" "m046501" "m066501"</span></span>
+<span><span class="co">#&gt; [171] "m047101" "m066301" "m067901" "m019601" "m051501"</span></span>
+<span><span class="co">#&gt; [176] "m047901" "m053101" "m143601" "m143701" "m143801"</span></span>
+<span><span class="co">#&gt; [181] "m143901" "m144001" "m144101" "m144201" "m144301"</span></span>
+<span><span class="co">#&gt; [186] "m144401" "m144501" "m144601" "m144701" "m144801"</span></span>
+<span><span class="co">#&gt; [191] "m144901" "m145001" "m145101" "m013431" "m0757cl"</span></span>
+<span><span class="co">#&gt; [196] "m013131" "m091701" "m072801" "m091501" "m091601"</span></span>
+<span><span class="co">#&gt; [201] "m073501" "m052401" "m075301" "m072901" "m013631"</span></span>
+<span><span class="co">#&gt; [206] "m075801" "m013731" "m013531" "m051801" "m093401"</span></span>
+<span><span class="co">#&gt; [211] "m093801" "m142001" "m142101" "m142201" "m142301"</span></span>
+<span><span class="co">#&gt; [216] "m142401" "m142501" "m142601" "m142701" "m142801"</span></span>
+<span><span class="co">#&gt; [221] "m142901" "m143001" "m143101" "m143201" "m143301"</span></span>
+<span><span class="co">#&gt; [226] "m143401" "m143501" "m105601" "m105801" "m105901"</span></span>
+<span><span class="co">#&gt; [231] "m106001" "m106101" "m106201" "m106301" "m106401"</span></span>
+<span><span class="co">#&gt; [236] "m106501" "m106601" "m106701" "m106801" "m106901"</span></span>
+<span><span class="co">#&gt; [241] "m107001" "m107101" "m107201" "m107401" "m107501"</span></span>
+<span><span class="co">#&gt; [246] "m107601" "m109801" "m110001" "m110101" "m110201"</span></span>
+<span><span class="co">#&gt; [251] "m110301" "m110401" "m110501" "m110601" "m110701"</span></span>
+<span><span class="co">#&gt; [256] "m110801" "m110901" "m111001" "m111201" "m111301"</span></span>
+<span><span class="co">#&gt; [261] "m111401" "m111501" "m111601" "m111801" "yrsexp" </span></span>
+<span><span class="co">#&gt; [266] "yrsmath" "t089401" "t088001" "t090801" "t090802"</span></span>
+<span><span class="co">#&gt; [271] "t090803" "t090804" "t090805" "t090806" "t087501"</span></span>
+<span><span class="co">#&gt; [276] "t088301" "t088401" "t088501" "t088602" "t088603"</span></span>
+<span><span class="co">#&gt; [281] "t088801" "t088803" "t088804" "t088805" "t091502"</span></span>
+<span><span class="co">#&gt; [286] "t091503" "t091504" "c052801" "c052802" "c052804"</span></span>
+<span><span class="co">#&gt; [291] "c052805" "c052806" "c052807" "c052808" "c052701"</span></span>
+<span><span class="co">#&gt; [296] "c046501" "c044006" "c044007" "c052901" "c053001"</span></span>
+<span><span class="co">#&gt; [301] "c053101" "sscrpsu" "c052601"</span></span></code></pre></div>
 <p>To conduct a more powerful search of NAEP data variables, use the <code>searchSDF</code> function, which returns variable names and labels from an <code>edsurvey.data.frame</code> based on a character string. The user can specify which data source (either “student” or “school”) the user would like to search. For example, the following call to <code>searchSDF</code> searches for the character string <code>"book"</code> in the <code>edsurvey.data.frame</code> and specifies the <code>fileFormat</code> to search the student data file:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"book"</span>, data <span class="op">=</span> <span class="va">sdf</span>, fileFormat <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span>
@@ -394,13 +396,13 @@
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'b017451' (Lowest level first):</span></span>
-<span><span class="co">#&gt;     1. Never or hardly ever (n=3837)</span></span>
-<span><span class="co">#&gt;     2. Once every few weeks (n=3147)</span></span>
-<span><span class="co">#&gt;     3. About once a week (n=2853)</span></span>
-<span><span class="co">#&gt;     4. 2 or 3 times a week (n=3362)</span></span>
-<span><span class="co">#&gt;     5. Every day (n=3132)</span></span>
-<span><span class="co">#&gt;     8. Omitted* (n=575)</span></span>
-<span><span class="co">#&gt;     0. Multiple* (n=9)</span></span>
+<span><span class="co">#&gt;     1. Never or hardly ever (n = 3837)</span></span>
+<span><span class="co">#&gt;     2. Once every few weeks (n = 3147)</span></span>
+<span><span class="co">#&gt;     3. About once a week (n = 2853)</span></span>
+<span><span class="co">#&gt;     4. 2 or 3 times a week (n = 3362)</span></span>
+<span><span class="co">#&gt;     5. Every day (n = 3132)</span></span>
+<span><span class="co">#&gt;     8. Omitted* (n = 575)</span></span>
+<span><span class="co">#&gt;     0. Multiple* (n = 9)</span></span>
 <span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
 <p>Access the full codebook using <code><a href="https://rdrr.io/pkg/EdSurvey/man/showCodebook.html">showCodebook()</a></code> to retrieve the variable names, variable labels, and value labels of a survey. This function pairs well with the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function to more easily explore a dataset:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
@@ -540,7 +542,7 @@
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;    Variable     N Weighted N   Min.  1st Qu.   Median</span></span>
 <span><span class="co">#&gt; 1 composite 16915   16932.46 126.11 251.9626 277.4784</span></span>
-<span><span class="co">#&gt;       Mean  3rd Qu.    Max.      SD NA's Zero-weights</span></span>
+<span><span class="co">#&gt;       Mean  3rd Qu.    Max.      SD NA's Zero weights</span></span>
 <span><span class="co">#&gt; 1 275.8892 301.1827 404.184 36.5713    0            0</span></span></code></pre></div>
 <p>By specifying <code>weightVar = NULL</code>, the function prints out unweighted descriptive statistics for the selected variable or plausible values:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
@@ -731,7 +733,7 @@ studies at home) returns the following output:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-09-26.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
