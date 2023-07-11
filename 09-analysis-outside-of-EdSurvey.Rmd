@@ -4,13 +4,13 @@
 
 ## Integration With Any Other Package
 
-By calling the function `getData()`, one can extract a `light.edsurvey.data.frame`: a `data.frame`-like object containing requested variables, weights, and each weight's associated replicate weights. This `light.edsurvey.data.frame` can be not only manipulated as with other `data.frame` objects but also used with packaged `EdSurvey` functions. As noted in [Chapter 6](#retrievingAllVariablesInADataset), setting the arguments `omittedLevels` and `defaultConditions` to `FALSE` ensures that the values that would normally be removed are included. The argument `addAttributes = TRUE` ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.
+By calling the function `getData()`, one can extract a `light.edsurvey.data.frame`: a `data.frame`-like object containing requested variables, weights, and each weight's associated replicate weights. This `light.edsurvey.data.frame` can be not only manipulated as with other `data.frame` objects but also used with packaged `EdSurvey` functions. As noted in [Chapter 6](#retrievingAllVariablesInADataset), setting the arguments `dropOmittedLevels` and `defaultConditions` to `FALSE` ensures that the values that would normally be removed are included. The argument `addAttributes = TRUE` ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.
 
 ```{r readNAEPSource}
 library(EdSurvey)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 gddat <- getData(data = sdf, varnames = c('composite', 'dsex', 'b017451', 'origwt'),
-                addAttributes = TRUE, omittedLevels = FALSE)
+                addAttributes = TRUE, dropOmittedLevels = FALSE)
 ```
 
 The base R function `gsub` allows users to substitute one string for another. The following step recodes "Every day" to "Seven days a week". The `head` function reveals the first 6 values of the recoded variable `b017451` accessed by the `$` operator:
@@ -33,7 +33,7 @@ For example, a user might want to run a linear model using `composite`, the defa
 
 ```{r rebindAttributesPrep9, cache=FALSE, warning=FALSE}
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "origwt", "composite"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
                                                "Once every few weeks"),
                           "Rarely", "At least once a week")
@@ -60,7 +60,7 @@ library(tidyr)
 
 ```{r dplyr2, error=TRUE}
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "iep", "lep", "origwt", "composite"),
-                 addAttributes = TRUE, omittedLevels = TRUE)
+                 addAttributes = TRUE, dropOmittedLevels = TRUE)
 ```
 
 The `dplyr` function `unite()` takes multiple variables and concatenates them, similar to the base R function `paste0()`. The `%>%` (pipe) operator allows an object to be passed forward to another function call.
@@ -90,7 +90,7 @@ Other functions, such as `rowwise()`, `group_by()`, and `ungroup()` silently ove
 ```{r getDataExample2}
 gddat <- getData(data = sdf,
                  varnames = c("dsex", "b017451", "iep", "lep", "origwt", "composite"),
-                 addAttributes = TRUE, omittedLevels = TRUE)
+                 addAttributes = TRUE, dropOmittedLevels = TRUE)
 gddat <- gddat %>%        
   rowwise() %>% 
   mutate(mrpcmAverage = mean(c(mrpcm1, mrpcm2, mrpcm3, mrpcm4, mrpcm5), na.rm = TRUE))

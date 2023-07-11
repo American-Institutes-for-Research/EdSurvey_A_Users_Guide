@@ -31,7 +31,7 @@ Next, provide the variable(s) intended to use for the analysis. The `suggestWeig
 The following example demonstrates an analysis using child assessment data from spring third grade. The weight `w9c790` would be suggested once the variables are specified. As shown in the ECLS-K:2011 *User's Manual* [@Tourangeau19], the weight `w9c790` is "child base weight adjusted for nonresponse associated with child assessment/child questionnaire data from spring third grade, spring fourth grade, and spring fifth grade (C7C8C9)."
 
 ```{r, tidy=TRUE}
-suggestWeights(c("x7mscalk5", "x8mscalk5", "x9mscalk5"), eclsk11)
+suggestWeights(varnames = c("x7mscalk5", "x8mscalk5", "x9mscalk5"), eclsk11)
 ```
 
 The weight returned by the `suggestWeights` function can be used in `EdSurvey`'s analytic functions for further analysis. For the ECLS-K:2011 study, `EdSurvey` uses all corresponding replicate weights and estimates the variance of the coefficients with the Jackknife method. Additional information on variance estimation of ECLS-K:2011 variables is available in [10. Longitudinal Datasets][Longitudinal Datasets].
@@ -39,13 +39,13 @@ The weight returned by the `suggestWeights` function can be used in `EdSurvey`'s
 To print out additional information on weight suggestion, such as the number of cases with a valid main sampling weight, weight description, variables(s) used in weight suggestions and variable(s) that the user has specified but are not used in the weight suggestion, use the `verbose = TRUE` option:
 
 ```{r, tidy=TRUE}
-suggestWeights(c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, verbose=TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, verbose=TRUE)
 ```
 
 Often, there are trade-offs for using one weight versus another among the possible weights, and you may want to compare using different weights before making a final decision. To display all applicable weights that adjust for nonresponse to more components than what are included in the analysis, which typically are more conservative with smaller sample size, use the `showAllWeightSuggestions = TRUE` option:
 
 ```{r, tidy=TRUE}
-suggestWeights(c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
 ```
 
 If the function returns the message "cannot determine weights for variables provided" or returns weights that are too conservative, try to remove some variable(s) from the variable list that have the least amount of nonresponse or that are of the least analytical interest. This is especially helpful in the exploratory data analysis stage. 

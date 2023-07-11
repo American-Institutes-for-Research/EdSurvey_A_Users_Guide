@@ -8,7 +8,7 @@ Its good practice to keep source data in a structured folder scheme.  For `EdSur
 
 NAEP is a measure used to study U.S. student achievement in urban districts, states, and the nation in many subjects, including reading, mathematics, science, writing, and other subjects for Grades 4, 8, and 12. The assessments are sponsored by the NCES within the U.S. Department of Education and the Institute of Education Sciences (IES). Further study information can be found on the [NAEP Webpage](https://nces.ed.gov/nationsreportcard/).  All NAEP datasets are restricted-use files from NCES; however, a publicly available sample dataset called NAEP Primer can be accessed through the R package `NAEPprimer`.
 
-NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the `readNAEP` function.  Additional arguments to `readNAEP` include `defaultWeight`, `defaultPvs`, `omittedLevels`, and `frPath`.  These arguments should be modified from their default values only in rare situations.  Consult the `readNAEP` function documentation for more details on their use.
+NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the `readNAEP` function.  Additional arguments to `readNAEP` include `defaultWeight`, `defaultPvs`, `dropOmittedLevels`, and `frPath`.  These arguments should be modified from their default values only in rare situations.  Consult the `readNAEP` function documentation for more details on their use.
 
 Before beginning to analyze NAEP data, be sure to read the provided user guide and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis.
 

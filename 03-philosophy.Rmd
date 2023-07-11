@@ -232,10 +232,10 @@ studies at home) returns the following output:
 summary2(data = sdf, "b017451")
 ```
 
-Note that by default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+Note that by default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 ```{r summary2CategoricaOomitted}
-summary2(data = sdf, "b017451", omittedLevels = TRUE)
+summary2(data = sdf, "b017451", dropOmittedLevels = TRUE)
 ```
 
 
@@ -252,19 +252,19 @@ To access and manipulate data for `dsex` and `b017451` variables in `sdf`, call 
 
 ```{r getDatInit, cache=FALSE, warning=FALSE}
 gddat <- getData(data = sdf, varnames = c("dsex","b017451"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 head(gddat)
 ```
 
-By default, setting `omittedLevels` to `TRUE` removes special values such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations that are not typically included in analysis.
+By default, setting `dropOmittedLevels` to `TRUE` removes special values such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations that are not typically included in analysis.
 
 ### Retrieving All Variables in a Dataset
 
-To extract all data in an `edsurvey.data.frame`, define the `varnames` argument as `colnames(x = sdf)`, which will query all variables. Setting the arguments `omittedLevels` and `defaultConditions` to `FALSE` ensures that values that would normally be removed are included:
+To extract all data in an `edsurvey.data.frame`, define the `varnames` argument as `colnames(x = sdf)`, which will query all variables. Setting the arguments `dropOmittedLevels` and `defaultConditions` to `FALSE` ensures that values that would normally be removed are included:
 
 ```{r getAllData, eval = FALSE, warning=FALSE}
 lsdf0 <- getData(data = sdf, varnames = colnames(sdf), addAttributes = TRUE,
-                 omittedLevels = FALSE, defaultConditions = FALSE)
+                 dropOmittedLevels = FALSE, defaultConditions = FALSE)
 dim(x = lsdf0) # excludes the one school variable in the sdf
 dim(x = sdf)
 ```
@@ -281,7 +281,7 @@ For example, a user might want to run a linear model using `composite`, the defa
 
 ```{r rebindAttributesPrep, cache=FALSE, warning=FALSE}
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "origwt", "composite"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
                                                "Once every few weeks"),
                           "Rarely", "At least once a week")
