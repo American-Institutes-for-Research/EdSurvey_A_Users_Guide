@@ -1,7 +1,7 @@
 # Models {#models}
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 ##  Regression Analysis With `lm.sdf`

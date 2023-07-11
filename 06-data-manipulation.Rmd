@@ -1,6 +1,6 @@
 ```{r loadEdSurvey6, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
@@ -12,7 +12,7 @@ sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprime
 Analysts can directly use a subset of a dataset with `EdSurvey` functions. In this example, a summary table is created with `edsurveyTable` after filtering the sample to include only those students whose value for the `dsex` variable is male and race (as the variable `sdracem`) is either 1 or 3 (White or Hispanic). Both value levels and labels can be used in `EdSurvey` functions.
 
 ```{r subset6, cache=FALSE, warning=FALSE}
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 sdfm <- subset(sdf, dsex == "Male" & (sdracem == 3 | sdracem == 1))
 es1 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 ```

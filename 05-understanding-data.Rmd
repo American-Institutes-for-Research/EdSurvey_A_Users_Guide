@@ -1,6 +1,6 @@
 ```{r loadEdSurvey5, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 # Understanding Data {#understandingData}
@@ -9,7 +9,7 @@ Once data are successfully read in (see how `EdSurvey` supports reading-in data 
 
 To follow along in this chapter, load the [NAEP Primer dataset](https://nces.ed.gov/pubsearch/pubsinfo.asp?pubid=2011463) `M36NT2PM` and assign it the name `sdf` with the following call:
 ```{r readIn}
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 ## Searching Variables
@@ -145,7 +145,7 @@ es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel
 library(knitr)
 library(kableExtra)
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
 kable(es1$data, format="html", caption = "Summary Data Tables with EdSurvey") %>%
   kable_styling(font_size = 16) %>%
@@ -164,7 +164,7 @@ es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel
 library(knitr)
 library(kableExtra)
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
 kable(es2$data, format="html", caption = "Summary Data Tables with EdSurvey, Setting pctAggregationLevel = 0 \\label{tab:table2}") %>%
   kable_styling(font_size = 16) %>%

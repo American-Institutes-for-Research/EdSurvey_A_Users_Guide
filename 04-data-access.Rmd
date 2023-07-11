@@ -17,7 +17,7 @@ When the `readNAEP` function is called, it locates the specified ASCII fixed-wid
 ### Reading NAEP Data
 ```{r readNAEP, eval=FALSE}
 #reading in the NAEP Primer data using the package NAEPprimer
-naep.1 <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+naep.1 <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 
 #pointing to a NAEP restricted-use file directly by path
 naep.2 <- readNAEP(path = "C:/RUD_DATA/NAEP/M36NT2PM.dat")

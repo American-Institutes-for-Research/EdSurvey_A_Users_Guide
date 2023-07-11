@@ -8,7 +8,7 @@ By calling the function `getData()`, one can extract a `light.edsurvey.data.fram
 
 ```{r readNAEPSource}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 gddat <- getData(data = sdf, varnames = c('composite', 'dsex', 'b017451', 'origwt'),
                 addAttributes = TRUE, omittedLevels = FALSE)
 ```
