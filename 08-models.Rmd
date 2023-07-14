@@ -220,7 +220,7 @@ This example illustrates how the user might implement student-level weighting wh
 
 ```{r mixed, cache=FALSE, warning=FALSE}
 # Subset data to a sample of interest
-sdf2 <- subset(sdf, scrpsu < 500)
+sdf2 <- subset(x = sdf, subset = scrpsu < 500)
 
 # Extract variables of interest to a light.edsurvey.data.frame
 lsdf <- getData(sdf2, c("composite","dsex","b017451","scrpsu","origwt","smsrswt"),

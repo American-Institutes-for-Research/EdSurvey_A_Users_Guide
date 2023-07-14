@@ -201,7 +201,7 @@ These functions are quite useful for accessing the variables associated with the
 A subset of a dataset can be used with `EdSurvey` package functions. In this example, a summary table is created with `edsurveyTable` after filtering the sample to include only those students whose value in the `dsex` variable is male and race (as variable `sdracem`) is either the values 1 or 3 (White or Hispanic). Both value levels and labels can be used in `EdSurvey` package functions.
 
 ```{r subset, cache=FALSE, warning=FALSE}
-sdfm <- subset(x = sdf, dsex == "Male" & (sdracem == 3 | sdracem == 1))
+sdfm <- subset(x = sdf, subset = dsex == "Male" & (sdracem == 3 | sdracem == 1))
 es2 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 ```
 ```{r printES2, eval=FALSE}

@@ -13,7 +13,7 @@ Analysts can directly use a subset of a dataset with `EdSurvey` functions. In th
 
 ```{r subset6, cache=FALSE, warning=FALSE}
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
-sdfm <- subset(sdf, dsex == "Male" & (sdracem == 3 | sdracem == 1))
+sdfm <- subset(x = sdf, subset = dsex == "Male" & (sdracem == 3 | sdracem == 1))
 es1 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 ```
 ```{r es1, eval=FALSE}
