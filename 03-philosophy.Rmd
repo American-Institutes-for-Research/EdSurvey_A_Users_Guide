@@ -292,5 +292,5 @@ From there, apply `rebindAttributes` from the attribute data `sdf` to the manipu
 ```{r rebindAttributes, cache=FALSE, warning=FALSE}
 gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
-summary(lm2)
+summary(object = lm2)
 ```

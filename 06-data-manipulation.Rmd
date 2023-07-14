@@ -38,14 +38,14 @@ sdf2 <- recode.sdf(sdf, recode = list(
                to = c ("Frequently"))
   )
 )
-searchSDF("b017451", sdf2, levels = TRUE)                              
+searchSDF(string = "b017451", data = sdf2, levels = TRUE)                              
 ```
 
 In addition, we can change the name of variables using `rename.sdf()`. The recoded variable `"b017451"` can be changed to a value that more effectively describes its contents, such as `"studytalkfrequency"`:
 
 ```{r rename}
-sdf2 <- rename.sdf(sdf2, "b017451", "studytalkfrequency")
-searchSDF("studytalkfrequency", sdf2, levels = TRUE)
+sdf2 <- rename.sdf(x = sdf2, oldnames = "b017451", newnames = "studytalkfrequency")
+searchSDF(string = "studytalkfrequency", data = sdf2, levels = TRUE)
 ```
 
 Most `EdSurvey` analytical functions allow the user to recode variable levels through the recode argument, including, for example, `cor.sdf()`, `lm.sdf()`, and `edsurveyTable()`. Reference a function's documentation page for details.
@@ -74,8 +74,8 @@ To extract all data in an `edsurvey.data.frame`, define the `varnames` argument 
 ```{r lsdf0, eval = FALSE, warning=FALSE}
 lsdf0 <- getData(data = sdf, varnames = colnames(sdf), addAttributes = TRUE,
                  dropOmittedLevels = FALSE, defaultConditions = FALSE)
-dim(lsdf0) # excludes the one school variable in the sdf
-dim(sdf)
+dim(x = lsdf0) # excludes the one school variable in the sdf
+dim(x = sdf)
 ```
 
 Once retrieved, this dataset can be used with all `EdSurvey` functions.
@@ -109,7 +109,7 @@ To generate a linear model using a `light.edsurvey.data.frame`, the included arg
 
 ```{r lmsdfGddat}
 lm2 <- lm.sdf(formula = composite ~ dsex + b017451, weightVar = "origwt", data = gddat)
-summary(lm2)
+summary(object = lm2)
 ```
 
 Contrasts from treatment groups also can be omitted from a linear model by stating the variable name in the `relevels` argument. In this example, values with `dsex = "Female"` are withheld from the regression. Use the base R function `summary` to view details about the linear model.
@@ -117,7 +117,7 @@ Contrasts from treatment groups also can be omitted from a linear model by stati
 ```{r lmsdfGddat2}
 lm3 <- lm.sdf(formula = composite ~ dsex + b017451, data = gddat,
               relevels = list(dsex = "Female"))
-summary(lm3)
+summary(object = lm3)
 ```
 
 ### cor.sdf
@@ -157,9 +157,9 @@ gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
 From there, apply `rebindAttributes` from the attribute data `sdf` to the manipulated data frame `gddat`. The new variables are now available for use in `EdSurvey` analytical functions:
 
 ```{r rebindAttributeslm, cache=FALSE, warning=FALSE}
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
-summary(lm2)
+summary(object = lm2)
 ```
 
 Additional details on the features of the `getData` function appear in the vignette titled [*Using the `getData` Function in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-getData.pdf).

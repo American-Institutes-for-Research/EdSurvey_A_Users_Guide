@@ -42,9 +42,9 @@ gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
 From there, apply `rebindAttributes` from the attribute data `sdf` to the manipulated data frame `gddat`. The new variables are now available for use in `EdSurvey` analytical functions:
 
 ```{r rebindAttributes9, cache=FALSE, warning=FALSE}
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
-summary(lm2)
+summary(object = lm2)
 ```
 
 ## Integration With `dplyr`
@@ -73,15 +73,15 @@ table(gddat$combinedVar)
 
 ```{r logit1, error = TRUE}
 # Specify level in I()
-logit1 <- logit.sdf(I(b017451 == "Never or hardly ever") ~ combinedVar,
+logit1 <- logit.sdf(formula = I(b017451 == "Never or hardly ever") ~ combinedVar,
                     data = gddat)
 ```
 
 When we attempt to run the logistic regression, `EdSurvey` returns an error that it cannot locate the survey weights for this data frame. After creating a new variable, `EdSurvey` can no longer access the survey attributes needed to complete this analysis. To remedy, apply `rebindAttributes` from the attribute data `sdf` to the manipulated data frame `gddat`:
 
 ```{r rebind2}
-gddat <- rebindAttributes(gddat, sdf)
-logit1 <- logit.sdf(I(b017451 =="Never or hardly ever") ~ combinedVar,
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
+logit1 <- logit.sdf(formula = I(b017451 =="Never or hardly ever") ~ combinedVar,
                     data = gddat)
 ```
 
@@ -100,6 +100,6 @@ class(gddat)
 The function `rebindAttributes()`reapplies survey attributes and prepares the data for use with `EdSurvey` analysis functions.
 
 ```{r rebind4}
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 class(gddat)
 ```

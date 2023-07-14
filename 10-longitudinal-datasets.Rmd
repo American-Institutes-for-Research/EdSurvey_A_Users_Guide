@@ -75,19 +75,19 @@ The method for recoding these values appears later in this chapter in _Recoding 
 The `summary2` function produces weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. By default, the estimates are not weighted. For example, the variable `x9povty_i` ("Imputed poverty level") returns the following output: 
 
 ```{r summary2CategoricalECLS}
-summary2(eclsk11, "x9povty_i")
+summary2(data = eclsk11, variable = "x9povty_i")
 ```
 
 By default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 ```{r summary2CategoricalOmittedECLS}
-summary2(eclsk11, "x9povty_i", dropOmittedLevels = TRUE)
+summary2(data = eclsk11, variable = "x9povty_i", dropOmittedLevels = TRUE)
 ```
 
 The `summary2` function returns the weighted number of cases, the weighted percentage, and the weighted standard error for a categorical variable when specified in the argument `weightVar`, here using the total student weight from the 9th round `weightVar = "w9c29p_9a0"`:
 
 ```{r summary2CategoricalWeightsIncluded}
-summary2(eclsk11, "x9povty_i", weightVar = "w9c29p_9a0")
+summary2(data = eclsk11, variable = "x9povty_i", weightVar = "w9c29p_9a0")
 ```
 
 ## Retrieving Data for Further Manipulation With `getData`
@@ -117,8 +117,8 @@ To extract all the data in an `edsurvey.data.frame`, define the `varnames` argum
 ```{r retrieveAllVariables,message = FALSE, warning=FALSE, eval=FALSE}
 lsdf0 <- getData(data = eclsk11, varnames = colnames(eclsk11), addAttributes = TRUE,
                  dropOmittedLevels = FALSE)
-dim(lsdf0) 
-dim(eclsk11)
+dim(x = lsdf0) 
+dim(x = eclsk11)
 ```
 
 Additional details on the features of the `getData` function appear in the vignette titled [*Using the `getData` Function in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-getData.pdf).
@@ -187,10 +187,10 @@ The `p9hlphwk` variable from the _Recoding Variables in a Dataset_ section of [t
 Using the `mvData` object created earlier, apply `rebindAttributes` from the attribute data `eclsk11` to the manipulated data frame `mvData`. The new variables are now available for `EdSurvey` analytical functions:
 
 ```{r rebindAttributesECLS}
-mvData <- rebindAttributes(mvData, eclsk11)
+mvData <- rebindAttributes(data = mvData, attributeData = eclsk11)
 lm2 <- lm.sdf(formula = x9rscalk5 ~ x_chsex_r + p9hlphwk, data = mvData,
               weightVar = "w9c29p_9t90")
-summary(lm2)
+summary(object = lm2)
 ```
 
 More information on the `rebindAttributes` function is available in [Chapter 9](#analysisOutsideEdSurvey).
