@@ -7,7 +7,7 @@
 <title>Preface | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="Analyzing NCES Data Using EdSurvey: A User’s Guide is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Preface | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/preface.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -96,7 +96,7 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="preface" class="section level1 unnumbered">
 <h1>Preface<a class="anchor" aria-label="anchor" href="#preface"><i class="fas fa-link"></i></a>
 </h1>
-<p><em>Analyzing NCES Data Using <code>EdSurvey</code>: A User’s Guide</em> is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. <code>EdSurvey</code> was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 3.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.</p>
+<p><em>Analyzing NCES Data Using <code>EdSurvey</code>: A User’s Guide</em> is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. <code>EdSurvey</code> was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 4.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.</p>
 <p>The team also understands that programming might be intimidating to some education researchers. To lower the entry level of programming skills, this user’s guide provides comprehensive examples that are easy to follow and adaptable to many research questions and investigations. The team assumes that users of this manual have some basic understanding and knowledge of programming and R software. Experienced R users might find themselves equipped to jump to a specific section of interest. For those who do not have such knowledge yet, many courses are available in the public domain that will suffice for acquiring this prerequisite knowledge.</p>
 <div id="rationale-for-edsurvey" class="section level2" number="0.2">
 <h2>
@@ -164,11 +164,11 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <p>where <span class="math inline">\(Command\)</span> is the action that the analyst wants to perform, and $argument_i $ is a required element that must appear after this particular command. The number of arguments depends on the given command, and <span class="math inline">\(option_i\)</span>: is added to enhance the output from the command.</p>
 <p>After the user installs <code>EdSurvey</code>, the next logical thing to do is to read built-in data files, read data from a repository, or read the Restricted-Use D ata received from the Institute of Education Sciences data officer. The command to read the data is ReadDATA, where data can be substituted with NAEP, TIMSS, and so forth. To execute this command, <code>EdSurvey</code> must know the location of the data file. So, the argument that specifies the path to the folder where the data file is located is necessary for the command to run. It also is important to have a very good understanding of the data of interest before unleashing this command because you must always be aware of the available resources on your computer. For example, the 2015 TIMSS data includes fourth-grade mathematics and science assessment results relating to students, parents, teachers, schools, and curricular background data covering 47 participating countries and six benchmarking entities. The same data are available for eighth-grade students but only for 39 countries and six benchmarking entities. Running the command <code>readTIMSS</code> will load all that data in your working memory:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Mydatafile</span> <span class="op">&lt;-</span>   <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"~/TIMSS/2015"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Mydatafile</span> <span class="op">&lt;-</span>   <span class="fu">readTIMSS</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"~/TIMSS/2015"</span><span class="op">)</span></span></code></pre></div>
 <p>To avoid memory overload , the development team recommends that analysts load only the data of their grade and country (or countries) of interest from the repository, as illustrated in the following example:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Read Grade 4 Denmark 2015 TIMSS survey into the dataframe Dnk2015 </span></span>
-<span><span class="va">Dnk2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"~/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"dnk"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">Dnk2015</span> <span class="op">&lt;-</span> <span class="fu">readTIMSS</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"~/TIMSS/2015"</span>, countries <span class="op">=</span> <span class="st">"dnk"</span>, gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">Dnk2015</span></span></code></pre></div>
 <pre><code>#&gt; Found cached Grade 4 data for country code "dnk: Denmark".
 #&gt; edsurvey.data.frame data level detail:
@@ -176,8 +176,8 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 #&gt; |Student         |        3710|        1196|                |*base level*                | ✓  |
 #&gt; |&gt;School         |        3710|         101|many:one        |3710 of 3710                | ✓  |
 #&gt; |&gt;Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
-#&gt; edsurvey.data.frame for 2015 TIMSS (Mathematics and
-#&gt;   Science) in Denmark
+#&gt; edsurvey.data.frame for 2015 TIMSS International
+#&gt;   (Mathematics and Science; Grade 4) in Denmark
 #&gt; Dimensions: 5897 rows and 2043 columns.
 #&gt; 
 #&gt; There are 4 full sample weights in this
@@ -255,7 +255,7 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <p>Once the data are loaded, <code>EdSurvey</code> automatically detects the design elements needed for computing the estimates and standard errors. In the case of assessment data, this standard error has two components: the sampling error and the measurement error. The elements from the data file needed for their computation are the full sample weight, the replicate weights (or the stratum and the principal sampling unit variables), as well as the plausible values. One read function is unique to one study in <code>EdSurvey</code> because each NCES data file has its structure, data layout variable coding, and size. It also should be noted that, in general, different survey programs use different methodologies to compute these variances. Read more about reading in survey data in <a href="dataAccess.html#dataAccess">Chapter 4</a>.</p>
 <p>Once read into <code>EdSurvey</code>, the next set of commands available to the analyst is showCommand, namely, <code>showCodebook</code>, <code>showWeights</code>, and <code>showPlausibleValues</code>. The following example illustrates the usage of <code>showPlausibleValues</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showPlausibleValues.html">showPlausibleValues</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Dnk2015</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">showPlausibleValues</span><span class="op">(</span>data <span class="op">=</span> <span class="va">Dnk2015</span>, verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; There are 14 subject scale(s) or subscale(s) in this</span></span>
 <span><span class="co">#&gt;   edsurvey.data.frame:</span></span>
 <span><span class="co">#&gt; 'mmat' subject scale or subscale with 5 plausible</span></span>
@@ -331,7 +331,7 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <p>The last function described here is the search function. The command <code>searchSDF</code> searches a survey data frame and returns variable names and labels meeting the criteria specified by the user. Users can search by either the variable name or the labels of variables. The following examples illustrate several but not all possible implementations of the search function:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for variables with a name or label that contains “computer”</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"computer"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
+<span><span class="fu">searchSDF</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"computer"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    variableName</span></span>
 <span><span class="co">#&gt; 1       asbg05a</span></span>
 <span><span class="co">#&gt; 2       asbg05b</span></span>
@@ -375,11 +375,33 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="co">#&gt; 18 SCI\\COMPUTER TABLET ACTIVITIES\\PRACTICE SKILLS</span></span>
 <span><span class="co">#&gt; 19   SCI\\COMPUTER TABLET ACTIVITIES\\LOOK UP IDEAS</span></span>
 <span><span class="co">#&gt; 20   SCI\\COMPUTER TABLET ACTIVITIES\\DO PROCEDURES</span></span>
-<span><span class="co">#&gt; 21 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA</span></span></code></pre></div>
+<span><span class="co">#&gt; 21 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA</span></span>
+<span><span class="co">#&gt;    fileFormat</span></span>
+<span><span class="co">#&gt; 1     Student</span></span>
+<span><span class="co">#&gt; 2     Student</span></span>
+<span><span class="co">#&gt; 3     Student</span></span>
+<span><span class="co">#&gt; 4     Student</span></span>
+<span><span class="co">#&gt; 5     Student</span></span>
+<span><span class="co">#&gt; 6      School</span></span>
+<span><span class="co">#&gt; 7      School</span></span>
+<span><span class="co">#&gt; 8      School</span></span>
+<span><span class="co">#&gt; 9      School</span></span>
+<span><span class="co">#&gt; 10    Teacher</span></span>
+<span><span class="co">#&gt; 11    Teacher</span></span>
+<span><span class="co">#&gt; 12    Teacher</span></span>
+<span><span class="co">#&gt; 13    Teacher</span></span>
+<span><span class="co">#&gt; 14    Teacher</span></span>
+<span><span class="co">#&gt; 15    Teacher</span></span>
+<span><span class="co">#&gt; 16    Teacher</span></span>
+<span><span class="co">#&gt; 17    Teacher</span></span>
+<span><span class="co">#&gt; 18    Teacher</span></span>
+<span><span class="co">#&gt; 19    Teacher</span></span>
+<span><span class="co">#&gt; 20    Teacher</span></span>
+<span><span class="co">#&gt; 21    Teacher</span></span></code></pre></div>
 <p>One can use Boolean algebra in their search:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for a variable with name or label that contains computer, or    internet, or phone</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string<span class="op">=</span><span class="st">"computer|internet|phone"</span>, data<span class="op">=</span><span class="va">Dnk2015</span><span class="op">)</span></span>
+<span><span class="fu">searchSDF</span><span class="op">(</span>string<span class="op">=</span><span class="st">"computer|internet|phone"</span>, data<span class="op">=</span><span class="va">Dnk2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    variableName</span></span>
 <span><span class="co">#&gt; 1       m051134</span></span>
 <span><span class="co">#&gt; 2       asbg05a</span></span>
@@ -431,27 +453,53 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="co">#&gt; 22 SCI\\COMPUTER TABLET ACTIVITIES\\PRACTICE SKILLS</span></span>
 <span><span class="co">#&gt; 23   SCI\\COMPUTER TABLET ACTIVITIES\\LOOK UP IDEAS</span></span>
 <span><span class="co">#&gt; 24   SCI\\COMPUTER TABLET ACTIVITIES\\DO PROCEDURES</span></span>
-<span><span class="co">#&gt; 25 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA</span></span></code></pre></div>
+<span><span class="co">#&gt; 25 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA</span></span>
+<span><span class="co">#&gt;    fileFormat</span></span>
+<span><span class="co">#&gt; 1     Student</span></span>
+<span><span class="co">#&gt; 2     Student</span></span>
+<span><span class="co">#&gt; 3     Student</span></span>
+<span><span class="co">#&gt; 4     Student</span></span>
+<span><span class="co">#&gt; 5     Student</span></span>
+<span><span class="co">#&gt; 6     Student</span></span>
+<span><span class="co">#&gt; 7     Student</span></span>
+<span><span class="co">#&gt; 8     Student</span></span>
+<span><span class="co">#&gt; 9     Student</span></span>
+<span><span class="co">#&gt; 10     School</span></span>
+<span><span class="co">#&gt; 11     School</span></span>
+<span><span class="co">#&gt; 12     School</span></span>
+<span><span class="co">#&gt; 13     School</span></span>
+<span><span class="co">#&gt; 14    Teacher</span></span>
+<span><span class="co">#&gt; 15    Teacher</span></span>
+<span><span class="co">#&gt; 16    Teacher</span></span>
+<span><span class="co">#&gt; 17    Teacher</span></span>
+<span><span class="co">#&gt; 18    Teacher</span></span>
+<span><span class="co">#&gt; 19    Teacher</span></span>
+<span><span class="co">#&gt; 20    Teacher</span></span>
+<span><span class="co">#&gt; 21    Teacher</span></span>
+<span><span class="co">#&gt; 22    Teacher</span></span>
+<span><span class="co">#&gt; 23    Teacher</span></span>
+<span><span class="co">#&gt; 24    Teacher</span></span>
+<span><span class="co">#&gt; 25    Teacher</span></span></code></pre></div>
 <p>Remember that TIMSS contains assessment data in mathematics and science at Grades 4 and 8 as well as student, parent, teacher, school, and curricular background data. One could narrow the search to a given background data file.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Search a keyword in the student file only</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"computer"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span>, fileFormat <span class="op">=</span><span class="st">"student"</span><span class="op">)</span></span>
+<span><span class="fu">searchSDF</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"computer"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span>, fileFormat <span class="op">=</span><span class="st">"student"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   variableName</span></span>
 <span><span class="co">#&gt; 1      asbg05a</span></span>
 <span><span class="co">#&gt; 2      asbg05b</span></span>
 <span><span class="co">#&gt; 3      asbg10a</span></span>
 <span><span class="co">#&gt; 4      asbg10b</span></span>
 <span><span class="co">#&gt; 5      asbg10c</span></span>
-<span><span class="co">#&gt;                                          Labels</span></span>
-<span><span class="co">#&gt; 1        GEN\\HOME POSSESS\\COMPUTER TABLET OWN</span></span>
-<span><span class="co">#&gt; 2     GEN\\HOME POSSESS\\COMPUTER TABLET SHARED</span></span>
-<span><span class="co">#&gt; 3   GEN\\USE COMPUTER TABLET FOR HOMEWORK\\HOME</span></span>
-<span><span class="co">#&gt; 4 GEN\\USE COMPUTER TABLET FOR HOMEWORK\\SCHOOL</span></span>
-<span><span class="co">#&gt; 5  GEN\\USE COMPUTER TABLET FOR HOMEWORK\\OTHER</span></span></code></pre></div>
+<span><span class="co">#&gt;                                          Labels fileFormat</span></span>
+<span><span class="co">#&gt; 1        GEN\\HOME POSSESS\\COMPUTER TABLET OWN    Student</span></span>
+<span><span class="co">#&gt; 2     GEN\\HOME POSSESS\\COMPUTER TABLET SHARED    Student</span></span>
+<span><span class="co">#&gt; 3   GEN\\USE COMPUTER TABLET FOR HOMEWORK\\HOME    Student</span></span>
+<span><span class="co">#&gt; 4 GEN\\USE COMPUTER TABLET FOR HOMEWORK\\SCHOOL    Student</span></span>
+<span><span class="co">#&gt; 5  GEN\\USE COMPUTER TABLET FOR HOMEWORK\\OTHER    Student</span></span></code></pre></div>
 <p>The addition of the option <code>levels = TRUE</code> in the search function enables a close view of the categorical variable of interest. The next example showcases a different search and the usage of the argument levels.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search multiple keywords</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"computer"</span>,<span class="st">"homework"</span>,<span class="st">"school"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Dnk2015</span>, levels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">searchSDF</span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"computer"</span>,<span class="st">"homework"</span>,<span class="st">"school"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">Dnk2015</span>, levels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Variable: asbg10b</span></span>
 <span><span class="co">#&gt; Label: GEN\USE COMPUTER TABLET FOR HOMEWORK\SCHOOL</span></span>
 <span><span class="co">#&gt; Levels (Lowest level first):</span></span>
@@ -462,7 +510,7 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="co">#&gt;      9. OMITTED OR INVALID</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Display levels of the variable "asbg10b"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"asbg10b"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
+<span><span class="fu">levelsSDF</span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"asbg10b"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'asbg10b' (Lowest level first):</span></span>
 <span><span class="co">#&gt;     1. EVERY DAY OR ALMOST EVERY DAY (n = 840)</span></span>
 <span><span class="co">#&gt;     2. ONCE OR TWICE A WEEK (n = 1368)</span></span>
@@ -472,15 +520,15 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
 <p>Please note that these estimates are weighted. To see the unweighted frequency table, use the option <code>weightVar = NULL</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Dnk2015</span>, <span class="st">"asbg10b"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">summary2</span><span class="op">(</span>data <span class="op">=</span> <span class="va">Dnk2015</span>, variable <span class="op">=</span> <span class="st">"asbg10b"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;                         asbg10b    N   Percent</span></span>
-<span><span class="co">#&gt; 1                     (Missing)  106  2.857143</span></span>
-<span><span class="co">#&gt; 2 EVERY DAY OR ALMOST EVERY DAY  840 22.641509</span></span>
-<span><span class="co">#&gt; 3          ONCE OR TWICE A WEEK 1368 36.873315</span></span>
-<span><span class="co">#&gt; 4         ONCE OR TWICE A MONTH  671 18.086253</span></span>
-<span><span class="co">#&gt; 5         NEVER OR ALMOST NEVER  603 16.253369</span></span>
-<span><span class="co">#&gt; 6            OMITTED OR INVALID  122  3.288410</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 EVERY DAY OR ALMOST EVERY DAY  840 22.641509</span></span>
+<span><span class="co">#&gt; 2          ONCE OR TWICE A WEEK 1368 36.873315</span></span>
+<span><span class="co">#&gt; 3         ONCE OR TWICE A MONTH  671 18.086253</span></span>
+<span><span class="co">#&gt; 4         NEVER OR ALMOST NEVER  603 16.253369</span></span>
+<span><span class="co">#&gt; 5            OMITTED OR INVALID  122  3.288410</span></span>
+<span><span class="co">#&gt; 6                          &lt;NA&gt;  106  2.857143</span></span></code></pre></div>
 <p>Additional data exploration functions are in <a href="understandingData.html#understandingData">Chapter 5</a>.</p>
 <p>The previous examples give a brief introduction to <code>EdSurvey</code> commands, what they look like, and their purpose. Many more commands appear in the subsequent chapters. These commands were created based on questions, inquiries, suggestions, and surveys collected from more than 2 decades of training at NCES, AERA, and National Council for Measurement in Education and interacting with analysts of our data products. The researcher should pay particular attention to commands that are specific to some types of data and those that apply to any dataset. As users progress through this manual while analyzing their data, they must always remember that (a) they are in the R environment, (b) all the commands of R base are available to them at any given time, and (c) they have to ability to augment <code>EdSurvey</code> with tools from other packages in CRAN.
 At the end of this manual, Chapters 11 and 12 detail some of the mathematics used to create some of the functions in <code>EdSurvey</code>. This is done purposefully. The development team wants the user to be aware that even though this package makes many computations easily accessible, there are intensive computations and several methodologies that either existed or were developed that were implemented in this package. The entire <code>EdSurvey</code> package is not complete because it is still being developed. The team strongly encourages that anyone who has suggestions of methodology that could be added or that they have developed themselves as an add-on to <a href="https://github.com/American-Institutes-for-Research/EdSurvey">contact us</a> for possible implementation. The development team will not guarantee inclusion but will give any suggestions a fair assessment.</p>
@@ -522,7 +570,7 @@ At the end of this manual, Chapters 11 and 12 detail some of the mathematics use
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-07-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

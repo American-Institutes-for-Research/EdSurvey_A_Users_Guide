@@ -1,4 +1,7 @@
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
+```
 
 # Understanding Data {#understandingData}
 
@@ -7,7 +10,7 @@ Once data are successfully read in (see how `EdSurvey` supports reading-in data 
 To follow along in this chapter, load the [NAEP Primer dataset](https://nces.ed.gov/pubsearch/pubsinfo.asp?pubid=2011463) `M36NT2PM` and assign it the name `sdf` with the following call:
 
 ```r
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 ## Searching Variables
@@ -88,6 +91,10 @@ searchSDF(string = "book", data = sdf, fileFormat = "student")
 #> 1      b013801                                Books in home
 #> 2      t088804 Computer activities: Use a gradebook program
 #> 3      t091503     G8Math:How often use Geometry sketchbook
+#>   fileFormat
+#> 1    Student
+#> 2    Student
+#> 3    Student
 ```
 
 The levels and labels for each variable searched via `searchSDF()` also can be returned by setting `levels = TRUE`:
@@ -155,6 +162,19 @@ searchSDF(string="book|home|value", data=sdf)
 #> 10      Computer activities: Use a gradebook program
 #> 11  Computer activities: Post homework,schedule info
 #> 12          G8Math:How often use Geometry sketchbook
+#>    fileFormat
+#> 1     Student
+#> 2     Student
+#> 3     Student
+#> 4     Student
+#> 5     Student
+#> 6     Student
+#> 7     Student
+#> 8     Student
+#> 9     Student
+#> 10    Student
+#> 11    Student
+#> 12    Student
 ```
 
 A vector of strings will search for variables that contain multiple strings, such as both "book" and "home"; each string is present in the variable label and can be used to filter the results:
@@ -162,8 +182,8 @@ A vector of strings will search for variables that contain multiple strings, suc
 
 ```r
 searchSDF(string=c("book","home"), data=sdf)
-#>   variableName        Labels
-#> 1      b013801 Books in home
+#>   variableName        Labels fileFormat
+#> 1      b013801 Books in home    Student
 ```
 
 To dive into a particular variable, use `levelsSDF()`. It returns the levels, the corresponding sample size, and label of each level.
@@ -287,13 +307,13 @@ This section introduces three basic R functions (both `EdSurvey` and `non-EdSurv
 - **`data`**: An `EdSurvey` object.
 - **`variable`**: Name of the variable you want to produce statistics on.
 - **`weightVar`**: name of the weight variable or `NULL` if users want to produce unweighted statistics.
-- **`omittedLevels`**: If `TRUE`, the function will remove omitted levels for the specified variable before producing descriptive statistics. If `FALSE`, the function will include omitted levels in the output statistics.
+- **`dropOmittedLevels`**: If `TRUE`, the function will remove omitted levels for the specified variable before producing descriptive statistics. If `FALSE`, the function will include omitted levels in the output statistics.
 
 The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
 
 
 ```r
-summary2(sdf, "composite")
+summary2(data = sdf, variable = "composite")
 #> Estimates are weighted using the weight variable 'origwt'
 #>    Variable     N Weighted N   Min.  1st Qu.   Median
 #> 1 composite 16915   16932.46 126.11 251.9626 277.4784
@@ -305,7 +325,7 @@ By specifying `weightVar = NULL`, the function prints out unweighted descriptive
 
 
 ```r
-summary2(sdf, "composite", weightVar = NULL)
+summary2(data = sdf, variable = "composite", weightVar = NULL)
 #> Estimates are not weighted.
 #>   Variable     N   Min.  1st Qu. Median     Mean  3rd Qu.
 #> 1   mrpcm1 16915 130.53 252.0600 277.33 275.8606 300.7200
@@ -325,7 +345,7 @@ For a categorical variable, the `summary2` function returns the weighted number 
 
 
 ```r
-summary2(sdf, "b017451")
+summary2(data = sdf, variable = "b017451")
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837  3952.4529      23.34245648
@@ -345,11 +365,11 @@ summary2(sdf, "b017451")
 #> 7           0.0191187
 ```
 
-By default, the `summary2` function includes omitted levels; to remove those levels, set `omittedLevels = TRUE`:
+By default, the `summary2` function includes omitted levels; to remove those levels, set `dropOmittedLevels = TRUE`:
 
 
 ```r
-summary2(sdf, "b017451", omittedLevels = TRUE)
+summary2(data = sdf, variable = "b017451", dropOmittedLevels = TRUE)
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837   3952.453         23.62386
@@ -384,7 +404,14 @@ The following call uses `edsurveyTable()` to create a summary table of NAEP comp
 
 
 ```r
-es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+```
+
+
+```
+#> Warning: package 'knitr' was built under R version 4.3.1
+#> Warning: package 'kableExtra' was built under R version
+#> 4.3.1
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:30%; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
@@ -506,11 +533,13 @@ es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel
 </table></div>
 
 
+
+
 By specifying `pctAggregationLevel = 0`, such as in the following call, the `PCT` column adds up to 100 across the entire sample.         
 
 
 ```r
-es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
+es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
 ```
 
 
@@ -632,6 +661,8 @@ es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel
 </tbody>
 </table></div>
 
+
+
 ### `ggplot2`
 `ggplot2` is an important R package used with `EdSurvey` to conduct EDA. 
 
@@ -658,9 +689,9 @@ This section uses the following `gddat` object:
 
 
 ```r
-gddat <- getData(sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451',
+gddat <- getData(data = sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451',
                                    'composite', 'geometry', 'origwt'),
-              addAttributes = TRUE, omittedLevels = FALSE)
+              addAttributes = TRUE, dropOmittedLevels = FALSE)
 ```
 
 `geom_bar()` uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable `b017451` in each category, with `fill = dsex` used to color portions of the selected `x` variable.
@@ -697,6 +728,13 @@ hist2 <- ggplot(gddat, aes(x = mrpcm1)) +
   facet_grid(dsex ~ .) +
   labs(title = "Figure 3") 
 hist2
+#> Warning: Combining variables of class <lfactor> and <factor> was
+#> deprecated in ggplot2 3.4.0.
+#> ℹ Please ensure your variables are compatible before
+#>   plotting (location: `join_keys()`)
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where
+#> this warning was generated.
 ```
 
 <img src="05-understanding-data_files/figure-html/plot3-1.png" width="1056" />

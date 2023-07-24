@@ -7,7 +7,7 @@
 <title>Chapter 9 Analysis Outside EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="EdSurvey gives users functions to efficiently analyze education survey data. Although EdSurvey allows for rudimentary data manipulation and analysis, this chapter will discuss how to integrate...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 9 Analysis Outside EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/analysisOutsideEdSurvey.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -102,26 +102,27 @@
 <h2>
 <span class="header-section-number">9.1</span> Integration With Any Other Package<a class="anchor" aria-label="anchor" href="#integration-with-any-other-package"><i class="fas fa-link"></i></a>
 </h2>
-<p>By calling the function <code><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData()</a></code>, one can extract a <code>light.edsurvey.data.frame</code>: a <code>data.frame</code>-like object containing requested variables, weights, and each weight’s associated replicate weights. This <code>light.edsurvey.data.frame</code> can be not only manipulated as with other <code>data.frame</code> objects but also used with packaged <code>EdSurvey</code> functions. As noted in <a href="dataManipulation.html#retrievingAllVariablesInADataset">Chapter 6</a>, setting the arguments <code>omittedLevels</code> and <code>defaultConditions</code> to <code>FALSE</code> ensures that the values that would normally be removed are included. The argument <code>addAttributes = TRUE</code> ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<p>By calling the function <code><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData()</a></code>, one can extract a <code>light.edsurvey.data.frame</code>: a <code>data.frame</code>-like object containing requested variables, weights, and each weight’s associated replicate weights. This <code>light.edsurvey.data.frame</code> can be not only manipulated as with other <code>data.frame</code> objects but also used with packaged <code>EdSurvey</code> functions. As noted in <a href="dataManipulation.html#retrievingAllVariablesInADataset">Chapter 6</a>, setting the arguments <code>dropOmittedLevels</code> and <code>defaultConditions</code> to <code>FALSE</code> ensures that the values that would normally be removed are included. The argument <code>addAttributes = TRUE</code> ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.</p>
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.air.org/project/nces-data-r-project-edsurvey">EdSurvey</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'EdSurvey' was built under R version 4.3.1</span></span>
 <span><span class="co">#&gt; Loading required package: car</span></span>
 <span><span class="co">#&gt; Loading required package: carData</span></span>
 <span><span class="co">#&gt; Loading required package: lfactors</span></span>
 <span><span class="co">#&gt; lfactors v1.0.4</span></span>
 <span><span class="co">#&gt; Loading required package: Dire</span></span>
-<span><span class="co">#&gt; Dire v2.1.0</span></span>
-<span><span class="co">#&gt; EdSurvey v3.0.1</span></span>
+<span><span class="co">#&gt; Dire v2.1.1</span></span>
+<span><span class="co">#&gt; EdSurvey v4.0.1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'EdSurvey'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     cbind, rbind</span></span>
-<span><span class="va">sdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'composite'</span>, <span class="st">'dsex'</span>, <span class="st">'b017451'</span>, <span class="st">'origwt'</span><span class="op">)</span>,</span>
-<span>                addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, omittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span>                addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>The base R function <code>gsub</code> allows users to substitute one string for another. The following step recodes “Every day” to “Seven days a week”. The <code>head</code> function reveals the first 6 values of the recoded variable <code>b017451</code> accessed by the <code>$</code> operator:</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1. Recode a Column Based on a String</span></span>
 <span></span>
 <span><span class="va">gddat</span><span class="op">$</span><span class="va">b017451</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"Every day"</span>, replacement <span class="op">=</span> <span class="st">"Seven days a week"</span>,</span>
@@ -138,17 +139,17 @@
 </h2>
 <p>The <code>rebindAttributes</code> function allows users to reassign the survey data attributes required by <code>EdSurvey</code> to a data frame that might have had its attributes stripped during the manipulation process. After rebinding the attributes, all variables—including those outside the original dataset—are available for <code>EdSurvey</code> analytical functions.</p>
 <p>For example, a user might want to run a linear model using <code>composite</code>, the default weight <code>origwt</code>, the variable <code>dsex</code>, and the categorical variable <code>b017451</code> recoded into a binary variable. To do so, we can return a portion of the <code>sdf</code> survey data as the <code>gddat</code> object. Next, use the base R function <code>ifelse</code> to conditionally recode the variable <code>b017451</code> by collapsing the levels <code>"Never or hardly ever"</code> and <code>"Once every few weeks"</code> into one level (<code>"Rarely"</code>) and all other levels into <code>"At least once a week"</code>.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
-<span>                 omittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                 dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">gddat</span><span class="op">$</span><span class="va">studyTalk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">b017451</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Never or hardly ever"</span>,</span>
 <span>                                               <span class="st">"Once every few weeks"</span><span class="op">)</span>,</span>
 <span>                          <span class="st">"Rarely"</span>, <span class="st">"At least once a week"</span><span class="op">)</span></span></code></pre></div>
 <p>From there, apply <code>rebindAttributes</code> from the attribute data <code>sdf</code> to the manipulated data frame <code>gddat</code>. The new variables are now available for use in <code>EdSurvey</code> analytical functions:</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="va">sdf</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">studyTalk</span>, data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula: composite ~ dsex + studyTalk</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -181,46 +182,47 @@
 </h2>
 <p>One popular package for data manipulation in the R ecosystem is <code>dplyr</code>. Given its ubiquity, it merits noting common errors that one might encounter when performing analyses using <code>EdSurvey</code> together with <code>dplyr</code>.</p>
 <p>Let’s say a user is interested in predicting how often a student talks about studies at home based on their gender and disability status. The following example demonstrates how to predict whether a student talks about studies at home (<code>b017451</code>) based on their sex (<code>dsex</code>) and whether they have an individualized education plan (<code>iep</code>) using the weight <code>origwt</code>. The dependent variable <code>b017451</code> specified using the outcome level of the regression with <code>I(b017451 == "Never or hardly ever")</code>:</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"iep"</span>, <span class="st">"lep"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
-<span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, omittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>dplyr</code> function <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> takes multiple variables and concatenates them, similar to the base R function <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>. The <code>%&gt;%</code> (pipe) operator allows an object to be passed forward to another function call.</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Unite columns </span></span>
 <span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="va">gddat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"combinedVar"</span>, <span class="va">dsex</span>, <span class="va">iep</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">combinedVar</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Female_No Female_Yes    Male_No   Male_Yes </span></span>
 <span><span class="co">#&gt;       7574        590       7044       1113</span></span></code></pre></div>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Specify level in I()</span></span>
-<span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span> <span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
+<span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span> <span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
 <span>                    data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in getAttributes(data, "weights"): Attribute weights not found.</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in checkDataClass(data, c("edsurvey.data.frame", "light.edsurvey.data.frame", : The argument 'data' must be an edsurvey.data.frame, a light.edsurvey.data.frame, or an edsurvey.data.frame.list. See "Using the 'EdSurvey' Package's getData Function to Manipulate the NAEP Primer Data vignette" for how to work with data in a light.edsurvey.data.frame.</span></span></code></pre></div>
 <p>When we attempt to run the logistic regression, <code>EdSurvey</code> returns an error that it cannot locate the survey weights for this data frame. After creating a new variable, <code>EdSurvey</code> can no longer access the survey attributes needed to complete this analysis. To remedy, apply <code>rebindAttributes</code> from the attribute data <code>sdf</code> to the manipulated data frame <code>gddat</code>:</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span><span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
+<span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span><span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
 <span>                    data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span></code></pre></div>
 <p>Other functions, such as <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> silently override the class of the <code>light.edsurvey.data.frame</code>, causing the attributes to be inaccessible. In the following example, we use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create a new variable <code>mrpcmAverage</code> that calculates the mean of each row’s plausible values:</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>,</span>
 <span>                 varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"iep"</span>, <span class="st">"lep"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
-<span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, omittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="va">gddat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>        </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mrpcmAverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mrpcm1</span>, <span class="va">mrpcm2</span>, <span class="va">mrpcm3</span>, <span class="va">mrpcm4</span>, <span class="va">mrpcm5</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "rowwise_df" "tbl_df"     "tbl"        "data.frame"</span></span></code></pre></div>
 <p>The function <code><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes()</a></code>reapplies survey attributes and prepares the data for use with <code>EdSurvey</code> analysis functions.</p>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="va">sdf</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "light.edsurvey.data.frame" "data.frame"</span></span></code></pre></div>
 
+<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.3.1</code></pre>
 </div>
 </div>
   <div class="chapter-nav">
@@ -250,7 +252,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-07-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

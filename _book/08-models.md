@@ -1,5 +1,8 @@
 # Models {#models}
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
+```
 
 ##  Regression Analysis With `lm.sdf`
 After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.
@@ -11,7 +14,7 @@ The data are read in and analyzed by the `lm.sdf` function---in this case, `dsex
 
 ```r
 lm1 <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf)
-summary(lm1)
+summary(object = lm1)
 #> 
 #> Formula: composite ~ dsex + b017451
 #> 
@@ -53,7 +56,7 @@ After the regression is run, the data are automatically removed from memory.
 ```r
 lm1f <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf,
                relevels = list(dsex = "Female"))
-summary(lm1f)
+summary(object = lm1f)
 #> 
 #> Formula: composite ~ dsex + b017451
 #> 
@@ -92,7 +95,7 @@ The coefficient on `dsex` changed from negative in the previous run to positive 
 The standardized regression coefficient also can be returned by adding `src=TRUE` into the summary call for your regression model object: 
 
 ```r
-summary(lm1f, src=TRUE)
+summary(object = lm1f, src=TRUE)
 #> 
 #> Formula: composite ~ dsex + b017451
 #> 
@@ -142,8 +145,9 @@ A linear model is analyzed by the `lm.sdf` function---in this case, `dsex`, `b01
 
 ```r
 lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
-summary(lm1)$coefmat
+summary(object = lm1)$coefmat
 ```
+
 
 Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 
@@ -158,12 +162,14 @@ Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 |b003601Some ed after H.S. |   9.15489| 1.85547|   4.93399| 25.78984|            0.00004|
 |b003601I Don't Know       |  -4.12084| 1.52672|  -2.69914| 37.56060|            0.01036|
 
+
+
 The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
 
 
 ```r
 # p-values without adjustment
-summary(lm1)$coefmat[6:8, "Pr(>|t|)"]
+summary(object = lm1)$coefmat[6:8, "Pr(>|t|)"]
 #> [1] 8.666330e-02 4.083289e-05 1.035995e-02
 ```
 
@@ -185,6 +191,7 @@ p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 ```
 We can compare all the values in a single table in \ref{tab:allp}
 
+
 Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab:allp}
 
 |                          |      raw|       BH| Bonferroni|
@@ -192,13 +199,16 @@ Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab
 |b003601Graduated H.S.     | 0.086663| 0.086663|   0.259990|
 |b003601Some ed after H.S. | 0.000041| 0.000122|   0.000122|
 |b003601I Don't Know       | 0.010360| 0.015540|   0.031080|
+
+
 The coefficients matrix also can be overwritten by selecting the same vector in the `lm1` linear regression object, updated here the Bonferroni p-values:
 
 
 ```r
 lm1$coefmat[6:8, "Pr(>|t|)"] <- p.adjust(lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
-summary(lm1)$coefmat[6:8, ]
+summary(object = lm1)$coefmat[6:8, ]
 ```
+
 
 
 Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustment to the b003501 variable  \label{tab:Coefficients with Bonferroni}
@@ -208,6 +218,8 @@ Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustm
 |b003601Graduated H.S.     |  2.89789| 1.65445|  1.75157| 44.98221|            0.25999|
 |b003601Some ed after H.S. |  9.15489| 1.85547|  4.93399| 25.78984|            0.00012|
 |b003601I Don't Know       | -4.12084| 1.52672| -2.69914| 37.56060|            0.03108|
+
+
 
 ### Adjusting *p*-Values From Multiple Sources
 Sometimes several values must be adjusted at once. In these cases, the `p.adjust` function must be called with all the *p*-values the researcher wishes to adjust together.
@@ -233,11 +245,11 @@ This code  is careful to note where the values came from to help avoid transcrip
 
 ```r
 # load in values from lm2a
-lm2aCoef <- summary(lm2a)$coefmat
+lm2aCoef <- summary(object = lm2a)$coefmat
 pvalues$p[1:3] <- lm2aCoef[3:5,5]
 pvalues$coef[1:3] <- row.names(lm2aCoef)[3:5]
 # load in values from lm2b
-lm2bCoef <- summary(lm2b)$coefmat
+lm2bCoef <- summary(object = lm2b)$coefmat
 pvalues$p[4:6] <- lm2bCoef[3:5,5]
 pvalues$coef[4:6] <- row.names(lm2aCoef)[3:5]
 ```
@@ -253,6 +265,7 @@ colnames(pvalues)[3] <- "Pr(>|t|)"
 pvalues
 ```
 
+
 Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 
 |source |coef                      | Pr(>&#124;t&#124;)|
@@ -265,6 +278,8 @@ Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 |lm2b   |b003501I Don't Know       |          0.0013006|
 |otherp |                          |          0.0200000|
 
+
+
 Now that the aforementioned *p*-values are included in the same vector, they are adjusted via `p.adjust` using the Benjamini and Hochberg method:
 
 
@@ -272,6 +287,7 @@ Now that the aforementioned *p*-values are included in the same vector, they are
 pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
 pvalues
 ```
+
 
 Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 
@@ -285,6 +301,8 @@ Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 |lm2b   |b003501I Don't Know       |          0.0013006|                   0.0018208|
 |otherp |                          |          0.0200000|                   0.0233333|
 
+
+
 *NOTE:* The `EdSurvey` package produces *p*-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.  
 
 
@@ -296,7 +314,7 @@ The vertical line symbol `|` separates dependent variables on the left-hand side
 
 ```r
 mvrlm1 <- mvrlm.sdf(algebra | geometry ~ dsex + m072801, data = sdf)
-summary(mvrlm1)
+summary(object = mvrlm1)
 #> 
 #> Formula: algebra | geometry ~ dsex + m072801
 #> 
@@ -378,9 +396,9 @@ In `logit.sdf`, although some variables might already be binary, the function `I
 
 
 ```r
-logit1 <- logit.sdf(I(b013801 %in% ">100") ~ dsex,
+logit1 <- logit.sdf(formula = I(b013801 %in% ">100") ~ dsex,
                     weightVar = 'origwt', data = sdf)
-summary(logit1)
+summary(object = logit1)
 #> 
 #> Formula: b013801 ~ dsex
 #> Family: binomial (logit)
@@ -414,7 +432,7 @@ In `EdSurvey`, odds ratios can be returned by specifying the logistic model obje
 
 
 ```r
-oddsRatio(logit1)
+oddsRatio(model = logit1)
 #>                    OR      2.5%     97.5%
 #> (Intercept) 0.3983511 0.3630823 0.4370459
 #> dsexFemale  1.1951531 1.0809029 1.3214796
@@ -452,7 +470,7 @@ To conduct quantile regression at a given tau value (by default, tau is set as 0
 
 ```r
 rq1 <- rq.sdf(composite ~ dsex + b017451, data=sdf, tau = 0.8)
-summary(rq1)
+summary(object = rq1)
 #> 
 #> Formula: composite ~ dsex + b017451
 #> 
@@ -494,7 +512,7 @@ This example illustrates how the user might implement student-level weighting wh
 
 ```r
 # Subset data to a sample of interest
-sdf2 <- subset(sdf, scrpsu < 500)
+sdf2 <- subset(x = sdf, subset = scrpsu < 500)
 
 # Extract variables of interest to a light.edsurvey.data.frame
 lsdf <- getData(sdf2, c("composite","dsex","b017451","scrpsu","origwt","smsrswt"),
@@ -506,7 +524,8 @@ lsdf$pwt2 <- lsdf$smsrswt
 
 m1 <- mixed.sdf(composite ~ dsex + b017451 + (1|scrpsu), data=lsdf,
                 weightVar = c('pwt1', 'pwt2'))
-summary(m1)
+#> matrix is structurally rank deficient; using augmented matrix with additional 1 row(s) of zeros
+summary(object = m1)
 #> Call:
 #> mixed.sdf(formula = composite ~ dsex + b017451 + (1 | scrpsu), 
 #>     data = lsdf, weightVars = c("pwt1", "pwt2"))
@@ -551,7 +570,7 @@ TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"),
 #> |>Teacher        |       12119|         745|one:many        |12119 of 12119              | ✓  |
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
-summary(mix1)
+summary(object = mix1)
 #> Call:
 #> mixed.sdf(formula = mmat ~ itsex + (1 | idschool), data = TIMSS15USA, 
 #>     weightVars = c("totwgt", "schwgt"), weightTransformation = FALSE)
@@ -582,7 +601,7 @@ summary(mix1)
 # uses only one plausible value
 mix2 <- mixed.sdf(asmmat01 ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
-summary(mix2)
+summary(object = mix2)
 #> Call:
 #> mixed.sdf(formula = asmmat01 ~ itsex + (1 | idschool), data = TIMSS15USA, 
 #>     weightVars = c("totwgt", "schwgt"), weightTransformation = FALSE)

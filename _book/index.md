@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2022-10-11"
+date: "2023-07-24"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,7 +48,7 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**October 2022**
+**July 2023**
 
 **Michael Lee**<br></br>
 **Ting Zhang**<br></br>
@@ -72,7 +72,7 @@ _The authors are responsible for the contents of this guide, which is still unde
 
 # Preface {.unnumbered}
 
-_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 3.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
+_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 4.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
 
 The team also understands that programming might be intimidating to some education researchers. To lower the entry level of programming skills, this user’s guide provides comprehensive examples that are easy to follow and adaptable to many research questions and investigations. The team assumes that users of this manual have some basic understanding and knowledge of programming and R software. Experienced R users might find themselves equipped to jump to a specific section of interest. For those who do not have such knowledge yet, many courses are available in the public domain that will suffice for acquiring this prerequisite knowledge.
 
@@ -164,8 +164,8 @@ Dnk2015
 #> |Student         |        3710|        1196|                |*base level*                | ✓  |
 #> |>School         |        3710|         101|many:one        |3710 of 3710                | ✓  |
 #> |>Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
-#> edsurvey.data.frame for 2015 TIMSS (Mathematics and
-#>   Science) in Denmark
+#> edsurvey.data.frame for 2015 TIMSS International
+#>   (Mathematics and Science; Grade 4) in Denmark
 #> Dimensions: 5897 rows and 2043 columns.
 #> 
 #> There are 4 full sample weights in this
@@ -375,6 +375,28 @@ searchSDF(string = "computer", data = Dnk2015)
 #> 19   SCI\\COMPUTER TABLET ACTIVITIES\\LOOK UP IDEAS
 #> 20   SCI\\COMPUTER TABLET ACTIVITIES\\DO PROCEDURES
 #> 21 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA
+#>    fileFormat
+#> 1     Student
+#> 2     Student
+#> 3     Student
+#> 4     Student
+#> 5     Student
+#> 6      School
+#> 7      School
+#> 8      School
+#> 9      School
+#> 10    Teacher
+#> 11    Teacher
+#> 12    Teacher
+#> 13    Teacher
+#> 14    Teacher
+#> 15    Teacher
+#> 16    Teacher
+#> 17    Teacher
+#> 18    Teacher
+#> 19    Teacher
+#> 20    Teacher
+#> 21    Teacher
 ```
 
 One can use Boolean algebra in their search:
@@ -435,6 +457,32 @@ searchSDF(string="computer|internet|phone", data=Dnk2015)
 #> 23   SCI\\COMPUTER TABLET ACTIVITIES\\LOOK UP IDEAS
 #> 24   SCI\\COMPUTER TABLET ACTIVITIES\\DO PROCEDURES
 #> 25 SCI\\COMPUTER TABLET ACTIVITIES\\STUDY PHENOMENA
+#>    fileFormat
+#> 1     Student
+#> 2     Student
+#> 3     Student
+#> 4     Student
+#> 5     Student
+#> 6     Student
+#> 7     Student
+#> 8     Student
+#> 9     Student
+#> 10     School
+#> 11     School
+#> 12     School
+#> 13     School
+#> 14    Teacher
+#> 15    Teacher
+#> 16    Teacher
+#> 17    Teacher
+#> 18    Teacher
+#> 19    Teacher
+#> 20    Teacher
+#> 21    Teacher
+#> 22    Teacher
+#> 23    Teacher
+#> 24    Teacher
+#> 25    Teacher
 ```
 
 Remember that TIMSS contains assessment data in mathematics and science at Grades 4 and 8 as well as student, parent, teacher, school, and curricular background data. One could narrow the search to a given background data file.
@@ -449,12 +497,12 @@ searchSDF(string = "computer", data = Dnk2015, fileFormat ="student")
 #> 3      asbg10a
 #> 4      asbg10b
 #> 5      asbg10c
-#>                                          Labels
-#> 1        GEN\\HOME POSSESS\\COMPUTER TABLET OWN
-#> 2     GEN\\HOME POSSESS\\COMPUTER TABLET SHARED
-#> 3   GEN\\USE COMPUTER TABLET FOR HOMEWORK\\HOME
-#> 4 GEN\\USE COMPUTER TABLET FOR HOMEWORK\\SCHOOL
-#> 5  GEN\\USE COMPUTER TABLET FOR HOMEWORK\\OTHER
+#>                                          Labels fileFormat
+#> 1        GEN\\HOME POSSESS\\COMPUTER TABLET OWN    Student
+#> 2     GEN\\HOME POSSESS\\COMPUTER TABLET SHARED    Student
+#> 3   GEN\\USE COMPUTER TABLET FOR HOMEWORK\\HOME    Student
+#> 4 GEN\\USE COMPUTER TABLET FOR HOMEWORK\\SCHOOL    Student
+#> 5  GEN\\USE COMPUTER TABLET FOR HOMEWORK\\OTHER    Student
 ```
 
 The addition of the option `levels = TRUE` in the search function enables a close view of the categorical variable of interest. The next example showcases a different search and the usage of the argument levels.
@@ -491,15 +539,15 @@ Please note that these estimates are weighted. To see the unweighted frequency t
 
 
 ```r
-summary2(data = Dnk2015, "asbg10b", weightVar = NULL)
+summary2(data = Dnk2015, variable = "asbg10b", weightVar = NULL)
 #> Estimates are not weighted.
 #>                         asbg10b    N   Percent
-#> 1                     (Missing)  106  2.857143
-#> 2 EVERY DAY OR ALMOST EVERY DAY  840 22.641509
-#> 3          ONCE OR TWICE A WEEK 1368 36.873315
-#> 4         ONCE OR TWICE A MONTH  671 18.086253
-#> 5         NEVER OR ALMOST NEVER  603 16.253369
-#> 6            OMITTED OR INVALID  122  3.288410
+#> 1 EVERY DAY OR ALMOST EVERY DAY  840 22.641509
+#> 2          ONCE OR TWICE A WEEK 1368 36.873315
+#> 3         ONCE OR TWICE A MONTH  671 18.086253
+#> 4         NEVER OR ALMOST NEVER  603 16.253369
+#> 5            OMITTED OR INVALID  122  3.288410
+#> 6                          <NA>  106  2.857143
 ```
 
 Additional data exploration functions are in [Chapter 5](#understandingData).

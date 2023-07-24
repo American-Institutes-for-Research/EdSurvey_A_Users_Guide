@@ -1,4 +1,7 @@
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
+```
 
 # Descriptive Statistics
 
@@ -505,7 +508,7 @@ The `cor.sdf` function features multiple methods for data exploration and analys
 
 
 ```r
-sdf_dnf <- subset(sdf, dsex == 1)
+sdf_dnf <- subset(x = sdf, subset = dsex == 1)
 cor_pearson <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
                     method = "Pearson", weightVar = "origwt")
 #> Converting "b017451" to a continuous variable.
@@ -523,7 +526,7 @@ cbind(Correlation = c(Pearson = cor_pearson$correlation,
                     Polychoric = cor_polychoric$correlation))
 #>            Correlation
 #> Pearson     0.08027069
-#> Spearman    0.06655288
+#> Spearman    0.06655368
 #> Polychoric  0.06972564
 ```
 
@@ -547,7 +550,7 @@ cbind(Correlation = c(Pearson = cor_pearson2$correlation,
                       Polyserial = cor_polyserial2$correlation))
 #>            Correlation
 #> Pearson      0.1031247
-#> Spearman     0.1148983
+#> Spearman     0.1148957
 #> Polyserial   0.1044407
 ```
 
@@ -625,10 +628,10 @@ After standardizing variables between each `edsurvey.data.frame`, they are combi
 ```r
 
 # make four subsets of sdf by a location variable-scrpsu, "Scrambled PSU and school code"
-sdfA <- subset(sdf, scrpsu %in% c(5, 45, 56))
-sdfB <- subset(sdf, scrpsu %in% c(75, 76, 78))
-sdfC <- subset(sdf, scrpsu %in% 100:200)
-sdfD <- subset(sdf, scrpsu %in% 201:300)
+sdfA <- subset(x = sdf, subset = scrpsu %in% c(5, 45, 56))
+sdfB <- subset(x = sdf, subset = scrpsu %in% c(75, 76, 78))
+sdfC <- subset(x = sdf, subset = scrpsu %in% 100:200)
+sdfD <- subset(x = sdf, subset = scrpsu %in% 201:300)
 
 #combine four datasets to an `edsurvey.data.frame.list`
 sdfl <- edsurvey.data.frame.list(datalist = list(sdfA, sdfB, sdfC, sdfD),
