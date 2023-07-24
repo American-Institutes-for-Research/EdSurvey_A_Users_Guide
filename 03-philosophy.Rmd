@@ -216,26 +216,26 @@ knitr::kable(x = es2$data, digits = 7, row.names = FALSE, caption = "Summary Tab
 The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
 
 ```{r summary2Weighted}
-summary2(data = sdf, "composite")
+summary2(data = sdf, variable = "composite")
 ```
 
 By specifying `weightVar = NULL`, the function prints out unweighted descriptive statistics for the selected variable or plausible values:
 
 ```{r summary2Unweighted}
-summary2(data = sdf, "composite", weightVar = NULL)
+summary2(data = sdf, variable = "composite", weightVar = NULL)
 ```
 
 For a categorical variable, the `summary2` function returns the weighted number of cases, the weighted percent, and the weighted standard error. For example, the variable `b017451` (frequency of students talking about
 studies at home) returns the following output:
 
 ```{r summary2Categorical}
-summary2(data = sdf, "b017451")
+summary2(data = sdf, variable = "b017451")
 ```
 
 Note that by default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 ```{r summary2CategoricaOomitted}
-summary2(data = sdf, "b017451", dropOmittedLevels = TRUE)
+summary2(data = sdf, variable = "b017451", dropOmittedLevels = TRUE)
 ```
 
 

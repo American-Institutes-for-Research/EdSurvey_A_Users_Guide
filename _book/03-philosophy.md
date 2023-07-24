@@ -495,7 +495,7 @@ The `summary2` function produces both weighted and unweighted descriptive statis
 
 
 ```r
-summary2(data = sdf, "composite")
+summary2(data = sdf, variable = "composite")
 #> Estimates are weighted using the weight variable 'origwt'
 #>    Variable     N Weighted N   Min.  1st Qu.   Median
 #> 1 composite 16915   16932.46 126.11 251.9626 277.4784
@@ -507,7 +507,7 @@ By specifying `weightVar = NULL`, the function prints out unweighted descriptive
 
 
 ```r
-summary2(data = sdf, "composite", weightVar = NULL)
+summary2(data = sdf, variable = "composite", weightVar = NULL)
 #> Estimates are not weighted.
 #>   Variable     N   Min.  1st Qu. Median     Mean  3rd Qu.
 #> 1   mrpcm1 16915 130.53 252.0600 277.33 275.8606 300.7200
@@ -528,7 +528,7 @@ studies at home) returns the following output:
 
 
 ```r
-summary2(data = sdf, "b017451")
+summary2(data = sdf, variable = "b017451")
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837  3952.4529      23.34245648
@@ -552,7 +552,7 @@ Note that by default, the `summary2` function includes omitted levels; to remove
 
 
 ```r
-summary2(data = sdf, "b017451", dropOmittedLevels = TRUE)
+summary2(data = sdf, variable = "b017451", dropOmittedLevels = TRUE)
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837   3952.453         23.62386

@@ -556,7 +556,7 @@
 </h3>
 <p>The <code>summary2</code> function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, <code>summary2</code> produces weighted statistics by default. If the specified variable is a set of plausible values, and the <code>weightVar</code> option is non-<code>NULL</code>, <code>summary2</code> statistics account for both plausible values pooling and weighting.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, <span class="st">"composite"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"composite"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;    Variable     N Weighted N   Min.  1st Qu.   Median</span></span>
 <span><span class="co">#&gt; 1 composite 16915   16932.46 126.11 251.9626 277.4784</span></span>
@@ -564,7 +564,7 @@
 <span><span class="co">#&gt; 1 275.8892 301.1827 404.184 36.5713    0            0</span></span></code></pre></div>
 <p>By specifying <code>weightVar = NULL</code>, the function prints out unweighted descriptive statistics for the selected variable or plausible values:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, <span class="st">"composite"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"composite"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;   Variable     N   Min.  1st Qu. Median     Mean  3rd Qu.</span></span>
 <span><span class="co">#&gt; 1   mrpcm1 16915 130.53 252.0600 277.33 275.8606 300.7200</span></span>
@@ -581,7 +581,7 @@
 <p>For a categorical variable, the <code>summary2</code> function returns the weighted number of cases, the weighted percent, and the weighted standard error. For example, the variable <code>b017451</code> (frequency of students talking about
 studies at home) returns the following output:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, <span class="st">"b017451"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"b017451"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;                b017451    N Weighted N Weighted Percent</span></span>
 <span><span class="co">#&gt; 1 Never or hardly ever 3837  3952.4529      23.34245648</span></span>
@@ -601,7 +601,7 @@ studies at home) returns the following output:</p>
 <span><span class="co">#&gt; 7           0.0191187</span></span></code></pre></div>
 <p>Note that by default, the <code>summary2</code> function includes omitted levels; to remove those, set <code>dropOmittedLevels = TRUE</code>:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, <span class="st">"b017451"</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"b017451"</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;                b017451    N Weighted N Weighted Percent</span></span>
 <span><span class="co">#&gt; 1 Never or hardly ever 3837   3952.453         23.62386</span></span>
