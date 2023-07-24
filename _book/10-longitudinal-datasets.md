@@ -1,4 +1,7 @@
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
+```
 
 # Longitudinal Datasets
 
@@ -57,6 +60,12 @@ Data recoding is especially important when performing analyses with ECLS:K-2011 
 
 In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate skips, and unit nonresponse.
 
+
+```
+#> Warning: package 'kableExtra' was built under R version
+#> 4.3.1
+```
+
 <table>
 <caption>(\#tab:table1001)Missing value codes used in the ECLS-K:2011 data file \label{tab:SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.}</caption>
  <thead>
@@ -101,13 +110,17 @@ In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate 
 </tbody>
 </table>
 
-`<a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a>`{=html}
+
+```{=html}
+<a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a>
+```
+
 
 The method for recoding these values appears later in this chapter in _Recoding Variables in a Dataset_ in the **Retrieving Data for Further Manipulation With getData** section of this chapter. 
 
 ## Removing Special Values
 
-`EdSurvey` uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set `omittedLevels = FALSE` when running your analysis. You can then remove levels that you want to remove with a call to `subset`, as discussed in the "Subsetting the Data" section in [Chapter 3](#subsettingData).
+`EdSurvey` uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set `dropOmittedLevels = FALSE` when running your analysis. You can then remove levels that you want to remove with a call to `subset`, as discussed in the "Subsetting the Data" section in [Chapter 3](#subsettingData).
 
 
 ## Explore Variable Distributions With `summary2`
@@ -116,25 +129,25 @@ The `summary2` function produces weighted and unweighted descriptive statistics 
 
 
 ```r
-summary2(eclsk11, "x9povty_i")
+summary2(data = eclsk11, variable = "x9povty_i")
 #> Estimates are not weighted.
 #>                                                                  x9povty_i
-#> 1                                                                (Missing)
-#> 2                                               1: BELOW POVERTY THRESHOLD
-#> 3 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD
-#> 4                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD
+#> 1                                               1: BELOW POVERTY THRESHOLD
+#> 2 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD
+#> 3                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD
+#> 4                                                                     <NA>
 #>      N  Percent
-#> 1 7954 43.76582
-#> 2 2185 12.02267
-#> 3 2226 12.24827
-#> 4 5809 31.96324
+#> 1 2185 12.02267
+#> 2 2226 12.24827
+#> 3 5809 31.96324
+#> 4 7954 43.76582
 ```
 
-By default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+By default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 
 ```r
-summary2(eclsk11, "x9povty_i", omittedLevels = TRUE)
+summary2(data = eclsk11, variable = "x9povty_i", dropOmittedLevels = TRUE)
 #> Estimates are not weighted.
 #>                                                                  x9povty_i
 #> 1                                               1: BELOW POVERTY THRESHOLD
@@ -150,21 +163,19 @@ The `summary2` function returns the weighted number of cases, the weighted perce
 
 
 ```r
-summary2(eclsk11, "x9povty_i", weightVar = "w9c29p_9a0")
+summary2(data = eclsk11, variable = "x9povty_i", weightVar = "w9c29p_9a0")
 #> Warning in calcEdsurveyTable(formula, data, weightVar,
 #> jrrIMax, pctAggregationLevel, : Removing 9632 rows with 0
 #> weight from analysis.
 #> Estimates are weighted using the weight variable 'w9c29p_9a0'
 #>                                                                  x9povty_i
-#> 1                                                                (Missing)
-#> 2                                               1: BELOW POVERTY THRESHOLD
-#> 3 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD
-#> 4                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD
+#> 1                                               1: BELOW POVERTY THRESHOLD
+#> 2 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD
+#> 3                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD
 #>      N Weighted N Weighted Percent Weighted Percent SE
-#> 1    0          0          0.00000                  NA
-#> 2 1720     887797         22.28798           0.9054683
-#> 3 1823     936566         23.51232           0.6704569
-#> 4 4999    2158936         54.19970           1.0531340
+#> 1 1720     887797         22.28798           0.9054683
+#> 2 1823     936566         23.51232           0.6704569
+#> 3 4999    2158936         54.19970           1.0531340
 ```
 
 ## Retrieving Data for Further Manipulation With `getData`
@@ -181,23 +192,23 @@ To access and manipulate data the `x_chsex_r` ("Sex of students"), the weight va
 ```r
 gddat <- getData(data = eclsk11, varnames = c("x_chsex_r", "w5cf5pf_50", "x12sesl",
                                               "p5sumsch", "p5nhrprm"), 
-                                 omittedLevels = FALSE, addAttributes = TRUE)
+                                 dropOmittedLevels = FALSE, addAttributes = TRUE)
 ```
 
-By default, setting `omittedLevels` to `TRUE` removes special values, such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set `omittedLevels` to `FALSE` to recode special values in an example that follows.
+By default, setting `dropOmittedLevels` to `TRUE` removes special values, such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set `dropOmittedLevels` to `FALSE` to recode special values in an example that follows.
 
 The argument `addAttributes = TRUE` ensures that the analysis functions shown so far can continue to be used with the resulting dataset: `gddat`.
 
 ### Retrieving All Variables in a Dataset
 
-To extract all the data in an `edsurvey.data.frame`, define the `varnames` argument as `names(eclsk11)`, which will query all variables. Setting the argument `omittedLevels = FALSE` ensures that values that would normally be removed are included:
+To extract all the data in an `edsurvey.data.frame`, define the `varnames` argument as `names(eclsk11)`, which will query all variables. Setting the argument `dropOmittedLevels = FALSE` ensures that values that would normally be removed are included:
 
 
 ```r
 lsdf0 <- getData(data = eclsk11, varnames = colnames(eclsk11), addAttributes = TRUE,
-                 omittedLevels = FALSE)
-dim(lsdf0) 
-dim(eclsk11)
+                 dropOmittedLevels = FALSE)
+dim(x = lsdf0) 
+dim(x = eclsk11)
 ```
 
 Additional details on the features of the `getData` function appear in the vignette titled [*Using the `getData` Function in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-getData.pdf).
@@ -276,7 +287,7 @@ The skip pattern for this sequence of survey questions is as follows: If `p9hmwo
 ```r
 mvData <- getData(data = eclsk11, varnames = c("p9hmwork", "p9hlphwk", "x_chsex_r",
                                               "x9rscalk5", "x9mscalk5", "w9c29p_9t90"), 
-                                 omittedLevels = FALSE, addAttributes = TRUE)
+                                 dropOmittedLevels = FALSE, addAttributes = TRUE)
 mvData$p9hlphwk <- ifelse(mvData$p9hmwork == "1: NEVER" &
                           mvData$p9hlphwk == "-1: NOT APPLICABLE", 0,
                           mvData$p9hlphwk)
@@ -307,11 +318,11 @@ Using the `mvData` object created earlier, apply `rebindAttributes` from the att
 
 
 ```r
-mvData <- rebindAttributes(mvData, eclsk11)
+mvData <- rebindAttributes(data = mvData, attributeData = eclsk11)
 lm2 <- lm.sdf(formula = x9rscalk5 ~ x_chsex_r + p9hlphwk, data = mvData,
               weightVar = "w9c29p_9t90")
 #> Removing 1422 rows with nonpositive weight from analysis.
-summary(lm2)
+summary(object = lm2)
 #> 
 #> Formula: x9rscalk5 ~ x_chsex_r + p9hlphwk
 #> 
@@ -455,6 +466,8 @@ This `edsurveyTable` is saved as the object `es1`, and the resulting table can b
 </tbody>
 </table>
 
+
+
 Given that the previous analysis uses parent data from Round 9, the weight variable `"w9c29p_9a0"` also might be appropriate. Both `"w9c29p_9t90"`  and `"w9c29p_9a0"` could be used for this analysis, although both include nonresponse adjustments for additional data components or rounds of data collection than those of interest in the current analysis. Therefore, analysts need to determine which weight they prefer to use because there is no weight that adjusts for nonresponse for only the sources used in this analysis. Successive analyses in this chapter that mix Round 9 child and parent variables might substitute the selected weight chosen. Note the slight differences in `*n* used` and results. Consult the *4.3.1 Types of Sample Weights* section of the [*ECLS-K:2011 Kindergarten--Fifth Grade User's Manual, Public Version*](https://nces.ed.gov/pubs2019/2019051.pdf) for additional guidance on choosing the most appropriate sample weight for an analysis.
 
 
@@ -566,6 +579,8 @@ es1p <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 </tbody>
 </table>
 
+
+
 The function also features variance estimation by setting the `varMethod` argument.[^helplmsdf] As shown in the previous example, the default `varMethod = "jackknife"` indicates that the call used the jackknife method for variance estimation. By setting `varMethod = "Taylor"`, the same `edsurveyTable` call in the previous example can return results using Taylor series variance estimation:
 
 
@@ -673,6 +688,8 @@ es1t <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 </tbody>
 </table>
 
+
+
 [^helplmsdf]: See the documentation for `lm.sdf` for details on the variance calculation.
 
 If the percentages do not add up to 100 at the desired level, adjust the `pctAggregationLevel` argument to change the aggregation level. By default, `pctAggregationLevel = 1`, indicating that the formula will be aggregated at each level of the first variable in the call; in our previous example, this is `x_chsex_r`. Setting `pctAggregationLevel = 0` aggregates at each level of each variable in the call.
@@ -772,5 +789,7 @@ In this `edsurveyTable`, the resulting table can be displayed by printing the ob
   </tr>
 </tbody>
 </table>
+
+
 
 For more details on the arguments in the `edsurveyTable` function, look at the examples using `?edsurveyTable`.

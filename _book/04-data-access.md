@@ -8,7 +8,7 @@ Its good practice to keep source data in a structured folder scheme.  For `EdSur
 
 NAEP is a measure used to study U.S. student achievement in urban districts, states, and the nation in many subjects, including reading, mathematics, science, writing, and other subjects for Grades 4, 8, and 12. The assessments are sponsored by the NCES within the U.S. Department of Education and the Institute of Education Sciences (IES). Further study information can be found on the [NAEP Webpage](https://nces.ed.gov/nationsreportcard/).  All NAEP datasets are restricted-use files from NCES; however, a publicly available sample dataset called NAEP Primer can be accessed through the R package `NAEPprimer`.
 
-NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the `readNAEP` function.  Additional arguments to `readNAEP` include `defaultWeight`, `defaultPvs`, `omittedLevels`, and `frPath`.  These arguments should be modified from their default values only in rare situations.  Consult the `readNAEP` function documentation for more details on their use.
+NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the `readNAEP` function.  Additional arguments to `readNAEP` include `defaultWeight`, `defaultPvs`, `dropOmittedLevels`, and `frPath`.  These arguments should be modified from their default values only in rare situations.  Consult the `readNAEP` function documentation for more details on their use.
 
 Before beginning to analyze NAEP data, be sure to read the provided user guide and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis.
 
@@ -18,7 +18,7 @@ When the `readNAEP` function is called, it locates the specified ASCII fixed-wid
 
 ```r
 #reading in the NAEP Primer data using the package NAEPprimer
-naep.1 <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+naep.1 <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 
 #pointing to a NAEP restricted-use file directly by path
 naep.2 <- readNAEP(path = "C:/RUD_DATA/NAEP/M36NT2PM.dat")
@@ -58,22 +58,22 @@ downloadECLS_K(root = "C:/EdSurveyData", years = 1998, verbose = FALSE)
 
 ```r
 #read in the student/child data file, specifying the files directly
-eclsk98.1 <- readECLS_K1998("C:/EdSurveyData/ECLS_K/1998",
+eclsk98.1 <- readECLS_K1998(path = "C:/EdSurveyData/ECLS_K/1998",
                             filename = "eclsk_98_99_k8_child_v1_0.dat",
                             layoutFilename = "Layout_k8_child.txt")
 
 #by default, the filename is specified as 'eclsk_98_99_k8_child_v1_0.dat',
 #and the default layoutFilename as 'Layout_k8_child.txt',
 #so you can omit the filename and layoutFilename argument when using default filenames.
-eclsk98.2 <- readECLS_K1998("C:/EdSurveyData/ECLS_K/1998")
+eclsk98.2 <- readECLS_K1998(path = "C:/EdSurveyData/ECLS_K/1998")
 
 #read in the teacher data file, specifying the filename and its associated layout file
-eclsk98.3 <- readECLS_K1998("C:/EdSurveyData/ECLS_K/1998",
+eclsk98.3 <- readECLS_K1998(path = "C:/EdSurveyData/ECLS_K/1998",
                             filename = "ECLSK_98_99_K8_TCH_v1_0.dat",
                             layoutFilename = "Layout_k8_tch.txt")
 
 #setting verbose = FALSE stops console message output (silent) of the function.
-eclsk98.4 <- readECLS_K1998("C:/EdSurveyData/ECLS_K/1998", verbose = FALSE)
+eclsk98.4 <- readECLS_K1998(path = "C:/EdSurveyData/ECLS_K/1998", verbose = FALSE)
 ```
 
 ### ECLS-K:2011
@@ -100,17 +100,17 @@ downloadECLS_K(root = "C:/EdSurveyData", years = 2011, verbose = FALSE)
 
 ```r
 #read in the student/child data, file specifying the files directly
-eclsk11.1 <- readECLS_K2011("C:/EdSurveyData/ECLS_K/2011",
+eclsk11.1 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011",
                             filename = "childK5p.dat",
                             layoutFilename = "ECLSK2011_K5PUF.sps")
 
 #by default, the filename is specified as 'childK5p.dat',
 #and the default layoutFilename as 'ECLSK2011_K5PUF.sps',
 #so you can omit the filename and layoutFilename argument when using default filenames
-eclsk11.2 <- readECLS_K2011("C:/EdSurveyData/ECLS_K/2011")
+eclsk11.2 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011")
 
 #setting verbose = FALSE stops console message output (silent) of the function
-eclsk11.3 <- readECLS_K2011("C:/EdSurveyData/ECLS_K/2011", verbose = FALSE)
+eclsk11.3 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011", verbose = FALSE)
 ```
 
 ### ECLS-B
@@ -263,31 +263,31 @@ downloadCivEDICCS(years = 2009)
 #information (because they can be merged).
 #returns a single edsurvey.data.frame
 cived.1 <- readCivEDICCS(path = "C:/EdSurveyData/CivED/1999",
-                             countries = "deu",
-                             dataSet = "student",
-                             gradeLvl = 8)
+                         countries = "deu",
+                         dataSet = "student",
+                         gradeLvl = 8)
 
 #reading in multiple countries for a single year for 8th-grade student data
 #returns an edsurvey.data.frame.list
 cived.2 <- readCivEDICCS(path = "C:/EdSurveyData/CivED/1999",
-                             countries = c("deu", "cze"),
-                             dataSet = "student",
-                             gradeLvl = 8)
+                         countries = c("deu", "cze"),
+                         dataSet = "student",
+                         gradeLvl = 8)
 
 #use the wildcard to search for all available countries in the path
 #specifying the dataSet= "teacher", includes the Teacher and School levels only 
 #(because they can be merged)
 cived.3 <- readCivEDICCS(path = "C:/EdSurveyData/CivED/1999",
-                             countries = "*",
-                             dataSet = "teacher",
-                             gradeLvl = 8)
+                         countries = "*",
+                         dataSet = "teacher",
+                         gradeLvl = 8)
 
 #for CivED there is a grade 12 dataset with only student-level data
 #returns an edsurvey.data.frame.list
 cived.4 <- readCivEDICCS(path = "C:/EdSurveyData/CivED/1999",
-                             countries = c("cze", "est"),
-                             dataSet = "student",
-                             gradeLvl = 12)
+                         countries = c("cze", "est"),
+                         dataSet = "student",
+                         gradeLvl = 12)
 ```
 
 ### Reading ICCS Data
@@ -298,33 +298,33 @@ cived.4 <- readCivEDICCS(path = "C:/EdSurveyData/CivED/1999",
 #(they can be merged together).
 #returns a single edsurvey.data.frame
 iccs.1 <- readCivEDICCS(path = "C:/EdSurveyData/ICCS/2009",
-                             countries = "kor",
-                             dataSet = "student",
-                             gradeLvl = 8)
+                        countries = "kor",
+                        dataSet = "student",
+                        gradeLvl = 8)
 
 #reading in a single country for a single year for 8th-grade teacher data
 #having dataSet = "teacher", includes School- and Teacher-level data
 #(they can be merged together).
 #returns a single edsurvey.data.frame
 iccs.2 <- readCivEDICCS(path = "C:/EdSurveyData/ICCS/2009",
-                             countries = "kor",
-                             dataSet = "teacher",
-                             gradeLvl = 8)
+                        countries = "kor",
+                        dataSet = "teacher",
+                        gradeLvl = 8)
 
 #use the wildcard to search for all available countries in the path. 
 #you must still specify the dataSet and gradeLvl arguments
 #for the correct dataset to analyze
 iccs.3 <- readCivEDICCS(path = "C:/EdSurveyData/ICCS/2009",
-                             countries = "*",
-                             dataSet = "student",
-                             gradeLvl = 8)
+                        countries = "*",
+                        dataSet = "student",
+                        gradeLvl = 8)
 
 #for ICCS there is a grade 9 dataset with only student-level data
 #returns an edsurvey.data.frame.list
 iccs.4 <- readCivEDICCS(path = "C:/EdSurveyData/ICCS/2009",
-                             countries = c("swe", "nor"),
-                             dataSet = "student",
-                             gradeLvl = 9)
+                        countries = c("swe", "nor"),
+                        dataSet = "student",
+                        gradeLvl = 9)
 ```
 
 ## ICILS: International Computer and Information Literacy Study
@@ -371,9 +371,9 @@ icils.3 <- readICILS(path = "C:/EdSurveyData/ICILS/2013",
 #specify multiple paths if wishing to read in multiple years.
 #returns an edsurvey.data.frame.list
 icils.4 <- readICILS(path = c("C:/EdSurveyData/ICILS/2013", 
-                                      "C:/EdSurveyData/ICILS/2018"), 
-                             countries = c("deu", "dnk"),
-                             dataSet = "student")
+                              "C:/EdSurveyData/ICILS/2018"), 
+                     countries = c("deu", "dnk"),
+                     dataSet = "student")
 ```
 
 ## TIMSS: Trends in International Mathematics and Science Study
@@ -417,21 +417,21 @@ timss.1<- readTIMSS(path = "C:/EdSurveyData/TIMSS/2015", countries = "usa", grad
 #reading in multiple countries for a single year for 8th grade
 #returns an edsurvey.data.frame.list
 timss.2 <- readTIMSS(path = "C:/EdSurveyData/TIMSS/2015",
-                         countries = c("aus", "swe", "nor"),
-                         gradeLvl = 8)
+                     countries = c("aus", "swe", "nor"),
+                     gradeLvl = 8)
 
 #use the wildcard to search for all available countries in the path. 
 #returns an edsurvey.data.frame.list
 timss.3 <- readTIMSS(path = "C:/EdSurveyData/TIMSS/2015", 
-                             countries = "*", 
-                             gradeLvl = 4)
+                     countries = "*", 
+                     gradeLvl = 4)
 
 #specify multiple paths if wishing to read in multiple years.
 #returns an edsurvey.data.frame.list
 timss.4 <- readTIMSS(path = c("C:/EdSurveyData/TIMSS/2015", 
                               "C:/EdSurveyData/TIMSS/2011"), 
-                             countries = c("usa", "swe"),
-                             gradeLvl = 4)
+                     countries = c("usa", "swe"),
+                     gradeLvl = 4)
 ```
 
 ## TIMSS Advanced: Trends in International Mathematics and Science Study
@@ -593,18 +593,18 @@ pirls.1 <- readPIRLS(path = "C:/EdSurveyData/PIRLS/2016", countries = "usa")
 #reading in multiple countries for a single year
 #returns an edsurvey.data.frame.list
 pirls.2 <- readPIRLS(path = "C:/EdSurveyData/PIRLS/2016",
-                         countries = c("fin", "swe", "nor"))
+                     countries = c("fin", "swe", "nor"))
 
 #use the wildcard to search for all available countries in the path. 
 #returns edsurvey.data.frame.list
 pirls.3 <- readPIRLS(path = "C:/EdSurveyData/PIRLS/2016", 
-                             countries = "*")
+                     countries = "*")
 
 #specify multiple paths if wishing to read in multiple years.
 #returns an edsurvey.data.frame.list
 pirls.4 <- readPIRLS(path = c("C:/EdSurveyData/PIRLS/2016", 
-                                      "C:/EdSurveyData/PIRLS/2011"), 
-                             countries = c("usa", "swe"))
+                              "C:/EdSurveyData/PIRLS/2011"), 
+                     countries = c("usa", "swe"))
 ```
 
 ### ePIRLS
@@ -647,12 +647,12 @@ epirls.1 <- read_ePIRLS(path = "C:/EdSurveyData/ePIRLS/2016", countries = "irl")
 #reading in multiple countries for a single year
 #returns an edsurvey.data.frame.list
 epirls.2 <- read_ePIRLS(path = "C:/EdSurveyData/ePIRLS/2016",
-                         countries = c("twn", "sgp"))
+                        countries = c("twn", "sgp"))
 
 #use the wildcard to search for all available countries in the path. 
 #returns edsurvey.data.frame.list
 epirls.3 <- read_ePIRLS(path = "C:/EdSurveyData/ePIRLS/2016", 
-                             countries = "*")
+                        countries = "*")
 ```
 
 ## PISA: Programme for International Student Assessment
@@ -717,8 +717,8 @@ pisa.5 <- readPISA(path = c("C:/EdSurveyData/PISA/2009",
                             "C:/EdSurveyData/PISA/2012",
                             "C:/EdSurveyData/PISA/2015",
                             "C:/EdSurveyData/PISA/2018"),
-                            database = "INT", countries = "usa", cognitive = "score")
-                   
+                   database = "INT", countries = "usa", cognitive = "score")
+
 #setting verbose = FALSE suppresses console message output
 pisa.6 <- readPISA(path = "C:/EdSurveyData/PISA/2018", database = "INT", 
                    countries = "usa", cognitive = "score", verbose = FALSE)
@@ -749,7 +749,7 @@ downloadPISA_YAFS(years = 2016)
 yafs <- readPISA_YAFS(datPath = "C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat",
                       spsPath = "C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps",
                       esdf_PISA2012_USA = NULL)
-  
+
 ```
 
 ### Link PISA YAFS Data to PISA 2012
@@ -760,7 +760,7 @@ yafs <- readPISA_YAFS(datPath = "C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Da
 #Then pass the resulting edsurvey.data.frame as a parameter for the
 #esdf_PISA2012_USA argument. No other edsurvey.data.frames are supported.
 usa2012 <- readPISA("C:/EdSurveyData/PISA/2012", database = "INT", countries = "usa")
-  
+
 yafs <- readPISA_YAFS(datPath = "C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat",
                       spsPath = "C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps",
                       esdf_PISA2012_USA = usa2012)

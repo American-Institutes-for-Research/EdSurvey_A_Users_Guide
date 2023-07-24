@@ -1,7 +1,7 @@
 # Models {#models}
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 ##  Regression Analysis With `lm.sdf`
@@ -13,7 +13,7 @@ The data are read in and analyzed by the `lm.sdf` function---in this case, `dsex
 
 ```{r lm, cache=FALSE, warning=FALSE}
 lm1 <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf)
-summary(lm1)
+summary(object = lm1)
 ```
 
 After the regression is run, the data are automatically removed from memory. 
@@ -23,14 +23,14 @@ After the regression is run, the data are automatically removed from memory.
 ```{r lmf, cache=FALSE, warning=FALSE}
 lm1f <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf,
                relevels = list(dsex = "Female"))
-summary(lm1f)
+summary(object = lm1f)
 ```
 
 The coefficient on `dsex` changed from negative in the previous run to positive of the exact same magnitude, whereas none of the other coefficients (aside from the intercept) changed; this is the expected result. 
 
 The standardized regression coefficient also can be returned by adding `src=TRUE` into the summary call for your regression model object: 
 ```{r lm1fSrc, cache=FALSE, warning=FALSE}
-summary(lm1f, src=TRUE)
+summary(object = lm1f, src=TRUE)
 ```
 
 By default, the standardized coefficients are calculated using standard deviations of the variables themselves, including averaging the standard deviation across any plausible values. When `standardizeWithSamplingVar` is set to `TRUE`, the variance of the standardized coefficient is calculated similar to a regression coefficient and therefore includes the sampling variance in the variance estimate of the outcome variable.
@@ -41,18 +41,18 @@ A linear model is analyzed by the `lm.sdf` function---in this case, `dsex`, `b01
 
 ```{r lm1, eval=FALSE}
 lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
-summary(lm1)$coefmat
+summary(object = lm1)$coefmat
 ```
 ```{r table801, echo=FALSE}
 lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
-knitr::kable(x = summary(lm1)$coefmat, digits = 5, row.names = TRUE, caption = "Coefficients \\label{tab:Coefficients}")
+knitr::kable(x = summary(object = lm1)$coefmat, digits = 5, row.names = TRUE, caption = "Coefficients \\label{tab:Coefficients}")
 ```
 
 The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
 
 ```{r lm1pvalues}
 # p-values without adjustment
-summary(lm1)$coefmat[6:8, "Pr(>|t|)"]
+summary(object = lm1)$coefmat[6:8, "Pr(>|t|)"]
 ```
 
 Here the Benjamini and Hochberg (1995) FDR adjustment is used in the argument `method = "BH"`. The output below displays the adjusted *p*-values with the FDR adjustment:
@@ -69,7 +69,7 @@ p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 ```
 We can compare all the values in a single table in \ref{tab:allp}
 ```{r allAdjustments, echo=FALSE}
-raw <- summary(lm1)$coefmat[6:8, "Pr(>|t|)"]
+raw <- summary(object = lm1)$coefmat[6:8, "Pr(>|t|)"]
 bh <- p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "BH")
 bon <- p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 df1 <- data.frame(raw=raw, BH=bh, Bonferroni=bon)
@@ -80,12 +80,12 @@ The coefficients matrix also can be overwritten by selecting the same vector in 
 
 ```{r updateCoefmat, eval=FALSE}
 lm1$coefmat[6:8, "Pr(>|t|)"] <- p.adjust(lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
-summary(lm1)$coefmat[6:8, ]
+summary(object = lm1)$coefmat[6:8, ]
 ```
 
 ```{r updateCoefmatout, echo=FALSE}
 lm1$coefmat[6:8, "Pr(>|t|)"] <- p.adjust(lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
-knitr::kable(x = summary(lm1)$coefmat[6:8, ], digits = 5, row.names = TRUE, caption = "Coefficients table after using Bonferroni adjustment to the b003501 variable  \\label{tab:Coefficients with Bonferroni}")
+knitr::kable(x = summary(object = lm1)$coefmat[6:8, ], digits = 5, row.names = TRUE, caption = "Coefficients table after using Bonferroni adjustment to the b003501 variable  \\label{tab:Coefficients with Bonferroni}")
 ```
 
 ### Adjusting *p*-Values From Multiple Sources
@@ -110,11 +110,11 @@ This code  is careful to note where the values came from to help avoid transcrip
 
 ```{r bonesCombined}
 # load in values from lm2a
-lm2aCoef <- summary(lm2a)$coefmat
+lm2aCoef <- summary(object = lm2a)$coefmat
 pvalues$p[1:3] <- lm2aCoef[3:5,5]
 pvalues$coef[1:3] <- row.names(lm2aCoef)[3:5]
 # load in values from lm2b
-lm2bCoef <- summary(lm2b)$coefmat
+lm2bCoef <- summary(object = lm2b)$coefmat
 pvalues$p[4:6] <- lm2bCoef[3:5,5]
 pvalues$coef[4:6] <- row.names(lm2aCoef)[3:5]
 ```
@@ -157,7 +157,7 @@ The vertical line symbol `|` separates dependent variables on the left-hand side
  
 ```{r mvrlmsdf, cache=FALSE, warning=FALSE}
 mvrlm1 <- mvrlm.sdf(algebra | geometry ~ dsex + m072801, data = sdf)
-summary(mvrlm1)
+summary(object = mvrlm1)
 ```
 
 The `mvrlm.sdf` documentation provides examples to compare the regression outputs. See `?mvrlm.sdf` for an overview of additional details that can be accessed through components of the returned object. In addition, the vignette titled [*Statistical Methods Used in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-Statistics.pdf) goes into further detail by describing estimation of the reported statistics.
@@ -170,9 +170,9 @@ The following example demonstrates how to use `logit.sdf` to predict the number 
 In `logit.sdf`, although some variables might already be binary, the function `I()` will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level: 
 
 ```{r logit, cache=FALSE, warning=FALSE}
-logit1 <- logit.sdf(I(b013801 %in% ">100") ~ dsex,
+logit1 <- logit.sdf(formula = I(b013801 %in% ">100") ~ dsex,
                     weightVar = 'origwt', data = sdf)
-summary(logit1)
+summary(object = logit1)
 ```
 
 The log odds of having more than 100 books at home (versus less than or equal to 100 books) increases by `0.178274` for female students compared with male students.
@@ -185,7 +185,7 @@ The `oddsRatio` helper function converts coefficients from an `EdSurvey` logit r
 In `EdSurvey`, odds ratios can be returned by specifying the logistic model object (`logit1`).
 
 ```{r oddsRatio, cache=FALSE, warning=FALSE}
-oddsRatio(logit1)
+oddsRatio(model = logit1)
 ```
 
 The odds of having more than 100 books at home (versus less than or equal to 100 books) increases by `1.1951531` for female students compared with male students.
@@ -208,7 +208,7 @@ To conduct quantile regression at a given tau value (by default, tau is set as 0
 
 ```{r rqsdf, cache=FALSE, warning=FALSE}
 rq1 <- rq.sdf(composite ~ dsex + b017451, data=sdf, tau = 0.8)
-summary(rq1)
+summary(object = rq1)
 ```
 
 For further details on quantile regression models and how they are implemented in R, see the vignette from the `quantreg` package (accessible by the `vignette("rq", package="quantreg")`), on which the `rq.sdf` function is built.
@@ -220,7 +220,7 @@ This example illustrates how the user might implement student-level weighting wh
 
 ```{r mixed, cache=FALSE, warning=FALSE}
 # Subset data to a sample of interest
-sdf2 <- subset(sdf, scrpsu < 500)
+sdf2 <- subset(x = sdf, subset = scrpsu < 500)
 
 # Extract variables of interest to a light.edsurvey.data.frame
 lsdf <- getData(sdf2, c("composite","dsex","b017451","scrpsu","origwt","smsrswt"),
@@ -232,7 +232,7 @@ lsdf$pwt2 <- lsdf$smsrswt
 
 m1 <- mixed.sdf(composite ~ dsex + b017451 + (1|scrpsu), data=lsdf,
                 weightVar = c('pwt1', 'pwt2'))
-summary(m1)
+summary(object = m1)
 ```
 
 The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students' gender as a covariate, using TIMSS 2015 datasets. 
@@ -243,14 +243,14 @@ The following two examples illustrate how to model the random intercept of mathe
 TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
-summary(mix1)
+summary(object = mix1)
 ```
 
 ```{r mixed3rd, cache=FALSE, warning=FALSE}
 # uses only one plausible value
 mix2 <- mixed.sdf(asmmat01 ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
-summary(mix2)
+summary(object = mix2)
 ```
 
 For further guidance and use cases for mixed-effects models in `EdSurvey`, see the vignette titled [*Methods Used for Estimating Mixed-Effects Models in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-Mixed_Models.pdf). For examples of how NCES recommends using weighted mixed-effects models, as well as their summary of the mathematical background and the description of the insufficiency of hierarchical linear models in this case, see Appendix D in the NCES working paper on analysis of TIMSS data at [*Using TIMSS to Analyze Correlates of Performance Variation in Mathematics*](https://nces.ed.gov/pubs2001/200105.pdf).

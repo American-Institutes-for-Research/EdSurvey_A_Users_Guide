@@ -7,7 +7,7 @@
 <title>Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Data Access | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/dataAccess.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -104,7 +104,7 @@
 <span class="header-section-number">4.1</span> NAEP: National Assessment of Educational Progress<a class="anchor" aria-label="anchor" href="#naep-national-assessment-of-educational-progress"><i class="fas fa-link"></i></a>
 </h2>
 <p>NAEP is a measure used to study U.S. student achievement in urban districts, states, and the nation in many subjects, including reading, mathematics, science, writing, and other subjects for Grades 4, 8, and 12. The assessments are sponsored by the NCES within the U.S. Department of Education and the Institute of Education Sciences (IES). Further study information can be found on the <a href="https://nces.ed.gov/nationsreportcard/">NAEP Webpage</a>. All NAEP datasets are restricted-use files from NCES; however, a publicly available sample dataset called NAEP Primer can be accessed through the R package <code>NAEPprimer</code>.</p>
-<p>NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the <code>readNAEP</code> function. Additional arguments to <code>readNAEP</code> include <code>defaultWeight</code>, <code>defaultPvs</code>, <code>omittedLevels</code>, and <code>frPath</code>. These arguments should be modified from their default values only in rare situations. Consult the <code>readNAEP</code> function documentation for more details on their use.</p>
+<p>NAEP study files are primarily used to analyze student performance and usually include school-level data, which are automatically handled by the <code>readNAEP</code> function. Additional arguments to <code>readNAEP</code> include <code>defaultWeight</code>, <code>defaultPvs</code>, <code>dropOmittedLevels</code>, and <code>frPath</code>. These arguments should be modified from their default values only in rare situations. Consult the <code>readNAEP</code> function documentation for more details on their use.</p>
 <p>Before beginning to analyze NAEP data, be sure to read the provided user guide and documentation provided by NCES to familiarize yourself with the study and apply their guidance for analysis.</p>
 <p>When the <code>readNAEP</code> function is called, it locates the specified ASCII fixed-width data file (.dat) from the supplied <code>path</code> argument. The <code>readNAEP</code> function then scans for the data files (.dat) associated with the layout file (.fr2) located in the <code>Select/Parms</code> folder which contains all the information needed for parsing the data file. Lastly, the <code>readNAEP</code> function scans the folder for its associated school-level data file. The main student-level files have a naming scheme of <code>xxxxTxxx.dat</code>, whereas the school-level files have a naming scheme of <code>xxxxCxxx.dat</code>. The data are read in on the fly, and <code>EdSurvey</code> stores the file connection information, and associated meta-data without having to load the entire dataset into memory.</p>
 <div id="reading-naep-data" class="section level3" number="4.1.1">
@@ -113,7 +113,7 @@
 </h3>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#reading in the NAEP Primer data using the package NAEPprimer</span></span>
-<span><span class="va">naep.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">naep.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#pointing to a NAEP restricted-use file directly by path</span></span>
 <span><span class="va">naep.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/RUD_DATA/NAEP/M36NT2PM.dat"</span><span class="op">)</span></span></code></pre></div>
@@ -154,22 +154,22 @@
 </h4>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#read in the student/child data file, specifying the files directly</span></span>
-<span><span class="va">eclsk98.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
+<span><span class="va">eclsk98.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
 <span>                            filename <span class="op">=</span> <span class="st">"eclsk_98_99_k8_child_v1_0.dat"</span>,</span>
 <span>                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_child.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#by default, the filename is specified as 'eclsk_98_99_k8_child_v1_0.dat',</span></span>
 <span><span class="co">#and the default layoutFilename as 'Layout_k8_child.txt',</span></span>
 <span><span class="co">#so you can omit the filename and layoutFilename argument when using default filenames.</span></span>
-<span><span class="va">eclsk98.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span><span class="op">)</span></span>
+<span><span class="va">eclsk98.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/1998"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#read in the teacher data file, specifying the filename and its associated layout file</span></span>
-<span><span class="va">eclsk98.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
+<span><span class="va">eclsk98.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>,</span>
 <span>                            filename <span class="op">=</span> <span class="st">"ECLSK_98_99_K8_TCH_v1_0.dat"</span>,</span>
 <span>                            layoutFilename <span class="op">=</span> <span class="st">"Layout_k8_tch.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function.</span></span>
-<span><span class="va">eclsk98.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">eclsk98.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K1998.html">readECLS_K1998</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/1998"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ecls-k2011" class="section level3" number="4.2.2">
@@ -199,17 +199,17 @@
 </h4>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#read in the student/child data, file specifying the files directly</span></span>
-<span><span class="va">eclsk11.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>,</span>
+<span><span class="va">eclsk11.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>,</span>
 <span>                            filename <span class="op">=</span> <span class="st">"childK5p.dat"</span>,</span>
 <span>                            layoutFilename <span class="op">=</span> <span class="st">"ECLSK2011_K5PUF.sps"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#by default, the filename is specified as 'childK5p.dat',</span></span>
 <span><span class="co">#and the default layoutFilename as 'ECLSK2011_K5PUF.sps',</span></span>
 <span><span class="co">#so you can omit the filename and layoutFilename argument when using default filenames</span></span>
-<span><span class="va">eclsk11.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span><span class="op">)</span></span>
+<span><span class="va">eclsk11.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/2011"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#setting verbose = FALSE stops console message output (silent) of the function</span></span>
-<span><span class="va">eclsk11.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">eclsk11.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ECLS_K/2011"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="ecls-b" class="section level3" number="4.2.3">
@@ -366,31 +366,31 @@
 <span><span class="co">#information (because they can be merged).</span></span>
 <span><span class="co">#returns a single edsurvey.data.frame</span></span>
 <span><span class="va">cived.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="st">"deu"</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                         countries <span class="op">=</span> <span class="st">"deu"</span>,</span>
+<span>                         dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#reading in multiple countries for a single year for 8th-grade student data</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">cived.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"cze"</span><span class="op">)</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"cze"</span><span class="op">)</span>,</span>
+<span>                         dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#use the wildcard to search for all available countries in the path</span></span>
 <span><span class="co">#specifying the dataSet= "teacher", includes the Teacher and School levels only </span></span>
 <span><span class="co">#(because they can be merged)</span></span>
 <span><span class="va">cived.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="st">"*"</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                         countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                         dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
+<span>                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#for CivED there is a grade 12 dataset with only student-level data</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">cived.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/CivED/1999"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cze"</span>, <span class="st">"est"</span><span class="op">)</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
+<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cze"</span>, <span class="st">"est"</span><span class="op">)</span>,</span>
+<span>                         dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                         gradeLvl <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="reading-iccs-data" class="section level3" number="4.5.4">
 <h3>
@@ -402,33 +402,33 @@
 <span><span class="co">#(they can be merged together).</span></span>
 <span><span class="co">#returns a single edsurvey.data.frame</span></span>
 <span><span class="va">iccs.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                        countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
+<span>                        dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                        gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#reading in a single country for a single year for 8th-grade teacher data</span></span>
 <span><span class="co">#having dataSet = "teacher", includes School- and Teacher-level data</span></span>
 <span><span class="co">#(they can be merged together).</span></span>
 <span><span class="co">#returns a single edsurvey.data.frame</span></span>
 <span><span class="va">iccs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                        countries <span class="op">=</span> <span class="st">"kor"</span>,</span>
+<span>                        dataSet <span class="op">=</span> <span class="st">"teacher"</span>,</span>
+<span>                        gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
 <span><span class="co">#you must still specify the dataSet and gradeLvl arguments</span></span>
 <span><span class="co">#for the correct dataset to analyze</span></span>
 <span><span class="va">iccs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="st">"*"</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                        countries <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>                        dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                        gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#for ICCS there is a grade 9 dataset with only student-level data</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">iccs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readCivEDICCS.html">readCivEDICCS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ICCS/2009"</span>,</span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div>
+<span>                        countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
+<span>                        dataSet <span class="op">=</span> <span class="st">"student"</span>,</span>
+<span>                        gradeLvl <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="icils-international-computer-and-information-literacy-study" class="section level2" number="4.6">
@@ -475,9 +475,9 @@
 <span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">icils.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readICILS.html">readICILS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/ICILS/2013"</span>, </span>
-<span>                                      <span class="st">"C:/EdSurveyData/ICILS/2018"</span><span class="op">)</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"dnk"</span><span class="op">)</span>,</span>
-<span>                             dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span></code></pre></div>
+<span>                              <span class="st">"C:/EdSurveyData/ICILS/2018"</span><span class="op">)</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"deu"</span>, <span class="st">"dnk"</span><span class="op">)</span>,</span>
+<span>                     dataSet <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="timss-trends-in-international-mathematics-and-science-study" class="section level2" number="4.7">
@@ -520,21 +520,21 @@
 <span><span class="co">#reading in multiple countries for a single year for 8th grade</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">timss.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>,</span>
-<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
-<span>                         gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aus"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span>,</span>
+<span>                     gradeLvl <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">timss.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="st">"*"</span>, </span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span>, </span>
+<span>                     gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">timss.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/TIMSS/2015"</span>, </span>
 <span>                              <span class="st">"C:/EdSurveyData/TIMSS/2011"</span><span class="op">)</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span>,</span>
-<span>                             gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span>,</span>
+<span>                     gradeLvl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="timss-advanced-trends-in-international-mathematics-and-science-study" class="section level2" number="4.8">
@@ -698,18 +698,18 @@
 <span><span class="co">#reading in multiple countries for a single year</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">pirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>,</span>
-<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fin"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fin"</span>, <span class="st">"swe"</span>, <span class="st">"nor"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
 <span><span class="co">#returns edsurvey.data.frame.list</span></span>
 <span><span class="va">pirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span>
+<span>                     countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#specify multiple paths if wishing to read in multiple years.</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">pirls.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPIRLS.html">readPIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PIRLS/2016"</span>, </span>
-<span>                                      <span class="st">"C:/EdSurveyData/PIRLS/2011"</span><span class="op">)</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                              <span class="st">"C:/EdSurveyData/PIRLS/2011"</span><span class="op">)</span>, </span>
+<span>                     countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span>, <span class="st">"swe"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="epirls" class="section level3" number="4.10.2">
@@ -752,12 +752,12 @@
 <span><span class="co">#reading in multiple countries for a single year</span></span>
 <span><span class="co">#returns an edsurvey.data.frame.list</span></span>
 <span><span class="va">epirls.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>,</span>
-<span>                         countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"twn"</span>, <span class="st">"sgp"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                        countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"twn"</span>, <span class="st">"sgp"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#use the wildcard to search for all available countries in the path. </span></span>
 <span><span class="co">#returns edsurvey.data.frame.list</span></span>
 <span><span class="va">epirls.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/read_ePIRLS.html">read_ePIRLS</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/ePIRLS/2016"</span>, </span>
-<span>                             countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span></code></pre></div>
+<span>                        countries <span class="op">=</span> <span class="st">"*"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -822,8 +822,8 @@
 <span>                            <span class="st">"C:/EdSurveyData/PISA/2012"</span>,</span>
 <span>                            <span class="st">"C:/EdSurveyData/PISA/2015"</span>,</span>
 <span>                            <span class="st">"C:/EdSurveyData/PISA/2018"</span><span class="op">)</span>,</span>
-<span>                            database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
-<span>                   </span>
+<span>                   database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co">#setting verbose = FALSE suppresses console message output</span></span>
 <span><span class="va">pisa.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA/2018"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, </span>
 <span>                   countries <span class="op">=</span> <span class="st">"usa"</span>, cognitive <span class="op">=</span> <span class="st">"score"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
@@ -854,8 +854,7 @@
 <span><span class="co">#Either omit or set the esdf_PISA2012_USA to a NULL value.</span></span>
 <span><span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,</span>
 <span>                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,</span>
-<span>                      esdf_PISA2012_USA <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span>  </span></code></pre></div>
+<span>                      esdf_PISA2012_USA <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="link-pisa-yafs-data-to-pisa-2012" class="section level3" number="4.12.3">
 <h3>
@@ -867,7 +866,7 @@
 <span><span class="co">#Then pass the resulting edsurvey.data.frame as a parameter for the</span></span>
 <span><span class="co">#esdf_PISA2012_USA argument. No other edsurvey.data.frames are supported.</span></span>
 <span><span class="va">usa2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA.html">readPISA</a></span><span class="op">(</span><span class="st">"C:/EdSurveyData/PISA/2012"</span>, database <span class="op">=</span> <span class="st">"INT"</span>, countries <span class="op">=</span> <span class="st">"usa"</span><span class="op">)</span></span>
-<span>  </span>
+<span></span>
 <span><span class="va">yafs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readPISA_YAFS.html">readPISA_YAFS</a></span><span class="op">(</span>datPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_Data.dat"</span>,</span>
 <span>                      spsPath <span class="op">=</span> <span class="st">"C:/EdSurveyData/PISA YAFS/2016/PISA_YAFS2016_SPSS.sps"</span>,</span>
 <span>                      esdf_PISA2012_USA <span class="op">=</span> <span class="va">usa2012</span><span class="op">)</span></span></code></pre></div>
@@ -1016,6 +1015,7 @@
 <span>                     years <span class="op">=</span> <span class="st">"2018"</span>,</span>
 <span>                     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 
+<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.3.1</code></pre>
 </div>
 </div>
 </div>
@@ -1134,7 +1134,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-07-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

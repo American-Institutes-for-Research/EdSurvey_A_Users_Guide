@@ -1,6 +1,6 @@
 ```{r loadEdSurvey5, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 # Understanding Data {#understandingData}
@@ -9,7 +9,7 @@ Once data are successfully read in (see how `EdSurvey` supports reading-in data 
 
 To follow along in this chapter, load the [NAEP Primer dataset](https://nces.ed.gov/pubsearch/pubsinfo.asp?pubid=2011463) `M36NT2PM` and assign it the name `sdf` with the following call:
 ```{r readIn}
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 ## Searching Variables
@@ -94,30 +94,30 @@ This section introduces three basic R functions (both `EdSurvey` and `non-EdSurv
 - **`data`**: An `EdSurvey` object.
 - **`variable`**: Name of the variable you want to produce statistics on.
 - **`weightVar`**: name of the weight variable or `NULL` if users want to produce unweighted statistics.
-- **`omittedLevels`**: If `TRUE`, the function will remove omitted levels for the specified variable before producing descriptive statistics. If `FALSE`, the function will include omitted levels in the output statistics.
+- **`dropOmittedLevels`**: If `TRUE`, the function will remove omitted levels for the specified variable before producing descriptive statistics. If `FALSE`, the function will include omitted levels in the output statistics.
 
 The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
 
 ```{r summary2}
-summary2(sdf, "composite")
+summary2(data = sdf, variable = "composite")
 ```
 
 By specifying `weightVar = NULL`, the function prints out unweighted descriptive statistics for the selected variable or plausible values:
 
 ```{r summary2Unweighted}
-summary2(sdf, "composite", weightVar = NULL)
+summary2(data = sdf, variable = "composite", weightVar = NULL)
 ```
 
 For a categorical variable, the `summary2` function returns the weighted number of cases, the weighted percentage, and the weighted standard error (SE). For example, the variable `b017451` (frequency of students talking about studies at home) returns the following output:
 
 ```{r summary2Categorical}
-summary2(sdf, "b017451")
+summary2(data = sdf, variable = "b017451")
 ```
 
-By default, the `summary2` function includes omitted levels; to remove those levels, set `omittedLevels = TRUE`:
+By default, the `summary2` function includes omitted levels; to remove those levels, set `dropOmittedLevels = TRUE`:
 
 ```{r summary2Categoricalmitted}
-summary2(sdf, "b017451", omittedLevels = TRUE)
+summary2(data = sdf, variable = "b017451", dropOmittedLevels = TRUE)
 ```
 
 
@@ -138,15 +138,15 @@ The following call uses `edsurveyTable()` to create a summary table of NAEP comp
 `pctAggregationLevel` is by default set to `NULL` (or `1`). That is, the `PCT` column adds up to 100 within each level of the first categorical variable `dsex`. 
 
 ```{r edsurveyTable1, eval=FALSE}
-es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
 ```
 
 ```{r table501, echo=FALSE}
 library(knitr)
 library(kableExtra)
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
-es1 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
 kable(es1$data, format="html", caption = "Summary Data Tables with EdSurvey") %>%
   kable_styling(font_size = 16) %>%
   scroll_box(width="100%", height = "30%")
@@ -156,7 +156,7 @@ kable(es1$data, format="html", caption = "Summary Data Tables with EdSurvey") %>
 By specifying `pctAggregationLevel = 0`, such as in the following call, the `PCT` column adds up to 100 across the entire sample.         
 
 ```{r edsurveyTable2}
-es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
+es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
 ```
 
 
@@ -164,8 +164,8 @@ es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel
 library(knitr)
 library(kableExtra)
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
-es2 <- edsurveyTable(composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = 0)
 kable(es2$data, format="html", caption = "Summary Data Tables with EdSurvey, Setting pctAggregationLevel = 0 \\label{tab:table2}") %>%
   kable_styling(font_size = 16) %>%
   scroll_box(width="100%", height = "75%")
@@ -195,9 +195,9 @@ In this chapter, you will find a "quick and dirty" approach (i.e., no applicatio
 This section uses the following `gddat` object:
 
 ```{r gddat}
-gddat <- getData(sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451',
+gddat <- getData(data = sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451',
                                    'composite', 'geometry', 'origwt'),
-              addAttributes = TRUE, omittedLevels = FALSE)
+              addAttributes = TRUE, dropOmittedLevels = FALSE)
 ```           
 
 `geom_bar()` uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable `b017451` in each category, with `fill = dsex` used to color portions of the selected `x` variable.

@@ -7,7 +7,7 @@
 <title>Chapter 10 Longitudinal Datasets | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="Data from large-scale educational assessment programs require special statistical methods for analysis. Because of their scope and complexity, EdSurvey gives users functions to perform analyses...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.34 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Longitudinal Datasets | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/longitudinal-datasets.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -103,10 +103,10 @@
 <span class="header-section-number">10.1</span> Using <code>EdSurvey</code> to Access ECLS-K:2011 Data for Analysis<a class="anchor" aria-label="anchor" href="#using-edsurvey-to-access-ecls-k2011-data-for-analysis"><i class="fas fa-link"></i></a>
 </h2>
 <p>Refer to <a href="dataAccess.html#dataAccess">Chapter 4</a> for how to download and read in a specific longitudinal dataset of interest. The following example shows how to download the ECLS-K:2011 Kindergarten–Fifth Grade public-use data file:</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/downloadECLS_K.html">downloadECLS_K</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2011</span>, root <span class="op">=</span> <span class="st">"C:/"</span>, cache<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>To load the ECLS-K:2011 data for fifth graders and create an <code>edsurvey.data.frame</code>, select the pathway to the ECLS-K:2011 data folder and assign it the name <code>eclsk11</code> with this call:</p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eclsk11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readECLS_K2011.html">readECLS_K2011</a></span><span class="op">(</span><span class="st">"C:/ECLS_K/2011"</span><span class="op">)</span></span></code></pre></div>
 <p>The function may take several minutes to run the first time; subsequent calls to <code>readECLS_K2011</code> are stored on the user’s drive for easy access and near instant retrieval. Once read in, users can analyze and merge data from the ECLS-K:2011 dataset after loading the data into the R working environment.</p>
 </div>
@@ -115,7 +115,7 @@
 <span class="header-section-number">10.2</span> Retrieving Survey Weights<a class="anchor" aria-label="anchor" href="#retrieving-survey-weights"><i class="fas fa-link"></i></a>
 </h2>
 <p>The variables associated with survey weights can be seen from the <code>showWeights</code> functions, respectively, when setting the <code>verbose</code> argument to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showWeights.html">showWeights</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>In this version, the (lengthy) results are not shown, but the user can easily see the results by running the same code. Selecting the survey weights is especially important for ECLS-K and ECLS-K:2011. Once selected, users can specify the survey weight using the <code>weightVar</code> argument in <code>EdSurvey</code> analytical functions.</p>
 <p>To learn more about selecting sample weights for analyses using ECLS:K-2011 data, consult the <strong>Calculation and Use of Sample Weights</strong> section of the <em>Public-Use Data File User’s Manuals</em> for the respective public-use file of interest. The <a href="https://nces.ed.gov/pubs2019/2019051.pdf"><em>ECLS-K:2011 Kindergarten–Fifth Grade User’s Manual, Public Version</em></a> is relevant for the K–5 data used in this chapter. Alternative releases are on the NCES site: <a href="https://nces.ed.gov/ecls/dataproducts.asp"><em>ECLS-K:2011 Public-Use Data File User’s Manuals</em></a>.</p>
@@ -125,7 +125,7 @@
 <span class="header-section-number">10.3</span> Retrieving Stratum and PSU Variables<a class="anchor" aria-label="anchor" href="#retrieving-stratum-and-psu-variables"><i class="fas fa-link"></i></a>
 </h2>
 <p>The functions <code>getStratumVar</code> and <code>getPSUVar</code> return the default stratum variable name or a PSU variable associated with a weight variable. Because ECLS-K:2011 does not have default weights, users need to specify a weight to return the associated psu/stratum variables. For example, the total student weight from the ninth round <code>weightVar = "w9c29p_9a0"</code> returns the following:</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurvey-class.html">getStratumVar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, weightVar <span class="op">=</span> <span class="st">"w9c29p_9a0"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "w9c29p_9astr"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurvey-class.html">getPSUVar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, weightVar <span class="op">=</span> <span class="st">"w9c29p_9a0"</span><span class="op">)</span></span>
@@ -138,6 +138,8 @@
 </h2>
 <p>Data recoding is especially important when performing analyses with ECLS:K-2011 data. By default, <code>EdSurvey</code> omits special values, such as multiple entries, skipped values, or <code>NA</code>s. Typically, this setting helps users by dropping the levels of factors not typically included in regressions, tables, correlations, and other analyses. For ECLS:K-2011, this default setting requires careful consideration. There are many instances in which user should keep special values for their analyses; in these cases, recoding the data is advised.</p>
 <p>In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate skips, and unit nonresponse.</p>
+<pre><code>#&gt; Warning: package 'kableExtra' was built under R version
+#&gt; 4.3.1</code></pre>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:table1001">Table 10.1. </span>Missing value codes used in the ECLS-K:2011 data file
@@ -217,36 +219,36 @@ System missing, including unit nonresponse
 </tr>
 </tbody>
 </table></div>
-<p><a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a></p>
+<a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a>
 <p>The method for recoding these values appears later in this chapter in <em>Recoding Variables in a Dataset</em> in the <strong>Retrieving Data for Further Manipulation With getData</strong> section of this chapter.</p>
 </div>
 <div id="removing-special-values" class="section level2" number="10.5">
 <h2>
 <span class="header-section-number">10.5</span> Removing Special Values<a class="anchor" aria-label="anchor" href="#removing-special-values"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>EdSurvey</code> uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set <code>omittedLevels = FALSE</code> when running your analysis. You can then remove levels that you want to remove with a call to <code>subset</code>, as discussed in the “Subsetting the Data” section in <a href="philosophyOfAnalysis.html#subsettingData">Chapter 3</a>.</p>
+<p><code>EdSurvey</code> uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set <code>dropOmittedLevels = FALSE</code> when running your analysis. You can then remove levels that you want to remove with a call to <code>subset</code>, as discussed in the “Subsetting the Data” section in <a href="philosophyOfAnalysis.html#subsettingData">Chapter 3</a>.</p>
 </div>
 <div id="explore-variable-distributions-with-summary2-1" class="section level2" number="10.6">
 <h2>
 <span class="header-section-number">10.6</span> Explore Variable Distributions With <code>summary2</code><a class="anchor" aria-label="anchor" href="#explore-variable-distributions-with-summary2-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>The <code>summary2</code> function produces weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. By default, the estimates are not weighted. For example, the variable <code>x9povty_i</code> (“Imputed poverty level”) returns the following output:</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span><span class="va">eclsk11</span>, <span class="st">"x9povty_i"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, variable <span class="op">=</span> <span class="st">"x9povty_i"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;                                                                  x9povty_i</span></span>
-<span><span class="co">#&gt; 1                                                                (Missing)</span></span>
-<span><span class="co">#&gt; 2                                               1: BELOW POVERTY THRESHOLD</span></span>
-<span><span class="co">#&gt; 3 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD</span></span>
-<span><span class="co">#&gt; 4                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 1                                               1: BELOW POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 2 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 3                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 4                                                                     &lt;NA&gt;</span></span>
 <span><span class="co">#&gt;      N  Percent</span></span>
-<span><span class="co">#&gt; 1 7954 43.76582</span></span>
-<span><span class="co">#&gt; 2 2185 12.02267</span></span>
-<span><span class="co">#&gt; 3 2226 12.24827</span></span>
-<span><span class="co">#&gt; 4 5809 31.96324</span></span></code></pre></div>
-<p>By default, the <code>summary2</code> function includes omitted levels; to remove those, set <code>omittedLevels = TRUE</code>:</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span><span class="va">eclsk11</span>, <span class="st">"x9povty_i"</span>, omittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 1 2185 12.02267</span></span>
+<span><span class="co">#&gt; 2 2226 12.24827</span></span>
+<span><span class="co">#&gt; 3 5809 31.96324</span></span>
+<span><span class="co">#&gt; 4 7954 43.76582</span></span></code></pre></div>
+<p>By default, the <code>summary2</code> function includes omitted levels; to remove those, set <code>dropOmittedLevels = TRUE</code>:</p>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, variable <span class="op">=</span> <span class="st">"x9povty_i"</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;                                                                  x9povty_i</span></span>
 <span><span class="co">#&gt; 1                                               1: BELOW POVERTY THRESHOLD</span></span>
@@ -257,22 +259,20 @@ System missing, including unit nonresponse
 <span><span class="co">#&gt; 2 2226 21.78082</span></span>
 <span><span class="co">#&gt; 3 5809 56.83953</span></span></code></pre></div>
 <p>The <code>summary2</code> function returns the weighted number of cases, the weighted percentage, and the weighted standard error for a categorical variable when specified in the argument <code>weightVar</code>, here using the total student weight from the 9th round <code>weightVar = "w9c29p_9a0"</code>:</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span><span class="va">eclsk11</span>, <span class="st">"x9povty_i"</span>, weightVar <span class="op">=</span> <span class="st">"w9c29p_9a0"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, variable <span class="op">=</span> <span class="st">"x9povty_i"</span>, weightVar <span class="op">=</span> <span class="st">"w9c29p_9a0"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in calcEdsurveyTable(formula, data, weightVar,</span></span>
 <span><span class="co">#&gt; jrrIMax, pctAggregationLevel, : Removing 9632 rows with 0</span></span>
 <span><span class="co">#&gt; weight from analysis.</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'w9c29p_9a0'</span></span>
 <span><span class="co">#&gt;                                                                  x9povty_i</span></span>
-<span><span class="co">#&gt; 1                                                                (Missing)</span></span>
-<span><span class="co">#&gt; 2                                               1: BELOW POVERTY THRESHOLD</span></span>
-<span><span class="co">#&gt; 3 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD</span></span>
-<span><span class="co">#&gt; 4                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 1                                               1: BELOW POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 2 2: AT OR ABOVE POVERTY THRESHOLD, BELOW 200 PERCENT OF POVERTY THRESHOLD</span></span>
+<span><span class="co">#&gt; 3                          3: AT OR ABOVE 200 PERCENT OF POVERTY THRESHOLD</span></span>
 <span><span class="co">#&gt;      N Weighted N Weighted Percent Weighted Percent SE</span></span>
-<span><span class="co">#&gt; 1    0          0          0.00000                  NA</span></span>
-<span><span class="co">#&gt; 2 1720     887797         22.28798           0.9054683</span></span>
-<span><span class="co">#&gt; 3 1823     936566         23.51232           0.6704569</span></span>
-<span><span class="co">#&gt; 4 4999    2158936         54.19970           1.0531340</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 1720     887797         22.28798           0.9054683</span></span>
+<span><span class="co">#&gt; 2 1823     936566         23.51232           0.6704569</span></span>
+<span><span class="co">#&gt; 3 4999    2158936         54.19970           1.0531340</span></span></code></pre></div>
 </div>
 <div id="retrieving-data-for-further-manipulation-with-getdata-2" class="section level2" number="10.7">
 <h2>
@@ -285,23 +285,23 @@ System missing, including unit nonresponse
 <p>Although <code>EdSurvey</code> allows for rudimentary data manipulation and analysis directly on a <code>edsurvey.data.frame</code> connection, the function <code><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData()</a></code> can extract a dataset of variables for manipulation and analyses as with other <code>data.frame</code> objects. This object—referred to as a <code>light.edsurvey.data.frame</code>—can then be used with packaged <code>EdSurvey</code> analytical functions.</p>
 <p>Variables are extracted from an <code>edsurvey.data.frame</code> and returned as a <code>light.edsurvey.data.frame</code> by specifying a set of variable names in <code>varnames</code> or by entering a formula in <code>formula</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Use &lt;code&gt;?getData&lt;/code&gt; for details on default &lt;code&gt;getData&lt;/code&gt; arguments.&lt;/p&gt;"><sup>8</sup></a></p>
 <p>To access and manipulate data the <code>x_chsex_r</code> (“Sex of students”), the weight variable <code>w5cf5pf_50</code>, <code>p5sumsch</code> (“Child attended summer school”), and <code>p5nhrprm</code> (“Hours per day child attended summer school”) variables in <code>eclsk11</code>, call <code>getData</code>.</p>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x_chsex_r"</span>, <span class="st">"w5cf5pf_50"</span>, <span class="st">"x12sesl"</span>,</span>
 <span>                                              <span class="st">"p5sumsch"</span>, <span class="st">"p5nhrprm"</span><span class="op">)</span>, </span>
-<span>                                 omittedLevels <span class="op">=</span> <span class="cn">FALSE</span>, addAttributes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>By default, setting <code>omittedLevels</code> to <code>TRUE</code> removes special values, such as multiple entries or <code>NA</code>s. <code>getData</code> tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set <code>omittedLevels</code> to <code>FALSE</code> to recode special values in an example that follows.</p>
+<span>                                 dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span>, addAttributes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>By default, setting <code>dropOmittedLevels</code> to <code>TRUE</code> removes special values, such as multiple entries or <code>NA</code>s. <code>getData</code> tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set <code>dropOmittedLevels</code> to <code>FALSE</code> to recode special values in an example that follows.</p>
 <p>The argument <code>addAttributes = TRUE</code> ensures that the analysis functions shown so far can continue to be used with the resulting dataset: <code>gddat</code>.</p>
 </div>
 <div id="retrieving-all-variables-in-a-dataset-1" class="section level3" number="10.7.2">
 <h3>
 <span class="header-section-number">10.7.2</span> Retrieving All Variables in a Dataset<a class="anchor" aria-label="anchor" href="#retrieving-all-variables-in-a-dataset-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>To extract all the data in an <code>edsurvey.data.frame</code>, define the <code>varnames</code> argument as <code>names(eclsk11)</code>, which will query all variables. Setting the argument <code>omittedLevels = FALSE</code> ensures that values that would normally be removed are included:</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<p>To extract all the data in an <code>edsurvey.data.frame</code>, define the <code>varnames</code> argument as <code>names(eclsk11)</code>, which will query all variables. Setting the argument <code>dropOmittedLevels = FALSE</code> ensures that values that would normally be removed are included:</p>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lsdf0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">eclsk11</span><span class="op">)</span>, addAttributes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                 omittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">lsdf0</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">eclsk11</span><span class="op">)</span></span></code></pre></div>
+<span>                 dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lsdf0</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eclsk11</span><span class="op">)</span></span></code></pre></div>
 <p>Additional details on the features of the <code>getData</code> function appear in the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-getData.pdf"><em>Using the <code>getData</code> Function in EdSurvey</em></a>.</p>
 </div>
 <div id="recodingVariables" class="section level3" number="10.7.3">
@@ -311,27 +311,27 @@ System missing, including unit nonresponse
 <p>As mentioned earlier, data recoding is of particular importance when performing analyses with ECLS:K-2011 data given the complexity of its survey design on the dataset. <code>EdSurvey</code> offers methods of recoding data to fit these needs.</p>
 <p>Let’s suppose you desire to explore student performance in mathematics based on the number of hours/day a parent reported their child attended summer school (<code>p5nhrprm</code>). We’d first need to recode that variable so that students who did not attend summer school (where <code>p5sumsch</code> coded as a <code>2: NO</code>) are included in the analytic subset with 0 minutes.</p>
 <p>The <code>table</code> function is a simple method of ascertaining the number of values for each level of a variable in a dataset. Using the table function for the <code>p5nhrprm</code> variable indicates that parents reported their child attending summer school anywhere from 2 to 7 hours per day:</p>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span>,useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     2     3     4     5     6     7  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt;    55    72   126    43    87    62 17729</span></span></code></pre></div>
 <p>To include children who attended summer school for 0 hours per day—those who were skipped by the design of the survey—recode <code>p5nhrprm</code> values to zero where <code>p5sumsch == "2: NO"</code>:</p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">p5sumsch</span> <span class="op">==</span> <span class="st">"2: NO"</span>, <span class="fl">0</span>, <span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span>,useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     0     2     3     4     5     6     7  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt;  3913    55    72   126    43    87    62 13816</span></span></code></pre></div>
 <p>Alternatively, for demonstration purposes, a researcher also may choose to recode the <code>-1</code> values for the <code>p5nhrprm</code> variable directly:</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span> <span class="op">==</span> <span class="st">"-1: NOT APPLICABLE*"</span>, <span class="fl">0</span>, <span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">p5nhrprm</span>,useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     0     2     3     4     5     6     7  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt;  3913    55    72   126    43    87    62 13816</span></span></code></pre></div>
 <p>A second example of recoding a variable in response to a skip pattern pertains to the frequency that (a) a child does homework (the variable <code>p9hmwork</code>) and (b) a parent/someone else helps (the variable <code>p9hlphwk</code>). The <code>levelsSDF</code> function is useful to show a variable’s levels and their unweighted <em>n</em> sizes.</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span><span class="st">"p9hmwork"</span>,<span class="va">eclsk11</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'p9hmwork' (Lowest level first):</span></span>
 <span><span class="co">#&gt;     1. 1: NEVER (n = 294)</span></span>
@@ -357,15 +357,15 @@ System missing, including unit nonresponse
 <span><span class="co">#&gt;     -9. -9: NOT ASCERTAINED* (n = 0)</span></span>
 <span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
 <p>The skip pattern for this sequence of survey questions is as follows: If <code>p9hmwork == "1: NEVER"</code> then <code>p9hlphwk</code> is skipped and coded <code>"-1: NOT APPLICABLE"</code>. To include this subset of data in the analysis, the variable <code>p9hlphwk</code> can be recoded to <code>0</code>. First, retrieve the data via <code>getData</code> (along with a few other variables for a subsequent example) to recode using <code>ifelse</code>:</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mvData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eclsk11</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p9hmwork"</span>, <span class="st">"p9hlphwk"</span>, <span class="st">"x_chsex_r"</span>,</span>
 <span>                                              <span class="st">"x9rscalk5"</span>, <span class="st">"x9mscalk5"</span>, <span class="st">"w9c29p_9t90"</span><span class="op">)</span>, </span>
-<span>                                 omittedLevels <span class="op">=</span> <span class="cn">FALSE</span>, addAttributes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                                 dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span>, addAttributes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">mvData</span><span class="op">$</span><span class="va">p9hlphwk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">mvData</span><span class="op">$</span><span class="va">p9hmwork</span> <span class="op">==</span> <span class="st">"1: NEVER"</span> <span class="op">&amp;</span></span>
 <span>                          <span class="va">mvData</span><span class="op">$</span><span class="va">p9hlphwk</span> <span class="op">==</span> <span class="st">"-1: NOT APPLICABLE"</span>, <span class="fl">0</span>,</span>
 <span>                          <span class="va">mvData</span><span class="op">$</span><span class="va">p9hlphwk</span><span class="op">)</span></span></code></pre></div>
 <p>Then use <code>table</code> to view the counts of each level.</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">mvData</span><span class="op">$</span><span class="va">p9hlphwk</span>,useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    0    1    2    3    4    5    6    7    8 &lt;NA&gt; </span></span>
@@ -379,12 +379,12 @@ System missing, including unit nonresponse
 <p>A helper function that pairs well with <code>getData</code> is <code>rebindAttributes</code>. This function allows users to reassign the attributes from a survey dataset to a data frame that might have had its attributes stripped during the manipulation process. After rebinding attributes, all variables—including those outside the original dataset—are available for use in <code>EdSurvey</code> analytical functions.</p>
 <p>The <code>p9hlphwk</code> variable from the <em>Recoding Variables in a Dataset</em> section of <a href="longitudinal-datasets.html#recodingVariables">this chapter</a> has been recoded using the <code>ifelse</code> function; therefore, the following example will display how to apply survey attributes to this object for analysis.</p>
 <p>Using the <code>mvData</code> object created earlier, apply <code>rebindAttributes</code> from the attribute data <code>eclsk11</code> to the manipulated data frame <code>mvData</code>. The new variables are now available for <code>EdSurvey</code> analytical functions:</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mvData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span><span class="va">mvData</span>, <span class="va">eclsk11</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mvData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mvData</span>, attributeData <span class="op">=</span> <span class="va">eclsk11</span><span class="op">)</span></span>
 <span><span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">x9rscalk5</span> <span class="op">~</span> <span class="va">x_chsex_r</span> <span class="op">+</span> <span class="va">p9hlphwk</span>, data <span class="op">=</span> <span class="va">mvData</span>,</span>
 <span>              weightVar <span class="op">=</span> <span class="st">"w9c29p_9t90"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Removing 1422 rows with nonpositive weight from analysis.</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula: x9rscalk5 ~ x_chsex_r + p9hlphwk</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -417,7 +417,7 @@ System missing, including unit nonresponse
 <span class="header-section-number">10.8</span> Making a Table With <code>edsurveyTable</code><a class="anchor" aria-label="anchor" href="#making-a-table-with-edsurveytable"><i class="fas fa-link"></i></a>
 </h2>
 <p>Summary tables can be created in <code>EdSurvey</code> using the <code>edsurveyTable</code> function. A call to <code>edsurveyTable</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Use &lt;code&gt;?edsurveyTable&lt;/code&gt; for details on default &lt;code&gt;edsurveyTable&lt;/code&gt; arguments.&lt;/p&gt;"><sup>9</sup></a> with two variables, <code>x_chsex_r</code> (“Sex of students”) and <code>p9curmar</code> (“Current marital status”), creates a table that shows the number and percentage of students by gender and their parent’s current marital status. Percentages add up to 100 within each gender.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="op">~</span> <span class="va">x_chsex_r</span> <span class="op">+</span> <span class="va">p9curmar</span>, data <span class="op">=</span> <span class="va">eclsk11</span>,</span>
 <span>                     weightVar <span class="op">=</span> <span class="st">"w9c29p_9t90"</span>,</span>
 <span>                     varMethod <span class="op">=</span> <span class="st">"jackknife"</span><span class="op">)</span></span>
@@ -655,7 +655,7 @@ SE(PCT)
 </tbody>
 </table></div>
 <p>Given that the previous analysis uses parent data from Round 9, the weight variable <code>"w9c29p_9a0"</code> also might be appropriate. Both <code>"w9c29p_9t90"</code> and <code>"w9c29p_9a0"</code> could be used for this analysis, although both include nonresponse adjustments for additional data components or rounds of data collection than those of interest in the current analysis. Therefore, analysts need to determine which weight they prefer to use because there is no weight that adjusts for nonresponse for only the sources used in this analysis. Successive analyses in this chapter that mix Round 9 child and parent variables might substitute the selected weight chosen. Note the slight differences in <code>*n* used</code> and results. Consult the <em>4.3.1 Types of Sample Weights</em> section of the <a href="https://nces.ed.gov/pubs2019/2019051.pdf"><em>ECLS-K:2011 Kindergarten–Fifth Grade User’s Manual, Public Version</em></a> for additional guidance on choosing the most appropriate sample weight for an analysis.</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es1p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="op">~</span> <span class="va">x_chsex_r</span> <span class="op">+</span> <span class="va">p9curmar</span>, data <span class="op">=</span> <span class="va">eclsk11</span>,</span>
 <span>                     weightVar <span class="op">=</span> <span class="st">"w9c29p_9a0"</span>,</span>
 <span>                     varMethod <span class="op">=</span> <span class="st">"jackknife"</span><span class="op">)</span></span>
@@ -892,7 +892,7 @@ SE(PCT)
 </tbody>
 </table></div>
 <p>The function also features variance estimation by setting the <code>varMethod</code> argument.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;See the documentation for &lt;code&gt;lm.sdf&lt;/code&gt; for details on the variance calculation.&lt;/p&gt;"><sup>10</sup></a> As shown in the previous example, the default <code>varMethod = "jackknife"</code> indicates that the call used the jackknife method for variance estimation. By setting <code>varMethod = "Taylor"</code>, the same <code>edsurveyTable</code> call in the previous example can return results using Taylor series variance estimation:</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es1t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="op">~</span> <span class="va">x_chsex_r</span> <span class="op">+</span> <span class="va">p9curmar</span>, data <span class="op">=</span> <span class="va">eclsk11</span>,</span>
 <span>                      weightVar <span class="op">=</span> <span class="st">"w9c29p_9t90"</span>,</span>
 <span>                      varMethod <span class="op">=</span> <span class="st">"Taylor"</span><span class="op">)</span></span>
@@ -1128,7 +1128,7 @@ SE(PCT)
 </table></div>
 <p>If the percentages do not add up to 100 at the desired level, adjust the <code>pctAggregationLevel</code> argument to change the aggregation level. By default, <code>pctAggregationLevel = 1</code>, indicating that the formula will be aggregated at each level of the first variable in the call; in our previous example, this is <code>x_chsex_r</code>. Setting <code>pctAggregationLevel = 0</code> aggregates at each level of each variable in the call.</p>
 <p>The calculation of means and standard errors requires computation time that the user may not want to wait for. If you wish to simply see a table of the levels and the <em>N</em> sizes, set the <code>returnMeans</code> and <code>returnSepct</code> arguments to <code>FALSE</code> to omit those columns as follows:</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="op">~</span> <span class="va">x_chsex_r</span> <span class="op">+</span> <span class="va">p9curmar</span>, data <span class="op">=</span> <span class="va">eclsk11</span>,</span>
 <span>                      weightVar <span class="op">=</span> <span class="st">"w9c29p_9t90"</span>, jrrIMax <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>                      returnMeans <span class="op">=</span> <span class="cn">FALSE</span>, returnSepct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
@@ -1370,7 +1370,7 @@ PCT
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2022-10-11.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-07-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

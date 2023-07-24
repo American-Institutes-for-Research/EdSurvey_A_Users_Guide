@@ -4,26 +4,27 @@
 
 ## Integration With Any Other Package
 
-By calling the function `getData()`, one can extract a `light.edsurvey.data.frame`: a `data.frame`-like object containing requested variables, weights, and each weight's associated replicate weights. This `light.edsurvey.data.frame` can be not only manipulated as with other `data.frame` objects but also used with packaged `EdSurvey` functions. As noted in [Chapter 6](#retrievingAllVariablesInADataset), setting the arguments `omittedLevels` and `defaultConditions` to `FALSE` ensures that the values that would normally be removed are included. The argument `addAttributes = TRUE` ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.
+By calling the function `getData()`, one can extract a `light.edsurvey.data.frame`: a `data.frame`-like object containing requested variables, weights, and each weight's associated replicate weights. This `light.edsurvey.data.frame` can be not only manipulated as with other `data.frame` objects but also used with packaged `EdSurvey` functions. As noted in [Chapter 6](#retrievingAllVariablesInADataset), setting the arguments `dropOmittedLevels` and `defaultConditions` to `FALSE` ensures that the values that would normally be removed are included. The argument `addAttributes = TRUE` ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.
 
 
 ```r
 library(EdSurvey)
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
 #> Loading required package: Dire
-#> Dire v2.1.0
-#> EdSurvey v3.0.1
+#> Dire v2.1.1
+#> EdSurvey v4.0.1
 #> 
 #> Attaching package: 'EdSurvey'
 #> The following objects are masked from 'package:base':
 #> 
 #>     cbind, rbind
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 gddat <- getData(data = sdf, varnames = c('composite', 'dsex', 'b017451', 'origwt'),
-                addAttributes = TRUE, omittedLevels = FALSE)
+                addAttributes = TRUE, dropOmittedLevels = FALSE)
 ```
 
 The base R function `gsub` allows users to substitute one string for another. The following step recodes "Every day" to "Seven days a week". The `head` function reveals the first 6 values of the recoded variable `b017451` accessed by the `$` operator:
@@ -51,7 +52,7 @@ For example, a user might want to run a linear model using `composite`, the defa
 
 ```r
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "origwt", "composite"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
                                                "Once every few weeks"),
                           "Rarely", "At least once a week")
@@ -61,9 +62,9 @@ From there, apply `rebindAttributes` from the attribute data `sdf` to the manipu
 
 
 ```r
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
-summary(lm2)
+summary(object = lm2)
 #> 
 #> Formula: composite ~ dsex + studyTalk
 #> 
@@ -106,7 +107,7 @@ library(tidyr)
 
 ```r
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "iep", "lep", "origwt", "composite"),
-                 addAttributes = TRUE, omittedLevels = TRUE)
+                 addAttributes = TRUE, dropOmittedLevels = TRUE)
 ```
 
 The `dplyr` function `unite()` takes multiple variables and concatenates them, similar to the base R function `paste0()`. The `%>%` (pipe) operator allows an object to be passed forward to another function call.
@@ -124,17 +125,17 @@ table(gddat$combinedVar)
 
 ```r
 # Specify level in I()
-logit1 <- logit.sdf(I(b017451 == "Never or hardly ever") ~ combinedVar,
+logit1 <- logit.sdf(formula = I(b017451 == "Never or hardly ever") ~ combinedVar,
                     data = gddat)
-#> Error in getAttributes(data, "weights"): Attribute weights not found.
+#> Error in checkDataClass(data, c("edsurvey.data.frame", "light.edsurvey.data.frame", : The argument 'data' must be an edsurvey.data.frame, a light.edsurvey.data.frame, or an edsurvey.data.frame.list. See "Using the 'EdSurvey' Package's getData Function to Manipulate the NAEP Primer Data vignette" for how to work with data in a light.edsurvey.data.frame.
 ```
 
 When we attempt to run the logistic regression, `EdSurvey` returns an error that it cannot locate the survey weights for this data frame. After creating a new variable, `EdSurvey` can no longer access the survey attributes needed to complete this analysis. To remedy, apply `rebindAttributes` from the attribute data `sdf` to the manipulated data frame `gddat`:
 
 
 ```r
-gddat <- rebindAttributes(gddat, sdf)
-logit1 <- logit.sdf(I(b017451 =="Never or hardly ever") ~ combinedVar,
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
+logit1 <- logit.sdf(formula = I(b017451 =="Never or hardly ever") ~ combinedVar,
                     data = gddat)
 ```
 
@@ -144,7 +145,7 @@ Other functions, such as `rowwise()`, `group_by()`, and `ungroup()` silently ove
 ```r
 gddat <- getData(data = sdf,
                  varnames = c("dsex", "b017451", "iep", "lep", "origwt", "composite"),
-                 addAttributes = TRUE, omittedLevels = TRUE)
+                 addAttributes = TRUE, dropOmittedLevels = TRUE)
 gddat <- gddat %>%        
   rowwise() %>% 
   mutate(mrpcmAverage = mean(c(mrpcm1, mrpcm2, mrpcm3, mrpcm4, mrpcm5), na.rm = TRUE))
@@ -156,7 +157,7 @@ The function `rebindAttributes()`reapplies survey attributes and prepares the da
 
 
 ```r
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 class(gddat)
 #> [1] "light.edsurvey.data.frame" "data.frame"
 ```

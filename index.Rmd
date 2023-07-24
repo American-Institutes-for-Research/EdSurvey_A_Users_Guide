@@ -214,7 +214,7 @@ levelsSDF(varnames = "asbg10b", data = Dnk2015)
 Please note that these estimates are weighted. To see the unweighted frequency table, use the option `weightVar = NULL`:
 
 ```{r summary2}
-summary2(data = Dnk2015, "asbg10b", weightVar = NULL)
+summary2(data = Dnk2015, variable = "asbg10b", weightVar = NULL)
 ```
 
 Additional data exploration functions are in [Chapter 5](#understandingData).

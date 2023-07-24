@@ -22,12 +22,12 @@ Beginning with `EdSurvey` 2.7, the NAEP linking error formulas have been impleme
 
 ```r
 require(EdSurvey) # must be 2.7.0 or higher
-math12 <- readNAEP("path/to/Data/M50NT3AT.dat")
-showPlausibleValues(math12)
+math12 <- readNAEP(path = "path/to/Data/M50NT3AT.dat")
+showPlausibleValues(data = math12)
 # Results, not accounting for DBA-PBA linking
-edsurveyTable(composite ~ dsex, data=math12)
+edsurveyTable(formula = composite ~ dsex, data = math12)
 # Results, accounting for DBA-PBA linking
-edsurveyTable(composite_linking ~ dsex, data=math12)
+edsurveyTable(formula = composite_linking ~ dsex, data = math12)
 ```
 A few limitations exist for the linking error procedure. First, it does not allow Taylor series variance estimation. Second, the value `jrrIMax` must always be one. Attempting to use `EdSurvey` with Taylor series variance estimation or `jrrIMax` greater than one will result in an error.
 
@@ -69,6 +69,7 @@ Students who took the DBA will have the variable `dbapba` set to `"DBA"`, and st
 Ideally, the imputation variance would be summed over all possible combinations of the 20 PBA and 20 DBA imputations, which is far more than can be reasonably calculated. To minimize computation time, only five permutations of the plausible values are chosen; these permutations are shown in Table 12.1, where the row number is the index of the DBA plausible values to use, and the cell value is the index of the PBA plausible values to use.
 
 
+
 Table: (\#tab:PERM)Permutation Table \label{tab:PERM}
 
 | Row| Col. 1| Col. 2| Col. 3| Col. 4| Col. 5|
@@ -93,6 +94,8 @@ Table: (\#tab:PERM)Permutation Table \label{tab:PERM}
 |  18|     18|      9|     16|      3|     20|
 |  19|     19|      8|     14|      5|     16|
 |  20|     20|     10|      1|     17|      4|
+
+
 
 The data already have the plausible values used for estimation on it but need the imputation variance and sampling variance plausible values added.
 

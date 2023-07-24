@@ -1,6 +1,6 @@
 ```{r loadEdSurvey7, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 # Descriptive Statistics
@@ -167,7 +167,7 @@ The `cor.sdf` function features multiple methods for data exploration and analys
 
 
 ```{r corContinuous, cache=FALSE, warning=FALSE}
-sdf_dnf <- subset(sdf, dsex == 1)
+sdf_dnf <- subset(x = sdf, subset = dsex == 1)
 cor_pearson <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
                     method = "Pearson", weightVar = "origwt")
 cor_spearman <- cor.sdf(x = "b017451", y = "pared", data = sdf_dnf, 
@@ -227,10 +227,10 @@ After standardizing variables between each `edsurvey.data.frame`, they are combi
 ```{r sdfl}
 
 # make four subsets of sdf by a location variable-scrpsu, "Scrambled PSU and school code"
-sdfA <- subset(sdf, scrpsu %in% c(5, 45, 56))
-sdfB <- subset(sdf, scrpsu %in% c(75, 76, 78))
-sdfC <- subset(sdf, scrpsu %in% 100:200)
-sdfD <- subset(sdf, scrpsu %in% 201:300)
+sdfA <- subset(x = sdf, subset = scrpsu %in% c(5, 45, 56))
+sdfB <- subset(x = sdf, subset = scrpsu %in% c(75, 76, 78))
+sdfC <- subset(x = sdf, subset = scrpsu %in% 100:200)
+sdfD <- subset(x = sdf, subset = scrpsu %in% 201:300)
 
 #combine four datasets to an `edsurvey.data.frame.list`
 sdfl <- edsurvey.data.frame.list(datalist = list(sdfA, sdfB, sdfC, sdfD),

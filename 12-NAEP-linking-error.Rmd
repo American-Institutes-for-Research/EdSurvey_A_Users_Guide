@@ -21,12 +21,12 @@ This chapter begins by describing how to use `EdSurvey` to calculate the linking
 Beginning with `EdSurvey` 2.7, the NAEP linking error formulas have been implemented in most `EdSurvey` analytical functions, including `edsurveyTable`, `achievementLevels`, `percentile`, `gap`, `cor.sdf`, `rq.sdf`, `lm.sdf`, `logit.sdf`, `probit.sdf`, and `waldTest` (when applied to the results of these methods) but not in `summary2`, `mixed.sdf`, `mml.sdf`, or `mvrlm.sdf`. Users of `EdSurvey` can account for the linking error simply by using `_linking` outcomes in place of the subject scale or subscale. They also are listed separately when calling `showPlausibleValues`. For example, a table can be generated with or without linking error as follows.
 ```{r edsurveyTableDemo, eval=FALSE}
 require(EdSurvey) # must be 2.7.0 or higher
-math12 <- readNAEP("path/to/Data/M50NT3AT.dat")
-showPlausibleValues(math12)
+math12 <- readNAEP(path = "path/to/Data/M50NT3AT.dat")
+showPlausibleValues(data = math12)
 # Results, not accounting for DBA-PBA linking
-edsurveyTable(composite ~ dsex, data=math12)
+edsurveyTable(formula = composite ~ dsex, data = math12)
 # Results, accounting for DBA-PBA linking
-edsurveyTable(composite_linking ~ dsex, data=math12)
+edsurveyTable(formula = composite_linking ~ dsex, data = math12)
 ```
 A few limitations exist for the linking error procedure. First, it does not allow Taylor series variance estimation. Second, the value `jrrIMax` must always be one. Attempting to use `EdSurvey` with Taylor series variance estimation or `jrrIMax` greater than one will result in an error.
 

@@ -1,6 +1,6 @@
 ```{r loadEdSurvey10, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 # Longitudinal Datasets
@@ -67,7 +67,7 @@ The method for recoding these values appears later in this chapter in _Recoding 
 
 ## Removing Special Values
 
-`EdSurvey` uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set `omittedLevels = FALSE` when running your analysis. You can then remove levels that you want to remove with a call to `subset`, as discussed in the "Subsetting the Data" section in [Chapter 3](#subsettingData).
+`EdSurvey` uses listwise deletion to remove special values in all analyses by default, such as those detailed in Table 10.1. To use a different method, set `dropOmittedLevels = FALSE` when running your analysis. You can then remove levels that you want to remove with a call to `subset`, as discussed in the "Subsetting the Data" section in [Chapter 3](#subsettingData).
 
 
 ## Explore Variable Distributions With `summary2`
@@ -75,19 +75,19 @@ The method for recoding these values appears later in this chapter in _Recoding 
 The `summary2` function produces weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. By default, the estimates are not weighted. For example, the variable `x9povty_i` ("Imputed poverty level") returns the following output: 
 
 ```{r summary2CategoricalECLS}
-summary2(eclsk11, "x9povty_i")
+summary2(data = eclsk11, variable = "x9povty_i")
 ```
 
-By default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+By default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 ```{r summary2CategoricalOmittedECLS}
-summary2(eclsk11, "x9povty_i", omittedLevels = TRUE)
+summary2(data = eclsk11, variable = "x9povty_i", dropOmittedLevels = TRUE)
 ```
 
 The `summary2` function returns the weighted number of cases, the weighted percentage, and the weighted standard error for a categorical variable when specified in the argument `weightVar`, here using the total student weight from the 9th round `weightVar = "w9c29p_9a0"`:
 
 ```{r summary2CategoricalWeightsIncluded}
-summary2(eclsk11, "x9povty_i", weightVar = "w9c29p_9a0")
+summary2(data = eclsk11, variable = "x9povty_i", weightVar = "w9c29p_9a0")
 ```
 
 ## Retrieving Data for Further Manipulation With `getData`
@@ -103,22 +103,22 @@ To access and manipulate data the `x_chsex_r` ("Sex of students"), the weight va
 ```{r getDataECLS}
 gddat <- getData(data = eclsk11, varnames = c("x_chsex_r", "w5cf5pf_50", "x12sesl",
                                               "p5sumsch", "p5nhrprm"), 
-                                 omittedLevels = FALSE, addAttributes = TRUE)
+                                 dropOmittedLevels = FALSE, addAttributes = TRUE)
 ```
 
-By default, setting `omittedLevels` to `TRUE` removes special values, such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set `omittedLevels` to `FALSE` to recode special values in an example that follows.
+By default, setting `dropOmittedLevels` to `TRUE` removes special values, such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations not typically included in analyses. Here we set `dropOmittedLevels` to `FALSE` to recode special values in an example that follows.
 
 The argument `addAttributes = TRUE` ensures that the analysis functions shown so far can continue to be used with the resulting dataset: `gddat`.
 
 ### Retrieving All Variables in a Dataset
 
-To extract all the data in an `edsurvey.data.frame`, define the `varnames` argument as `names(eclsk11)`, which will query all variables. Setting the argument `omittedLevels = FALSE` ensures that values that would normally be removed are included:
+To extract all the data in an `edsurvey.data.frame`, define the `varnames` argument as `names(eclsk11)`, which will query all variables. Setting the argument `dropOmittedLevels = FALSE` ensures that values that would normally be removed are included:
 
 ```{r retrieveAllVariables,message = FALSE, warning=FALSE, eval=FALSE}
 lsdf0 <- getData(data = eclsk11, varnames = colnames(eclsk11), addAttributes = TRUE,
-                 omittedLevels = FALSE)
-dim(lsdf0) 
-dim(eclsk11)
+                 dropOmittedLevels = FALSE)
+dim(x = lsdf0) 
+dim(x = eclsk11)
 ```
 
 Additional details on the features of the `getData` function appear in the vignette titled [*Using the `getData` Function in EdSurvey*](https://www.air.org/sites/default/files/EdSurvey-getData.pdf).
@@ -161,7 +161,7 @@ The skip pattern for this sequence of survey questions is as follows: If `p9hmwo
 ```{r gddatrecode22}
 mvData <- getData(data = eclsk11, varnames = c("p9hmwork", "p9hlphwk", "x_chsex_r",
                                               "x9rscalk5", "x9mscalk5", "w9c29p_9t90"), 
-                                 omittedLevels = FALSE, addAttributes = TRUE)
+                                 dropOmittedLevels = FALSE, addAttributes = TRUE)
 mvData$p9hlphwk <- ifelse(mvData$p9hmwork == "1: NEVER" &
                           mvData$p9hlphwk == "-1: NOT APPLICABLE", 0,
                           mvData$p9hlphwk)
@@ -187,10 +187,10 @@ The `p9hlphwk` variable from the _Recoding Variables in a Dataset_ section of [t
 Using the `mvData` object created earlier, apply `rebindAttributes` from the attribute data `eclsk11` to the manipulated data frame `mvData`. The new variables are now available for `EdSurvey` analytical functions:
 
 ```{r rebindAttributesECLS}
-mvData <- rebindAttributes(mvData, eclsk11)
+mvData <- rebindAttributes(data = mvData, attributeData = eclsk11)
 lm2 <- lm.sdf(formula = x9rscalk5 ~ x_chsex_r + p9hlphwk, data = mvData,
               weightVar = "w9c29p_9t90")
-summary(lm2)
+summary(object = lm2)
 ```
 
 More information on the `rebindAttributes` function is available in [Chapter 9](#analysisOutsideEdSurvey).

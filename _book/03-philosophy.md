@@ -80,19 +80,20 @@ To follow along with this vignette, load the NAEP Primer dataset `M36NT2PM` and 
 
 ```r
 library(EdSurvey)
+#> Warning: package 'EdSurvey' was built under R version 4.3.1
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
 #> Loading required package: Dire
-#> Dire v2.1.0
-#> EdSurvey v3.0.1
+#> Dire v2.1.1
+#> EdSurvey v4.0.1
 #> 
 #> Attaching package: 'EdSurvey'
 #> The following objects are masked from 'package:base':
 #> 
 #>     cbind, rbind
-sdf <- readNAEP(system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 
 This command uses a somewhat unusual way of identifying a file path (the `system.file` function). Because the Primer data are bundled with the NAEPprimer package, the `system.file` function finds it regardless of where the package is installed on a machine. All other datasets are referred to by their system path.
@@ -138,8 +139,8 @@ Information about an `edsurvey.data.frame` can be obtained in multiple ways. To 
 
 ```r
 sdf
-#> edsurvey.data.frame for 2005 NAEP (Mathematics) in
-#>   USA
+#> edsurvey.data.frame for 2005 NAEP National - Primer
+#>   (Mathematics; Grade 8) in USA
 #> Dimensions: 17606 rows and 303 columns.
 #> 
 #> There is 1 full sample weight in this
@@ -272,6 +273,10 @@ searchSDF(string = "book", data = sdf, fileFormat = "student")
 #> 1      b013801                                Books in home
 #> 2      t088804 Computer activities: Use a gradebook program
 #> 3      t091503     G8Math:How often use Geometry sketchbook
+#>   fileFormat
+#> 1    Student
+#> 2    Student
+#> 3    Student
 ```
 
 The levels and labels for each variable search via `searchSDF()` also can be returned by setting `levels = TRUE`:
@@ -339,6 +344,19 @@ searchSDF(string="book|home|value", data=sdf)
 #> 10      Computer activities: Use a gradebook program
 #> 11  Computer activities: Post homework,schedule info
 #> 12          G8Math:How often use Geometry sketchbook
+#>    fileFormat
+#> 1     Student
+#> 2     Student
+#> 3     Student
+#> 4     Student
+#> 5     Student
+#> 6     Student
+#> 7     Student
+#> 8     Student
+#> 9     Student
+#> 10    Student
+#> 11    Student
+#> 12    Student
 ```
 
 A vector of strings is used to search for variables that contain multiple strings, such as both "book" and "home"; each string is present in the variable label and can be used to filter the results:
@@ -346,8 +364,8 @@ A vector of strings is used to search for variables that contain multiple string
 
 ```r
 searchSDF(string=c("book","home"), data=sdf)
-#>   variableName        Labels
-#> 1      b013801 Books in home
+#>   variableName        Labels fileFormat
+#> 1      b013801 Books in home    Student
 ```
 
 To return the levels and labels for a particular variable, use `levelsSDF()`:
@@ -370,7 +388,7 @@ Access the full codebook using `showCodebook()` to retrieve the variable names, 
 
 
 ```r
-View(showCodebook(sdf))
+View(showCodebook(data = sdf))
 ```
 
 Basic information about plausible values and weights in an `edsurvey.data.frame` can be seen in the `print` function. The variables associated with plausible values and weights can be seen from the `showPlausibleValues` and `showWeights` functions, respectively, when the `verbose` argument is set to `TRUE`:
@@ -453,13 +471,14 @@ A subset of a dataset can be used with `EdSurvey` package functions. In this exa
 
 
 ```r
-sdfm <- subset(sdf, dsex == "Male" & (sdracem == 3 | sdracem == 1))
+sdfm <- subset(x = sdf, subset = dsex == "Male" & (sdracem == 3 | sdracem == 1))
 es2 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 ```
 
 ```r
 es2
 ```
+
 
 Table: (\#tab:table301)Summary Table Subset \label{tab:summaryTableSubset}
 
@@ -468,13 +487,15 @@ Table: (\#tab:table301)Summary Table Subset \label{tab:summaryTableSubset}
 |Male |White    | 5160| 5035.169| 76.11329| 1.625174| 287.6603| 0.8995013|
 |Male |Hispanic | 1244| 1580.192| 23.88671| 1.625174| 260.8268| 1.5822251|
 
+
+
 ### Explore Variable Distributions With `summary2`
 
 The `summary2` function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, `summary2` produces weighted statistics by default. If the specified variable is a set of plausible values, and the `weightVar` option is non-`NULL`, `summary2` statistics account for both plausible values pooling and weighting.
 
 
 ```r
-summary2(sdf, "composite")
+summary2(data = sdf, variable = "composite")
 #> Estimates are weighted using the weight variable 'origwt'
 #>    Variable     N Weighted N   Min.  1st Qu.   Median
 #> 1 composite 16915   16932.46 126.11 251.9626 277.4784
@@ -486,7 +507,7 @@ By specifying `weightVar = NULL`, the function prints out unweighted descriptive
 
 
 ```r
-summary2(sdf, "composite", weightVar = NULL)
+summary2(data = sdf, variable = "composite", weightVar = NULL)
 #> Estimates are not weighted.
 #>   Variable     N   Min.  1st Qu. Median     Mean  3rd Qu.
 #> 1   mrpcm1 16915 130.53 252.0600 277.33 275.8606 300.7200
@@ -507,7 +528,7 @@ studies at home) returns the following output:
 
 
 ```r
-summary2(sdf, "b017451")
+summary2(data = sdf, variable = "b017451")
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837  3952.4529      23.34245648
@@ -527,11 +548,11 @@ summary2(sdf, "b017451")
 #> 7           0.0191187
 ```
 
-Note that by default, the `summary2` function includes omitted levels; to remove those, set `omittedLevels = TRUE`:
+Note that by default, the `summary2` function includes omitted levels; to remove those, set `dropOmittedLevels = TRUE`:
 
 
 ```r
-summary2(sdf, "b017451", omittedLevels = TRUE)
+summary2(data = sdf, variable = "b017451", dropOmittedLevels = TRUE)
 #> Estimates are weighted using the weight variable 'origwt'
 #>                b017451    N Weighted N Weighted Percent
 #> 1 Never or hardly ever 3837   3952.453         23.62386
@@ -562,7 +583,7 @@ To access and manipulate data for `dsex` and `b017451` variables in `sdf`, call 
 
 ```r
 gddat <- getData(data = sdf, varnames = c("dsex","b017451"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 head(gddat)
 #>     dsex              b017451
 #> 1   Male            Every day
@@ -573,18 +594,18 @@ head(gddat)
 #> 7   Male  2 or 3 times a week
 ```
 
-By default, setting `omittedLevels` to `TRUE` removes special values such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations that are not typically included in analysis.
+By default, setting `dropOmittedLevels` to `TRUE` removes special values such as multiple entries or `NA`s. `getData` tries to help by dropping the levels of factors for regression, tables, and correlations that are not typically included in analysis.
 
 ### Retrieving All Variables in a Dataset
 
-To extract all data in an `edsurvey.data.frame`, define the `varnames` argument as `colnames(sdf)`, which will query all variables. Setting the arguments `omittedLevels` and `defaultConditions` to `FALSE` ensures that values that would normally be removed are included:
+To extract all data in an `edsurvey.data.frame`, define the `varnames` argument as `colnames(x = sdf)`, which will query all variables. Setting the arguments `dropOmittedLevels` and `defaultConditions` to `FALSE` ensures that values that would normally be removed are included:
 
 
 ```r
 lsdf0 <- getData(data = sdf, varnames = colnames(sdf), addAttributes = TRUE,
-                 omittedLevels = FALSE, defaultConditions = FALSE)
-dim(lsdf0) # excludes the one school variable in the sdf
-dim(sdf)
+                 dropOmittedLevels = FALSE, defaultConditions = FALSE)
+dim(x = lsdf0) # excludes the one school variable in the sdf
+dim(x = sdf)
 ```
 
 Once retrieved, this dataset can be used with all `EdSurvey` functions.
@@ -600,7 +621,7 @@ For example, a user might want to run a linear model using `composite`, the defa
 
 ```r
 gddat <- getData(data = sdf, varnames = c("dsex", "b017451", "origwt", "composite"),
-                 omittedLevels = TRUE)
+                 dropOmittedLevels = TRUE)
 gddat$studyTalk <- ifelse(gddat$b017451 %in% c("Never or hardly ever",
                                                "Once every few weeks"),
                           "Rarely", "At least once a week")
@@ -610,9 +631,9 @@ From there, apply `rebindAttributes` from the attribute data `sdf` to the manipu
 
 
 ```r
-gddat <- rebindAttributes(gddat, sdf)
+gddat <- rebindAttributes(data = gddat, attributeData = sdf)
 lm2 <- lm.sdf(formula = composite ~ dsex + studyTalk, data = gddat)
-summary(lm2)
+summary(object = lm2)
 #> 
 #> Formula: composite ~ dsex + studyTalk
 #> 
