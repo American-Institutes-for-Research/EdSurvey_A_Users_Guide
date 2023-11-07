@@ -80,19 +80,13 @@ To follow along with this vignette, load the NAEP Primer dataset `M36NT2PM` and 
 
 ```r
 library(EdSurvey)
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
 #> Loading required package: Dire
-#> Dire v2.1.1
-#> EdSurvey v4.0.1
-#> 
-#> Attaching package: 'EdSurvey'
-#> The following objects are masked from 'package:base':
-#> 
-#>     cbind, rbind
+#> Dire v2.2.0
+#> EdSurvey v4.0.4
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 

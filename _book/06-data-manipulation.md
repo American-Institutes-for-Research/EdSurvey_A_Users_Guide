@@ -1,7 +1,4 @@
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
-```
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 
@@ -361,10 +358,10 @@ object.size(gddat <- getData(data = sdf,
 #> 9675824 bytes
 object.size(lm7 <- lm.sdf(formula = composite ~ dsex + b017451,
                           weightVar='origwt', data = gddat))
-#> 7170632 bytes
+#> 7168568 bytes
 object.size(lm8 <- lm.sdf(formula = composite ~ dsex + b017451,
                           weightVar='origwt', data = sdf))
-#> 2520832 bytes
+#> 2518768 bytes
 ```
 
 Although a manipulated `light.edsurvey.data.frame` requires nearly 10 MB of working memory to store both the `light.edsurvey.data.frame` and the regression model object (`lm7`), the resulting object of the same computation made directly from the `EdSurvey` database (`lm8`) holds only 5--7 kB. It is a good practice to remove unnecessary values saved in the global environment. Because we have stored many large data objects, let's remove these before moving on.
