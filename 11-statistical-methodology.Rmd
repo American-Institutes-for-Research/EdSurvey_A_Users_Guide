@@ -157,7 +157,7 @@ In regression analysis, statistics such as the coefficient of determination (i.e
 R^2 = \left( \tanh \left( \frac{1}{m} \sum_{p=1}^m \left( \text{atanh} \left( \sqrt{R^2_p} \right) \right) \right) \right)^2
 \end{align}
 
-where $R^2_p$ is the $R$-squared value for the regression run with the $p$th set of plausible values. This is also the same when there are scales or subscales on both sides of the equation, because the analyses adapts [@weirich2014nested]`s Single+Multiple Imputation (SMI) method as mentioned previously. As a result of this, the method produce $m$ number of $R$-squared values.
+where $R^2_p$ is the $R$-squared value for the regression run with the $p$th set of plausible values. This is also the same when there are scales or subscales on both sides of the equation, because the analyses adapts @weirich2014nested`s Single+Multiple Imputation (SMI) method as mentioned previously. As a result of this, the method produce $m$ number of $R$-squared values.
 
 For a particular regression, [@Weisberg, Eq. 2.31] defined the $R$-squared as
 \begin{align}
