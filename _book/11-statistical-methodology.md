@@ -139,7 +139,7 @@ If the dependent variable is not represented with plausible value, then the regr
 
 $y$ is fixed across the regression runs, and the regression coefficients are estimated using the $m$ plausible values of $x$.
 
-This approach is similar to [@weirich2014nested]`s Single+Multiple Imputation (SMI) method, where they produce $m$ number of plausible values instead of $m \times m$ plausible values.
+This approach is similar to @weirich2014nested`s Single+Multiple Imputation (SMI) method, where they produce $m$ number of plausible values instead of $m \times m$ plausible values.
 
 The coefficient estimates are averages over $m$
 
