@@ -9,11 +9,13 @@ By calling the function `getData()`, one can extract a `light.edsurvey.data.fram
 
 ```r
 library(EdSurvey)
+#> Warning: package 'EdSurvey' was built under R version 4.3.2
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors
 #> lfactors v1.0.4
 #> Loading required package: Dire
+#> Warning: package 'Dire' was built under R version 4.3.2
 #> Dire v2.2.0
 #> EdSurvey v4.0.4
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
@@ -95,6 +97,7 @@ Let's say a user is interested in predicting how often a student talks about stu
 
 ```r
 library(dplyr)
+#> Warning: package 'dplyr' was built under R version 4.3.2
 library(tidyr)
 ```
 

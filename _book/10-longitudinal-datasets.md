@@ -1,4 +1,8 @@
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.3.2
+#> Warning: package 'Dire' was built under R version 4.3.2
+```
 
 # Longitudinal Datasets
 
@@ -56,6 +60,12 @@ These arguments are quite useful for accessing the variables associated with the
 Data recoding is especially important when performing analyses with ECLS:K-2011 data. By default, `EdSurvey` omits special values, such as multiple entries, skipped values, or `NA`s. Typically, this setting helps users by dropping the levels of factors not typically included in regressions, tables, correlations, and other analyses. For ECLS:K-2011, this default setting requires careful consideration. There are many instances in which user should keep special values for their analyses; in these cases, recoding the data is advised.
 
 In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate skips, and unit nonresponse.
+
+
+```
+#> Warning: package 'kableExtra' was built under R version
+#> 4.3.2
+```
 
 <table>
 <caption>(\#tab:table1001)Missing value codes used in the ECLS-K:2011 data file \label{tab:SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.}</caption>
