@@ -1,6 +1,7 @@
 
 ```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
+#> Warning: package 'EdSurvey' was built under R version 4.3.2
+#> Warning: package 'Dire' was built under R version 4.3.2
 ```
 
 # Longitudinal Datasets
@@ -63,7 +64,7 @@ In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate 
 
 ```
 #> Warning: package 'kableExtra' was built under R version
-#> 4.3.1
+#> 4.3.2
 ```
 
 <table>

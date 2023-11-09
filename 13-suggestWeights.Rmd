@@ -20,7 +20,7 @@ To use the `suggestWeights` function, the first step is to attach the `EdSurvey`
 
 ```{r, results='hide', message=FALSE}
 library(EdSurvey)
-eclsk11 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011", 
+eclsk11 <- readECLS_K2011(path = paste0(edsurveyHome,"ECLS_K/2011"), 
                           filename = "childK5p.dat", 
                           layoutFilename = "ECLSK2011_K5PUF.sps", 
                           verbose = FALSE)

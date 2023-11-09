@@ -1,6 +1,7 @@
 
 ```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
+#> Warning: package 'EdSurvey' was built under R version 4.3.2
+#> Warning: package 'Dire' was built under R version 4.3.2
 ```
 
 # Understanding Data {#understandingData}
@@ -409,9 +410,9 @@ es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
 
 
 ```
-#> Warning: package 'knitr' was built under R version 4.3.1
+#> Warning: package 'knitr' was built under R version 4.3.2
 #> Warning: package 'kableExtra' was built under R version
-#> 4.3.1
+#> 4.3.2
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:30%; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
@@ -670,6 +671,7 @@ es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
 ```r
 # load the ggplot2 library
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.3.2
 ```
 
 The basic steps for using `ggplot2` are as follows. To learn more about how to use `ggplot2()`, visit its [official website](https://ggplot2.tidyverse.org/). 

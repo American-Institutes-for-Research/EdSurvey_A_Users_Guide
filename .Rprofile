@@ -2,6 +2,8 @@ if(!exists("edsurveyHome")) {
   edsurveyHome <- "C:/EdSurveyData/"
   if("pbailey" %in% Sys.getenv("USERNAME")) {
     edsurveyHome <- "~/"
+  } else if("syavuz" %in% Sys.getenv("USER")) {
+    edsurveyHome <- "~/EdSurveyData/"
   }
 }
 

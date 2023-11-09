@@ -173,6 +173,7 @@ introduction-1
 estimation-of-weighted-means
 estimation-of-weighted-means-when-plausible-values-are-not-present
 estimation-of-weighted-means-when-plausible-values-are-present
+estimation-of-regression-coefficients-when-plausible-values-are-used-as-a-predictor
 estimation-of-the-coefficient-of-determination-in-a-weighted-linear-regression
 estimation-of-standard-deviations
 estimation-of-standardized-regression-coefficients

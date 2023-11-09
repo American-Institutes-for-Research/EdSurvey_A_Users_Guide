@@ -1,7 +1,8 @@
 # Models {#models}
 
 ```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
+#> Warning: package 'EdSurvey' was built under R version 4.3.2
+#> Warning: package 'Dire' was built under R version 4.3.2
 ```
 
 ##  Regression Analysis With `lm.sdf`
@@ -524,7 +525,6 @@ lsdf$pwt2 <- lsdf$smsrswt
 
 m1 <- mixed.sdf(composite ~ dsex + b017451 + (1|scrpsu), data=lsdf,
                 weightVar = c('pwt1', 'pwt2'))
-#> matrix is structurally rank deficient; using augmented matrix with additional 1 row(s) of zeros
 summary(object = m1)
 #> Call:
 #> mixed.sdf(formula = composite ~ dsex + b017451 + (1 | scrpsu), 

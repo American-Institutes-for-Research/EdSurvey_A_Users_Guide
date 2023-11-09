@@ -62,6 +62,7 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 **Huade Huo**<br></br>
 **Sun-Joo Lee**<br></br>
 **Yuqi Liao**<br></br>
+**Sinan Yavuz**<br></br>
 American Institutes for Research
 
 **Emmanuel Sikali**<br></br>
