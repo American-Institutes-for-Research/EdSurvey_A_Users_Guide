@@ -117,7 +117,7 @@
 <span class="header-section-number">12.2</span> In EdSurvey<a class="anchor" aria-label="anchor" href="#in-edsurvey"><i class="fas fa-link"></i></a>
 </h2>
 <p>Beginning with <code>EdSurvey</code> 2.7, the NAEP linking error formulas have been implemented in most <code>EdSurvey</code> analytical functions, including <code>edsurveyTable</code>, <code>achievementLevels</code>, <code>percentile</code>, <code>gap</code>, <code>cor.sdf</code>, <code>rq.sdf</code>, <code>lm.sdf</code>, <code>logit.sdf</code>, <code>probit.sdf</code>, and <code>waldTest</code> (when applied to the results of these methods) but not in <code>summary2</code>, <code>mixed.sdf</code>, <code>mml.sdf</code>, or <code>mvrlm.sdf</code>. Users of <code>EdSurvey</code> can account for the linking error simply by using <code>_linking</code> outcomes in place of the subject scale or subscale. They also are listed separately when calling <code>showPlausibleValues</code>. For example, a table can be generated with or without linking error as follows.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://www.air.org/project/nces-data-r-project-edsurvey">EdSurvey</a></span><span class="op">)</span> <span class="co"># must be 2.7.0 or higher</span></span>
 <span><span class="va">math12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"path/to/Data/M50NT3AT.dat"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showPlausibleValues.html">showPlausibleValues</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">math12</span><span class="op">)</span></span>
@@ -449,7 +449,7 @@ where <span class="math inline">\(X\)</span> is the scale score, <span class="ma
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-08.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

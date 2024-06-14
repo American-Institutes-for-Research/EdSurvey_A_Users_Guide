@@ -107,7 +107,7 @@ where $\bm{\beta}_p$ is the vector of estimated regression coefficients, calcula
 
 ### Estimation of Regression Coefficients when Plausible Values are Used as a Predictor
 
-`lm.sdf` accepts subscale or subject scales on the left-hand side of a regression equation, as described above. This section further explains how `lm.sdf` and `glm.sdf` handle plausible values that are on the right hand side of the regression equation. In this section we describe this both when the outcome has plausible values and when it does not.
+`lm.sdf` accepts subscale or subject scales on the left-hand side of a regression equation, as described above. This section further explains how `lm.sdf` and `glm.sdf` handle plausible values that are on the right hand side of the regression equation. In this section, we describe this both when the outcome has plausible values and when it does not.
 
 Let the dependent variable $y$, and $y_{ip}$ the $p$th plausible value for the $i$th unit and there are $m$ plausible values for each unit. Similarly, let the independent variable $x$ to be a scale or subscale and where $x_{ip}$ is the $p$th plausible value for the $i$th unit. The linear regression equation is
 
@@ -217,18 +217,17 @@ where subscripts after the semicolon indicate the matrix element (two subscripts
 
 ### Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method
 
-When the predicted value has plausible values and the requested variance method is jackknife, estimate the
-variance ($\bm{V}_{JP}$) as the sum of a variance component from
-the plausible values (also called imputation values so that the variance term is called
-$\bm{V}_{imp}$) and estimate the sampling variance using plausible values ($\bm{V}_{jrr,P}$) according to the following formula:
+When the predictor and/or outcome or value has plausible values and the requested variance method is jackknife, estimate the variance ($\bm{V}_{JP}$) as the sum of a variance component from the plausible values (also called imputation values so that the variance term is called $\bm{V}_{imp}$) and estimate the sampling variance using plausible values ($\bm{V}_{jrr,P}$) according to the following formula:
+
 \begin{align}
 \bm{V}_{JP}=\bm{V}_{imp} + \bm{V}_{jrr,P}
 \end{align}
 
 The sampling variance is
 \begin{align}
-\bm{V}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \bm{V}_{jrr,p} \ 
+\bm{V}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \bm{V}_{jrr,p}  
 \end{align}
+
 In this equation, $m^*$ is a number that can be as small as one or as large as the number of plausible values.[^jrrI] In the previous equation, $\bm{V}_{jrr,P}$ is the average of $\bm{V}_{jrr,p}$ over the plausible values, and the values of $\bm{V}_{jrr,p}$ are calculated in a way analogous to $\bm{V}_{jrr,0}$ in the previous section, except that the $p$th plausible values are used within each step:
 \begin{align}
 \bm{V}_{jrr,p} = \gamma \sum_{j=1}^{J} (\bm{\beta}_{jp} - \bm{\beta}_{0p})^2
@@ -539,7 +538,7 @@ The variance estimation in `mvrlm.sdf` produces the same standard error estimate
 
 When the predicted value does not have plausible values, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Jackknife Method."
 
-When plausible values are present, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method."
+When plausible values are present on either or both sides, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method."
 
 #### Residual Variance--Covariance Matrix Estimation
 

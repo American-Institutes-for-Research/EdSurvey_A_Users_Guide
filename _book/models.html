@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
-<meta name="description" content="#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2 #&gt; Warning: package 'Dire' was built under R version 4.3.2  8.1 Regression Analysis With lm.sdf After the data are read in with the...">
+<meta name="description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
 <meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/models.html">
 <meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
-<meta property="og:description" content="#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2 #&gt; Warning: package 'Dire' was built under R version 4.3.2  8.1 Regression Analysis With lm.sdf After the data are read in with the...">
+<meta property="og:description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
-<meta name="twitter:description" content="#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2 #&gt; Warning: package 'Dire' was built under R version 4.3.2  8.1 Regression Analysis With lm.sdf After the data are read in with the...">
+<meta name="twitter:description" content="8.1 Regression Analysis With lm.sdf After the data are read in with the EdSurvey package, a linear model can be fit to fully account for the complex sample design used for NCES data by using...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -97,8 +97,6 @@
 <h1>
 <span class="header-section-number">8</span> Models<a class="anchor" aria-label="anchor" href="#models"><i class="fas fa-link"></i></a>
 </h1>
-<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2
-#&gt; Warning: package 'Dire' was built under R version 4.3.2</code></pre>
 <div id="regression-analysis-with-lm.sdf" class="section level2" number="8.1">
 <h2>
 <span class="header-section-number">8.1</span> Regression Analysis With <code>lm.sdf</code><a class="anchor" aria-label="anchor" href="#regression-analysis-with-lm.sdf"><i class="fas fa-link"></i></a>
@@ -106,7 +104,7 @@
 <p>After the data are read in with the <code>EdSurvey</code> package, a linear model can be fit to fully account for the complex sample design used for NCES data by using <code>lm.sdf</code>.</p>
 <p>The <code>lm.sdf</code> function allows jackknife methods (i.e., JK1, JK2, or BRR) or the Taylor series method for variance estimation. By default, the standard error of coefficient is estimated with the jackknife replication method, but users can switch to the Taylor series when appropriate by setting the <code>varMethod</code> argument to <code>varMethod="Taylor"</code>. When an explicit weight variable is not set, the <code>lm.sdf</code> function uses a default weight for the full sample in the analysis. For instance, <code>origwt</code> is the default weight in NAEP.</p>
 <p>The data are read in and analyzed by the <code>lm.sdf</code> function—in this case, <code>dsex</code>, <code>b017451</code>, the five plausible values for <code>composite</code>, and the full sample weight <code>origwt</code>. By default, variance is estimated using the jackknife method, so the following call reads in the jackknife replicate weights:</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -142,7 +140,7 @@
 <span><span class="co">#&gt; Multiple R-squared: 0.0224</span></span></code></pre></div>
 <p>After the regression is run, the data are automatically removed from memory.</p>
 <p><code>EdSurvey</code> drops level 1 by default from the discrete predictor and treats it as the reference group. The reference level can be changed through the argument <code>relevels</code>. For example, in the previous model, the default reference group is males. In the following example, the reference group is changed to “Female” for the variable <code>dsex</code>:</p>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm1f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span>,</span>
 <span>               relevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dsex <span class="op">=</span> <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1f</span><span class="op">)</span></span>
@@ -179,7 +177,7 @@
 <span><span class="co">#&gt; Multiple R-squared: 0.0224</span></span></code></pre></div>
 <p>The coefficient on <code>dsex</code> changed from negative in the previous run to positive of the exact same magnitude, whereas none of the other coefficients (aside from the intercept) changed; this is the expected result.</p>
 <p>The standardized regression coefficient also can be returned by adding <code>src=TRUE</code> into the summary call for your regression model object:</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1f</span>, src<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula: composite ~ dsex + b017451</span></span>
@@ -225,7 +223,7 @@
 <span class="header-section-number">8.1.1</span> Calculating Multiple Comparisons in lm.sdf<a class="anchor" aria-label="anchor" href="#calculating-multiple-comparisons-in-lm.sdf"><i class="fas fa-link"></i></a>
 </h3>
 <p>A linear model is analyzed by the <code>lm.sdf</code> function—in this case, <code>dsex</code>, <code>b017451</code>, the five plausible values for <code>composite</code>, and the full sample weight <code>origwt</code>.</p>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003501</span> <span class="op">+</span> <span class="va">b003601</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -315,17 +313,17 @@
 </tbody>
 </table></div>
 <p>The <em>p</em>-values for variables run in <code>lm1</code> can be corrected for multiple testing. Notice that the only <em>p</em>-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in <code>lm1</code>, and that column’s name is <code>Pr(&gt;|t|)</code> so we can extract them with this command</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># p-values without adjustment</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] 8.666330e-02 4.083289e-05 1.035995e-02</span></span></code></pre></div>
 <p>Here the Benjamini and Hochberg (1995) FDR adjustment is used in the argument <code>method = "BH"</code>. The output below displays the adjusted <em>p</em>-values with the FDR adjustment:</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Benjamini and Hochberg adjusted p-values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.0866633006 0.0001224987 0.0155399244</span></span></code></pre></div>
 <p>The next example adjusts the same <em>p</em>-values using the Bonferroni adjustment with <code>method="bonferroni"</code>. Below shows the adjusted <em>p</em>-values:</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Bonferroni adjusted p-values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bonferroni"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.2599899019 0.0001224987 0.0310798488</span></span></code></pre></div>
@@ -361,7 +359,7 @@
 </tbody>
 </table></div>
 <p>The coefficients matrix also can be overwritten by selecting the same vector in the <code>lm1</code> linear regression object, updated here the Bonferroni p-values:</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="va">lm1</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bonferroni"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">8</span>, <span class="op">]</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -418,7 +416,7 @@
 <p>Sometimes several values must be adjusted at once. In these cases, the <code>p.adjust</code> function must be called with all the <em>p</em>-values the researcher wishes to adjust together.</p>
 <p>For example, if one wishes to adjust values from two regressions and an additional value from another test, all these <em>p</em>-values must be put into a single vector and adjusted as a set. Therefore, <em>p</em>-value adjustments called on smaller portions of regressions/tests independently may return incorrect adjusted <em>p</em>-values and could result in an incorrect inference.</p>
 <p>In this example, the coefficients from <code>b003501</code> and <code>b003601</code>—each from independent regressions—as well as another <em>p</em>-value of 0.02 are adjusted.</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003501</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="va">lm2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b003601</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co"># pvalues data.frame with missing values</span></span>
@@ -428,7 +426,7 @@
 <span>                      p<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="fl">7</span><span class="op">)</span>,</span>
 <span>                      stringsAsFactors<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>This code is careful to note where the values came from to help avoid transcription errors. The <code>pvalues</code> object is then populated using <em>p</em>-values and coefficients from the <code>lm2a</code> and <code>lm2b</code> linear regression objects, rows 1–3 and 4–6 for each, respectively.</p>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load in values from lm2a</span></span>
 <span><span class="va">lm2aCoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm2a</span><span class="op">)</span><span class="op">$</span><span class="va">coefmat</span></span>
 <span><span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lm2aCoef</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">]</span></span>
@@ -438,7 +436,7 @@
 <span><span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">lm2bCoef</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">]</span></span>
 <span><span class="va">pvalues</span><span class="op">$</span><span class="va">coef</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">lm2aCoef</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
 <p>The additional <em>p</em>-value due for adjustment is included in row 7:</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load in other p-value</span></span>
 <span><span class="va">pvalues</span><span class="op">$</span><span class="va">p</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.02</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">pvalues</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Pr(&gt;|t|)"</span></span>
@@ -491,7 +489,7 @@
 </tbody>
 </table></div>
 <p>Now that the aforementioned <em>p</em>-values are included in the same vector, they are adjusted via <code>p.adjust</code> using the Benjamini and Hochberg method:</p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pvalues</span><span class="op">[</span>,<span class="st">"Adjusted Pr(&gt;|t|)"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">pvalues</span><span class="op">[</span>,<span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span>
 <span><span class="va">pvalues</span></span></code></pre></div>
 <div class="inline-table"><table style="width:100%;" class="table table-sm">
@@ -563,7 +561,7 @@
 </h2>
 <p>A multivariate regression model can be fit to fully account for the complex sample design used for NCES data by using <code>mvrlm.sdf</code>. This function implements an estimator that correctly handles multiple dependent variables that are continuous (such as plausible values), which allows for variance estimation using the jackknife replication method.</p>
 <p>The vertical line symbol <code>|</code> separates dependent variables on the left-hand side of formula. In the following example, a multivariate regression is fit with two subject scales as the outcome variables (<code>algebra</code> and <code>geometry</code>) by two predictor variables signifying gender and a survey item concerning the ability to identify the best unit of area (<code>dsex</code> and <code>m072801</code>):</p>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mvrlm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mvrlm.sdf.html">mvrlm.sdf</a></span><span class="op">(</span><span class="va">algebra</span> <span class="op">|</span> <span class="va">geometry</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">m072801</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">mvrlm1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -643,9 +641,411 @@
 <p>A logistic regression model can be fit to fully account for the complex sample design used for NCES data by using <code>glm.sdf</code>, <code>logit.sdf</code>, and <code>probit.sdf</code>. These functions predict binary outcomes from a set of predictor variables factoring in appropriate weights and variance estimates. <code>glm.sdf</code> is an umbrella function that currently fits logit and probit models. Alternatively, users can choose <code>logit.sdf</code> or <code>probit.sdf</code> functions for binomial outcomes.</p>
 <p>The following example demonstrates how to use <code>logit.sdf</code> to predict the number of books at home with student gender. The example arguments are generalizable to <code>glm.sdf</code> and <code>probit.sdf</code>. For more information about how to use the latter two functions, check their help files by calling <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?glm.sdf</a></code> and <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?probit.sdf</a></code>, respectively.</p>
 <p>In <code>logit.sdf</code>, although some variables might already be binary, the function <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (<code>dsex</code>) to the outcome variable: number of books at home (<code>b013801</code>), which is dichotomized with the level matching “more than 100 books at home” (<code>"&gt;100"</code>) as the outcome level:</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b013801</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"&gt;100"</span><span class="op">)</span> <span class="op">~</span> <span class="va">dsex</span>,</span>
 <span>                    weightVar <span class="op">=</span> <span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Called from: calc.glm.sdf(formula = formula, family = binomial(link = "logit"), </span></span>
+<span><span class="co">#&gt;     data = data, weightVar = weightVar, relevels = relevels, </span></span>
+<span><span class="co">#&gt;     varMethod = varMethod, jrrIMax = jrrIMax, omittedLevels = omittedLevels, </span></span>
+<span><span class="co">#&gt;     defaultConditions = defaultConditions, missingDefaultConditions = missing(defaultConditions), </span></span>
+<span><span class="co">#&gt;     recode = recode, returnVarEstInputs = returnVarEstInputs, </span></span>
+<span><span class="co">#&gt;     returnNumberOfPSU = returnNumberOfPSU, returnLm0 = FALSE, </span></span>
+<span><span class="co">#&gt;     call = call)</span></span>
+<span><span class="co">#&gt; debug: yvar0 &lt;- yvars[1]</span></span>
+<span><span class="co">#&gt; debug: if (family$family %in% c("binomial", "quasibinomial")) {</span></span>
+<span><span class="co">#&gt;     if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;         for (i in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;             for (yvi in 1:length(pvy)) {</span></span>
+<span><span class="co">#&gt;                 if (pvy[yvi]) {</span></span>
+<span><span class="co">#&gt;                   edf[, yvar[yvi]] &lt;- edf[, getPlausibleValue(yvar[yvi], </span></span>
+<span><span class="co">#&gt;                     data)[i]]</span></span>
+<span><span class="co">#&gt;                 }</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;             edf[, yvars[i]] &lt;- as.numeric(eval(formula[[2]], </span></span>
+<span><span class="co">#&gt;                 edf))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;         for (i in yvars) {</span></span>
+<span><span class="co">#&gt;             edf[, i] &lt;- ifelse(edf[, i] %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf$yvar0 &lt;- edf[, yvar0]</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;         edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;     for (i in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;         for (yvi in 1:length(pvy)) {</span></span>
+<span><span class="co">#&gt;             if (pvy[yvi]) {</span></span>
+<span><span class="co">#&gt;                 edf[, yvar[yvi]] &lt;- edf[, getPlausibleValue(yvar[yvi], </span></span>
+<span><span class="co">#&gt;                   data)[i]]</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf[, yvars[i]] &lt;- as.numeric(eval(formula[[2]], edf))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;     for (i in yvars) {</span></span>
+<span><span class="co">#&gt;         edf[, i] &lt;- ifelse(edf[, i] %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     edf$yvar0 &lt;- edf[, yvar0]</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;     edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt; debug: edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt; debug: frm &lt;- update(formula, yvar0 ~ .)</span></span>
+<span><span class="co">#&gt; debug: edf$w &lt;- edf[, wgt]</span></span>
+<span><span class="co">#&gt; debug: suppressWarnings(lm00 &lt;- glm2(frm, data = edf, family = family))</span></span>
+<span><span class="co">#&gt; debug: edf$c2 &lt;- predict(lm00, type = "response")</span></span>
+<span><span class="co">#&gt; debug: suppressWarnings(lm0 &lt;- glm2(frm, data = edf, weights = w, family = family, </span></span>
+<span><span class="co">#&gt;     mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt; debug: edf$c2 &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt; debug: if (returnLm0) {</span></span>
+<span><span class="co">#&gt;     return(lm0)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: wgtl &lt;- getAttributes(data, "weights")[[wgt]]</span></span>
+<span><span class="co">#&gt; debug: varEstInputs &lt;- list()</span></span>
+<span><span class="co">#&gt; debug: madeB &lt;- FALSE</span></span>
+<span><span class="co">#&gt; debug: stat_reg_glm &lt;- function(fam = FALSE) {</span></span>
+<span><span class="co">#&gt;     ref &lt;- function(pv, wg) {</span></span>
+<span><span class="co">#&gt;         if (family$family %in% c("binomial", "quasibinomial") &amp; </span></span>
+<span><span class="co">#&gt;             (fam)) {</span></span>
+<span><span class="co">#&gt;             edf$yvar0 &lt;- ifelse(pv %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf$w &lt;- wg</span></span>
+<span><span class="co">#&gt;         suppressWarnings(lmi &lt;- glm2(frm, data = edf, weights = w, </span></span>
+<span><span class="co">#&gt;             family = family, mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt;         return(coef(lmi))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;     if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;         jrrIMax &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         jrrIMax &lt;- min(jrrIMax, length(yvars))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     varM &lt;- list()</span></span>
+<span><span class="co">#&gt;     varm &lt;- matrix(NA, nrow = jrrIMax, ncol = length(coef(lm0)))</span></span>
+<span><span class="co">#&gt;     if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;         if (linkingError) {</span></span>
+<span><span class="co">#&gt;             repWeights &lt;- paste0(wgtl$jkbase, wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt;             est &lt;- getLinkingEst(data = edf, pvEst = yvars[grep("_est", </span></span>
+<span><span class="co">#&gt;                 yvars)], stat = stat_reg_glm(fam = TRUE), wgt = wgt)</span></span>
+<span><span class="co">#&gt;             coefm &lt;- est$coef</span></span>
+<span><span class="co">#&gt;             coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;             coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;             impVar &lt;- getLinkingImpVar(data = edf, pvImp = yvars[grep("_imp", </span></span>
+<span><span class="co">#&gt;                 yvars)], ramCols = ncol(getRAM()), stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;                 wgt = wgt, T0 = est$est, T0Centered = FALSE)</span></span>
+<span><span class="co">#&gt;             sampVar &lt;- getLinkingSampVar(edf, pvSamp = yvars[grep("_samp", </span></span>
+<span><span class="co">#&gt;                 yvars)], stat = stat_reg_glm(fam = TRUE), rwgt = repWeights, </span></span>
+<span><span class="co">#&gt;                 T0 = est$est, T0Centered = FALSE)</span></span>
+<span><span class="co">#&gt;             varM[[1]] &lt;- sampVar$Bi</span></span>
+<span><span class="co">#&gt;             varEstInputs[["JK"]] &lt;- sampVar$veiJK</span></span>
+<span><span class="co">#&gt;             varEstInputs[["PV"]] &lt;- impVar$veiImp</span></span>
+<span><span class="co">#&gt;             varm[1, ] &lt;- sampVar$V</span></span>
+<span><span class="co">#&gt;             M &lt;- length(yvars[grep("_est", yvars)])</span></span>
+<span><span class="co">#&gt;             Vimp &lt;- impVar$V</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         else {</span></span>
+<span><span class="co">#&gt;             res &lt;- getEst(data = edf, pvEst = yvars, stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;                 wgt = wgt)</span></span>
+<span><span class="co">#&gt;             coefm &lt;- res$coef</span></span>
+<span><span class="co">#&gt;             varEstInputs[["JK"]] &lt;- data.frame()</span></span>
+<span><span class="co">#&gt;             jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;             for (pvi in 1:jrrIMax) {</span></span>
+<span><span class="co">#&gt;                 res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), </span></span>
+<span><span class="co">#&gt;                   yvar = edf[, yvars[pvi]], wgtM = edf[, paste0(wgtl$jkbase, </span></span>
+<span><span class="co">#&gt;                     wgtl$jksuffixes)], co0 = coefm[pvi, ], jkSumMult = jkSumMult, </span></span>
+<span><span class="co">#&gt;                   pvName = pvi)</span></span>
+<span><span class="co">#&gt;                 varM[[pvi]] &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;                 varEstInputs[["JK"]] &lt;- rbind(varEstInputs[["JK"]], </span></span>
+<span><span class="co">#&gt;                   res$veiJK)</span></span>
+<span><span class="co">#&gt;                 varm[pvi, ] &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;             M &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;             coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;             coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;             coefmPVByRow &lt;- lapply(1:ncol(coefm0), function(coli) {</span></span>
+<span><span class="co">#&gt;                 data.frame(stringsAsFactors = FALSE, PV = 1:nrow(coefm0), </span></span>
+<span><span class="co">#&gt;                   variable = rep(names(coef(lm0))[coli], nrow(coefm0)), </span></span>
+<span><span class="co">#&gt;                   value = coefm0[, coli])</span></span>
+<span><span class="co">#&gt;             })</span></span>
+<span><span class="co">#&gt;             coefmPV &lt;- do.call(rbind, coefmPVByRow)</span></span>
+<span><span class="co">#&gt;             varEstInputs[["PV"]] &lt;- coefmPV</span></span>
+<span><span class="co">#&gt;             Vimp &lt;- (M + 1)/M * apply(coefm, 2, var)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         dofNum &lt;- matrix(0, nrow = length(coef(lm0)), ncol = length(yvars))</span></span>
+<span><span class="co">#&gt;         dofDenom &lt;- matrix(0, nrow = length(coef(lm0)), ncol = length(yvars))</span></span>
+<span><span class="co">#&gt;         est &lt;- getEst(data = edf, pvEst = yvars, stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;             wgt = wgt)</span></span>
+<span><span class="co">#&gt;         coefm &lt;- est$coef</span></span>
+<span><span class="co">#&gt;         for (mm in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;             edf$yvar0 &lt;- as.numeric(edf[, yvars[mm]])</span></span>
+<span><span class="co">#&gt;             y &lt;- edf[, yvars[mm]]</span></span>
+<span><span class="co">#&gt;             suppressWarnings(lmi &lt;- glm2(frm, data = edf, weights = w, </span></span>
+<span><span class="co">#&gt;                 family = family, mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt;             coef &lt;- b &lt;- co0 &lt;- coef(lmi)</span></span>
+<span><span class="co">#&gt;             D &lt;- vcov(lmi)</span></span>
+<span><span class="co">#&gt;             eta &lt;- predict(lmi, type = "link")</span></span>
+<span><span class="co">#&gt;             pred &lt;- predict(lmi, type = "response")</span></span>
+<span><span class="co">#&gt;             mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;             X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;             uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * </span></span>
+<span><span class="co">#&gt;                 mu.eta</span></span>
+<span><span class="co">#&gt;             res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;             vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;             dofNum[, mm] &lt;- res$nums</span></span>
+<span><span class="co">#&gt;             dofDenom[, mm] &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;             varM[[mm]] &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt;             varm[mm, ] &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         M &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;         coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;         coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;         coefmPVByRow &lt;- lapply(1:ncol(coefm0), function(coli) {</span></span>
+<span><span class="co">#&gt;             data.frame(stringsAsFactors = FALSE, PV = 1:nrow(coefm0), </span></span>
+<span><span class="co">#&gt;                 variable = rep(names(coef(lm0))[coli], nrow(coefm0)), </span></span>
+<span><span class="co">#&gt;                 value = coefm0[, coli])</span></span>
+<span><span class="co">#&gt;         })</span></span>
+<span><span class="co">#&gt;         coefmPV &lt;- do.call(rbind, coefmPVByRow)</span></span>
+<span><span class="co">#&gt;         varEstInputs[["PV"]] &lt;- coefmPV</span></span>
+<span><span class="co">#&gt;         Vimp &lt;- (M + 1)/M * apply(coefm, 2, var)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     B &lt;- (1/(M - 1)) * Reduce("+", sapply(1:nrow(coefm), function(q) {</span></span>
+<span><span class="co">#&gt;         outer(coefm0[q, ], coefm0[q, ])</span></span>
+<span><span class="co">#&gt;     }, simplify = FALSE))</span></span>
+<span><span class="co">#&gt;     madeB &lt;- TRUE</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- (1/length(varM)) * Reduce("+", varM)</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- apply(varm[1:jrrIMax, , drop = FALSE], 2, mean)</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;         jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;         coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;         res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), </span></span>
+<span><span class="co">#&gt;             yvar = edf[, yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, </span></span>
+<span><span class="co">#&gt;                 wgtl$jksuffixes)], co0 = coef, jkSumMult = jkSumMult, </span></span>
+<span><span class="co">#&gt;             pvName = 1)</span></span>
+<span><span class="co">#&gt;         Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;         Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;         varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;         y &lt;- edf$yvar0</span></span>
+<span><span class="co">#&gt;         coef &lt;- b &lt;- co0 &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;         D &lt;- vcov(lm0)</span></span>
+<span><span class="co">#&gt;         eta &lt;- predict(lm0, type = "link")</span></span>
+<span><span class="co">#&gt;         pred &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt;         mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;         uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * </span></span>
+<span><span class="co">#&gt;             mu.eta</span></span>
+<span><span class="co">#&gt;         res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;         vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;         dofNum &lt;- res$nums</span></span>
+<span><span class="co">#&gt;         dofDenom &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;         Vjrr &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;         Ubar &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     M &lt;- 1</span></span>
+<span><span class="co">#&gt;     Vimp &lt;- 0</span></span>
+<span><span class="co">#&gt;     varm &lt;- NULL</span></span>
+<span><span class="co">#&gt;     coefm &lt;- NULL</span></span>
+<span><span class="co">#&gt;     B &lt;- 0 * Ubar</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;     jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;     coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;     res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), yvar = edf[, </span></span>
+<span><span class="co">#&gt;         yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, wgtl$jksuffixes)], </span></span>
+<span><span class="co">#&gt;         co0 = coef, jkSumMult = jkSumMult, pvName = 1)</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;     varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;     y &lt;- edf$yvar0</span></span>
+<span><span class="co">#&gt;     coef &lt;- b &lt;- co0 &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;     D &lt;- vcov(lm0)</span></span>
+<span><span class="co">#&gt;     eta &lt;- predict(lm0, type = "link")</span></span>
+<span><span class="co">#&gt;     pred &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt;     mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;     uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * mu.eta</span></span>
+<span><span class="co">#&gt;     res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;     vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;     dofNum &lt;- res$nums</span></span>
+<span><span class="co">#&gt;     dofDenom &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt; debug: coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt; debug: res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), yvar = edf[, </span></span>
+<span><span class="co">#&gt;     yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, wgtl$jksuffixes)], </span></span>
+<span><span class="co">#&gt;     co0 = coef, jkSumMult = jkSumMult, pvName = 1)</span></span>
+<span><span class="co">#&gt; debug: Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt; debug: Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt; debug: varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt; debug: M &lt;- 1</span></span>
+<span><span class="co">#&gt; debug: Vimp &lt;- 0</span></span>
+<span><span class="co">#&gt; debug: varm &lt;- NULL</span></span>
+<span><span class="co">#&gt; debug: coefm &lt;- NULL</span></span>
+<span><span class="co">#&gt; debug: B &lt;- 0 * Ubar</span></span>
+<span><span class="co">#&gt; debug: V &lt;- Vjrr + Vimp</span></span>
+<span><span class="co">#&gt; debug: names(coef) &lt;- names(coef(lm0))</span></span>
+<span><span class="co">#&gt; debug: se &lt;- sqrt(V)</span></span>
+<span><span class="co">#&gt; debug: names(se) &lt;- names(coef)</span></span>
+<span><span class="co">#&gt; debug: X &lt;- model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt; debug: fittedLatent &lt;- as.vector(X %*% coef)</span></span>
+<span><span class="co">#&gt; debug: fitted1 &lt;- family$linkinv(fittedLatent)</span></span>
+<span><span class="co">#&gt; debug: if (linkingError) {</span></span>
+<span><span class="co">#&gt;     ye &lt;- grep("_est_", yvars)</span></span>
+<span><span class="co">#&gt;     Y &lt;- sapply(ye, function(yi) {</span></span>
+<span><span class="co">#&gt;         as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt;     }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt;     resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt;     colnames(resid1) &lt;- yvars[ye]</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     Y &lt;- sapply(1:length(yvars), function(yi) {</span></span>
+<span><span class="co">#&gt;         as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt;     }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt;     resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt;     colnames(resid1) &lt;- yvars</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: Y &lt;- sapply(1:length(yvars), function(yi) {</span></span>
+<span><span class="co">#&gt;     as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt; }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt; debug: resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt; debug: colnames(resid1) &lt;- yvars</span></span>
+<span><span class="co">#&gt; debug: nobs &lt;- nrow(edf)</span></span>
+<span><span class="co">#&gt; debug: n.ok &lt;- nobs - sum(edf$origwt == 0)</span></span>
+<span><span class="co">#&gt; debug: nvars &lt;- ncol(X)</span></span>
+<span><span class="co">#&gt; debug: rank &lt;- rankMatrix(X)</span></span>
+<span><span class="co">#&gt; debug: resdf &lt;- n.ok - rank</span></span>
+<span><span class="co">#&gt; debug: df.r &lt;- resdf</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(coefm)) {</span></span>
+<span><span class="co">#&gt;     if (!is.matrix(coefm)) {</span></span>
+<span><span class="co">#&gt;         coefm &lt;- t(as.matrix(coefm))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     fitted2 &lt;- family$linkinv(as.matrix(X %*% t(coefm)))</span></span>
+<span><span class="co">#&gt;     resid2 &lt;- Y - fitted2</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: coefmat &lt;- data.frame(coef = coef, se = se, t = coef/se)</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;     m &lt;- length(wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt;     if (inherits(dofNum, "matrix")) {</span></span>
+<span><span class="co">#&gt;         coefmat$dof &lt;- apply((3.16 - 2.77/sqrt(m)) * dofNum^2/dofDenom, </span></span>
+<span><span class="co">#&gt;             1, mean)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         coefmat$dof &lt;- (3.16 - 2.77/sqrt(m)) * dofNum^2/dofDenom</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     coefmat$dof &lt;- sapply(names(coef), function(cn) {</span></span>
+<span><span class="co">#&gt;         DoFCorrection(varEstA = varEstInputs, varA = cn, method = "JR")</span></span>
+<span><span class="co">#&gt;     })</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: coefmat$dof &lt;- sapply(names(coef), function(cn) {</span></span>
+<span><span class="co">#&gt;     DoFCorrection(varEstA = varEstInputs, varA = cn, method = "JR")</span></span>
+<span><span class="co">#&gt; })</span></span>
+<span><span class="co">#&gt; debug: pti &lt;- pt(coefmat$t, df = coefmat$dof)</span></span>
+<span><span class="co">#&gt; debug: coefmat[, "Pr(&gt;|t|)"] &lt;- 2 * pmin(pti, 1 - pti)</span></span>
+<span><span class="co">#&gt; debug: njk &lt;- length(wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;     njk &lt;- NA</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: varmeth &lt;- ifelse(varMethod == "t", "Taylor series", "jackknife")</span></span>
+<span><span class="co">#&gt; debug: res &lt;- list(call = call, formula = formula, family = family, </span></span>
+<span><span class="co">#&gt;     coef = coef, se = se, Vimp = Vimp, Vjrr = Vjrr, M = M, varm = varm, </span></span>
+<span><span class="co">#&gt;     coefm = coefm, coefmat = coefmat, weight = wgt, npv = length(yvars), </span></span>
+<span><span class="co">#&gt;     jrrIMax = min(jrrIMax, length(yvars)), njk = njk, varMethod = varmeth, </span></span>
+<span><span class="co">#&gt;     residuals = resid1, fitted.values = fitted1, fittedLatent = fittedLatent, </span></span>
+<span><span class="co">#&gt;     residual.df = resdf)</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(coefm)) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(PV.residuals = resid2, PV.fitted.values = fitted2))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (returnVarEstInputs) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(varEstInputs = varEstInputs))</span></span>
+<span><span class="co">#&gt;     if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;         warning(paste0("Taylor series method not supported with the ", </span></span>
+<span><span class="co">#&gt;             sQuote("varEstInputs"), " argument set to ", dQuote("TRUE"), </span></span>
+<span><span class="co">#&gt;             "."))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (madeB) {</span></span>
+<span><span class="co">#&gt;     tryCatch(rbar &lt;- (1 + 1/M) * (1/nrow(Ubar)) * sum(diag(B %*% </span></span>
+<span><span class="co">#&gt;         solve(Ubar))), error = function(e) {</span></span>
+<span><span class="co">#&gt;         rbar &lt;&lt;- (1 + 1/M) * (1/nrow(Ubar)) * sum(diag(B %*% </span></span>
+<span><span class="co">#&gt;             MASS::ginv(Ubar)))</span></span>
+<span><span class="co">#&gt;         frm &lt;- Formula(frm)</span></span>
+<span><span class="co">#&gt;         if (terms(frm, lhs = 0, rhs = NULL) == ~1) {</span></span>
+<span><span class="co">#&gt;             warning("A variance estimate was replaced with NA because there was no variance across strata.", </span></span>
+<span><span class="co">#&gt;                 call. = FALSE)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     })</span></span>
+<span><span class="co">#&gt;     Ttilde &lt;- (1 + rbar) * Ubar</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(B = B, U = Ubar, rbar = rbar, Ttilde = Ttilde))</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(B = B, U = Ubar))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(B = B, U = Ubar))</span></span>
+<span><span class="co">#&gt; debug: if (returnNumberOfPSU) {</span></span>
+<span><span class="co">#&gt;     stratumVar &lt;- getAttributes(data, "stratumVar")</span></span>
+<span><span class="co">#&gt;     psuVar &lt;- getAttributes(data, "psuVar")</span></span>
+<span><span class="co">#&gt;     if ("JK1" %in% stratumVar) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(nPSU = nrow(edf)))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;         if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;             res &lt;- c(res, list(nPSU = nrow(unique(edf[, c(stratumVar, </span></span>
+<span><span class="co">#&gt;                 psuVar)]))))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         else {</span></span>
+<span><span class="co">#&gt;             warning("Cannot return number of PSUs because the stratum or PSU variables contain NA values.")</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(stratumVar) &amp;&amp; !is.null(psuVar)) {</span></span>
+<span><span class="co">#&gt;     if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;         if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;             res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, </span></span>
+<span><span class="co">#&gt;                 stratumVar, psuVar)))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     if ("JK1" %in% getStratumVar(data)) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(waldDenomBaseDof = "JK1"))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;     if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, stratumVar, </span></span>
+<span><span class="co">#&gt;             psuVar)))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, stratumVar, </span></span>
+<span><span class="co">#&gt;         psuVar)))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, stratumVar, </span></span>
+<span><span class="co">#&gt;     psuVar)))</span></span>
+<span><span class="co">#&gt; debug: if ("JK1" %in% getStratumVar(data)) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(waldDenomBaseDof = "JK1"))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(n0 = nrow2.edsurvey.data.frame(data), nUsed = nrow(edf)))</span></span>
+<span><span class="co">#&gt; debug: if (inherits(data, "edsurvey.data.frame")) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(data = data))</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(lm0 = lm0))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(data = data))</span></span>
+<span><span class="co">#&gt; debug: class(res) &lt;- "edsurveyGlm"</span></span>
+<span><span class="co">#&gt; debug: return(res)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">logit1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula: b013801 ~ dsex</span></span>
@@ -675,7 +1075,7 @@
 </h3>
 <p>The <code>oddsRatio</code> helper function converts coefficients from an <code>EdSurvey</code> logit regression model to odds ratios. Odds ratios are useful for understanding the real likelihood of an event occurring based on a transformation to the log odds returned in a logistic model.</p>
 <p>In <code>EdSurvey</code>, odds ratios can be returned by specifying the logistic model object (<code>logit1</code>).</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/oddsRatio.html">oddsRatio</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">logit1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                    OR      2.5%     97.5%</span></span>
 <span><span class="co">#&gt; (Intercept) 0.3983511 0.3630823 0.4370459</span></span>
@@ -688,7 +1088,7 @@
 </h3>
 <p>The <code>waldTest</code> function allows the user to test composite hypotheses—those with multiple coefficients involved—even when the data include plausible values. Because there is no likelihood test for plausible values or residuals of large-scale assessment data analysis, the Wald test fills the role of the likelihood ratio test, analysis of variance, and the F-test.</p>
 <p>Wald tests can be run by specifying the model and coefficients. The second coefficient in our <code>logit1</code> model object (<code>Female</code>) is tested in the following example:</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/waldTest.html">waldTest</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">logit1</span>, coefficients <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Wald test:</span></span>
 <span><span class="co">#&gt; ----------</span></span>
@@ -709,7 +1109,7 @@
 </h2>
 <p>The <code>rq.sdf</code> function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to <code>lm.sdf</code>, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.</p>
 <p>To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the <code>tau</code> argument (in this example <code>tau = 0.8</code>); all other arguments are otherwise consistent with <code>lm.sdf</code>, except for <code>returnVarEstInputs</code>, <code>returnNumberOfPSU</code>, and <code>standardizeWithSamplingVar</code>, which are not available.</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rq.sdf.html">rq.sdf</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data<span class="op">=</span><span class="va">sdf</span>, tau <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">rq1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -749,7 +1149,7 @@
 </h2>
 <p><code>EdSurvey</code> features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. <code>EdSurvey</code> fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the <code>WeMix</code> package.</p>
 <p>This example illustrates how the user might implement student-level weighting when using a survey (NAEP in this example) that does not have a weighting scheme previously implemented.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Subset data to a sample of interest</span></span>
 <span><span class="va">sdf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span>, subset <span class="op">=</span> <span class="va">scrpsu</span> <span class="op">&lt;</span> <span class="fl">500</span><span class="op">)</span></span>
 <span></span>
@@ -792,7 +1192,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.389</span></span></code></pre></div>
 <p>The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students’ gender as a covariate, using TIMSS 2015 datasets.</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#Use all plausible values</span></span>
 <span><span class="va">TIMSS15USA</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">edsurveyHome</span>, <span class="st">"TIMSS/2015"</span><span class="op">)</span>, countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span>, gradeLvl <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span>
@@ -828,7 +1228,7 @@
 <span><span class="co">#&gt; itsexMALE      6.091      1.500   4.061</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.273</span></span></code></pre></div>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># uses only one plausible value</span></span>
 <span><span class="va">mix2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">asmmat01</span> <span class="op">~</span> <span class="va">itsex</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">idschool</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">TIMSS15USA</span>,</span>
 <span>                  weightVar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"totwgt"</span>,<span class="st">"schwgt"</span><span class="op">)</span>, weightTransformation<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
@@ -898,7 +1298,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-08.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

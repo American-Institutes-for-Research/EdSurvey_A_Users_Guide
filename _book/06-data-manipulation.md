@@ -1,8 +1,4 @@
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.3.2
-#> Warning: package 'Dire' was built under R version 4.3.2
-```
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 

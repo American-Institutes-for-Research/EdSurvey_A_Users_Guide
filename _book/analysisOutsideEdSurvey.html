@@ -103,22 +103,25 @@
 <span class="header-section-number">9.1</span> Integration With Any Other Package<a class="anchor" aria-label="anchor" href="#integration-with-any-other-package"><i class="fas fa-link"></i></a>
 </h2>
 <p>By calling the function <code><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData()</a></code>, one can extract a <code>light.edsurvey.data.frame</code>: a <code>data.frame</code>-like object containing requested variables, weights, and each weight’s associated replicate weights. This <code>light.edsurvey.data.frame</code> can be not only manipulated as with other <code>data.frame</code> objects but also used with packaged <code>EdSurvey</code> functions. As noted in <a href="dataManipulation.html#retrievingAllVariablesInADataset">Chapter 6</a>, setting the arguments <code>dropOmittedLevels</code> and <code>defaultConditions</code> to <code>FALSE</code> ensures that the values that would normally be removed are included. The argument <code>addAttributes = TRUE</code> ensures the extraction of necessary survey design attributes, including the replicate weights, PSU variables, and strata variables.</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.air.org/project/nces-data-r-project-edsurvey">EdSurvey</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2</span></span>
 <span><span class="co">#&gt; Loading required package: car</span></span>
 <span><span class="co">#&gt; Loading required package: carData</span></span>
 <span><span class="co">#&gt; Loading required package: lfactors</span></span>
 <span><span class="co">#&gt; lfactors v1.0.4</span></span>
 <span><span class="co">#&gt; Loading required package: Dire</span></span>
-<span><span class="co">#&gt; Warning: package 'Dire' was built under R version 4.3.2</span></span>
 <span><span class="co">#&gt; Dire v2.2.0</span></span>
 <span><span class="co">#&gt; EdSurvey v4.0.4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'EdSurvey'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     cbind, rbind</span></span>
 <span><span class="va">sdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'composite'</span>, <span class="st">'dsex'</span>, <span class="st">'b017451'</span>, <span class="st">'origwt'</span><span class="op">)</span>,</span>
 <span>                addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>The base R function <code>gsub</code> allows users to substitute one string for another. The following step recodes “Every day” to “Seven days a week”. The <code>head</code> function reveals the first 6 values of the recoded variable <code>b017451</code> accessed by the <code>$</code> operator:</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1. Recode a Column Based on a String</span></span>
 <span></span>
 <span><span class="va">gddat</span><span class="op">$</span><span class="va">b017451</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"Every day"</span>, replacement <span class="op">=</span> <span class="st">"Seven days a week"</span>,</span>
@@ -135,14 +138,14 @@
 </h2>
 <p>The <code>rebindAttributes</code> function allows users to reassign the survey data attributes required by <code>EdSurvey</code> to a data frame that might have had its attributes stripped during the manipulation process. After rebinding the attributes, all variables—including those outside the original dataset—are available for <code>EdSurvey</code> analytical functions.</p>
 <p>For example, a user might want to run a linear model using <code>composite</code>, the default weight <code>origwt</code>, the variable <code>dsex</code>, and the categorical variable <code>b017451</code> recoded into a binary variable. To do so, we can return a portion of the <code>sdf</code> survey data as the <code>gddat</code> object. Next, use the base R function <code>ifelse</code> to conditionally recode the variable <code>b017451</code> by collapsing the levels <code>"Never or hardly ever"</code> and <code>"Once every few weeks"</code> into one level (<code>"Rarely"</code>) and all other levels into <code>"At least once a week"</code>.</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
 <span>                 dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">gddat</span><span class="op">$</span><span class="va">studyTalk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">b017451</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Never or hardly ever"</span>,</span>
 <span>                                               <span class="st">"Once every few weeks"</span><span class="op">)</span>,</span>
 <span>                          <span class="st">"Rarely"</span>, <span class="st">"At least once a week"</span><span class="op">)</span></span></code></pre></div>
 <p>From there, apply <code>rebindAttributes</code> from the attribute data <code>sdf</code> to the manipulated data frame <code>gddat</code>. The new variables are now available for use in <code>EdSurvey</code> analytical functions:</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">studyTalk</span>, data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">lm2</span><span class="op">)</span></span>
@@ -178,33 +181,428 @@
 </h2>
 <p>One popular package for data manipulation in the R ecosystem is <code>dplyr</code>. Given its ubiquity, it merits noting common errors that one might encounter when performing analyses using <code>EdSurvey</code> together with <code>dplyr</code>.</p>
 <p>Let’s say a user is interested in predicting how often a student talks about studies at home based on their gender and disability status. The following example demonstrates how to predict whether a student talks about studies at home (<code>b017451</code>) based on their sex (<code>dsex</code>) and whether they have an individualized education plan (<code>iep</code>) using the weight <code>origwt</code>. The dependent variable <code>b017451</code> specified using the outcome level of the regression with <code>I(b017451 == "Never or hardly ever")</code>:</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.3.2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"iep"</span>, <span class="st">"lep"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
 <span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>dplyr</code> function <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> takes multiple variables and concatenates them, similar to the base R function <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>. The <code>%&gt;%</code> (pipe) operator allows an object to be passed forward to another function call.</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Unite columns </span></span>
 <span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="va">gddat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"combinedVar"</span>, <span class="va">dsex</span>, <span class="va">iep</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">$</span><span class="va">combinedVar</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Female_No Female_Yes    Male_No   Male_Yes </span></span>
 <span><span class="co">#&gt;       7574        590       7044       1113</span></span></code></pre></div>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Specify level in I()</span></span>
 <span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span> <span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
 <span>                    data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in checkDataClass(data, c("edsurvey.data.frame", "light.edsurvey.data.frame", : The argument 'data' must be an edsurvey.data.frame, a light.edsurvey.data.frame, or an edsurvey.data.frame.list. See "Using the 'EdSurvey' Package's getData Function to Manipulate the NAEP Primer Data vignette" for how to work with data in a light.edsurvey.data.frame.</span></span></code></pre></div>
 <p>When we attempt to run the logistic regression, <code>EdSurvey</code> returns an error that it cannot locate the survey weights for this data frame. After creating a new variable, <code>EdSurvey</code> can no longer access the survey attributes needed to complete this analysis. To remedy, apply <code>rebindAttributes</code> from the attribute data <code>sdf</code> to the manipulated data frame <code>gddat</code>:</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b017451</span> <span class="op">==</span><span class="st">"Never or hardly ever"</span><span class="op">)</span> <span class="op">~</span> <span class="va">combinedVar</span>,</span>
-<span>                    data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span></code></pre></div>
+<span>                    data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Called from: calc.glm.sdf(formula = formula, family = binomial(link = "logit"), </span></span>
+<span><span class="co">#&gt;     data = data, weightVar = weightVar, relevels = relevels, </span></span>
+<span><span class="co">#&gt;     varMethod = varMethod, jrrIMax = jrrIMax, omittedLevels = omittedLevels, </span></span>
+<span><span class="co">#&gt;     defaultConditions = defaultConditions, missingDefaultConditions = missing(defaultConditions), </span></span>
+<span><span class="co">#&gt;     recode = recode, returnVarEstInputs = returnVarEstInputs, </span></span>
+<span><span class="co">#&gt;     returnNumberOfPSU = returnNumberOfPSU, returnLm0 = FALSE, </span></span>
+<span><span class="co">#&gt;     call = call)</span></span>
+<span><span class="co">#&gt; debug: yvar0 &lt;- yvars[1]</span></span>
+<span><span class="co">#&gt; debug: if (family$family %in% c("binomial", "quasibinomial")) {</span></span>
+<span><span class="co">#&gt;     if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;         for (i in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;             for (yvi in 1:length(pvy)) {</span></span>
+<span><span class="co">#&gt;                 if (pvy[yvi]) {</span></span>
+<span><span class="co">#&gt;                   edf[, yvar[yvi]] &lt;- edf[, getPlausibleValue(yvar[yvi], </span></span>
+<span><span class="co">#&gt;                     data)[i]]</span></span>
+<span><span class="co">#&gt;                 }</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;             edf[, yvars[i]] &lt;- as.numeric(eval(formula[[2]], </span></span>
+<span><span class="co">#&gt;                 edf))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;         for (i in yvars) {</span></span>
+<span><span class="co">#&gt;             edf[, i] &lt;- ifelse(edf[, i] %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf$yvar0 &lt;- edf[, yvar0]</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;         edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;     for (i in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;         for (yvi in 1:length(pvy)) {</span></span>
+<span><span class="co">#&gt;             if (pvy[yvi]) {</span></span>
+<span><span class="co">#&gt;                 edf[, yvar[yvi]] &lt;- edf[, getPlausibleValue(yvar[yvi], </span></span>
+<span><span class="co">#&gt;                   data)[i]]</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf[, yvars[i]] &lt;- as.numeric(eval(formula[[2]], edf))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;     for (i in yvars) {</span></span>
+<span><span class="co">#&gt;         edf[, i] &lt;- ifelse(edf[, i] %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     edf$yvar0 &lt;- edf[, yvar0]</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt;     edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: oneDef &lt;- max(edf[, yvars], na.rm = TRUE)</span></span>
+<span><span class="co">#&gt; debug: edf$yvar0 &lt;- ifelse(edf$yvar %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt; debug: frm &lt;- update(formula, yvar0 ~ .)</span></span>
+<span><span class="co">#&gt; debug: edf$w &lt;- edf[, wgt]</span></span>
+<span><span class="co">#&gt; debug: suppressWarnings(lm00 &lt;- glm2(frm, data = edf, family = family))</span></span>
+<span><span class="co">#&gt; debug: edf$c2 &lt;- predict(lm00, type = "response")</span></span>
+<span><span class="co">#&gt; debug: suppressWarnings(lm0 &lt;- glm2(frm, data = edf, weights = w, family = family, </span></span>
+<span><span class="co">#&gt;     mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt; debug: edf$c2 &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt; debug: if (returnLm0) {</span></span>
+<span><span class="co">#&gt;     return(lm0)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: wgtl &lt;- getAttributes(data, "weights")[[wgt]]</span></span>
+<span><span class="co">#&gt; debug: varEstInputs &lt;- list()</span></span>
+<span><span class="co">#&gt; debug: madeB &lt;- FALSE</span></span>
+<span><span class="co">#&gt; debug: stat_reg_glm &lt;- function(fam = FALSE) {</span></span>
+<span><span class="co">#&gt;     ref &lt;- function(pv, wg) {</span></span>
+<span><span class="co">#&gt;         if (family$family %in% c("binomial", "quasibinomial") &amp; </span></span>
+<span><span class="co">#&gt;             (fam)) {</span></span>
+<span><span class="co">#&gt;             edf$yvar0 &lt;- ifelse(pv %in% oneDef, 1, 0)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         edf$w &lt;- wg</span></span>
+<span><span class="co">#&gt;         suppressWarnings(lmi &lt;- glm2(frm, data = edf, weights = w, </span></span>
+<span><span class="co">#&gt;             family = family, mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt;         return(coef(lmi))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (any(pvy)) {</span></span>
+<span><span class="co">#&gt;     if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;         jrrIMax &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         jrrIMax &lt;- min(jrrIMax, length(yvars))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     varM &lt;- list()</span></span>
+<span><span class="co">#&gt;     varm &lt;- matrix(NA, nrow = jrrIMax, ncol = length(coef(lm0)))</span></span>
+<span><span class="co">#&gt;     if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;         if (linkingError) {</span></span>
+<span><span class="co">#&gt;             repWeights &lt;- paste0(wgtl$jkbase, wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt;             est &lt;- getLinkingEst(data = edf, pvEst = yvars[grep("_est", </span></span>
+<span><span class="co">#&gt;                 yvars)], stat = stat_reg_glm(fam = TRUE), wgt = wgt)</span></span>
+<span><span class="co">#&gt;             coefm &lt;- est$coef</span></span>
+<span><span class="co">#&gt;             coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;             coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;             impVar &lt;- getLinkingImpVar(data = edf, pvImp = yvars[grep("_imp", </span></span>
+<span><span class="co">#&gt;                 yvars)], ramCols = ncol(getRAM()), stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;                 wgt = wgt, T0 = est$est, T0Centered = FALSE)</span></span>
+<span><span class="co">#&gt;             sampVar &lt;- getLinkingSampVar(edf, pvSamp = yvars[grep("_samp", </span></span>
+<span><span class="co">#&gt;                 yvars)], stat = stat_reg_glm(fam = TRUE), rwgt = repWeights, </span></span>
+<span><span class="co">#&gt;                 T0 = est$est, T0Centered = FALSE)</span></span>
+<span><span class="co">#&gt;             varM[[1]] &lt;- sampVar$Bi</span></span>
+<span><span class="co">#&gt;             varEstInputs[["JK"]] &lt;- sampVar$veiJK</span></span>
+<span><span class="co">#&gt;             varEstInputs[["PV"]] &lt;- impVar$veiImp</span></span>
+<span><span class="co">#&gt;             varm[1, ] &lt;- sampVar$V</span></span>
+<span><span class="co">#&gt;             M &lt;- length(yvars[grep("_est", yvars)])</span></span>
+<span><span class="co">#&gt;             Vimp &lt;- impVar$V</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         else {</span></span>
+<span><span class="co">#&gt;             res &lt;- getEst(data = edf, pvEst = yvars, stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;                 wgt = wgt)</span></span>
+<span><span class="co">#&gt;             coefm &lt;- res$coef</span></span>
+<span><span class="co">#&gt;             varEstInputs[["JK"]] &lt;- data.frame()</span></span>
+<span><span class="co">#&gt;             jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;             for (pvi in 1:jrrIMax) {</span></span>
+<span><span class="co">#&gt;                 res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), </span></span>
+<span><span class="co">#&gt;                   yvar = edf[, yvars[pvi]], wgtM = edf[, paste0(wgtl$jkbase, </span></span>
+<span><span class="co">#&gt;                     wgtl$jksuffixes)], co0 = coefm[pvi, ], jkSumMult = jkSumMult, </span></span>
+<span><span class="co">#&gt;                   pvName = pvi)</span></span>
+<span><span class="co">#&gt;                 varM[[pvi]] &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;                 varEstInputs[["JK"]] &lt;- rbind(varEstInputs[["JK"]], </span></span>
+<span><span class="co">#&gt;                   res$veiJK)</span></span>
+<span><span class="co">#&gt;                 varm[pvi, ] &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;             }</span></span>
+<span><span class="co">#&gt;             M &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;             coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;             coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;             coefmPVByRow &lt;- lapply(1:ncol(coefm0), function(coli) {</span></span>
+<span><span class="co">#&gt;                 data.frame(stringsAsFactors = FALSE, PV = 1:nrow(coefm0), </span></span>
+<span><span class="co">#&gt;                   variable = rep(names(coef(lm0))[coli], nrow(coefm0)), </span></span>
+<span><span class="co">#&gt;                   value = coefm0[, coli])</span></span>
+<span><span class="co">#&gt;             })</span></span>
+<span><span class="co">#&gt;             coefmPV &lt;- do.call(rbind, coefmPVByRow)</span></span>
+<span><span class="co">#&gt;             varEstInputs[["PV"]] &lt;- coefmPV</span></span>
+<span><span class="co">#&gt;             Vimp &lt;- (M + 1)/M * apply(coefm, 2, var)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         dofNum &lt;- matrix(0, nrow = length(coef(lm0)), ncol = length(yvars))</span></span>
+<span><span class="co">#&gt;         dofDenom &lt;- matrix(0, nrow = length(coef(lm0)), ncol = length(yvars))</span></span>
+<span><span class="co">#&gt;         est &lt;- getEst(data = edf, pvEst = yvars, stat = stat_reg_glm(fam = TRUE), </span></span>
+<span><span class="co">#&gt;             wgt = wgt)</span></span>
+<span><span class="co">#&gt;         coefm &lt;- est$coef</span></span>
+<span><span class="co">#&gt;         for (mm in 1:length(yvars)) {</span></span>
+<span><span class="co">#&gt;             edf$yvar0 &lt;- as.numeric(edf[, yvars[mm]])</span></span>
+<span><span class="co">#&gt;             y &lt;- edf[, yvars[mm]]</span></span>
+<span><span class="co">#&gt;             suppressWarnings(lmi &lt;- glm2(frm, data = edf, weights = w, </span></span>
+<span><span class="co">#&gt;                 family = family, mustart = c2, epsilon = 1e-14))</span></span>
+<span><span class="co">#&gt;             coef &lt;- b &lt;- co0 &lt;- coef(lmi)</span></span>
+<span><span class="co">#&gt;             D &lt;- vcov(lmi)</span></span>
+<span><span class="co">#&gt;             eta &lt;- predict(lmi, type = "link")</span></span>
+<span><span class="co">#&gt;             pred &lt;- predict(lmi, type = "response")</span></span>
+<span><span class="co">#&gt;             mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;             X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;             uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * </span></span>
+<span><span class="co">#&gt;                 mu.eta</span></span>
+<span><span class="co">#&gt;             res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;             vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;             dofNum[, mm] &lt;- res$nums</span></span>
+<span><span class="co">#&gt;             dofDenom[, mm] &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;             varM[[mm]] &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt;             varm[mm, ] &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         M &lt;- length(yvars)</span></span>
+<span><span class="co">#&gt;         coef &lt;- apply(coefm, 2, mean)</span></span>
+<span><span class="co">#&gt;         coefm0 &lt;- t(t(coefm) - coef)</span></span>
+<span><span class="co">#&gt;         coefmPVByRow &lt;- lapply(1:ncol(coefm0), function(coli) {</span></span>
+<span><span class="co">#&gt;             data.frame(stringsAsFactors = FALSE, PV = 1:nrow(coefm0), </span></span>
+<span><span class="co">#&gt;                 variable = rep(names(coef(lm0))[coli], nrow(coefm0)), </span></span>
+<span><span class="co">#&gt;                 value = coefm0[, coli])</span></span>
+<span><span class="co">#&gt;         })</span></span>
+<span><span class="co">#&gt;         coefmPV &lt;- do.call(rbind, coefmPVByRow)</span></span>
+<span><span class="co">#&gt;         varEstInputs[["PV"]] &lt;- coefmPV</span></span>
+<span><span class="co">#&gt;         Vimp &lt;- (M + 1)/M * apply(coefm, 2, var)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     B &lt;- (1/(M - 1)) * Reduce("+", sapply(1:nrow(coefm), function(q) {</span></span>
+<span><span class="co">#&gt;         outer(coefm0[q, ], coefm0[q, ])</span></span>
+<span><span class="co">#&gt;     }, simplify = FALSE))</span></span>
+<span><span class="co">#&gt;     madeB &lt;- TRUE</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- (1/length(varM)) * Reduce("+", varM)</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- apply(varm[1:jrrIMax, , drop = FALSE], 2, mean)</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;         jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;         coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;         res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), </span></span>
+<span><span class="co">#&gt;             yvar = edf[, yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, </span></span>
+<span><span class="co">#&gt;                 wgtl$jksuffixes)], co0 = coef, jkSumMult = jkSumMult, </span></span>
+<span><span class="co">#&gt;             pvName = 1)</span></span>
+<span><span class="co">#&gt;         Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;         Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;         varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;         y &lt;- edf$yvar0</span></span>
+<span><span class="co">#&gt;         coef &lt;- b &lt;- co0 &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;         D &lt;- vcov(lm0)</span></span>
+<span><span class="co">#&gt;         eta &lt;- predict(lm0, type = "link")</span></span>
+<span><span class="co">#&gt;         pred &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt;         mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;         uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * </span></span>
+<span><span class="co">#&gt;             mu.eta</span></span>
+<span><span class="co">#&gt;         res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;         vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;         dofNum &lt;- res$nums</span></span>
+<span><span class="co">#&gt;         dofDenom &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;         Vjrr &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;         Ubar &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     M &lt;- 1</span></span>
+<span><span class="co">#&gt;     Vimp &lt;- 0</span></span>
+<span><span class="co">#&gt;     varm &lt;- NULL</span></span>
+<span><span class="co">#&gt;     coefm &lt;- NULL</span></span>
+<span><span class="co">#&gt;     B &lt;- 0 * Ubar</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "j") {</span></span>
+<span><span class="co">#&gt;     jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt;     coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;     res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), yvar = edf[, </span></span>
+<span><span class="co">#&gt;         yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, wgtl$jksuffixes)], </span></span>
+<span><span class="co">#&gt;         co0 = coef, jkSumMult = jkSumMult, pvName = 1)</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt;     varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     X &lt;- sparse.model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt;     y &lt;- edf$yvar0</span></span>
+<span><span class="co">#&gt;     coef &lt;- b &lt;- co0 &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt;     D &lt;- vcov(lm0)</span></span>
+<span><span class="co">#&gt;     eta &lt;- predict(lm0, type = "link")</span></span>
+<span><span class="co">#&gt;     pred &lt;- predict(lm0, type = "response")</span></span>
+<span><span class="co">#&gt;     mu.eta &lt;- family$mu.eta(eta)</span></span>
+<span><span class="co">#&gt;     uhij &lt;- (y - pred)/(pred * (1 - pred)) * as.matrix(X) * mu.eta</span></span>
+<span><span class="co">#&gt;     res &lt;- getVarTaylor(uhij, edf, D, wgt, psuVar, stratumVar)</span></span>
+<span><span class="co">#&gt;     vc &lt;- D %*% res$vv %*% D</span></span>
+<span><span class="co">#&gt;     dofNum &lt;- res$nums</span></span>
+<span><span class="co">#&gt;     dofDenom &lt;- res$nums2</span></span>
+<span><span class="co">#&gt;     Vjrr &lt;- as.numeric(diag(vc))</span></span>
+<span><span class="co">#&gt;     Ubar &lt;- as.matrix(vc)</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: jkSumMult &lt;- getAttributes(data, "jkSumMultiplier")</span></span>
+<span><span class="co">#&gt; debug: coef &lt;- coef(lm0)</span></span>
+<span><span class="co">#&gt; debug: res &lt;- getVarEstJK(stat = stat_reg_glm(fam = FALSE), yvar = edf[, </span></span>
+<span><span class="co">#&gt;     yvars[1]], wgtM = edf[, paste0(wgtl$jkbase, wgtl$jksuffixes)], </span></span>
+<span><span class="co">#&gt;     co0 = coef, jkSumMult = jkSumMult, pvName = 1)</span></span>
+<span><span class="co">#&gt; debug: Ubar &lt;- res$Bi</span></span>
+<span><span class="co">#&gt; debug: Vjrr &lt;- res$VsampInp</span></span>
+<span><span class="co">#&gt; debug: varEstInputs[["JK"]] &lt;- res$veiJK</span></span>
+<span><span class="co">#&gt; debug: M &lt;- 1</span></span>
+<span><span class="co">#&gt; debug: Vimp &lt;- 0</span></span>
+<span><span class="co">#&gt; debug: varm &lt;- NULL</span></span>
+<span><span class="co">#&gt; debug: coefm &lt;- NULL</span></span>
+<span><span class="co">#&gt; debug: B &lt;- 0 * Ubar</span></span>
+<span><span class="co">#&gt; debug: V &lt;- Vjrr + Vimp</span></span>
+<span><span class="co">#&gt; debug: names(coef) &lt;- names(coef(lm0))</span></span>
+<span><span class="co">#&gt; debug: se &lt;- sqrt(V)</span></span>
+<span><span class="co">#&gt; debug: names(se) &lt;- names(coef)</span></span>
+<span><span class="co">#&gt; debug: X &lt;- model.matrix(frm, edf)</span></span>
+<span><span class="co">#&gt; debug: fittedLatent &lt;- as.vector(X %*% coef)</span></span>
+<span><span class="co">#&gt; debug: fitted1 &lt;- family$linkinv(fittedLatent)</span></span>
+<span><span class="co">#&gt; debug: if (linkingError) {</span></span>
+<span><span class="co">#&gt;     ye &lt;- grep("_est_", yvars)</span></span>
+<span><span class="co">#&gt;     Y &lt;- sapply(ye, function(yi) {</span></span>
+<span><span class="co">#&gt;         as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt;     }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt;     resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt;     colnames(resid1) &lt;- yvars[ye]</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     Y &lt;- sapply(1:length(yvars), function(yi) {</span></span>
+<span><span class="co">#&gt;         as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt;     }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt;     resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt;     colnames(resid1) &lt;- yvars</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: Y &lt;- sapply(1:length(yvars), function(yi) {</span></span>
+<span><span class="co">#&gt;     as.vector(edf[, yvars[yi]])</span></span>
+<span><span class="co">#&gt; }, simplify = TRUE)</span></span>
+<span><span class="co">#&gt; debug: resid1 &lt;- Y - fitted1</span></span>
+<span><span class="co">#&gt; debug: colnames(resid1) &lt;- yvars</span></span>
+<span><span class="co">#&gt; debug: nobs &lt;- nrow(edf)</span></span>
+<span><span class="co">#&gt; debug: n.ok &lt;- nobs - sum(edf$origwt == 0)</span></span>
+<span><span class="co">#&gt; debug: nvars &lt;- ncol(X)</span></span>
+<span><span class="co">#&gt; debug: rank &lt;- rankMatrix(X)</span></span>
+<span><span class="co">#&gt; debug: resdf &lt;- n.ok - rank</span></span>
+<span><span class="co">#&gt; debug: df.r &lt;- resdf</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(coefm)) {</span></span>
+<span><span class="co">#&gt;     if (!is.matrix(coefm)) {</span></span>
+<span><span class="co">#&gt;         coefm &lt;- t(as.matrix(coefm))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     fitted2 &lt;- family$linkinv(as.matrix(X %*% t(coefm)))</span></span>
+<span><span class="co">#&gt;     resid2 &lt;- Y - fitted2</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: coefmat &lt;- data.frame(coef = coef, se = se, t = coef/se)</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;     m &lt;- length(wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt;     if (inherits(dofNum, "matrix")) {</span></span>
+<span><span class="co">#&gt;         coefmat$dof &lt;- apply((3.16 - 2.77/sqrt(m)) * dofNum^2/dofDenom, </span></span>
+<span><span class="co">#&gt;             1, mean)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else {</span></span>
+<span><span class="co">#&gt;         coefmat$dof &lt;- (3.16 - 2.77/sqrt(m)) * dofNum^2/dofDenom</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     coefmat$dof &lt;- sapply(names(coef), function(cn) {</span></span>
+<span><span class="co">#&gt;         DoFCorrection(varEstA = varEstInputs, varA = cn, method = "JR")</span></span>
+<span><span class="co">#&gt;     })</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: coefmat$dof &lt;- sapply(names(coef), function(cn) {</span></span>
+<span><span class="co">#&gt;     DoFCorrection(varEstA = varEstInputs, varA = cn, method = "JR")</span></span>
+<span><span class="co">#&gt; })</span></span>
+<span><span class="co">#&gt; debug: pti &lt;- pt(coefmat$t, df = coefmat$dof)</span></span>
+<span><span class="co">#&gt; debug: coefmat[, "Pr(&gt;|t|)"] &lt;- 2 * pmin(pti, 1 - pti)</span></span>
+<span><span class="co">#&gt; debug: njk &lt;- length(wgtl$jksuffixes)</span></span>
+<span><span class="co">#&gt; debug: if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;     njk &lt;- NA</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: varmeth &lt;- ifelse(varMethod == "t", "Taylor series", "jackknife")</span></span>
+<span><span class="co">#&gt; debug: res &lt;- list(call = call, formula = formula, family = family, </span></span>
+<span><span class="co">#&gt;     coef = coef, se = se, Vimp = Vimp, Vjrr = Vjrr, M = M, varm = varm, </span></span>
+<span><span class="co">#&gt;     coefm = coefm, coefmat = coefmat, weight = wgt, npv = length(yvars), </span></span>
+<span><span class="co">#&gt;     jrrIMax = min(jrrIMax, length(yvars)), njk = njk, varMethod = varmeth, </span></span>
+<span><span class="co">#&gt;     residuals = resid1, fitted.values = fitted1, fittedLatent = fittedLatent, </span></span>
+<span><span class="co">#&gt;     residual.df = resdf)</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(coefm)) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(PV.residuals = resid2, PV.fitted.values = fitted2))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (returnVarEstInputs) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(varEstInputs = varEstInputs))</span></span>
+<span><span class="co">#&gt;     if (varMethod == "t") {</span></span>
+<span><span class="co">#&gt;         warning(paste0("Taylor series method not supported with the ", </span></span>
+<span><span class="co">#&gt;             sQuote("varEstInputs"), " argument set to ", dQuote("TRUE"), </span></span>
+<span><span class="co">#&gt;             "."))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (madeB) {</span></span>
+<span><span class="co">#&gt;     tryCatch(rbar &lt;- (1 + 1/M) * (1/nrow(Ubar)) * sum(diag(B %*% </span></span>
+<span><span class="co">#&gt;         solve(Ubar))), error = function(e) {</span></span>
+<span><span class="co">#&gt;         rbar &lt;&lt;- (1 + 1/M) * (1/nrow(Ubar)) * sum(diag(B %*% </span></span>
+<span><span class="co">#&gt;             MASS::ginv(Ubar)))</span></span>
+<span><span class="co">#&gt;         frm &lt;- Formula(frm)</span></span>
+<span><span class="co">#&gt;         if (terms(frm, lhs = 0, rhs = NULL) == ~1) {</span></span>
+<span><span class="co">#&gt;             warning("A variance estimate was replaced with NA because there was no variance across strata.", </span></span>
+<span><span class="co">#&gt;                 call. = FALSE)</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     })</span></span>
+<span><span class="co">#&gt;     Ttilde &lt;- (1 + rbar) * Ubar</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(B = B, U = Ubar, rbar = rbar, Ttilde = Ttilde))</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(B = B, U = Ubar))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(B = B, U = Ubar))</span></span>
+<span><span class="co">#&gt; debug: if (returnNumberOfPSU) {</span></span>
+<span><span class="co">#&gt;     stratumVar &lt;- getAttributes(data, "stratumVar")</span></span>
+<span><span class="co">#&gt;     psuVar &lt;- getAttributes(data, "psuVar")</span></span>
+<span><span class="co">#&gt;     if ("JK1" %in% stratumVar) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(nPSU = nrow(edf)))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     else if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;         if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;             res &lt;- c(res, list(nPSU = nrow(unique(edf[, c(stratumVar, </span></span>
+<span><span class="co">#&gt;                 psuVar)]))))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;         else {</span></span>
+<span><span class="co">#&gt;             warning("Cannot return number of PSUs because the stratum or PSU variables contain NA values.")</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (!is.null(stratumVar) &amp;&amp; !is.null(psuVar)) {</span></span>
+<span><span class="co">#&gt;     if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;         if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;             res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, </span></span>
+<span><span class="co">#&gt;                 stratumVar, psuVar)))</span></span>
+<span><span class="co">#&gt;         }</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     if ("JK1" %in% getStratumVar(data)) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(waldDenomBaseDof = "JK1"))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if (all(c(stratumVar, psuVar) %in% colnames(edf))) {</span></span>
+<span><span class="co">#&gt;     if (sum(is.na(edf[, c(stratumVar, psuVar)])) == 0) {</span></span>
+<span><span class="co">#&gt;         res &lt;- c(res, list(waldDenomBaseDof = waldDof(edf, stratumVar, </span></span>
+<span><span class="co">#&gt;             psuVar)))</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: if ("JK1" %in% getStratumVar(data)) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(waldDenomBaseDof = "JK1"))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(n0 = nrow2.edsurvey.data.frame(data), nUsed = nrow(edf)))</span></span>
+<span><span class="co">#&gt; debug: if (inherits(data, "edsurvey.data.frame")) {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(data = data))</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     res &lt;- c(res, list(lm0 = lm0))</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug: res &lt;- c(res, list(lm0 = lm0))</span></span>
+<span><span class="co">#&gt; debug: class(res) &lt;- "edsurveyGlm"</span></span>
+<span><span class="co">#&gt; debug: return(res)</span></span></code></pre></div>
 <p>Other functions, such as <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> silently override the class of the <code>light.edsurvey.data.frame</code>, causing the attributes to be inaccessible. In the following example, we use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to create a new variable <code>mrpcmAverage</code> that calculates the mean of each row’s plausible values:</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>,</span>
 <span>                 varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dsex"</span>, <span class="st">"b017451"</span>, <span class="st">"iep"</span>, <span class="st">"lep"</span>, <span class="st">"origwt"</span>, <span class="st">"composite"</span><span class="op">)</span>,</span>
 <span>                 addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -214,13 +612,11 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "rowwise_df" "tbl_df"     "tbl"        "data.frame"</span></span></code></pre></div>
 <p>The function <code><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes()</a></code>reapplies survey attributes and prepares the data for use with <code>EdSurvey</code> analysis functions.</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rebindAttributes.html">rebindAttributes</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, attributeData <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">gddat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "light.edsurvey.data.frame" "data.frame"</span></span></code></pre></div>
 
-<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.3.2
-#&gt; Warning: package 'Dire' was built under R version 4.3.2</code></pre>
 </div>
 </div>
   <div class="chapter-nav">
@@ -250,7 +646,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-08.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-11-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
