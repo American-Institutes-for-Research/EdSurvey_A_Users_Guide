@@ -68,7 +68,7 @@ Each section starts by describing estimation of the statistic, followed by estim
 
 In NAEP surveys where linking error is relevant, an alternative methodology for calculating standard errors is used. This methodology applies only for variables that end in `_linking` for example, `composite_linking`. For the NAEP linking error methods, see the [next chapter]{#linkingerror}. All other methods are detailed in this chapter.
 
-## Estimation of Weighted Means
+## Estimation of Weighted Means and Regression Coefficients
 
 This section concerns the estimation of means, including regression coefficients and the standard errors of means and regression coefficients.
 

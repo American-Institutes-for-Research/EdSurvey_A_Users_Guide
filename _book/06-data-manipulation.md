@@ -1,4 +1,7 @@
 
+```
+#> Warning: package 'EdSurvey' was built under R version 4.4.1
+```
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 
