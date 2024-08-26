@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 6 Data Manipulation in EdSurvey and Base R | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
+<title>Chapter 6 Data Manipulation in EdSurvey and Base R | Dire</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="EdSurvey gives users functions to efficiently analyze education survey data. As mentioned in Chapter 3, EdSurvey is flexible when conducting data manipulation and preparing for survey analysis. It...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
-<meta property="og:title" content="Chapter 6 Data Manipulation in EdSurvey and Base R | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Data Manipulation in EdSurvey and Base R | Dire">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/dataManipulation.html">
 <meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <meta property="og:description" content="EdSurvey gives users functions to efficiently analyze education survey data. As mentioned in Chapter 3, EdSurvey is flexible when conducting data manipulation and preparing for survey analysis. It...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 6 Data Manipulation in EdSurvey and Base R | Analyzing NCES Data Using EdSurvey: A User’s Guide">
+<meta name="twitter:title" content="Chapter 6 Data Manipulation in EdSurvey and Base R | Dire">
 <meta name="twitter:description" content="EdSurvey gives users functions to efficiently analyze education survey data. As mentioned in Chapter 3, EdSurvey is flexible when conducting data manipulation and preparing for survey analysis. It...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.7.0/transition.js"></script><script src="libs/bs3compat-0.7.0/tabs.js"></script><script src="libs/bs3compat-0.7.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -57,7 +57,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
+        <a href="index.html" title="">Dire</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -86,6 +86,7 @@
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
 <li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
 <li><a class="" href="references.html">References</a></li>
+<li><a class="" href="note-this-section-will-be-merged-into-the-main-dire-section.html"><span class="header-section-number">14</span> NOTE: This section will be merged into the main Dire Section</a></li>
 </ul>
 
         <div class="book-extra">
@@ -558,10 +559,10 @@
 <span><span class="co">#&gt; 9675824 bytes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">lm7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>,</span>
 <span>                          weightVar<span class="op">=</span><span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">gddat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 7170632 bytes</span></span>
+<span><span class="co">#&gt; 7168568 bytes</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/object.size.html">object.size</a></span><span class="op">(</span><span class="va">lm8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>,</span>
 <span>                          weightVar<span class="op">=</span><span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 2520832 bytes</span></span></code></pre></div>
+<span><span class="co">#&gt; 2518768 bytes</span></span></code></pre></div>
 <p>Although a manipulated <code>light.edsurvey.data.frame</code> requires nearly 10 MB of working memory to store both the <code>light.edsurvey.data.frame</code> and the regression model object (<code>lm7</code>), the resulting object of the same computation made directly from the <code>EdSurvey</code> database (<code>lm8</code>) holds only 5–7 kB. It is a good practice to remove unnecessary values saved in the global environment. Because we have stored many large data objects, let’s remove these before moving on.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">df</span>,<span class="va">gddat</span>,<span class="va">eddat</span><span class="op">)</span></span>
@@ -600,7 +601,7 @@
 <span><span class="co">#&gt;  b0174512 or 3 times a week            b017451Every day </span></span>
 <span><span class="co">#&gt;                   12.659496                    6.808825</span></span></code></pre></div>
 
-<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.3.1</code></pre>
+<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.4.1</code></pre>
 </div>
 </div>
 </div>
@@ -647,7 +648,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2023-07-24.</p>
+    <p>"<strong>Dire</strong>" was written by EdSurvey Team. It was last built on 2023-09-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

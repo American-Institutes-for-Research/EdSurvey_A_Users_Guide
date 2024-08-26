@@ -1,7 +1,7 @@
 # Models {#models}
 
 ```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
+#> Warning: package 'EdSurvey' was built under R version 4.4.1
 ```
 
 ##  Regression Analysis With `lm.sdf`
@@ -462,6 +462,22 @@ waldTest(model = logit1, coefficients = 2)
 
 To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
 
+### Using Plausible Values as a Predictor
+
+For some research questions the latent achievement variable can be used as the predictor. The `logit.sdf` function can perform analyses when the plausible values are right hand side of the equation. Please refer to chapter 11 for the statistical methodology. The following code is intended to answer this research question; how are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?  
+
+
+```r
+
+sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I', 'Algebra II'), 1, 0)
+
+logit2 <- logit.sdf(formula = AlgebraClass ~ algebra,
+                    weightVar = 'origwt', data = sdf)
+summary(object = logit2)
+```
+
+Changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).
+
 ##  Quantile Regression Analysis with `rq.sdf`
 The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.
 
@@ -524,7 +540,6 @@ lsdf$pwt2 <- lsdf$smsrswt
 
 m1 <- mixed.sdf(composite ~ dsex + b017451 + (1|scrpsu), data=lsdf,
                 weightVar = c('pwt1', 'pwt2'))
-#> matrix is structurally rank deficient; using augmented matrix with additional 1 row(s) of zeros
 summary(object = m1)
 #> Call:
 #> mixed.sdf(formula = composite ~ dsex + b017451 + (1 | scrpsu), 

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 NOTE: This section will be merged into the main Dire Section | Dire</title>
+<meta name="author" content="EdSurvey Team">
+<meta name="description" content="14.1 Using the Dire Package for Linked Data The Dire package is particularly valuable when dealing with linking external datasets. If one aims to integrate external data with the LSA and relies on...">
+<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta property="og:title" content="Chapter 14 NOTE: This section will be merged into the main Dire Section | Dire">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/note-this-section-will-be-merged-into-the-main-dire-section.html">
+<meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<meta property="og:description" content="14.1 Using the Dire Package for Linked Data The Dire package is particularly valuable when dealing with linking external datasets. If one aims to integrate external data with the LSA and relies on...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 NOTE: This section will be merged into the main Dire Section | Dire">
+<meta name="twitter:description" content="14.1 Using the Dire Package for Linked Data The Dire package is particularly valuable when dealing with linking external datasets. If one aims to integrate external data with the LSA and relies on...">
+<meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.7.0/transition.js"></script><script src="libs/bs3compat-0.7.0/tabs.js"></script><script src="libs/bs3compat-0.7.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Dire</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
+<li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
+<li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
+<li><a class="" href="philosophyOfAnalysis.html"><span class="header-section-number">3</span> Philosophy of Analysis</a></li>
+<li><a class="" href="dataAccess.html"><span class="header-section-number">4</span> Data Access</a></li>
+<li><a class="" href="understandingData.html"><span class="header-section-number">5</span> Understanding Data</a></li>
+<li><a class="" href="dataManipulation.html"><span class="header-section-number">6</span> Data Manipulation in EdSurvey and Base R</a></li>
+<li><a class="" href="descriptive-statistics.html"><span class="header-section-number">7</span> Descriptive Statistics</a></li>
+<li><a class="" href="models.html"><span class="header-section-number">8</span> Models</a></li>
+<li><a class="" href="analysisOutsideEdSurvey.html"><span class="header-section-number">9</span> Analysis Outside EdSurvey</a></li>
+<li><a class="" href="longitudinal-datasets.html"><span class="header-section-number">10</span> Longitudinal Datasets</a></li>
+<li><a class="" href="methods.html"><span class="header-section-number">11</span> Statistical Methods Used in EdSurvey</a></li>
+<li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
+<li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
+<li><a class="" href="references.html">References</a></li>
+<li><a class="active" href="note-this-section-will-be-merged-into-the-main-dire-section.html"><span class="header-section-number">14</span> NOTE: This section will be merged into the main Dire Section</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="note-this-section-will-be-merged-into-the-main-dire-section" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> NOTE: This section will be merged into the main Dire Section<a class="anchor" aria-label="anchor" href="#note-this-section-will-be-merged-into-the-main-dire-section"><i class="fas fa-link"></i></a>
+</h1>
+<div id="using-the-dire-package-for-linked-data" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Using the Dire Package for Linked Data<a class="anchor" aria-label="anchor" href="#using-the-dire-package-for-linked-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>Dire</code> package is particularly valuable when dealing with linking external datasets. If one aims to integrate external data with the LSA and relies on pre-existing PVs, it can introduce biases in the analysis, as the external data information wasn’t originally accounted for in the conditioning model.</p>
+<p>In most public datasets, such as PISA and TIMSS, the school IDs are obfuscated, with the actual IDs being omitted from the released data. Typically, this information resides in restricted files, accessible only upon approved requests. To demonstrate how to link external data to LSA data, we’ll work with a simulated dataset containing school IDs, by using the publicly available Common Core Data (CCD). This will then be merged with the Census dataset. Once these two disparate sources are combined, we will fit a direct estimation model and subsequently derive PVs conditioned on the newly incorporated variables. In this example we will generate 8th grade mathematics assessment and use the NAEP item parameters.</p>
+<p>Here are the main steps:
+- Download the CCD data and select relevant variables.
+- Generate a school dataset incorporating a few specific variables.
+- Produce student variables conditioned on the school dataset.
+- Generate both PSU and statvar variables.
+- Construct JK replicate weights.
+- Create blocks and booklets for student distribution.
+- Generate item responses from students.
+- Download data from the ACS.
+- Link the two datasets together.
+- Fit an MML model using the combined data.
+- Draw PVs based on the model.</p>
+<p>For this example we will download 2014-2015 Common Core of Data (CCD) public school information. Please check out the CCD website for more information<a href="https://nces.ed.gov/ccd/">https://nces.ed.gov/ccd/</a>. Initialy we will download directory, membership and geographic location files.</p>
+<p>The first file is the directory file, which has the NCES school IDs, school ZIP codes and state information, this file is called in this example <code>ccd_dir</code>. The second file is called <code>ccd_mem</code> and it is the Membership flat file. It contains information about the membership of each school, including the number of eighth graders in each school, which we will need to create the school weights.</p>
+<p>The third file provides information about the geographic location of the school, which is called <code>edge</code>.</p>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get the CCD links, this data is publicly available</span></span>
+<span><span class="va">ccd_dir_url</span> <span class="op">&lt;-</span><span class="st">"https://nces.ed.gov/ccd/data/zip/ccd_sch_029_1415_w_0216601a_txt.zip"</span></span>
+<span><span class="va">ccd_mem_url</span> <span class="op">&lt;-</span> <span class="st">"https://nces.ed.gov/ccd/data/zip/ccd_sch_052_1415_w_0216161a_txt.zip"</span></span>
+<span><span class="va">edge_url</span> <span class="op">&lt;-</span> <span class="st">"https://nces.ed.gov/ccd/data/zip/EDGE_GEOIDS_201415_PUBLIC_SCHOOL_csv.zip"</span></span>
+<span></span>
+<span><span class="co"># Download the CCD files</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">ccd_dir_url</span>, <span class="st">"~/CCD/ccd_dir.zip"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">ccd_mem_url</span>, <span class="st">"~/CCD/ccd_mem.zip"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">edge_url</span>, <span class="st">"~/CCD/edge.zip"</span><span class="op">)</span></span></code></pre></div>
+<p>After downloading these zip files, we will unzip and read the files.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/unzip.html">unzip</a></span><span class="op">(</span><span class="st">"~/CCD/ccd_dir.zip"</span>, exdir <span class="op">=</span> <span class="st">"~/CCD/"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/unzip.html">unzip</a></span><span class="op">(</span><span class="st">"~/CCD/ccd_mem.zip"</span>, exdir <span class="op">=</span> <span class="st">"~/CCD/"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/unzip.html">unzip</a></span><span class="op">(</span><span class="st">"~/CCD/edge.zip"</span>, exdir <span class="op">=</span> <span class="st">"~/CCD/"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ccd_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">'~/CCD/ccd_sch_029_1415_w_0216601a.txt'</span>,colClasses <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span>
+<span><span class="va">ccd_mem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">'~/CCD/ccd_sch_052_1415_w_0216161a.txt'</span>,colClasses <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span>
+<span><span class="va">edge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">'~/CCD/EDGE_GEOIDS_201415_PUBLIC_SCHOOL.csv'</span>, sep <span class="op">=</span> <span class="st">","</span>, colClasses <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span> <span class="co"># Geographical location for utol4 variable</span></span></code></pre></div>
+<p>In line with the designated sampling frame, special education schools will be excluded from the ‘ccd_dir’ dataset. Also schools with different state address on their mailing address than their actual address will be removed to ensure the location information is accurate. Schools without specific grade levels, such as ungraded schools, and vocational schools lacking enrollment will be naturally filtered out in subsequent steps, as they will not possess records for the number of eighth-grade students. However, certain institutions like prison and hospital schools, home-school entities, and juvenile correctional facilities could not be systematically removed due to the absence of specific identifying data in the 2014-15 CCD files.</p>
+<p>After excluding the schools mentioned above, we will merge the directory and membership files and name it as <code>ccd_dir_mem</code>.</p>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ccd_dir</span> <span class="op">&lt;-</span> <span class="va">ccd_dir</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'FIPST'</span>,<span class="st">'STATENAME'</span>,<span class="st">'NCESSCH'</span>,<span class="st">'LSTATE'</span>,<span class="st">'LZIP'</span>,<span class="st">'LZIP4'</span>,</span>
+<span>                     <span class="st">'SCH_TYPE'</span>, <span class="st">'OUT_OF_STATE_FLAG'</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Filtering out special education schools (according to the sampling frame)</span></span>
+<span><span class="va">ccd_dir</span> <span class="op">&lt;-</span> <span class="va">ccd_dir</span><span class="op">[</span><span class="va">ccd_dir</span><span class="op">$</span><span class="va">SCH_TYPE</span><span class="op">!=</span><span class="st">'2'</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Filtering out schools</span></span>
+<span><span class="va">ccd_dir</span> <span class="op">&lt;-</span> <span class="va">ccd_dir</span><span class="op">[</span><span class="va">ccd_dir</span><span class="op">$</span><span class="va">OUT_OF_STATE_FLAG</span><span class="op">==</span><span class="st">'N'</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Select only required membership variables</span></span>
+<span><span class="va">ccd_mem</span> <span class="op">&lt;-</span> <span class="va">ccd_mem</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'FIPST'</span>,<span class="st">'NCESSCH'</span>,<span class="st">'STABR'</span>,<span class="st">'G08'</span>,<span class="st">'TOTAL'</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Merge the directory and memory files</span></span>
+<span><span class="va">ccd_dir_mem</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">ccd_dir</span>,<span class="va">ccd_mem</span>,on<span class="op">=</span><span class="st">'NCESSCH'</span><span class="op">)</span></span></code></pre></div>
+<p>On the next step, we will create the <code>utol4</code> and <code>utol12</code> variables from the location information in the <code>edge</code> dataset. After saving these variables as factors, we merge this data with the merged directory and memory files. Therefore, the final object, <code>ccdMerged</code>, will be the merged of these three datafiles downloaded from CCD.</p>
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">edge</span> <span class="op">&lt;-</span> <span class="va">edge</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'NCESSCH'</span>,<span class="st">'LOCALE'</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">utol12Lvls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"City, large"</span>, <span class="st">"City, midsize"</span>, <span class="st">"City, small"</span>, <span class="st">"Suburb, large"</span>, </span>
+<span>                <span class="st">"Suburb, midsize"</span>, </span>
+<span>                <span class="st">"Suburb, small"</span>, <span class="st">"Town, fringe"</span>, <span class="st">"Town, distant"</span>, <span class="st">"Town, remote"</span>, </span>
+<span>                <span class="st">"Rural, fringe"</span>, <span class="st">"Rural, distant"</span>, <span class="st">"Rural, remote"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">utol4Lvls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"City"</span>,<span class="st">"Suburb"</span>,<span class="st">"Town"</span>,<span class="st">"Rural"</span><span class="op">)</span></span>
+<span><span class="va">utol4Lvls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">utol4Lvls</span>,each <span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">localeLvls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">12</span>, <span class="fl">13</span>, <span class="fl">21</span>, <span class="fl">22</span>, <span class="fl">23</span>, <span class="fl">31</span>, <span class="fl">32</span>, <span class="fl">33</span>, <span class="fl">41</span>, <span class="fl">42</span>, <span class="fl">43</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert utol categories into factors</span></span>
+<span><span class="va">edge</span><span class="op">$</span><span class="va">utol12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">edge</span><span class="op">$</span><span class="va">LOCALE</span>, <span class="va">localeLvls</span>, <span class="va">utol12Lvls</span><span class="op">)</span></span>
+<span><span class="va">edge</span><span class="op">$</span><span class="va">utol4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">edge</span><span class="op">$</span><span class="va">LOCALE</span>, <span class="va">localeLvls</span>, <span class="va">utol4Lvls</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Merge the manipulated directory, membership and edge files</span></span>
+<span><span class="va">ccdMerged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">ccd_dir_mem</span>, <span class="va">edge</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'NCESSCH'</span>,<span class="st">'utol4'</span>,<span class="st">'utol12'</span><span class="op">)</span><span class="op">]</span>, by<span class="op">=</span><span class="st">"NCESSCH"</span><span class="op">)</span></span></code></pre></div>
+<p>In this example we will generate
+After merging the files, we filter out any schools with missing values (-1 or -2 according to the Membership file documentation) for the number of eighth graders.</p>
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ccdMerged</span> <span class="op">&lt;-</span> <span class="va">ccdMerged</span><span class="op">[</span><span class="va">ccdMerged</span><span class="op">$</span><span class="va">LSTATE</span> <span class="op">==</span> <span class="va">ccdMerged</span><span class="op">$</span><span class="va">STABR</span>, </span>
+<span>                <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'FIPST'</span>,<span class="st">'NCESSCH'</span>,<span class="st">'LSTATE'</span>,<span class="st">'LZIP'</span>,<span class="st">'G08'</span>,<span class="st">'TOTAL'</span>, </span>
+<span>                  <span class="st">'utol4'</span>, <span class="st">'utol12'</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">ccd</span> <span class="op">&lt;-</span> <span class="va">ccdMerged</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="va">ccdMerged</span><span class="op">$</span><span class="va">G08</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'-1'</span>,<span class="st">'-2'</span>, <span class="st">'0'</span>, <span class="st">'1'</span>, <span class="st">'2'</span><span class="op">)</span><span class="op">)</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Convert the number of 8th graders and total number of students variables to numeric</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">G08</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">G08</span><span class="op">)</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">TOTAL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">TOTAL</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, the school file is ready with a few variables, <code>ccd</code>, state code (<code>FIPST</code>), zip code (<code>LZIP</code>), number of 8th graders (<code>G08</code>), total number students (<code>TOTAL</code>) and location information (<code>utol4</code> and <code>utol12</code>). Now we will generate the school selection probabilities, <code>schProb</code>, and the school weights, <code>schWeight</code>, based on the total number of 8th graders in the school and in their corresponding state. Additionally, we will sample up to 30 students from each school if there are enough students and calculate the student selection probability and student weights. Please note that, this sampling scheme we use here very simple and we only consider one factor of many factors for sampling and weighting.</p>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get the state abbreviations in the dataset</span></span>
+<span><span class="va">states</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">LSTATE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create an empty variable for school probability</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">schProb</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="co"># School probability is the proportion of the number of 8th graders in the school and </span></span>
+<span><span class="co"># total 8th graders in the state</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">state</span> <span class="kw">in</span> <span class="va">states</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">ccdTmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ccd</span>, <span class="va">LSTATE</span> <span class="op">==</span> <span class="va">state</span><span class="op">)</span></span>
+<span>  <span class="va">ccd</span><span class="op">[</span><span class="va">ccd</span><span class="op">$</span><span class="va">LSTATE</span><span class="op">==</span><span class="va">state</span>,<span class="st">"schProb"</span><span class="op">]</span> <span class="op">&lt;-</span>  <span class="va">ccdTmp</span><span class="op">$</span><span class="va">G08</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ccdTmp</span><span class="op">$</span><span class="va">G08</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># School weight is the inverse probability of school selection</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">schWeight</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="va">ccd</span><span class="op">$</span><span class="va">schProb</span></span>
+<span></span>
+<span><span class="co"># Sum student weights within state</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">selectedNstu</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="co"># If the school has less than 30 8th graders, all students will be included in the sample</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">sch</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">G08</span><span class="op">[</span><span class="va">sch</span><span class="op">]</span> <span class="op">&lt;=</span> <span class="fl">30</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ccd</span><span class="op">$</span><span class="va">selectedNstu</span><span class="op">[</span><span class="va">sch</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">ccd</span><span class="op">$</span><span class="va">G08</span><span class="op">[</span><span class="va">sch</span><span class="op">]</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">ccd</span><span class="op">$</span><span class="va">selectedNstu</span><span class="op">[</span><span class="va">sch</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Student Selection probability </span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">stuProb</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">ccd</span><span class="op">$</span><span class="va">G08</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">TOTAL</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">G08</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ccd</span><span class="op">$</span><span class="va">stuWeight</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="va">ccd</span><span class="op">$</span><span class="va">stuProb</span></span></code></pre></div>
+<p>At this stage we created a dataframe with state information, zip code, location, number of students, student and school weights. Now, we will sample randomly 10 schools from each state.</p>
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3345</span><span class="op">)</span> <span class="co">#seed is important to select the same schools each time</span></span>
+<span><span class="va">selSchools</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode<span class="op">=</span><span class="st">"character"</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">state</span> <span class="kw">in</span> <span class="va">states</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">ccdTmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ccd</span>, <span class="va">LSTATE</span> <span class="op">==</span> <span class="va">state</span><span class="op">)</span></span>
+<span>  <span class="co"># Select schools from the states only with more than 10 schools</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">ccdTmp</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">selSchTmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">ccd</span><span class="op">$</span><span class="va">NCESSCH</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="va">ccd</span><span class="op">$</span><span class="va">schProb</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> </span>
+<span>  <span class="va">selSchools</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">selSchools</span>, <span class="va">selSchTmp</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Get the Sample school level data</span></span>
+<span><span class="va">ccdSample</span> <span class="op">&lt;-</span> <span class="va">ccd</span><span class="op">[</span><span class="va">ccd</span><span class="op">$</span><span class="va">NCESSCH</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">selSchools</span>,<span class="op">]</span></span></code></pre></div>
+<p>Let’s select some of the variables of the dataset to only have the necessary variables.</p>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># School level variables</span></span>
+<span><span class="va">schoolVars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FIPST"</span>, <span class="st">"LZIP"</span>, <span class="st">"G08"</span>, <span class="st">"TOTAL"</span>, <span class="st">"utol12"</span>, <span class="st">"schWeight"</span>, <span class="st">"stuWeight"</span><span class="op">)</span></span>
+<span><span class="va">schoolData</span> <span class="op">&lt;-</span> <span class="va">ccdSample</span><span class="op">[</span>,<span class="va">schoolVars</span><span class="op">]</span></span></code></pre></div>
+<p>After getting the school level dataset, we will generate student level information conditioned on the school level data using the conditional distribution of multivariate distribution.</p>
+<p>Given a multivariate normal random vector <span class="math inline">\(X = \begin{bmatrix} X_1 \\ X_2 \end{bmatrix}\)</span>, with known distribution parameters: mean vector <span class="math inline">\(\mu = \begin{bmatrix} \mu_1 \\ \mu_2 \end{bmatrix}\)</span> and covariance matrix <span class="math inline">\(\Sigma = \begin{bmatrix} \Sigma_{11} &amp; \Sigma_{12} \\ \Sigma_{21} &amp; \Sigma_{22} \end{bmatrix}\)</span>, the conditional distribution of <span class="math inline">\(X_1\)</span> given <span class="math inline">\(X_2 = a\)</span> (a known vector) is also normally distributed with:</p>
+<p>This function computes the conditional mean <span class="math inline">\(\bar{\mu}\)</span>.</p>
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mubar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">m1</span>, <span class="va">sigma12</span>, <span class="va">sigma22</span>, <span class="va">m2</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">m1</span> <span class="op">+</span> <span class="va">sigma12</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/ginv.html">ginv</a></span><span class="op">(</span><span class="va">sigma22</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">a</span> <span class="op">-</span> <span class="va">m2</span><span class="op">)</span><span class="op">)</span> <span class="co">#is it correct for the generalized inverse</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>
+<code>a</code> The observed value of <span class="math inline">\(X_2\)</span>.</li>
+<li>
+<code>m1</code> The mean vector <span class="math inline">\(\mu_1\)</span> of the first variable.</li>
+<li>
+<code>sigma12</code> The cross-covariance matrix <span class="math inline">\(\Sigma_{12}\)</span>.</li>
+<li>
+<code>sigma22</code> The covariance matrix <span class="math inline">\(\Sigma_{22}\)</span> of the second variable.</li>
+<li>
+<code>m2</code> The mean vector <span class="math inline">\(\mu_2\)</span> of the second variable.</li>
+</ul>
+<p>The <code><a href="https://rdrr.io/pkg/MASS/man/ginv.html">MASS::ginv</a></code> function is used for calculating the generalized inverse of <span class="math inline">\(\Sigma_{22}\)</span>, allowing the computation to proceed even when <span class="math inline">\(\Sigma_{22}\)</span> is singular or not full rank.</p>
+<p>The other function is <code>sigmabar</code>, and it computes the conditional covariance <span class="math inline">\(\bar{\Sigma}\)</span>.</p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sigmabar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sigma11</span>, <span class="va">sigma12</span>, <span class="va">sigma22</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">sigma21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sigma12</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sigma11</span> <span class="op">-</span> <span class="va">sigma12</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/ginv.html">ginv</a></span><span class="op">(</span><span class="va">sigma22</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">sigma21</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>sigma11 The covariance matrix <span class="math inline">\(\Sigma_{11}\)</span> of the first variable.</li>
+<li>sigma12 The cross-covariance matrix <span class="math inline">\(\Sigma_{12}\)</span>.</li>
+<li>sigma22 The covariance matrix <span class="math inline">\(\Sigma_{22}\)</span> of the second variable.</li>
+</ul>
+<p>Here, <span class="math inline">\(\sigma21\)</span> is the transpose of <span class="math inline">\(\sigma12\)</span> (<span class="math inline">\(\Sigma_{21} = \Sigma_{12}^T\)</span>) due to the symmetry of covariance matrices. The generalized inverse of <span class="math inline">\(\Sigma_{22}\)</span> is used similarly as in the <code>mubar</code> function.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-cohen02" class="csl-entry">
+American Institutes for Research and Jon Cohen. (n.d.). <em>AM</em>. <a href="https://am.air.org/help/JSTree/MainFrame.asp">https://am.air.org/help/JSTree/MainFrame.asp</a>
+</div>
+<div id="ref-BenjaminiHochberg" class="csl-entry">
+Benjamini, Y., &amp; Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. <em>Journal of the Royal Statistical Society, Series B (Methodological)</em>, <em>57</em>(1), 289–300. <a href="https://doi.org/10.1111/j.2517-6161.1995.tb02031.x">https://doi.org/10.1111/j.2517-6161.1995.tb02031.x</a>
+</div>
+<div id="ref-binder" class="csl-entry">
+Binder, D. A. (1983). <span class="nocase">On the variances of asymptotically normal estimators from complex surveys</span>. <em>International Statistical Review/Revue Internationale de Statistique</em>, <em>51</em>(3), 279–292.
+</div>
+<div id="ref-intsvy" class="csl-entry">
+Caro, D. H., &amp; Biecek, P. (2017). Intsvy: An r package for analyzing international large-scale assessment data. <em>Journal of Statistical Software</em>, <em>81</em>(7), 1–44. <a href="https://doi.org/10.18637/jss.v081.i07">https://doi.org/10.18637/jss.v081.i07</a>
+</div>
+<div id="ref-AM" class="csl-entry">
+Cohen, J. D., &amp; Jiang, T. (1999). Comparison of partially measured latent traits across nominal subgroups. <em>Journal of the American Statistical Association</em>, <em>94</em>(448), 1035–1044. <a href="http://www.jstor.org/stable/2669917">http://www.jstor.org/stable/2669917</a>
+</div>
+<div id="ref-NAEP" class="csl-entry">
+Educational Progress, N. A. of. (2018). <em>NAEP technical documentation on the web</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/nationsreportcard/tdw/">https://nces.ed.gov/nationsreportcard/tdw/</a>
+</div>
+<div id="ref-Johnson" class="csl-entry">
+Johnson, E. G., &amp; Rust, K. F. (1992). Population inferences and variance estimation for NAEP data. <em>Journal of Statistical Software</em>, <em>17</em>(2), 175–190.
+</div>
+<div id="ref-judkins" class="csl-entry">
+Judkins, D. R. (1990). Fay’s method for variance estimation. <em>Journal of Official Statistics</em>, <em>6</em>(3), 223–239.
+</div>
+<div id="ref-korng" class="csl-entry">
+Korn, E. L., &amp; Graubard, B. I. (1990). Simultaneous testing of regression coefficients with complex survey data: Use of bonferroni t statistics. <em>The American Statistician</em>, <em>44</em>(4), 270–276.
+</div>
+<div id="ref-LaRoche" class="csl-entry">
+LaRoche, S., Joncas, M., &amp; Foy, P. (2016). <em>Sample design in TIMSS 2015</em> (&amp;. M. H. M. O. Martin I. V. S. Mullis, Ed.; pp. 3.1–3.37). <a href="http://timss.bc.edu/publications/timss/2015-methods/chapter-3.html">http://timss.bc.edu/publications/timss/2015-methods/chapter-3.html</a>
+</div>
+<div id="ref-Lumley" class="csl-entry">
+Lumley, T. (2004). Analysis of complex survey samples. <em>Journal of Statistical Software</em>, <em>9</em>(8), 1–19. <a href="https://doi.org/10.18637/jss.v009.i08">https://doi.org/10.18637/jss.v009.i08</a>
+</div>
+<div id="ref-svyPVpack" class="csl-entry">
+Manuel, R., &amp; Peterbauer, J. (2014). <em>A package for complex surveys including plausible values</em>. <a href="https://cran.r-project.org/src/contrib/Archive/svyPVpack/">https://cran.r-project.org/src/contrib/Archive/svyPVpack/</a><div class="csl-block">R package version 0.1-1</div>
+</div>
+<div id="ref-Mislevy" class="csl-entry">
+Mislevy, R. J., Beaton, A., Kaplan, B. A., &amp; Sheehan, K. (1992). Estimating population characteristics from sparse matrix samples of item responses. <em>Journal of Educational Measurement</em>, <em>29</em>(2), 133–161.
+</div>
+<div id="ref-Mulligan" class="csl-entry">
+Mulligan, et al., G. M. (2018). <em>Findings from the fourth-grade round of the early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): First look (NCES 2018-094)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2018/2018094.pdf">https://nces.ed.gov/pubs2018/2018094.pdf</a>
+</div>
+<div id="ref-Oberski" class="csl-entry">
+Oberski, D. (2017). An r package for complex survey analysis of structural equation models. <em>Journal of Statistical Software</em>, <em>57</em>(1), 1–27. <a href="https://doi.org/10.18637/jss.v057.i01">https://doi.org/10.18637/jss.v057.i01</a>
+</div>
+<div id="ref-PISA" class="csl-entry">
+OECD. (2018). <em>PISA 2018 technical report</em>. Organization for Economic Co-operation; Development (OECD). <a href="https://www.oecd.org/pisa/data/pisa2018technicalreport/">https://www.oecd.org/pisa/data/pisa2018technicalreport/</a>
+</div>
+<div id="ref-R-base" class="csl-entry">
+R Core Team. (2016). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-BIFIE" class="csl-entry">
+Robitzsch, A., &amp; Oberwimmer, K. (2019). <em>BIFIEsurvey: Tools for survey statistics in educational assessment</em>. Federal Institute for Educational Research, Innovation; Development of the Austrian School System. <a href="https://CRAN.R-project.org/package=BIFIEsurvey">https://CRAN.R-project.org/package=BIFIEsurvey</a><div class="csl-block">R package version 3.3-12</div>
+</div>
+<div id="ref-rubin" class="csl-entry">
+Rubin, D. B. (1987). <em>Multiple imputation for nonresponse in surveys</em>. Wiley.
+</div>
+<div id="ref-Rust" class="csl-entry">
+Rust, K. F., &amp; Rao, J. N. K. (1996). Replication methods for analyzing complex survey data. <em>Statistical Methods in Medical Research: Special Issue on the Analysis of Complex Surveys</em>, <em>5</em>, 283–310.
+</div>
+<div id="ref-Rutkowski" class="csl-entry">
+Rutkowski, L., Gonzalez, E., Joncas, M., &amp; Davier, M. von. (2010). International large-scale assessment data: Issues in secondary analysis and reporting. <em>Educational Researcher</em>, <em>39</em>(2), 142–151. <a href="https://doi.org/10.3102/0013189X10363170">https://doi.org/10.3102/0013189X10363170</a>
+</div>
+<div id="ref-Satterthwaite" class="csl-entry">
+Satterthwaite, F. E. (1946). An approximate distribution of estimates of variance components. <em>Biometrics Bulletin</em>, <em>2</em>(6), 110–114.
+</div>
+<div id="ref-Tourangeau15a" class="csl-entry">
+Tourangeau, et al., K. (2015a). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): User’s manual for the ECLS-k:2011 kindergarten data file and electronic codebook, public version (NCES 2015-074)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2015/2015074.pdf">https://nces.ed.gov/pubs2015/2015074.pdf</a>
+</div>
+<div id="ref-Tourangeau15b" class="csl-entry">
+Tourangeau, et al., K. (2015b). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): User’s manual for the ECLS-k:2011 kindergarten–first grade data file and electronic codebook, public version (NCES 2015-078)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2015/2015078.pdf">https://nces.ed.gov/pubs2015/2015078.pdf</a>
+</div>
+<div id="ref-Tourangeau18a" class="csl-entry">
+Tourangeau, et al., K. (2018a). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS -k:2011): User’s manual for the ECLS-k:2011 kindergarten–third grade data file and electronic codebook, public version (NCES 2018-034)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2018/2018034.pdf">https://nces.ed.gov/pubs2018/2018034.pdf</a>
+</div>
+<div id="ref-Tourangeau18b" class="csl-entry">
+Tourangeau, et al., K. (2018b). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): User’s manual for the ECLS-k:2011 kindergarten–fourth grade data file and electronic codebook, public version (NCES 2018-032)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2018/2018032.pdf">https://nces.ed.gov/pubs2018/2018032.pdf</a>
+</div>
+<div id="ref-Tourangeau17" class="csl-entry">
+Tourangeau, et al., K. (2017). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): User’s manual for the ECLS-k:2011 kindergarten–second grade data file and electronic codebook, public version (NCES 2017-285)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2017/2017285.pdf">https://nces.ed.gov/pubs2017/2017285.pdf</a>
+</div>
+<div id="ref-Tourangeau19" class="csl-entry">
+Tourangeau, et al., K. (2019). <em>Early childhood longitudinal study, kindergarten class of 2010–11 (ECLS-k:2011): User’s manual for the ECLS-k:2011 kindergarten–fifth grade data file and electronic codebook, public version (NCES 2019-051)</em>. National Center for Education Statistics. <a href="https://nces.ed.gov/pubs2019/2019051.pdf">https://nces.ed.gov/pubs2019/2019051.pdf</a>
+</div>
+<div id="ref-weirich2014nested" class="csl-entry">
+Weirich, S., Haag, N., Hecht, M., Böhme, K., Siegle, T., &amp; Lüdtke, O. (2014). Nested multiple imputation in large-scale assessments. <em>Large-Scale Assessments in Education</em>, <em>2</em>, 1–18.
+</div>
+<div id="ref-Weisberg" class="csl-entry">
+Weisberg, S. (1985). <em>Applied linear regression</em>. Wiley.
+</div>
+<div id="ref-Welch" class="csl-entry">
+Welch, B. L. (1947). The generalization of <span>“student’s”</span> problem when several different population variances are involved. <em>Biometrika</em>, <em>34</em>(1/2), 28–35.
+</div>
+<div id="ref-Wolter" class="csl-entry">
+Wolter, K. (2007). <em>Introduction to variance estimation</em> (2nd ed.). Springer Science &amp; Business Media.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="references.html">References</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#note-this-section-will-be-merged-into-the-main-dire-section"><span class="header-section-number">14</span> NOTE: This section will be merged into the main Dire Section</a></li>
+<li><a class="nav-link" href="#using-the-dire-package-for-linked-data"><span class="header-section-number">14.1</span> Using the Dire Package for Linked Data</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/blob/main/15-DirePart3.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/edit/main/15-DirePart3.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Dire</strong>" was written by EdSurvey Team. It was last built on 2023-09-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

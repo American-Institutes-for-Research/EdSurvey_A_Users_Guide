@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2023-07-24"
+date: "2024-07-12"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,31 +48,52 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**July 2023**
+**July 2024**
 
-**Michael Lee**<br></br>
-**Ting Zhang**<br></br>
-**Paul Bailey**<br></br>
-**Eric Buehler**<br></br>
-**Thomas Fink**<br></br>
-**Huade Huo**<br></br>
-**Sun-Joo Lee**<br></br>
-**Yuqi Liao**<br></br>
-American Institutes for Research
+Editors: **Paul Bailey**, **Ting Zhang**<br></br>
+**American Institutes for Research**
 
 **Emmanuel Sikali**<br></br>
-Senior Research Scientist<br></br>
-National Center for Education Statistics
-
+Senior Research Scientist and Acting Chief Reporting and Dissemination Branch
 **U.S. DEPARTMENT OF EDUCATION**
 
 _The content of this user’s guide was commissioned by the National Center for Education Statistics (NCES) and conducted by the American Institutes for Research (AIR) under Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004). Task Order 14 supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP)._
 
 _The authors are responsible for the contents of this guide, which is still under development. If you have any feedback, corrections, or suggestions for improvements to subsequent versions, please contact us at [https://github.com/American-Institutes-for-Research/EdSurvey/issues](https://github.com/American-Institutes-for-Research/EdSurvey/issues). Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government._
 
+# Authors {.unnumbered}
+
+This book is edited by Paul Bailey and Ting Zhang, the chapters have the following authors:
+
+**Chapter 1, Introduction**: 
+
+**Chapter 2, Installing R and EdSurvey and Loading the Package**: 
+
+**Chapter 3, Philosophy of Analysis**: 
+
+**Chapter 4, Data Access**: 
+
+**Chapter 5, Understanding Data**: 
+
+**Chapter 6, Data Manipulation in EdSurvey and Base R**: 
+
+**Chapter 7, Descriptive Statistics**: 
+
+**Chapter 8, Models**: 
+
+**Chapter 9, Analysis Outside EdSurvey**: 
+
+**Chapter 10, Longitudinal Datasets**: 
+
+**Chapter 11, Stasistical Methods used in EdSurvey**: Paul Bailey, Michael Cohen, and Sinan Yavuz
+
+**Chapter 12, NAEP Linking Error**: Paul Bailey (AIR)
+
+**Chapter 13, The EduSurvey SuggestWeights Function**:  Huade Huo (AIR)
+
 # Preface {.unnumbered}
 
-_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 4.0.1. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
+_Analyzing NCES Data Using `EdSurvey`: A User's Guide_ is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction has occurred at national and international conferences and in scientific journals. `EdSurvey` was introduced to the research community during the American Education Research Association (AERA) annual conference in Washington, D.C., in April 2016. The first version was optimized to analyze only NAEP data. Since then, significant development has continued at a steady pace. This manual is based on the 4.0.7. As the user downloads this package on the Comprehensive R Archive Network (CRAN), he or she might discover features not presented or discussed in this manual. The development team strongly suggests using the vignettes that are regularly published with the addition of each new feature.
 
 The team also understands that programming might be intimidating to some education researchers. To lower the entry level of programming skills, this user’s guide provides comprehensive examples that are easy to follow and adaptable to many research questions and investigations. The team assumes that users of this manual have some basic understanding and knowledge of programming and R software. Experienced R users might find themselves equipped to jump to a specific section of interest. For those who do not have such knowledge yet, many courses are available in the public domain that will suffice for acquiring this prerequisite knowledge.
 

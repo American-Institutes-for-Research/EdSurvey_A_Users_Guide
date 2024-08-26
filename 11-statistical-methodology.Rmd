@@ -68,7 +68,7 @@ Each section starts by describing estimation of the statistic, followed by estim
 
 In NAEP surveys where linking error is relevant, an alternative methodology for calculating standard errors is used. This methodology applies only for variables that end in `_linking` for example, `composite_linking`. For the NAEP linking error methods, see the [next chapter]{#linkingerror}. All other methods are detailed in this chapter.
 
-## Estimation of Weighted Means
+## Estimation of Weighted Means and Regression Coefficients
 
 This section concerns the estimation of means, including regression coefficients and the standard errors of means and regression coefficients.
 
@@ -105,13 +105,59 @@ For regressions, the coefficient estimates are simply averaged over the plausibl
 \end{align}
 where $\bm{\beta}_p$ is the vector of estimated regression coefficients, calculated using the $p$th set of plausible values.
 
+### Estimation of Regression Coefficients when Plausible Values are Used as a Predictor
+
+`lm.sdf` accepts subscale or subject scales on the left-hand side of a regression equation, as described above. This section further explains how `lm.sdf` and `glm.sdf` handle plausible values that are on the right hand side of the regression equation. In this section, we describe this both when the outcome has plausible values and when it does not.
+
+Let the dependent variable $y$, and $y_{ip}$ the $p$th plausible value for the $i$th unit and there are $m$ plausible values for each unit. Similarly, let the independent variable $x$ to be a scale or subscale and where $x_{ip}$ is the $p$th plausible value for the $i$th unit. The linear regression equation is
+
+\begin{align}
+\bm{y} = \beta_0 + \beta_1 \bm{x}  + \epsilon  
+\end{align}
+
+where $\beta_0$ is the intercept and $\beta_1$ is the coefficient of $x$, again $y$ and $x$ both have $m$ plausible values. Therefore the regression will be performed for $m$ times as follows
+
+\begin{align}
+\begin{split}
+\bm{y}_{1} = \beta_{0,1} + \beta_{1,1} \bm{x}_{1}  + \epsilon_1 \\
+\bm{y}_{2} = \beta_{0,2} + \beta_{1,2} \bm{x}_{2}  + \epsilon_2 \\
+ \vdots \\
+\bm{y}_{m} = \beta_{0,m} + \beta_{1,m} \bm{x}_{m}  + \epsilon_{m}
+\end{split}
+\end{align}
+
+If the dependent variable is not represented with plausible value, then the regression equation is
+
+\begin{align}
+\begin{split}
+\bm{y} = \beta_{0,1} + \beta_{1,1} \bm{x}_{1}  + \epsilon_1 \\
+\bm{y} = \beta_{0,2} + \beta_{1,2} \bm{x}_{2}  + \epsilon_2 \\
+ \vdots \\
+\bm{y} = \beta_{0,m} + \beta_{1,m} \bm{x}_{m}  + \epsilon_{m}
+\end{split}
+\end{align}
+
+$y$ is fixed across the regression runs, and the regression coefficients are estimated using the $m$ plausible values of $x$.
+
+This approach is similar to @weirich2014nested`s Single+Multiple Imputation (SMI) method, where they produce $m$ number of plausible values instead of $m \times m$ plausible values.
+
+The coefficient estimates are averages over $m$
+
+\begin{align}
+\bm{\beta_i} = \frac{1}{m} \sum_{m=1}^{p} \bm{\beta_{i,m}}_{p}
+\end{align}
+
+where $\beta_{p}$ is the vector of estimated regression coefficients, calculated using the $p$th set of plausible values.
+
 #### Estimation of the Coefficient of Determination in a Weighted Linear Regression
 
-In regression analysis, statistics such as the coefficient of determination (i.e., $R$-squared) are estimated across all observations. These statistics average the values across the regression runs (one per set of plausible values). For example,
+In regression analysis, statistics such as the coefficient of determination (i.e., $R$-squared) are estimated across all observations. These statistics normalize and average the values across the regression runs (one per set of plausible values). For example,
+
 \begin{align}
-R^2 = \frac{1}{m} \sum_{p=1}^m R^2_p
+R^2 = \left( \tanh \left( \frac{1}{m} \sum_{p=1}^m \left( \text{atanh} \left( \sqrt{R^2_p} \right) \right) \right) \right)^2
 \end{align}
-where $R^2_p$ is the $R$-squared value for the regression run with the $p$th set of plausible values.
+
+where $R^2_p$ is the $R$-squared value for the regression run with the $p$th set of plausible values. This is also the same when there are scales or subscales on both sides of the equation, because the analyses adapts @weirich2014nested`s Single+Multiple Imputation (SMI) method as mentioned previously. As a result of this, the method produce $m$ number of $R$-squared values.
 
 For a particular regression, [@Weisberg, Eq. 2.31] defined the $R$-squared as
 \begin{align}
@@ -136,6 +182,7 @@ Using the definition of the standardized regression coefficients ($b$),
 \begin{align}
 b_j = \frac{\tilde{\sigma}_y}{\tilde{\sigma}_{X_j}} \beta_j
 \end{align}
+
 where $b_j$ is the standardized regression coefficient associated with the $j$th regressor, $\tilde{\sigma}_y$ is the weighted standard deviation of the outcome variable, and $\tilde{\sigma}_{X_j}$ is the weighted standard deviation of the $j$th regressor.
 
 #### Default Variance Estimation of Standardized Regression Coefficients 
@@ -170,18 +217,17 @@ where subscripts after the semicolon indicate the matrix element (two subscripts
 
 ### Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method
 
-When the predicted value has plausible values and the requested variance method is jackknife, estimate the
-variance ($\bm{V}_{JP}$) as the sum of a variance component from
-the plausible values (also called imputation values so that the variance term is called
-$\bm{V}_{imp}$) and estimate the sampling variance using plausible values ($\bm{V}_{jrr,P}$) according to the following formula:
+When the predictor and/or outcome or value has plausible values and the requested variance method is jackknife, estimate the variance ($\bm{V}_{JP}$) as the sum of a variance component from the plausible values (also called imputation values so that the variance term is called $\bm{V}_{imp}$) and estimate the sampling variance using plausible values ($\bm{V}_{jrr,P}$) according to the following formula:
+
 \begin{align}
 \bm{V}_{JP}=\bm{V}_{imp} + \bm{V}_{jrr,P}
 \end{align}
 
 The sampling variance is
 \begin{align}
-\bm{V}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \bm{V}_{jrr,p} \ 
+\bm{V}_{jrr,P} = \frac{1}{m^*} \sum_{i=1}^{m^*} \bm{V}_{jrr,p}  
 \end{align}
+
 In this equation, $m^*$ is a number that can be as small as one or as large as the number of plausible values.[^jrrI] In the previous equation, $\bm{V}_{jrr,P}$ is the average of $\bm{V}_{jrr,p}$ over the plausible values, and the values of $\bm{V}_{jrr,p}$ are calculated in a way analogous to $\bm{V}_{jrr,0}$ in the previous section, except that the $p$th plausible values are used within each step:
 \begin{align}
 \bm{V}_{jrr,p} = \gamma \sum_{j=1}^{J} (\bm{\beta}_{jp} - \bm{\beta}_{0p})^2
@@ -212,6 +258,7 @@ where $\beta_l$ and $\beta_m$ are the estimates averaged across all the plausibl
 ### Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method
 
 When the predicted value does not have plausible values and the requested variance method is the Taylor series, the variance of the coefficients ($\bm{V}_{T}$) is estimated as^[This is a slight generalization of [@binder] to the weighted case, which is derived in more detail and with notation more closely aligned to Binder in the AM manual [@cohen02]].
+
 \begin{align}
 \bm{V}_{T}=\bm{V}_{Taylor,0}(\bm{\beta}) = \bm{D}^T \bm{Z D}
 \end{align}
@@ -221,9 +268,11 @@ $\bm{V}_T$ is a matrix, so the variance estimates are along the diagonal, wherea
 \end{align}
 $\bm{X}$ is the matrix of regressors, the $\bm{W}$ matrix is a diagonal matrix with the $i$th weight in the $i$th diagonal element, 
 and
+
 \begin{align}
 \bm{Z} = \sum_{j=1}^{J} \frac{n_s}{n_s-1} \sum_{u=1}^{n_s} \bm{z}_{uj} \bm{z}_{uj}^T
 \end{align}
+
 where the inner sum is over the sampled PSUs ($u$), of which there are $n_s$, and the outer sum is over all units in the jackknife replicate strata ($j$), of which there are still $J$. Only strata with at least two PSUs that have students are included in the sum; others are simply excluded.^[ This leads to a downward bias in the estimated variance. When the number of units excluded by this rule is proportionally small, the bias also should be proportionally small.] For a mean, $\bm{z}_{uj}$ is a scalar; for a regression, $\bm{z}_{uj}$ is a vector with an entry for each regressor. In what follows, when the estimand is a mean, $\bm{X}$ simply would be a column vector of ones.
 
 Define the estimated residual vector ($\bm{e}$) as
@@ -489,7 +538,7 @@ The variance estimation in `mvrlm.sdf` produces the same standard error estimate
 
 When the predicted value does not have plausible values, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Jackknife Method."
 
-When plausible values are present, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method."
+When plausible values are present on either or both sides, the variance of the coefficients is estimated according to the section "Estimation of Standard Errors of Weighted Means When Plausible Values Are Present, Using the Jackknife Method."
 
 #### Residual Variance--Covariance Matrix Estimation
 
@@ -585,4 +634,3 @@ $$ W_{adj} = W / p$$
 The adjusted test statistic is then compared with the F-distribution with $p$ and $d$ degrees of freedom, where $d$ is the residual degrees of freedom in the model and $p$ is the number of parameters being tested:
 
 $$ W_{adj} \sim F(p, d)$$
-

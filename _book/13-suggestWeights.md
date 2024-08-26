@@ -21,8 +21,8 @@ To use the `suggestWeights` function, the first step is to attach the `EdSurvey`
 
 ```r
 library(EdSurvey)
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
-eclsk11 <- readECLS_K2011(path = "C:/EdSurveyData/ECLS_K/2011", 
+#> Warning: package 'EdSurvey' was built under R version 4.4.1
+eclsk11 <- readECLS_K2011(path = paste0(edsurveyHome,"ECLS_K/2011"), 
                           filename = "childK5p.dat", 
                           layoutFilename = "ECLSK2011_K5PUF.sps", 
                           verbose = FALSE)
@@ -34,8 +34,7 @@ The following example demonstrates an analysis using child assessment data from 
 
 
 ```r
-suggestWeights(varnames = c("x7mscalk5", "x8mscalk5", "x9mscalk5"),
-    eclsk11)
+suggestWeights(varnames = c("x7mscalk5", "x8mscalk5", "x9mscalk5"), eclsk11)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> [1] "w9c790"
@@ -47,9 +46,7 @@ To print out additional information on weight suggestion, such as the number of 
 
 
 ```r
-suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5",
-    "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"),
-    eclsk11, verbose = TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, verbose=TRUE)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> The following weight is suggested: 
@@ -79,9 +76,7 @@ Often, there are trade-offs for using one weight versus another among the possib
 
 
 ```r
-suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5",
-    "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"),
-    eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> The following weights are suggested: 

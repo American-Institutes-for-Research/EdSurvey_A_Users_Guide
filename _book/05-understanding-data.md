@@ -1,6 +1,6 @@
 
 ```
-#> Warning: package 'EdSurvey' was built under R version 4.3.1
+#> Warning: package 'EdSurvey' was built under R version 4.4.1
 ```
 
 # Understanding Data {#understandingData}
@@ -409,9 +409,8 @@ es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
 
 
 ```
-#> Warning: package 'knitr' was built under R version 4.3.1
 #> Warning: package 'kableExtra' was built under R version
-#> 4.3.1
+#> 4.4.1
 ```
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:30%; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
