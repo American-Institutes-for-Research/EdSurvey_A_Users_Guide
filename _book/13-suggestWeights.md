@@ -21,7 +21,6 @@ To use the `suggestWeights` function, the first step is to attach the `EdSurvey`
 
 ```r
 library(EdSurvey)
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
 eclsk11 <- readECLS_K2011(path = paste0(edsurveyHome,"ECLS_K/2011"), 
                           filename = "childK5p.dat", 
                           layoutFilename = "ECLSK2011_K5PUF.sps", 

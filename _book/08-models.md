@@ -1,8 +1,5 @@
 # Models {#models}
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
-```
 
 ##  Regression Analysis With `lm.sdf`
 After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.

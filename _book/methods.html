@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 11 Statistical Methods Used in EdSurvey | Dire</title>
+<title>Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
-<meta name="generator" content="bookdown 0.40 with bs4_book()">
-<meta property="og:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Dire">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
+<meta property="og:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/methods.html">
 <meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <meta property="og:description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Dire">
+<meta name="twitter:title" content="Chapter 11 Statistical Methods Used in EdSurvey | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta name="twitter:description" content="11.1 Introduction This chapter describes estimation procedures for EdSurvey. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.7.0/transition.js"></script><script src="libs/bs3compat-0.7.0/tabs.js"></script><script src="libs/bs3compat-0.7.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -57,7 +57,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Dire</a>
+        <a href="index.html" title="">Analyzing NCES Data Using EdSurvey: A User’s Guide</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -71,6 +71,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
 <li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="authors.html">Authors</a></li>
 <li><a class="" href="preface.html">Preface</a></li>
 <li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
 <li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
@@ -86,7 +87,6 @@
 <li><a class="" href="linkingerror.html"><span class="header-section-number">12</span> NAEP Linking Error</a></li>
 <li><a class="" href="the-edsurvey-suggestweights-function.html"><span class="header-section-number">13</span> The EdSurvey suggestWeights Function</a></li>
 <li><a class="" href="references.html">References</a></li>
-<li><a class="" href="note-this-section-will-be-merged-into-the-main-dire-section.html"><span class="header-section-number">14</span> NOTE: This section will be merged into the main Dire Section</a></li>
 </ul>
 
         <div class="book-extra">
@@ -275,7 +275,7 @@ where <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_p\)</span> is the 
 \end{split}
 \end{align}\]</span></p>
 <p><span class="math inline">\(y\)</span> is fixed across the regression runs, and the regression coefficients are estimated using the <span class="math inline">\(m\)</span> plausible values of <span class="math inline">\(x\)</span>.</p>
-<p>This approach is similar to <span class="citation">Weirich et al. (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-weirich2014nested">2014</a>)</span>`s Single+Multiple Imputation (SMI) method, where they produce <span class="math inline">\(m\)</span> number of plausible values instead of <span class="math inline">\(m \times m\)</span> plausible values.</p>
+<p>This approach is similar to <span class="citation">Weirich et al. (<a href="references.html#ref-weirich2014nested">2014</a>)</span>`s Single+Multiple Imputation (SMI) method, where they produce <span class="math inline">\(m\)</span> number of plausible values instead of <span class="math inline">\(m \times m\)</span> plausible values.</p>
 <p>The coefficient estimates are averages over <span class="math inline">\(m\)</span></p>
 <p><span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{\beta_i}} = \frac{1}{m} \sum_{m=1}^{p} \boldsymbol{\mathbf{\beta_{i,m}}}_{p}
@@ -289,12 +289,12 @@ where <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_p\)</span> is the 
 <p><span class="math display">\[\begin{align}
 R^2 = \left( \tanh \left( \frac{1}{m} \sum_{p=1}^m \left( \text{atanh} \left( \sqrt{R^2_p} \right) \right) \right) \right)^2
 \end{align}\]</span></p>
-<p>where <span class="math inline">\(R^2_p\)</span> is the <span class="math inline">\(R\)</span>-squared value for the regression run with the <span class="math inline">\(p\)</span>th set of plausible values. This is also the same when there are scales or subscales on both sides of the equation, because the analyses adapts <span class="citation">Weirich et al. (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-weirich2014nested">2014</a>)</span>`s Single+Multiple Imputation (SMI) method as mentioned previously. As a result of this, the method produce <span class="math inline">\(m\)</span> number of <span class="math inline">\(R\)</span>-squared values.</p>
-<p>For a particular regression, <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Weisberg">Weisberg, 1985</a>, Eq. 2.31)</span> defined the <span class="math inline">\(R\)</span>-squared as
+<p>where <span class="math inline">\(R^2_p\)</span> is the <span class="math inline">\(R\)</span>-squared value for the regression run with the <span class="math inline">\(p\)</span>th set of plausible values. This is also the same when there are scales or subscales on both sides of the equation, because the analyses adapts <span class="citation">Weirich et al. (<a href="references.html#ref-weirich2014nested">2014</a>)</span>`s Single+Multiple Imputation (SMI) method as mentioned previously. As a result of this, the method produce <span class="math inline">\(m\)</span> number of <span class="math inline">\(R\)</span>-squared values.</p>
+<p>For a particular regression, <span class="citation">(<a href="references.html#ref-Weisberg">Weisberg, 1985</a>, Eq. 2.31)</span> defined the <span class="math inline">\(R\)</span>-squared as
 <span class="math display">\[\begin{align}
 R^2 = 1 - \frac{RSS}{SYY}
 \end{align}\]</span>
-where <span class="math inline">\(RSS=\boldsymbol{\mathbf{e}}^T \boldsymbol{\mathbf{We}}\)</span> <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Weisberg">Weisberg, 1985</a>, Eq. 4.2)</span>, and <span class="math inline">\(SYY=(\boldsymbol{\mathbf{y}}-\bar{y})^T \boldsymbol{\mathbf{W}} (\boldsymbol{\mathbf{y}}-\bar{y})\)</span>; <span class="math inline">\(\bar{y}\)</span> is the weighted mean of the outcome, and <span class="math inline">\(\boldsymbol{\mathbf{e}} = \boldsymbol{\mathbf{y}} - \boldsymbol{\mathbf{X\beta}}\)</span>.</p>
+where <span class="math inline">\(RSS=\boldsymbol{\mathbf{e}}^T \boldsymbol{\mathbf{We}}\)</span> <span class="citation">(<a href="references.html#ref-Weisberg">Weisberg, 1985</a>, Eq. 4.2)</span>, and <span class="math inline">\(SYY=(\boldsymbol{\mathbf{y}}-\bar{y})^T \boldsymbol{\mathbf{W}} (\boldsymbol{\mathbf{y}}-\bar{y})\)</span>; <span class="math inline">\(\bar{y}\)</span> is the weighted mean of the outcome, and <span class="math inline">\(\boldsymbol{\mathbf{e}} = \boldsymbol{\mathbf{y}} - \boldsymbol{\mathbf{X\beta}}\)</span>.</p>
 </div>
 </div>
 <div id="estimation-of-standard-deviations" class="section level3" number="11.2.4">
@@ -343,7 +343,7 @@ b_j = \frac{\tilde{\sigma}_y}{\tilde{\sigma}_{X_j}} \beta_j
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_J=\boldsymbol{\mathbf{V}}_{jrr,0} = \gamma \sum_{j=1}^J (\boldsymbol{\mathbf{\beta}}_j - \boldsymbol{\mathbf{\beta}}_0)^2
 \end{align}\]</span>
-where <span class="math inline">\(\gamma\)</span> is a constant equal to one for the jackknife variance estimation method, its inclusion allows us to extend the equations to other variance estimation methods, such as balanced repeated replication <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Wolter">Wolter, 2007</a>)</span> or Fay’s method <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-judkins">Judkins, 1990</a>)</span>; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_j\)</span> is the coefficient estimated with the <span class="math inline">\(j\)</span>th jackknife replicate weight; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_0\)</span> is the coefficient estimated with the sample weight; and <span class="math inline">\(J\)</span> is the total number of jackknife replicate weights.</p>
+where <span class="math inline">\(\gamma\)</span> is a constant equal to one for the jackknife variance estimation method, its inclusion allows us to extend the equations to other variance estimation methods, such as balanced repeated replication <span class="citation">(<a href="references.html#ref-Wolter">Wolter, 2007</a>)</span> or Fay’s method <span class="citation">(<a href="references.html#ref-judkins">Judkins, 1990</a>)</span>; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_j\)</span> is the coefficient estimated with the <span class="math inline">\(j\)</span>th jackknife replicate weight; <span class="math inline">\(\boldsymbol{\mathbf{\beta}}_0\)</span> is the coefficient estimated with the sample weight; and <span class="math inline">\(J\)</span> is the total number of jackknife replicate weights.</p>
 <p>The covariance between <span class="math inline">\(\beta_l\)</span> and <span class="math inline">\(\beta_m\)</span> (<span class="math inline">\(C_{J;lm}\)</span>) is estimated as
 <span class="math display">\[\begin{align}
 C_{J;lm}=C_{jrr,0;lm} = \gamma \sum_{j=1}^J (\beta_{j;l} - \beta_{0;l})(\beta_{j;m} - \beta_{0;m})
@@ -366,7 +366,7 @@ where subscripts after the semicolon indicate the matrix element (two subscripts
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_{jrr,p} = \gamma \sum_{j=1}^{J} (\boldsymbol{\mathbf{\beta}}_{jp} - \boldsymbol{\mathbf{\beta}}_{0p})^2
 \end{align}\]</span></p>
-<p>The imputation variance is estimated according to <span class="citation">Rubin (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-rubin">1987</a>)</span>:
+<p>The imputation variance is estimated according to <span class="citation">Rubin (<a href="references.html#ref-rubin">1987</a>)</span>:
 <span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_{imp} = \frac{m+1}{m(m-1)} \sum_{p=1}^m (\boldsymbol{\mathbf{\beta}}_p - \boldsymbol{\mathbf{\beta}})^2
 \end{align}\]</span>
@@ -389,7 +389,7 @@ where <span class="math inline">\(\beta_l\)</span> and <span class="math inline"
 <h3>
 <span class="header-section-number">11.2.8</span> Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method<a class="anchor" aria-label="anchor" href="#estimation-of-standard-errors-of-weighted-means-when-plausible-values-are-not-present-using-the-taylor-series-method"><i class="fas fa-link"></i></a>
 </h3>
-<p>When the predicted value does not have plausible values and the requested variance method is the Taylor series, the variance of the coefficients (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{T}\)</span>) is estimated as<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is a slight generalization of &lt;span class="citation"&gt;(&lt;a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-binder"&gt;Binder, 1983&lt;/a&gt;)&lt;/span&gt; to the weighted case, which is derived in more detail and with notation more closely aligned to Binder in the AM manual &lt;span class="citation"&gt;(&lt;a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-cohen02"&gt;American Institutes for Research and Jon Cohen, n.d.&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;'><sup>13</sup></a>.</p>
+<p>When the predicted value does not have plausible values and the requested variance method is the Taylor series, the variance of the coefficients (<span class="math inline">\(\boldsymbol{\mathbf{V}}_{T}\)</span>) is estimated as<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is a slight generalization of &lt;span class="citation"&gt;(&lt;a href="references.html#ref-binder"&gt;Binder, 1983&lt;/a&gt;)&lt;/span&gt; to the weighted case, which is derived in more detail and with notation more closely aligned to Binder in the AM manual &lt;span class="citation"&gt;(&lt;a href="references.html#ref-cohen02"&gt;American Institutes for Research and Jon Cohen, n.d.&lt;/a&gt;)&lt;/span&gt;&lt;/p&gt;'><sup>13</sup></a>.</p>
 <p><span class="math display">\[\begin{align}
 \boldsymbol{\mathbf{V}}_{T}=\boldsymbol{\mathbf{V}}_{Taylor,0}(\boldsymbol{\mathbf{\beta}}) = \boldsymbol{\mathbf{D}}^T \boldsymbol{\mathbf{Z D}}
 \end{align}\]</span>
@@ -532,7 +532,7 @@ V_{imp,f}=\frac{m+1}{m(m-1)}\sum_{p=1}^m \left( \frac{\sum_{i \in \mathcal{A}_p}
   -\boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD}} &amp; \boldsymbol{\mathbf{1}}^T \boldsymbol{\mathbf{DZD 1}}
 \end{bmatrix}
 \end{align}\]</span>
-where the block matrix has elements <span class="math inline">\(DZD \in \mathbb{R}^{(c-1) \times (c-1)}\)</span>; the <span class="math inline">\(c\)</span>th row and column are then products of <span class="math inline">\(DZD\)</span> and the vector <span class="math inline">\(\boldsymbol{\mathbf{1}} \in \mathbb{R}^{c-1}\)</span> has a one in every element; the definition of <span class="math inline">\(\boldsymbol{\mathbf{D}}\)</span> is the inverse of a matrix of derivatives of a score vector taken with respect to <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>; and <span class="math inline">\(Z\)</span> is a variance estimate of the proportions based on the sample survey. This calculation is based on results derived here, following <span class="citation">Binder (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-binder">1983</a>)</span>.</p>
+where the block matrix has elements <span class="math inline">\(DZD \in \mathbb{R}^{(c-1) \times (c-1)}\)</span>; the <span class="math inline">\(c\)</span>th row and column are then products of <span class="math inline">\(DZD\)</span> and the vector <span class="math inline">\(\boldsymbol{\mathbf{1}} \in \mathbb{R}^{c-1}\)</span> has a one in every element; the definition of <span class="math inline">\(\boldsymbol{\mathbf{D}}\)</span> is the inverse of a matrix of derivatives of a score vector taken with respect to <span class="math inline">\(\boldsymbol{\mathbf{\pi}}\)</span>; and <span class="math inline">\(Z\)</span> is a variance estimate of the proportions based on the sample survey. This calculation is based on results derived here, following <span class="citation">Binder (<a href="references.html#ref-binder">1983</a>)</span>.</p>
 <p>The score function in question is
 <span class="math display">\[\begin{align}
 S(\pi_h) = \left( \sum_{i=1}^{n} w_i {\rm 1\kern -2.85 pxI}({\rm unit\ }i{\rm \ is\ in\ class\ }h) \right) - \left(  \sum_{i=1}^{n}  \pi_h w_i \right)
@@ -580,12 +580,12 @@ where <span class="math inline">\(\boldsymbol{\mathbf{e}}_{skl}\)</span> is a ve
 <h3>
 <span class="header-section-number">11.4.1</span> Estimation of Degrees of Freedom, Using the Jackknife<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-using-the-jackknife"><i class="fas fa-link"></i></a>
 </h3>
-<p>When the jackknife estimator is used, the Welch-Satterthwaite (WS) degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>) is <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Satterthwaite">Satterthwaite, 1946</a>; <a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Welch">Welch, 1947</a>)</span>
+<p>When the jackknife estimator is used, the Welch-Satterthwaite (WS) degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>) is <span class="citation">(<a href="references.html#ref-Satterthwaite">Satterthwaite, 1946</a>; <a href="references.html#ref-Welch">Welch, 1947</a>)</span>
 <span class="math display">\[\begin{align}
 dof_{WS} = \frac{1}{m^*} \sum_{p=1}^{m^*} \frac{ \left[ \sum_{j=1}^{J} \left[ (A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^2 \right]^2 }{ \sum_{j=1}^{J}  \left[(A_{jp} - A_{0p}) - (B_{jp} - B_{0p}) \right]^4  }
 \end{align}\]</span>
 where <span class="math inline">\(A_{jp}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the <span class="math inline">\(j\)</span>th jackknife replicate value and the <span class="math inline">\(p\)</span>th plausible value, and <span class="math inline">\(A_{0p}\)</span> is the estimate of <span class="math inline">\(A\)</span> using the full sample weights and the <span class="math inline">\(p\)</span>th plausible value. The same is true for the <span class="math inline">\(B\)</span> subscripts. For a regression coefficient, <span class="math inline">\((A_{jp} - A_{0p}) - (B_{jp} - B_{0p})\)</span> is replaced by the <span class="math inline">\(j\)</span>th deviate from the full sample weight coefficient <span class="math inline">\(\beta_{jp} - \beta_{0p}\)</span>.</p>
-<p>The <span class="citation">Johnson &amp; Rust (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-Johnson">1992</a>)</span> corrected degrees of freedom (<span class="math inline">\(dof_{JR}\)</span>) is</p>
+<p>The <span class="citation">Johnson &amp; Rust (<a href="references.html#ref-Johnson">1992</a>)</span> corrected degrees of freedom (<span class="math inline">\(dof_{JR}\)</span>) is</p>
 <p><span class="math display">\[\begin{align}
 dof_{JR} = \left(3.16 - \frac{2.77}{\sqrt{J}} \right) dof_{WS}
 \end{align}\]</span></p>
@@ -595,7 +595,7 @@ dof_{JR} = \left(3.16 - \frac{2.77}{\sqrt{J}} \right) dof_{WS}
 <span class="header-section-number">11.4.2</span> Estimation of Degrees of Freedom, Using the Taylor Series<a class="anchor" aria-label="anchor" href="#estimation-of-degrees-of-freedom-using-the-taylor-series"><i class="fas fa-link"></i></a>
 </h3>
 <p>For the Taylor series estimator, the degrees of freedom estimator also uses the WS degrees of freedom estimate (<span class="math inline">\(dof_{WS}\)</span>). However, because the jackknife replicate estimates are not available, a different equation is used. The WS weights require an estimate of the degrees of freedom per group; when using the jackknife variance estimator, this was estimated using the jackknife replicate weights. For the Taylor series, this is estimated per stratum.</p>
-<p>Following <span class="citation">Binder (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-binder">1983</a>)</span> and <span class="citation">American Institutes for Research and Jon Cohen (<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-cohen02">n.d.</a>)</span>, the contribution <span class="math inline">\(c_s\)</span> to the degrees of freedom from stratum <span class="math inline">\(s\)</span> is defined as <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> from the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method”:
+<p>Following <span class="citation">Binder (<a href="references.html#ref-binder">1983</a>)</span> and <span class="citation">American Institutes for Research and Jon Cohen (<a href="references.html#ref-cohen02">n.d.</a>)</span>, the contribution <span class="math inline">\(c_s\)</span> to the degrees of freedom from stratum <span class="math inline">\(s\)</span> is defined as <span class="math inline">\(\boldsymbol{\mathbf{z}}_{uj}\)</span> from the section “Estimation of Standard Errors of Weighted Means When Plausible Values Are Not Present, Using the Taylor Series Method”:
 <span class="math display">\[\begin{align}
 c_s = w_s \frac{n_s}{n_s-1} \sum_{u=1}^{n_s} \boldsymbol{\mathbf{z}}_{uj} \boldsymbol{\mathbf{z}}_{uj}^T
 \end{align}\]</span>
@@ -725,7 +725,7 @@ The variance is the diagonal of the covariance matrix.</p>
 <p>The Wald test statistic for multiple parameters is equal to</p>
 <p><span class="math display">\[ W =(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{\beta}}} - \boldsymbol{\mathbf{r}})'(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{V}}}\boldsymbol{\mathbf{R}}')^{-1}(\boldsymbol{\mathbf{R}}\hat{\boldsymbol{\mathbf{\beta}}} - \boldsymbol{\mathbf{r}}) \]</span></p>
 <p>where <span class="math inline">\(\boldsymbol{\mathbf{R}}\)</span> and <span class="math inline">\(\boldsymbol{\mathbf{r}}\)</span> are a matrix and vector, respectively, used to specify a null hypothesis, and <span class="math inline">\(\hat{\boldsymbol{\mathbf{V}}}\)</span> is the variance estimator for <span class="math inline">\(\hat{\boldsymbol{\mathbf{\beta}}}\)</span>.</p>
-<p>The resulting test statistic can be tested against a chi-square distribution or an F-distribution. The chi-square distribution is preferable to the F-distribution when the number of degrees of freedom is large, whereas the F-test is preferable when the number of degrees of freedom is small <span class="citation">(<a href="note-this-section-will-be-merged-into-the-main-dire-section.html#ref-korng">Korn &amp; Graubard, 1990</a>)</span>.</p>
+<p>The resulting test statistic can be tested against a chi-square distribution or an F-distribution. The chi-square distribution is preferable to the F-distribution when the number of degrees of freedom is large, whereas the F-test is preferable when the number of degrees of freedom is small <span class="citation">(<a href="references.html#ref-korng">Korn &amp; Graubard, 1990</a>)</span>.</p>
 <p>For the chi-square test, the degrees of freedom value is equal to the number of parameters being tested, and the test statistic is the unadjusted value of <span class="math inline">\(W\)</span>:</p>
 <p><span class="math display">\[ W \sim \chi^2(p) \]</span></p>
 <p>For the F-test, two scenarios dictate the use of two different adjustments for the test statistics, along with two different values for the denominator degrees of freedom.</p>
@@ -803,7 +803,7 @@ The variance is the diagonal of the covariance matrix.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Dire</strong>" was written by EdSurvey Team. It was last built on 2023-09-28.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-08-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
