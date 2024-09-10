@@ -683,16 +683,16 @@ mathGap
 #>      B dsex == "Female"     17606  8429
 #> 
 #> Percentage:
-#>      pctA    pctAse     pctB    pctBse    diffAB      covAB
-#>  50.27015 0.5016796 49.72985 0.5016796 0.5402935 -0.2516824
-#>  diffABse diffABpValue    dofAB
-#>  1.003359    0.5924778 53.45667
+#>      pctA  pctAse  pctB  pctBse  diffAB    covAB diffABse
+#>  50.27015 0.50168 49.73 0.50168 0.54029 -0.25168   1.0034
+#>  diffABpValue  dofAB
+#>        0.5925 53.457
 #> 
 #> Results:
-#>  estimateA estimateAse estimateB estimateBse   diffAB
-#>   276.7235   0.8207151  275.0458   0.9402535 1.677756
-#>      covAB  diffABse diffABpValue    dofAB
-#>  0.5676583 0.6498719   0.01259479 53.70969
+#>  estimateA estimateAse estimateB estimateBse diffAB   covAB
+#>   276.7235     0.82071    275.05     0.94025 1.6778 0.56766
+#>  diffABse diffABpValue dofAB
+#>   0.64987      0.01259 53.71
 ```
 
 

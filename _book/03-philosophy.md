@@ -86,12 +86,7 @@ library(EdSurvey)
 #> lfactors v1.0.4
 #> Loading required package: Dire
 #> Dire v2.2.0
-#> EdSurvey v4.0.4
-#> 
-#> Attaching package: 'EdSurvey'
-#> The following objects are masked from 'package:base':
-#> 
-#>     cbind, rbind
+#> EdSurvey v4.0.7
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
 

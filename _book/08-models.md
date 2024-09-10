@@ -471,9 +471,29 @@ sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I', 'Algebra II'), 1, 0)
 logit2 <- logit.sdf(formula = AlgebraClass ~ algebra,
                     weightVar = 'origwt', data = sdf)
 summary(object = logit2)
+#> 
+#> Formula: AlgebraClass ~ algebra
+#> Family: binomial (logit)
+#> 
+#> Weight variable: 'origwt'
+#> Variance method: jackknife
+#> JK replicates: 62
+#> full data n: 17606
+#> n used: 16915
+#> 
+#> Coefficients:
+#>                   coef         se          t    dof
+#> (Intercept) -2.8117300  0.7808744 -3.6007455 24.109
+#> algebra     -0.0015316  0.0028963 -0.5288174 20.236
+#>             Pr(>|t|)   
+#> (Intercept) 0.001428 **
+#> algebra     0.602685   
+#> ---
+#> Signif. codes:  
+#> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-Changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).
+According to the logistic regression results, changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).
 
 ##  Quantile Regression Analysis with `rq.sdf`
 The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.

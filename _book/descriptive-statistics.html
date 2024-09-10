@@ -544,7 +544,7 @@
 <span><span class="va">cor_polychoric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"b017451"</span>, y <span class="op">=</span> <span class="st">"pared"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, </span>
 <span>                    method <span class="op">=</span> <span class="st">"Polychoric"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson</span><span class="op">$</span><span class="va">correlation</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson</span><span class="op">$</span><span class="va">correlation</span>,</span>
 <span>                    Spearman <span class="op">=</span> <span class="va">cor_spearman</span><span class="op">$</span><span class="va">correlation</span>,</span>
 <span>                    Polychoric <span class="op">=</span> <span class="va">cor_polychoric</span><span class="op">$</span><span class="va">correlation</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            Correlation</span></span>
@@ -561,7 +561,7 @@
 <span><span class="va">cor_polyserial2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/cor.sdf.html">cor.sdf</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"composite"</span>, y <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf_dnf</span>, </span>
 <span>                    method <span class="op">=</span> <span class="st">"Polyserial"</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson2</span><span class="op">$</span><span class="va">correlation</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>Correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Pearson <span class="op">=</span> <span class="va">cor_pearson2</span><span class="op">$</span><span class="va">correlation</span>,</span>
 <span>                      Spearman <span class="op">=</span> <span class="va">cor_spearman2</span><span class="op">$</span><span class="va">correlation</span>,</span>
 <span>                      Polyserial <span class="op">=</span> <span class="va">cor_polyserial2</span><span class="op">$</span><span class="va">correlation</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            Correlation</span></span>
@@ -698,16 +698,16 @@
 <span><span class="co">#&gt;      B dsex == "Female"     17606  8429</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Percentage:</span></span>
-<span><span class="co">#&gt;      pctA    pctAse     pctB    pctBse    diffAB      covAB</span></span>
-<span><span class="co">#&gt;  50.27015 0.5016796 49.72985 0.5016796 0.5402935 -0.2516824</span></span>
-<span><span class="co">#&gt;  diffABse diffABpValue    dofAB</span></span>
-<span><span class="co">#&gt;  1.003359    0.5924778 53.45667</span></span>
+<span><span class="co">#&gt;      pctA  pctAse  pctB  pctBse  diffAB    covAB diffABse</span></span>
+<span><span class="co">#&gt;  50.27015 0.50168 49.73 0.50168 0.54029 -0.25168   1.0034</span></span>
+<span><span class="co">#&gt;  diffABpValue  dofAB</span></span>
+<span><span class="co">#&gt;        0.5925 53.457</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Results:</span></span>
-<span><span class="co">#&gt;  estimateA estimateAse estimateB estimateBse   diffAB</span></span>
-<span><span class="co">#&gt;   276.7235   0.8207151  275.0458   0.9402535 1.677756</span></span>
-<span><span class="co">#&gt;      covAB  diffABse diffABpValue    dofAB</span></span>
-<span><span class="co">#&gt;  0.5676583 0.6498719   0.01259479 53.70969</span></span></code></pre></div>
+<span><span class="co">#&gt;  estimateA estimateAse estimateB estimateBse diffAB   covAB</span></span>
+<span><span class="co">#&gt;   276.7235     0.82071    275.05     0.94025 1.6778 0.56766</span></span>
+<span><span class="co">#&gt;  diffABse diffABpValue dofAB</span></span>
+<span><span class="co">#&gt;   0.64987      0.01259 53.71</span></span></code></pre></div>
 <p>The gap output contains three blocks: labels, percentage, and results.</p>
 <ul>
 <li>The first block, labels, shows the definition of groups A and B, along with a reminder of the full data <em>n</em> count (<code>nFullData</code>) and the <em>n</em> count of the number of individuals who are in the two subgroups with valid scores (<code>nUsed</code>).</li>
@@ -996,7 +996,7 @@
 <span></span>
 <span><span class="va">fullResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">resultsList</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">fullResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/bind-methods.html">rbind</a></span><span class="op">(</span><span class="va">fullResults</span>, <span class="va">resultsList</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
+<span>  <span class="va">fullResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">fullResults</span>, <span class="va">resultsList</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">fullResults</span><span class="op">$</span><span class="va">levelA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"White"</span><span class="op">)</span></span>
 <span><span class="va">fullResults</span><span class="op">$</span><span class="va">levelB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Black"</span>, <span class="st">"Hispanic"</span>, <span class="st">"Asian/Pacific Island"</span>, <span class="st">"Amer Ind/Alaska Natv"</span>, <span class="st">"Other"</span><span class="op">)</span></span>
@@ -1093,7 +1093,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-08-28.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-09-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
