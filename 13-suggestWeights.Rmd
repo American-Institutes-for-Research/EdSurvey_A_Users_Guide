@@ -1,5 +1,10 @@
 # The EdSurvey `suggestWeights` Function
 
+Last edited: November 2023
+
+**Suggested Citation**<br></br>
+Huo, H. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 ## Introduction
 
 The `suggestWeights` function in `EdSurvey` allows you to specify the list of variables you intend to use in an analysis and suggests sample weights that may be appropriate for the analysis. Final weight variable selection, however, is up to the user and should be based on a detailed understanding of the available analytic weights. Currently, the `suggestWeights` function has been implemented for the Early Childhood Longitudinal Study, Kindergarten Class of 2010–11 (ECLS-K:2011), sponsored by the National Center for Education Statistics (NCES) within the Institute of Education Sciences of the U.S. Department of Education.

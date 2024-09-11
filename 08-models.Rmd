@@ -1,8 +1,13 @@
-# Models {#models}
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
 library(EdSurvey)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
+# Models {#models}
+
+Last edited: September 2024
+
+**Suggested Citation**<br></br>
+Liao, Y., Bailey, P., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ##  Regression Analysis With `lm.sdf`
 After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.

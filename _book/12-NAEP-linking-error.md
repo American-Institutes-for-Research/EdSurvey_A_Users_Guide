@@ -1,5 +1,10 @@
 # NAEP Linking Error {#linkingerror}
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Bailey, P. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 ## Introduction
 
 Students who take paper-based assessments (PBAs) and digitally based assessments (DBAs) may experience items in different ways---for example, an item may be more or less difficult in the DBA format than in the PBA format. To account for this, NCES drew two nationally representative samples and administered one as a PBA and the other as a DBA. Because the samples were both nationally representative, the overall mean can be assumed to be equivalent, and the two samples were linked under stochastic equivalence. However, this linking introduced additional variance, and linking error accounts for the additional variance, from the change in modes. The methodology assumes that the mode effect is the same for the entire sample and accounts for the variance introduced resulting from to the change in mode.
@@ -69,7 +74,6 @@ Students who took the DBA will have the variable `dbapba` set to `"DBA"`, and st
 Ideally, the imputation variance would be summed over all possible combinations of the 20 PBA and 20 DBA imputations, which is far more than can be reasonably calculated. To minimize computation time, only five permutations of the plausible values are chosen; these permutations are shown in Table 12.1, where the row number is the index of the DBA plausible values to use, and the cell value is the index of the PBA plausible values to use.
 
 
-
 Table: (\#tab:PERM)Permutation Table \label{tab:PERM}
 
 | Row| Col. 1| Col. 2| Col. 3| Col. 4| Col. 5|
@@ -94,8 +98,6 @@ Table: (\#tab:PERM)Permutation Table \label{tab:PERM}
 |  18|     18|      9|     16|      3|     20|
 |  19|     19|      8|     14|      5|     16|
 |  20|     20|     10|      1|     17|      4|
-
-
 
 The data already have the plausible values used for estimation on it but need the imputation variance and sampling variance plausible values added.
 

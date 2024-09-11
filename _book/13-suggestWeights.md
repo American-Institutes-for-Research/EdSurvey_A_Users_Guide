@@ -1,5 +1,10 @@
 # The EdSurvey `suggestWeights` Function
 
+Last edited: November 2023
+
+**Suggested Citation**<br></br>
+Huo, H. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 ## Introduction
 
 The `suggestWeights` function in `EdSurvey` allows you to specify the list of variables you intend to use in an analysis and suggests sample weights that may be appropriate for the analysis. Final weight variable selection, however, is up to the user and should be based on a detailed understanding of the available analytic weights. Currently, the `suggestWeights` function has been implemented for the Early Childhood Longitudinal Study, Kindergarten Class of 2010–11 (ECLS-K:2011), sponsored by the National Center for Education Statistics (NCES) within the Institute of Education Sciences of the U.S. Department of Education.
@@ -33,7 +38,8 @@ The following example demonstrates an analysis using child assessment data from 
 
 
 ```r
-suggestWeights(varnames = c("x7mscalk5", "x8mscalk5", "x9mscalk5"), eclsk11)
+suggestWeights(varnames = c("x7mscalk5", "x8mscalk5", "x9mscalk5"),
+    eclsk11)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> [1] "w9c790"
@@ -45,7 +51,9 @@ To print out additional information on weight suggestion, such as the number of 
 
 
 ```r
-suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, verbose=TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5",
+    "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"),
+    eclsk11, verbose = TRUE)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> The following weight is suggested: 
@@ -75,7 +83,9 @@ Often, there are trade-offs for using one weight versus another among the possib
 
 
 ```r
-suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5", "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"), eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
+suggestWeights(varnames = c("x1mscalk5", "x2mscalk5", "x3mscalk5",
+    "x4mscalk5", "x5mscalk5", "x6mscalk5", "x7mscalk5", "x8mscalk5"),
+    eclsk11, showAllWeightSuggestions = TRUE, verbose = TRUE)
 #> Based on your specification, below is/are the suggested weight(s). But please double
 #>           check the manual to be sure to use the best weight for your analysis.
 #> The following weights are suggested: 

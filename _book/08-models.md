@@ -1,5 +1,10 @@
+
 # Models {#models}
 
+Last edited: September 2024
+
+**Suggested Citation**<br></br>
+Liao, Y., Bailey, P., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ##  Regression Analysis With `lm.sdf`
 After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.
@@ -145,7 +150,6 @@ lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
 summary(object = lm1)$coefmat
 ```
 
-
 Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 
 |                          |      coef|      se|         t|      dof| Pr(>&#124;t&#124;)|
@@ -158,8 +162,6 @@ Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 |b003601Graduated H.S.     |   2.89789| 1.65445|   1.75157| 44.98221|            0.08666|
 |b003601Some ed after H.S. |   9.15489| 1.85547|   4.93399| 25.78984|            0.00004|
 |b003601I Don't Know       |  -4.12084| 1.52672|  -2.69914| 37.56060|            0.01036|
-
-
 
 The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
 
@@ -188,7 +190,6 @@ p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 ```
 We can compare all the values in a single table in \ref{tab:allp}
 
-
 Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab:allp}
 
 |                          |      raw|       BH| Bonferroni|
@@ -196,8 +197,6 @@ Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab
 |b003601Graduated H.S.     | 0.086663| 0.086663|   0.259990|
 |b003601Some ed after H.S. | 0.000041| 0.000122|   0.000122|
 |b003601I Don't Know       | 0.010360| 0.015540|   0.031080|
-
-
 The coefficients matrix also can be overwritten by selecting the same vector in the `lm1` linear regression object, updated here the Bonferroni p-values:
 
 
@@ -207,7 +206,6 @@ summary(object = lm1)$coefmat[6:8, ]
 ```
 
 
-
 Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustment to the b003501 variable  \label{tab:Coefficients with Bonferroni}
 
 |                          |     coef|      se|        t|      dof| Pr(>&#124;t&#124;)|
@@ -215,8 +213,6 @@ Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustm
 |b003601Graduated H.S.     |  2.89789| 1.65445|  1.75157| 44.98221|            0.25999|
 |b003601Some ed after H.S. |  9.15489| 1.85547|  4.93399| 25.78984|            0.00012|
 |b003601I Don't Know       | -4.12084| 1.52672| -2.69914| 37.56060|            0.03108|
-
-
 
 ### Adjusting *p*-Values From Multiple Sources
 Sometimes several values must be adjusted at once. In these cases, the `p.adjust` function must be called with all the *p*-values the researcher wishes to adjust together.
@@ -262,7 +258,6 @@ colnames(pvalues)[3] <- "Pr(>|t|)"
 pvalues
 ```
 
-
 Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 
 |source |coef                      | Pr(>&#124;t&#124;)|
@@ -275,8 +270,6 @@ Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 |lm2b   |b003501I Don't Know       |          0.0013006|
 |otherp |                          |          0.0200000|
 
-
-
 Now that the aforementioned *p*-values are included in the same vector, they are adjusted via `p.adjust` using the Benjamini and Hochberg method:
 
 
@@ -284,7 +277,6 @@ Now that the aforementioned *p*-values are included in the same vector, they are
 pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
 pvalues
 ```
-
 
 Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 
@@ -297,8 +289,6 @@ Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 |lm2b   |b003501Some ed after H.S. |          0.0000000|                   0.0000000|
 |lm2b   |b003501I Don't Know       |          0.0013006|                   0.0018208|
 |otherp |                          |          0.0200000|                   0.0233333|
-
-
 
 *NOTE:* The `EdSurvey` package produces *p*-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.  
 

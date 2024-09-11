@@ -2,6 +2,11 @@
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Lee, M. & Bailey, P. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 `EdSurvey` gives users functions to efficiently analyze education survey data. As mentioned in [Chapter 3](#philosophyOfAnalysis), `EdSurvey` is flexible when conducting data manipulation and preparing for survey analysis. It allows for rudimentary data manipulation and analysis with both `EdSurvey` and base R functions to edit data before processing. Also, by calling the function `getData()`, one can extract a `light.edsurvey.data.frame` to manipulate similarly as other `data.frame` objects in other R packages. This concept is further detailed in [Chapter 9](#analysisOutsideEdSurvey)analysisOutsideEdSurvey).
 
 ## Subsetting the Data
@@ -19,15 +24,12 @@ es1 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 es1
 ```
 
-
 Table: (\#tab:table601)Subsetting Data \label{tab:subsettingData}
 
 |dsex |sdracem  |    N|    WTD_N|      PCT|  SE(PCT)|     MEAN|  SE(MEAN)|
 |:----|:--------|----:|--------:|--------:|--------:|--------:|---------:|
 |Male |White    | 5160| 5035.169| 76.11329| 1.625174| 287.6603| 0.8995013|
 |Male |Hispanic | 1244| 1580.192| 23.88671| 1.625174| 260.8268| 1.5822251|
-
-
 
 
 ## Recoding Variable Names and Levels Using `recode.sdf` and `rename.sdf`
@@ -143,7 +145,6 @@ es2 <- edsurveyTable(formula = composite ~ dsex + b017451,
 ```
 
 
-
 Table: (\#tab:table602)Using EdSurvey Functions on a light.edsurvey.data.frame \label{tab:lsdf}
 
 |dsex   |b017451              |    N|    WTD_N|      PCT|   SE(PCT)|     MEAN| SE(MEAN)|
@@ -158,8 +159,6 @@ Table: (\#tab:table602)Using EdSurvey Functions on a light.edsurvey.data.frame \
 |Female |About once a week    | 1379| 1450.724| 18.57084| 0.5789385| 279.3023| 1.660139|
 |Female |2 or 3 times a week  | 1697| 1737.825| 22.24604| 0.5070853| 282.8398| 1.459509|
 |Female |Every day            | 1686| 1742.940| 22.31153| 0.6531813| 275.7997| 1.321104|
-
-
 
 ### `lm.sdf`
 To generate a linear model using a `light.edsurvey.data.frame`, the included arguments from the previous example, as well as the weight `origwt`, are passed through the `lm.sdf` function:[^qlmsdf]

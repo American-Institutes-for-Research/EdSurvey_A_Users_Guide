@@ -2,6 +2,11 @@
 
 # Statistical Methods Used in `EdSurvey` {#methods}
 
+Last edited: June 2024
+
+**Suggested Citation**<br></br>
+Bailey, P., Cohen, M., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 ## Introduction
 
 This chapter describes estimation procedures for `EdSurvey`. It includes the estimation of means (including regression analysis), percentages, and their degrees of freedom; the estimation of weighted mixed models with plausible values; the multivariate regression method; and the Wald test. The estimation of correlation coefficients appears in a vignette in the `wCorr` package.^[See `vignette("wCorrFormulas",package="wCorr")`]

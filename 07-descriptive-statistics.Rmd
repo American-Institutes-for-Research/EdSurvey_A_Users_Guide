@@ -5,6 +5,11 @@ sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NA
 
 # Descriptive Statistics
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Buehler, E. & Zhang, T. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 ## Computing the Percentages of Students With `achievementLevels`
 
 The `achievementLevels` function computes the percentages of students' achievement levels or benchmarks defined by an assessment, including NAEP, TIMSS, and PISA. Take NAEP as an example: Each NAEP dataset's unique set of cut points for achievement levels (defined as *Basic, Proficient,* and *Advanced*) is in `EdSurvey`. Analysts can access these cut points using the `showCutPoints` function:

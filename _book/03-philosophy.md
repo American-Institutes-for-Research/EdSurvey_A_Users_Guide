@@ -1,5 +1,10 @@
 # Philosophy of Analysis {#philosophyOfAnalysis}
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Lee, M. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 This chapter explains the main use cases for `EdSurvey`. To facilitate the learning process, we recommend the workflow detailed in the following infographic:
 
 <img src="images/edsurveyWorkflow.png" width="70%" style="display: block; margin: auto;" />
@@ -473,15 +478,12 @@ es2 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 es2
 ```
 
-
 Table: (\#tab:table301)Summary Table Subset \label{tab:summaryTableSubset}
 
 |dsex |sdracem  |    N|    WTD_N|      PCT|  SE(PCT)|     MEAN|  SE(MEAN)|
 |:----|:--------|----:|--------:|--------:|--------:|--------:|---------:|
 |Male |White    | 5160| 5035.169| 76.11329| 1.625174| 287.6603| 0.8995013|
 |Male |Hispanic | 1244| 1580.192| 23.88671| 1.625174| 260.8268| 1.5822251|
-
-
 
 ### Explore Variable Distributions With `summary2`
 

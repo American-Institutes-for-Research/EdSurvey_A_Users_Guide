@@ -2,6 +2,11 @@
 
 # Longitudinal Datasets
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Lee, M. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 Data from large-scale educational assessment programs require special statistical methods for analysis. Because of their scope and complexity, `EdSurvey` gives users functions to perform analyses that account for complex sample survey designs. This chapter provides some analysis guidelines and tips that apply to most NCES longitudinal data, using the Early Childhood Longitudinal Study, Kindergarten Class of 2010--11 (ECLS-K:2011) as the example data. 
 
 ## Using `EdSurvey` to Access ECLS-K:2011 Data for Analysis
@@ -101,11 +106,9 @@ In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate 
 </tbody>
 </table>
 
-
 ```{=html}
 <a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a>
 ```
-
 
 The method for recoding these values appears later in this chapter in _Recoding Variables in a Dataset_ in the **Retrieving Data for Further Manipulation With getData** section of this chapter. 
 
@@ -457,8 +460,6 @@ This `edsurveyTable` is saved as the object `es1`, and the resulting table can b
 </tbody>
 </table>
 
-
-
 Given that the previous analysis uses parent data from Round 9, the weight variable `"w9c29p_9a0"` also might be appropriate. Both `"w9c29p_9t90"`  and `"w9c29p_9a0"` could be used for this analysis, although both include nonresponse adjustments for additional data components or rounds of data collection than those of interest in the current analysis. Therefore, analysts need to determine which weight they prefer to use because there is no weight that adjusts for nonresponse for only the sources used in this analysis. Successive analyses in this chapter that mix Round 9 child and parent variables might substitute the selected weight chosen. Note the slight differences in `*n* used` and results. Consult the *4.3.1 Types of Sample Weights* section of the [*ECLS-K:2011 Kindergarten--Fifth Grade User's Manual, Public Version*](https://nces.ed.gov/pubs2019/2019051.pdf) for additional guidance on choosing the most appropriate sample weight for an analysis.
 
 
@@ -570,8 +571,6 @@ es1p <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 </tbody>
 </table>
 
-
-
 The function also features variance estimation by setting the `varMethod` argument.[^helplmsdf] As shown in the previous example, the default `varMethod = "jackknife"` indicates that the call used the jackknife method for variance estimation. By setting `varMethod = "Taylor"`, the same `edsurveyTable` call in the previous example can return results using Taylor series variance estimation:
 
 
@@ -679,8 +678,6 @@ es1t <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 </tbody>
 </table>
 
-
-
 [^helplmsdf]: See the documentation for `lm.sdf` for details on the variance calculation.
 
 If the percentages do not add up to 100 at the desired level, adjust the `pctAggregationLevel` argument to change the aggregation level. By default, `pctAggregationLevel = 1`, indicating that the formula will be aggregated at each level of the first variable in the call; in our previous example, this is `x_chsex_r`. Setting `pctAggregationLevel = 0` aggregates at each level of each variable in the call.
@@ -780,7 +777,5 @@ In this `edsurveyTable`, the resulting table can be displayed by printing the ob
   </tr>
 </tbody>
 </table>
-
-
 
 For more details on the arguments in the `edsurveyTable` function, look at the examples using `?edsurveyTable`.
