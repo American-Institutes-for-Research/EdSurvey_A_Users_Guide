@@ -8,7 +8,7 @@ sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NA
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 
-`EdSurvey` gives users functions to efficiently analyze education survey data. As mentioned in [Chapter 3](#philosophyOfAnalysis), `EdSurvey` is flexible when conducting data manipulation and preparing for survey analysis. It allows for rudimentary data manipulation and analysis with both `EdSurvey` and base R functions to edit data before processing. Also, by calling the function `getData()`, one can extract a `light.edsurvey.data.frame` to manipulate similarly as other `data.frame` objects in other R packages. This concept is further detailed in [Chapter 9](#analysisOutsideEdSurvey)analysisOutsideEdSurvey).
+`EdSurvey` gives users functions to efficiently analyze large scale education data. As mentioned in [Chapter 3](#philosophyOfAnalysis), `EdSurvey` is flexible when conducting data manipulation and preparing for survey analysis. It allows for rudimentary data manipulation and analysis with both `EdSurvey` and base R functions to edit data before processing. Also, by calling the function `getData()`, one can extract a `light.edsurvey.data.frame` to manipulate similarly as other `data.frame` objects in other R packages. This concept is further detailed in [Chapter 9](#analysisOutsideEdSurvey)analysisOutsideEdSurvey).
 
 ## Subsetting the Data
 
