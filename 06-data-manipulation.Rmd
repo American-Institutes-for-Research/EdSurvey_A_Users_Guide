@@ -260,7 +260,7 @@ sdf %>%
 
 ## ggplot2 with `edsurvey.data.frame`
 
-We can use `ggplot2` independently or as part of a `dplyr` pipeline to visualize our `edsurvey.data.frame`. Using the previous example where we create a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.
+We can use `ggplot2` independently or as part of a `dplyr` pipeline to visualize our `edsurvey.data.frame`. Using the previous example where we created a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.
 
 ```{r tidyEdSurvey3, warning=FALSE, message=FALSE}
 sdf %>% 	
