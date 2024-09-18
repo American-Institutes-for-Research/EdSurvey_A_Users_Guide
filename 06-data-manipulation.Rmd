@@ -239,7 +239,7 @@ Anything that can be done with a standard `data.frame` object within `dplyr` and
 1. If the `select` verb is used on a weight variable (such as `origwt`), the default behavior will also return the jackknife replicate weights associated with that weight variable.
 2. Any verb used with a plausible value variable (such as `algebra`) will return all of the associated plausible value columns (a total of 5 columns, in the case of the NAEP primer).
 
-## dplyr
+## dplyr with `edsurvey.data.frame`
 
 All of the common `dplyr` verbs can be used with an `edsurvey.data.frame`, including: `select`, `group_by`, `filter`, `mutate`, `arrange`, and several more. We can consider an example where we filter to only female students, group by race, and get a count in each racial group.
 
@@ -258,7 +258,7 @@ sdf %>%
                   between(mrpcm1, 333, 1e4) ~ "Advanced"))
 ```
 
-## ggplot2
+## ggplot2 with `edsurvey.data.frame`
 
 We can use `ggplot2` independently or as part of a `dplyr` pipeline to visualize our `edsurvey.data.frame`. Using the previous example where we create a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.
 
