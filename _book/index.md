@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2024-09-11"
+date: "2024-10-01"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,16 +48,11 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**September 2024**
+**October 2024**
 
 Editors: <br></br>
 **Paul Bailey**, **Ting Zhang**<br></br>
 American Institutes for Research
-
-**Emmanuel Sikali**<br></br>
-Senior Research Scientist and Acting Chief Reporting and Dissemination Branch<br></br>
-U.S. DEPARTMENT OF EDUCATION
-
 
 Authors:<br></br>
 
@@ -92,6 +87,14 @@ This book is edited by Paul Bailey and Ting Zhang, the chapters have the followi
 _The content of this user’s guide was commissioned by the National Center for Education Statistics (NCES) and conducted by the American Institutes for Research (AIR) under Education Statistics Services Institute Network (ESSIN) Task Order 14: Assessment Division Support (Contract No. ED-IES-12-D-0002/0004). Task Order 14 supports NCES with expert advice and technical assistance on issues related to the National Assessment of Educational Progress (NAEP)._
 
 _The authors are responsible for the contents of this guide, which is still under development. If you have any feedback, corrections, or suggestions for improvements to subsequent versions, please contact us at [https://github.com/American-Institutes-for-Research/EdSurvey/issues](https://github.com/American-Institutes-for-Research/EdSurvey/issues). Mention of trade names, commercial products, or organizations does not imply endorsement by the U.S. Government._
+
+Contact at NCES<br></br>
+**Emmanuel Sikali**<br></br>
+Senior Research Scientist and Acting Chief Reporting and Dissemination Branch<br></br>
+National Center for Education Statistics<br></br>
+U.S. DEPARTMENT OF EDUCATION<br></br>
+emmanuel.sikali@ed.gov
+
 
 # Preface {.unnumbered}
 
@@ -576,4 +579,5 @@ summary2(data = Dnk2015, variable = "asbg10b", weightVar = NULL)
 Additional data exploration functions are in [Chapter 5](#understandingData).
 
 The previous examples give a brief introduction to `EdSurvey` commands, what they look like, and their purpose. Many more commands appear in the subsequent chapters. These commands were created based on questions, inquiries, suggestions, and surveys collected from more than 2 decades of training at NCES, AERA, and National Council for Measurement in Education and interacting with analysts of our data products. The researcher should pay particular attention to commands that are specific to some types of data and those that apply to any dataset. As users progress through this manual while analyzing their data, they must always remember that (a) they are in the R environment, (b) all the commands of R base are available to them at any given time, and (c) they have to ability to augment `EdSurvey` with tools from other packages in CRAN.
-At the end of this manual, Chapters 11 and 12   detail some of the mathematics used to create some of the functions in `EdSurvey`. This is done purposefully. The development team wants the user to be aware that even though this package makes many computations easily accessible, there are intensive computations and several methodologies that either existed or were developed that were implemented in this package. The entire `EdSurvey` package is not complete because it is still being developed. The team strongly encourages that anyone who has suggestions of methodology that could be added or that they have developed themselves as an add-on to [contact us]( https://github.com/American-Institutes-for-Research/EdSurvey) for possible implementation. The development team will not guarantee inclusion but will give any suggestions a fair assessment.
+
+At the end of this manual, Chapters 11 and 12 detail some of the mathematics used to create some of the functions in `EdSurvey`. This is done purposefully. The development team wants the user to be aware that even though this package makes many computations easily accessible, there are intensive computations and several methodologies that either existed or were developed that were implemented in this package. The entire `EdSurvey` package is not complete because it is still being developed. The team strongly encourages that anyone who has suggestions of methodology that could be added or that they have developed themselves as an add-on to [contact us]( https://github.com/American-Institutes-for-Research/EdSurvey) for possible implementation. The development team will not guarantee inclusion but will give any suggestions a fair assessment.

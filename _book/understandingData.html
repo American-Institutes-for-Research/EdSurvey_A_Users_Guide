@@ -1072,20 +1072,20 @@ Every day
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <p>The basic steps for using <code>ggplot2</code> are as follows. To learn more about how to use <code>ggplot2()</code>, visit its <a href="https://ggplot2.tidyverse.org/">official website</a>.</p>
 <ol style="list-style-type: decimal">
-<li>Start with a <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>.</li>
-<li>Supply a dataset and aesthetic mapping with <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.</li>
+<li>Start with a <code><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot()</a></code>.</li>
+<li>Supply a dataset and aesthetic mapping with <code><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes()</a></code>.</li>
 <li>Add layers comprising one or more of the following functions. We will address examples of the <em>talicized functions</em>.</li>
 </ol>
 <ul>
-<li>Geometries: <em><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code></em>, <em><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code></em>, <em><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code></em>
+<li>Geometries: <em><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar()</a></code></em>, <em><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram()</a></code></em>, <em><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot()</a></code></em>
 </li>
-<li>Scales: <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_date()</a></code>
+<li>Scales: <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_colour_brewer()</a></code>, <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">scale_x_date()</a></code>
 </li>
-<li>Facets: <em><code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code></em>, <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>
+<li>Facets: <em><code><a href="https://rdrr.io/pkg/ggplot2/man/facet_grid.html">facet_grid()</a></code></em>, <code><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap()</a></code>
 </li>
-<li>Statistical transformations: <em><code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code></em>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">stat_density()</a></code>
+<li>Statistical transformations: <em><code><a href="https://rdrr.io/pkg/ggplot2/man/stat_summary.html">stat_summary()</a></code></em>, <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">stat_density()</a></code>
 </li>
-<li>Coordinate systems: <em><code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code></em>, <code><a href="https://ggplot2.tidyverse.org/reference/coord_map.html">coord_map()</a></code>
+<li>Coordinate systems: <em><code><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip()</a></code></em>, <code><a href="https://rdrr.io/pkg/ggplot2/man/coord_map.html">coord_map()</a></code>
 </li>
 </ul>
 <p>In this chapter, you will find a “quick and dirty” approach (i.e., no application of weights; where applicable, only one set of plausible values is used) for EDA using <code>ggplot2</code> and <code>EdSurvey</code> functions. To learn more about conducting EDA on NCES data, read <a href="https://www.air.org/sites/default/files/EdSurvey-EDA.pdf"><em>Exploratory Data Analysis on NCES Data</em></a></p>
@@ -1094,27 +1094,27 @@ Every day
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'dsex'</span>, <span class="st">'sdracem'</span>, <span class="st">'b018201'</span>, <span class="st">'b017451'</span>,</span>
 <span>                                   <span class="st">'composite'</span>, <span class="st">'geometry'</span>, <span class="st">'origwt'</span><span class="op">)</span>,</span>
 <span>              addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable <code>b017451</code> in each category, with <code>fill = dsex</code> used to color portions of the selected <code>x</code> variable.</p>
+<p><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar()</a></code> uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable <code>b017451</code> in each category, with <code>fill = dsex</code> used to color portions of the selected <code>x</code> variable.</p>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">bar1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">b017451</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">dsex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 1"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">bar1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">b017451</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">dsex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 1"</span><span class="op">)</span></span>
 <span><span class="va">bar1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot1-1.png" width="1056"></div>
-<p><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> uses binning to visualize the distribution of continuous variables. Figure 2 is a basic histogram that uses the first plausible value of the composite, giving an unbiased (but unweighted) estimate of the frequencies in each bin.</p>
+<p><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram()</a></code> uses binning to visualize the distribution of continuous variables. Figure 2 is a basic histogram that uses the first plausible value of the composite, giving an unbiased (but unweighted) estimate of the frequencies in each bin.</p>
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">hist1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">hist1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2"</span><span class="op">)</span> </span>
 <span><span class="va">hist1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot2-1.png" width="1056"></div>
 <p>Figure 3 extends Figure 2, faceted on the categorical variable <code>dsex</code>, so that the output will be two histograms with common axes.</p>
 <div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">hist2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">dsex</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 3"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">hist2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">dsex</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 3"</span><span class="op">)</span> </span>
 <span><span class="va">hist2</span></span>
 <span><span class="co">#&gt; Warning: Combining variables of class &lt;lfactor&gt; and &lt;factor&gt; was</span></span>
 <span><span class="co">#&gt; deprecated in ggplot2 3.4.0.</span></span>
@@ -1124,19 +1124,19 @@ Every day
 <span><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where</span></span>
 <span><span class="co">#&gt; this warning was generated.</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot3-1.png" width="1056"></div>
-<p><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> shows the distribution of a single variable through quartiles. Figure 4 shows the distribution of the six levels of the <code>sdracem</code> variable by the first plausible value of the composite.</p>
+<p><code><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot()</a></code> shows the distribution of a single variable through quartiles. Figure 4 shows the distribution of the six levels of the <code>sdracem</code> variable by the first plausible value of the composite.</p>
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">box1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdracem</span>, y <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 4"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">box1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdracem</span>, y <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 4"</span><span class="op">)</span> </span>
 <span><span class="va">box1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot4-1.png" width="1056"></div>
-<p>Figure 5 extends Figure 4 by using <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code> to add another statistic on top: the mean of <code>mrpcm1</code> by <code>sdracem</code>, which is represented by the diamond-shaped symbol (<code>shape = 23</code>). Figure 5 also adds a coordinate flip via <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code>.</p>
+<p>Figure 5 extends Figure 4 by using <code><a href="https://rdrr.io/pkg/ggplot2/man/stat_summary.html">stat_summary()</a></code> to add another statistic on top: the mean of <code>mrpcm1</code> by <code>sdracem</code>, which is represented by the diamond-shaped symbol (<code>shape = 23</code>). Figure 5 also adds a coordinate flip via <code><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip()</a></code>.</p>
 <div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">box2</span> <span class="op">&lt;-</span> <span class="va">box1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun.y <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"point"</span>, shape <span class="op">=</span> <span class="fl">23</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 5"</span><span class="op">)</span> </span>
+<span><span class="va">box2</span> <span class="op">&lt;-</span> <span class="va">box1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun.y <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"point"</span>, shape <span class="op">=</span> <span class="fl">23</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 5"</span><span class="op">)</span> </span>
 <span><span class="va">box2</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot5-1.png" width="1056"></div>
 
@@ -1177,7 +1177,7 @@ Every day
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-09-11.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-10-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
