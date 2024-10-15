@@ -150,6 +150,8 @@ logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf
 recovering-odds-ratios
 wald-tests
 using-plausible-values-as-a-predictor
+using-plausible-values-as-a-predictor-for-generalized-linear-regression
+using-plausible-values-as-a-predictor-for-linear-regression
 quantile-regression-analysis-with-rq.sdf
 mixed-models-with-mixed.sdf
 analysisOutsideEdSurvey

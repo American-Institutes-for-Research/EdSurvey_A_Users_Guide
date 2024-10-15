@@ -1,7 +1,7 @@
 
 # Models {#models}
 
-Last edited: September 2024
+Last edited: October 2024
 
 **Suggested Citation**<br></br>
 Liao, Y., Bailey, P., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
@@ -150,6 +150,7 @@ lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
 summary(object = lm1)$coefmat
 ```
 
+
 Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 
 |                          |      coef|      se|         t|      dof| Pr(>&#124;t&#124;)|
@@ -162,6 +163,8 @@ Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 |b003601Graduated H.S.     |   2.89789| 1.65445|   1.75157| 44.98221|            0.08666|
 |b003601Some ed after H.S. |   9.15489| 1.85547|   4.93399| 25.78984|            0.00004|
 |b003601I Don't Know       |  -4.12084| 1.52672|  -2.69914| 37.56060|            0.01036|
+
+
 
 The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
 
@@ -190,6 +193,7 @@ p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 ```
 We can compare all the values in a single table in \ref{tab:allp}
 
+
 Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab:allp}
 
 |                          |      raw|       BH| Bonferroni|
@@ -197,6 +201,8 @@ Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab
 |b003601Graduated H.S.     | 0.086663| 0.086663|   0.259990|
 |b003601Some ed after H.S. | 0.000041| 0.000122|   0.000122|
 |b003601I Don't Know       | 0.010360| 0.015540|   0.031080|
+
+
 The coefficients matrix also can be overwritten by selecting the same vector in the `lm1` linear regression object, updated here the Bonferroni p-values:
 
 
@@ -206,6 +212,7 @@ summary(object = lm1)$coefmat[6:8, ]
 ```
 
 
+
 Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustment to the b003501 variable  \label{tab:Coefficients with Bonferroni}
 
 |                          |     coef|      se|        t|      dof| Pr(>&#124;t&#124;)|
@@ -213,6 +220,8 @@ Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustm
 |b003601Graduated H.S.     |  2.89789| 1.65445|  1.75157| 44.98221|            0.25999|
 |b003601Some ed after H.S. |  9.15489| 1.85547|  4.93399| 25.78984|            0.00012|
 |b003601I Don't Know       | -4.12084| 1.52672| -2.69914| 37.56060|            0.03108|
+
+
 
 ### Adjusting *p*-Values From Multiple Sources
 Sometimes several values must be adjusted at once. In these cases, the `p.adjust` function must be called with all the *p*-values the researcher wishes to adjust together.
@@ -258,6 +267,7 @@ colnames(pvalues)[3] <- "Pr(>|t|)"
 pvalues
 ```
 
+
 Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 
 |source |coef                      | Pr(>&#124;t&#124;)|
@@ -270,6 +280,8 @@ Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 |lm2b   |b003501I Don't Know       |          0.0013006|
 |otherp |                          |          0.0200000|
 
+
+
 Now that the aforementioned *p*-values are included in the same vector, they are adjusted via `p.adjust` using the Benjamini and Hochberg method:
 
 
@@ -277,6 +289,7 @@ Now that the aforementioned *p*-values are included in the same vector, they are
 pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
 pvalues
 ```
+
 
 Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 
@@ -289,6 +302,8 @@ Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 |lm2b   |b003501Some ed after H.S. |          0.0000000|                   0.0000000|
 |lm2b   |b003501I Don't Know       |          0.0013006|                   0.0018208|
 |otherp |                          |          0.0200000|                   0.0233333|
+
+
 
 *NOTE:* The `EdSurvey` package produces *p*-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.  
 
@@ -379,30 +394,46 @@ A logistic regression model can be fit to fully account for the complex sample d
 
 The following example demonstrates how to use `logit.sdf` to predict the number of books at home with student gender. The example arguments are generalizable to `glm.sdf` and `probit.sdf`. For more information about how to use the latter two functions, check their help files by calling `?glm.sdf` and `?probit.sdf`, respectively.
 
-In `logit.sdf`, although some variables might already be binary, the function `I()` will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level: 
+In `logit.sdf`, although some variables might already be binary, the other variables can be converted to a binary variable using `ifelse` function. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level prior to the analyses. While we used to recommend using `I()` for this transformation, we no longer do, as `ifelse` function provides a more intuitive way to handle binary outcomes and allowing it to compare the frequencies of the actual variable and the binary variable. The following code creates a binary variable (`b013801_100more`) and assigne a value of `1` for "more than 100 books at home" (`">100"`) and `0` to all other categories, including `Omitted` and `Multiple`. 
 
 
 ```r
-logit1 <- logit.sdf(formula = I(b013801 %in% ">100") ~ dsex,
+sdf$b013801_100more <- ifelse(sdf$b013801 %in% ">100", yes = 1, no = 0)
+table(sdf$b013801, sdf$b013801_100more)
+#>           
+#>               0    1
+#>   0-10     2024    0
+#>   11-25    3370    0
+#>   26-100   5850    0
+#>   >100        0 5115
+#>   Omitted   548    0
+#>   Multiple    8    0
+```
+
+After creating the binary variable, we can run the logistic regression by calling the `logit.sdf` function.
+
+
+```r
+logit1 <- logit.sdf(formula = b013801_100more ~ dsex,
                     weightVar = 'origwt', data = sdf)
 summary(object = logit1)
 #> 
-#> Formula: b013801 ~ dsex
+#> Formula: b013801_100more ~ dsex
 #> Family: binomial (logit)
 #> 
 #> Weight variable: 'origwt'
 #> Variance method: jackknife
 #> JK replicates: 62
 #> full data n: 17606
-#> n used: 16359
+#> n used: 16915
 #> 
 #> Coefficients:
 #>                   coef         se          t    dof
-#> (Intercept)  -0.920421   0.046355 -19.855835 60.636
-#> dsexFemale    0.178274   0.050129   3.556331 54.578
+#> (Intercept)  -0.937357   0.045582 -20.564023 60.193
+#> dsexFemale    0.183125   0.049674   3.686517 54.838
 #>              Pr(>|t|)    
 #> (Intercept) < 2.2e-16 ***
-#> dsexFemale  0.0007863 ***
+#> dsexFemale  0.0005226 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -421,8 +452,8 @@ In `EdSurvey`, odds ratios can be returned by specifying the logistic model obje
 ```r
 oddsRatio(model = logit1)
 #>                    OR      2.5%     97.5%
-#> (Intercept) 0.3983511 0.3630823 0.4370459
-#> dsexFemale  1.1951531 1.0809029 1.3214796
+#> (Intercept) 0.3916615 0.3575323 0.4290487
+#> dsexFemale  1.2009640 1.0871600 1.3266810
 ```
 
 The odds of having more than 100 books at home (versus less than or equal to 100 books) increases by `1.1951531` for female students compared with male students.
@@ -441,23 +472,75 @@ waldTest(model = logit1, coefficients = 2)
 #> dsexFemale = 0
 #> 
 #> Chi-square test:
-#> X2 = 12.6, df = 1, P(> X2) = 0.00038
+#> X2 = 13.6, df = 1, P(> X2) = 0.00023
 #> 
 #> F test:
-#> W = 12.6, df1 = 1, df2 = 62, P(> W) = 0.00073
+#> W = 13.6, df1 = 1, df2 = 62, P(> W) = 0.00048
 ```
 
 To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
 
 ### Using Plausible Values as a Predictor
 
-For some research questions the latent achievement variable can be used as the predictor. The `logit.sdf` function can perform analyses when the plausible values are right hand side of the equation. Please refer to chapter 11 for the statistical methodology. The following code is intended to answer this research question; how are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?  
+For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale, can be used as a predictor. This feature has been enabled for linear regression (`lm.sdf`) and generalized linear regression (`glm.sdf`, `logit.sdf`, and `probit.sdf`). Their methodology has been documented in Chapter11, Statistical Methodology. In this section we will show how to use this feature in linear and generalized linear regressions.
+
+
+#### Using Plausible Values as a Predictor for Generalized Linear Regression
+
+In this section, we will show examples using `logit.sdf`. For example, we now demonstrate the exploration and analysis for the research question, “How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?” In the `2005 NAEP Primer`, there is a “Math class taking now” variable that has the variable name `m815701` in the `sdf` object. It is useful to look at a raw frequency table to see the levels and their approximate prevalence, a call to table achieves this goal.
 
 
 ```r
+table(sdf$m815701)
+#> 
+#>             Geometry           Algebra II 
+#>                  588                  589 
+#> Algebra I (1-yr crs)  1st yr 2-yr Algeb I 
+#>                 4567                  471 
+#>  2nd yr 2-yr Algeb I  Int algeb,pre-algeb 
+#>                  254                 4406 
+#>  Basic,gen gr 8 math Integrat or seq math 
+#>                 4175                  277 
+#>     Other math class              Omitted 
+#>                  824                  659 
+#>             Multiple 
+#>                  105
+```
 
-sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I', 'Algebra II'), 1, 0)
+One way to run the analyses for the research question of interest is to create a new variable indicating that a student is taking "Algebra I (1-yr crs)", "1st yr 2-yr Algeb I", "2nd yr 2-yr Algeb I", and "Algebra II" or not. The following code uses the `ifelse` function to create a new variable called `AlgebraClass` in the `sdf` object, assigning a value of `1` if the `m815701` column contains any of Algebra I and II classes mentioned above, and `0` otherwise. Note that there are multiple categories of "Algebra I" and these are included in the following code.
 
+
+```r
+sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I (1-yr crs)', '1st yr 2-yr Algeb I', '2nd yr 2-yr Algeb I', 'Algebra II'), 1, 0)
+```
+
+The `ifelse` function converts multiple Algebra class categories to `1`, while coding all the other categories as `0`, including `Multiple` and `Omitted`. . The following code provides the frequencies of each category of the newly created `AlgebraClass` variable against the actual variable in the `NAEP 2005 Primer`.
+
+
+```r
+table(sdf$m815701,sdf$AlgebraClass,  useNA = "always")
+#>                       
+#>                           0    1 <NA>
+#>   Geometry              588    0    0
+#>   Algebra II              0  589    0
+#>   Algebra I (1-yr crs)    0 4567    0
+#>   1st yr 2-yr Algeb I     0  471    0
+#>   2nd yr 2-yr Algeb I     0  254    0
+#>   Int algeb,pre-algeb  4406    0    0
+#>   Basic,gen gr 8 math  4175    0    0
+#>   Integrat or seq math  277    0    0
+#>   Other math class      824    0    0
+#>   Omitted               659    0    0
+#>   Multiple              105    0    0
+#>   <NA>                    0    0    0
+```
+
+After creating the `AlgebraClass` variable, the `logit.sdf` function can be used to answer the research question: How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)? In this context, `AlgebraClass` is the outcome variable, and algebra achievement, represented by the algebra subscale in the `sdf` object, is the predictor. The `algebra` subscale includes multiple plausible values. The `logit.sdf` function runs the analyses for each plausible value, combines them according to Rubin’s rule (@rubin) on the backend, and provides the final results.  The `logit.sdf` function, like the `glm.sdf`, `probit.sdf,` and `lm.sdf` functions, also accepts other subscales and `composite` scales. You can use the `showPlausibleValues` function to find out the name of the subject scale and subscales in the `sdf` object.
+
+The following code demonstrates how to use plausible values as the predictor to answer the research question of interest. 
+
+
+```r
 logit2 <- logit.sdf(formula = AlgebraClass ~ algebra,
                     weightVar = 'origwt', data = sdf)
 summary(object = logit2)
@@ -472,18 +555,131 @@ summary(object = logit2)
 #> n used: 16915
 #> 
 #> Coefficients:
-#>                   coef         se          t    dof
-#> (Intercept) -2.8117300  0.7808744 -3.6007455 24.109
-#> algebra     -0.0015316  0.0028963 -0.5288174 20.236
-#>             Pr(>|t|)   
-#> (Intercept) 0.001428 **
-#> algebra     0.602685   
+#>                    coef          se           t    dof
+#> (Intercept)  -5.1635177   0.4050084 -12.7491616 48.046
+#> algebra       0.0164805   0.0013863  11.8882149 49.207
+#>              Pr(>|t|)    
+#> (Intercept) < 2.2e-16 ***
+#> algebra     4.441e-16 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+When running logistic regression, `EdSurvey` package, by default, uses listwise deletes special values including missing values, and `Multiple` and `Omitted`categories. To change the setting, set `dropOmittedLevels = FALSE`, or recode them to another category. In this case, the special values were converted to `0` with the `ifelse` function. As the `AlgebraClass` variable is already created as a binary variable,  by default the `logit.sdf` models the likelihood of its highest category (i.e., level 1: taking one of the algebra class). Additionally, because we created the `AlgebraClass` variable with a certain condition, i.e. `1` if taking one of the algebra classes and `0` not taking one of the algebra classes, the `0` condition contains `Multiple` and `Omitted` categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). As a conclusion, with each one-unit increase in the algebra score, the log odds of being in an Algebra class increase by `0.016481`.
 
-According to the logistic regression results, changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).
+#### Using Plausible Values as a Predictor for Linear Regression
+
+This section explains and provides examples of cases where the outcome variable is continuous and the predictor is a scale or subscale. The `lm.sdf` function can be used to perform these analyses. For example, `lm.sdf` can be applied to address the research question: “How does students’ performance in geometry relate their achievement in algebra?” Both algebra and geometry are mathematics subscales within the `sdf` object. The following call performs a linear regression analysis with the geometry subscale as the predictor:
+
+
+```r
+lm3 <- lm.sdf(formula = algebra ~ geometry, data = sdf)
+summary(lm3)
+#> 
+#> Formula: algebra ~ geometry
+#> 
+#> Weight variable: 'origwt'
+#> Variance method: jackknife
+#> JK replicates: 62
+#> Plausible values: 5
+#> jrrIMax: 1
+#> full data n: 17606
+#> n used: 16915
+#> 
+#> Coefficients:
+#>                   coef         se       t    dof  Pr(>|t|)
+#> (Intercept) 27.1500107  2.7555551  9.8528 49.373 3.026e-13
+#> geometry     0.9216951  0.0099083 93.0226 53.519 < 2.2e-16
+#>                
+#> (Intercept) ***
+#> geometry    ***
+#> ---
+#> Signif. codes:  
+#> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Multiple R-squared: 0.7459
+```
+
+The `lm.sdf` function can also be applied to analyze cases where the outcome variable is a Likert scale, which we will treat as a continuous variable for this example. Let's consider a scenario where the goal is to investigate the relationship between students' effort on a math test and their overall math achievement. The research question guiding this analysis could be: “How does students’ overall academic performance predict their effort on this math test?” To address this, we use the `lm.sdf` function, where the outcome variable is the Likert scale measuring the effort on this math test (`m815501`), and the predictor is the math `composite` scale. 
+ 
+Before running the analyses with `lm.sdf` function, we need to ensure that the categories are ordered meaningfully and that `Omitted` and `Multiple` categories are converted to `NA`. First, we check the category order using the `levelsSDF` function:
+ 
+
+```r
+levelsSDF("m815501", sdf)
+#> Levels for Variable 'm815501' (Lowest level first):
+#>     1. Tried not as hard (n = 3970)
+#>     2. Tried about as hard (n = 8543)
+#>     3. Tried harder (n = 2277)
+#>     4. Tried much harder (n = 1129)
+#>     8. Omitted* (n = 986)
+#>     0. Multiple* (n = 10)
+#>     NOTE: * indicates an omitted level.
+```
+ 
+As the output shows, the categories range from `1` to `4`, representing responses from `Tried not as hard` to `Tried much harder.` No reordering is necessary, but the `Multiple` and `Omitted` categories must be converted to `NA`, as their numeric codes (`8` and `0`, respectively) would distort the linear regression results. The following code converts `m815501` to a numeric variable and recodes `0` and `8` as `NA`:
+ 
+
+```r
+sdf$m815501_numeric <- as.numeric(sdf$m815501)
+sdf$m815501_numeric <- ifelse(sdf$m815501_numeric  %in% c(0,8), NA,  sdf$m815501_numeric)
+```
+After preparing the variable, we can apply the `lm.sdf`to run a linear regression model:
+ 
+
+```r
+lm5 <- lm.sdf(formula = m815501_numeric  ~ composite, data = sdf) 
+summary(lm5) 
+#> 
+#> Formula: m815501_numeric ~ composite
+#> 
+#> Weight variable: 'origwt'
+#> Variance method: jackknife
+#> JK replicates: 62
+#> full data n: 17606
+#> n used: 15919
+#> 
+#> Coefficients:
+#>                    coef          se       t    dof
+#> (Intercept)  2.89018612  0.06891612  41.938 56.558
+#> composite   -0.00314019  0.00024894 -12.614 55.118
+#>              Pr(>|t|)    
+#> (Intercept) < 2.2e-16 ***
+#> composite   < 2.2e-16 ***
+#> ---
+#> Signif. codes:  
+#> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> Multiple R-squared: 0.0195
+```
+The analysis shows that the mathematics `composite` scale score is a significant predictor of effort on the math test. However, the coefficient is negative, indicating that higher-scoring students tend to report lower effort on this math test. The R-squared value is 0.02, meaning this model explains only 2% of the variance in the `m815501` variable.
+ 
+We can also visually inspect the fitted values against the observed values. The following code extracts the fitted values from the lm5 model, removes the plausible values for students missing on `m815501`, and creates a plot of the first plausible value, the listwise-deleted `m815501_numeric`, and the fitted values:
+ 
+
+```r
+# Extract fitted values
+fittedValues <- lm5$fitted.values
+ 
+# Remove composite plausible values for the missing students on the m815501 variable
+noNA_mrpcm1 <- sdf$mrpcm1[!is.na(sdf$m815501_numeric)]
+plotData <- data.frame(noNA_mrpcm1, m815501_numeric = na.omit(sdf$m815501_numeric), fittedValues)
+ 
+# Create the plot using ggplot2
+ggplot(plotData, aes(x = noNA_mrpcm1, y = m815501_numeric)) +
+  geom_point(position = position_jitter(width = 0.2), color = "blue", size = .3) +  # Adding jitter to the points
+  geom_line(aes(y = fittedValues), color = "red", linewidth = 1) +  # Line with fitted values
+  labs(
+    title = "Scatterplot with Fitted Line",
+    x = "Plausible Value 1",  # Category label for the x-axis
+    y = "Effort on this test"   # Category label for the y-axis
+  ) +
+  theme_minimal()
+```
+
+<img src="08-models_files/figure-html/lm_effort_plot-1.png" width="672" />
+
+This plot provides a visual comparison of the fitted values from the linear model and the observed student effort scores.
 
 ##  Quantile Regression Analysis with `rq.sdf`
 The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.
