@@ -3,7 +3,7 @@
 Last edited: November 2023
 
 **Suggested Citation**<br></br>
-Huo, H. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Huo, H. The EdSurvey suggestWeights Function. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Introduction
 

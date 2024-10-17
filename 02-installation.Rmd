@@ -3,7 +3,7 @@
 Last edited: February 2022
 
 **Suggested Citation**<br></br>
-Lee, M. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Lee, M. Installing R and EdSurvey and Loading the Package. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Software Requirements
 

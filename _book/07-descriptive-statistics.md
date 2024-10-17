@@ -5,7 +5,7 @@
 Last edited: July 2023
 
 **Suggested Citation**<br></br>
-Buehler, E. & Zhang, T. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Buehler, E. & Zhang, T. Descriptive Statistics. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Computing the Percentages of Students With `achievementLevels`
 

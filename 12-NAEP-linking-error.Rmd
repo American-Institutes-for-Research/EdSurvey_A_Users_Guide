@@ -3,7 +3,7 @@
 Last edited: July 2023
 
 **Suggested Citation**<br></br>
-Bailey, P. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Bailey, P. NAEP Linking Error. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Introduction
 

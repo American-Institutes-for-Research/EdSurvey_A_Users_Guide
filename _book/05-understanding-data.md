@@ -5,7 +5,7 @@
 Last edited: July 2023
 
 **Suggested Citation**<br></br>
-Liao, Y. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Liao, Y. Understanding Data. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 Once data are successfully read in (see how `EdSurvey` supports reading-in data for each study in [Chapter 4](#dataAccess)), users can use the commands in the following sections to understand the data.
 

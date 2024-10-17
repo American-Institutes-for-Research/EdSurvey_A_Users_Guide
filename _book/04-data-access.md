@@ -3,7 +3,7 @@
 Last edited: July 2023
 
 **Suggested Citation**<br></br>
-Fink, T. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Fink, T. Data Access. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets with `EdSurvey`, review the available study documentation to familiarize yourself with each unique study. 
 

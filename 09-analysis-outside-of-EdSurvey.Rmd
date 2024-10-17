@@ -3,7 +3,7 @@
 Last edited: July 2023
 
 **Suggested Citation**<br></br>
-Lee, M. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Lee, M. Analysis Outside EdSurvey. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 `EdSurvey` gives users functions to efficiently analyze education survey data. Although `EdSurvey` allows for rudimentary data manipulation and analysis, this chapter will discuss how to integrate other R packages into `EdSurvey`. As this chapter will demonstrate, this functionality is especially useful for data processing and manipulation in popular R packages such as `dplyr`.
 

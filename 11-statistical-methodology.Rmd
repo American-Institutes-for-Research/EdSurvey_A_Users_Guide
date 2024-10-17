@@ -5,7 +5,7 @@
 Last edited: June 2024
 
 **Suggested Citation**<br></br>
-Bailey, P., Cohen, M., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Bailey, P., Cohen, M., & Yavuz, S. Statistical Methods Used in EdSurvey. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Introduction
 

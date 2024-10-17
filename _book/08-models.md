@@ -4,7 +4,7 @@
 Last edited: October 2024
 
 **Suggested Citation**<br></br>
-Liao, Y., Bailey, P., & Yavuz, S. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+Liao, Y., Bailey, P., & Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ##  Regression Analysis With `lm.sdf`
 After the data are read in with the `EdSurvey` package, a linear model can be fit to fully account for the complex sample design used for NCES data by using `lm.sdf`.
