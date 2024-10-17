@@ -478,15 +478,12 @@ es2 <- edsurveyTable(formula = composite ~ dsex + sdracem, data = sdfm)
 es2
 ```
 
-
 Table: (\#tab:table301)Summary Table Subset \label{tab:summaryTableSubset}
 
 |dsex |sdracem  |    N|    WTD_N|      PCT|  SE(PCT)|     MEAN|  SE(MEAN)|
 |:----|:--------|----:|--------:|--------:|--------:|--------:|---------:|
 |Male |White    | 5160| 5035.169| 76.11329| 1.625174| 287.6603| 0.8995013|
 |Male |Hispanic | 1244| 1580.192| 23.88671| 1.625174| 260.8268| 1.5822251|
-
-
 
 ### Explore Variable Distributions With `summary2`
 
