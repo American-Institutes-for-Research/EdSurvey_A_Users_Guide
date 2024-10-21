@@ -6,20 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
-<meta name="description" content="Last edited: October 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
-<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta name="description" content="Last edited: September 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/models.html">
 <meta property="og:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
-<meta property="og:description" content="Last edited: October 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
+<meta property="og:description" content="Last edited: September 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 Models | Analyzing NCES Data Using EdSurvey: A User’s Guide">
-<meta name="twitter:description" content="Last edited: October 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
+<meta name="twitter:description" content="Last edited: September 2024 Suggested Citation Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), Analyzing NCES Data Using EdSurvey: A User’s Guide.  8.1 Regression...">
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -97,7 +97,7 @@
 <h1>
 <span class="header-section-number">8</span> Models<a class="anchor" aria-label="anchor" href="#models"><i class="fas fa-link"></i></a>
 </h1>
-<p>Last edited: October 2024</p>
+<p>Last edited: September 2024</p>
 <p><strong>Suggested Citation</strong><br>
 Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), <em>Analyzing NCES Data Using EdSurvey: A User’s Guide</em>.</p>
 <div id="regression-analysis-with-lm.sdf" class="section level2" number="8.1">
@@ -643,40 +643,28 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h2>
 <p>A logistic regression model can be fit to fully account for the complex sample design used for NCES data by using <code>glm.sdf</code>, <code>logit.sdf</code>, and <code>probit.sdf</code>. These functions predict binary outcomes from a set of predictor variables factoring in appropriate weights and variance estimates. <code>glm.sdf</code> is an umbrella function that currently fits logit and probit models. Alternatively, users can choose <code>logit.sdf</code> or <code>probit.sdf</code> functions for binomial outcomes.</p>
 <p>The following example demonstrates how to use <code>logit.sdf</code> to predict the number of books at home with student gender. The example arguments are generalizable to <code>glm.sdf</code> and <code>probit.sdf</code>. For more information about how to use the latter two functions, check their help files by calling <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?glm.sdf</a></code> and <code><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">?probit.sdf</a></code>, respectively.</p>
-<p>In <code>logit.sdf</code>, although some variables might already be binary, the other variables can be converted to a binary variable using <code>ifelse</code> function. A logistic regression can be run exploring the association of gender (<code>dsex</code>) to the outcome variable: number of books at home (<code>b013801</code>), which is dichotomized with the level matching “more than 100 books at home” (<code>"&gt;100"</code>) as the outcome level prior to the analyses. While we used to recommend using <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> for this transformation, we no longer do, as <code>ifelse</code> function provides a more intuitive way to handle binary outcomes and allowing it to compare the frequencies of the actual variable and the binary variable. The following code creates a binary variable (<code>b013801_100more</code>) and assigne a value of <code>1</code> for “more than 100 books at home” (<code>"&gt;100"</code>) and <code>0</code> to all other categories, including <code>Omitted</code> and <code>Multiple</code>.</p>
+<p>In <code>logit.sdf</code>, although some variables might already be binary, the function <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (<code>dsex</code>) to the outcome variable: number of books at home (<code>b013801</code>), which is dichotomized with the level matching “more than 100 books at home” (<code>"&gt;100"</code>) as the outcome level:</p>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sdf</span><span class="op">$</span><span class="va">b013801_100more</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">b013801</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"&gt;100"</span>, yes <span class="op">=</span> <span class="fl">1</span>, no <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">b013801</span>, <span class="va">sdf</span><span class="op">$</span><span class="va">b013801_100more</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           </span></span>
-<span><span class="co">#&gt;               0    1</span></span>
-<span><span class="co">#&gt;   0-10     2024    0</span></span>
-<span><span class="co">#&gt;   11-25    3370    0</span></span>
-<span><span class="co">#&gt;   26-100   5850    0</span></span>
-<span><span class="co">#&gt;   &gt;100        0 5115</span></span>
-<span><span class="co">#&gt;   Omitted   548    0</span></span>
-<span><span class="co">#&gt;   Multiple    8    0</span></span></code></pre></div>
-<p>After creating the binary variable, we can run the logistic regression by calling the <code>logit.sdf</code> function.</p>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">b013801_100more</span> <span class="op">~</span> <span class="va">dsex</span>,</span>
+<code class="sourceCode R"><span><span class="va">logit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">b013801</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="st">"&gt;100"</span><span class="op">)</span> <span class="op">~</span> <span class="va">dsex</span>,</span>
 <span>                    weightVar <span class="op">=</span> <span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">logit1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Formula: b013801_100more ~ dsex</span></span>
+<span><span class="co">#&gt; Formula: b013801 ~ dsex</span></span>
 <span><span class="co">#&gt; Family: binomial (logit)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Weight variable: 'origwt'</span></span>
 <span><span class="co">#&gt; Variance method: jackknife</span></span>
 <span><span class="co">#&gt; JK replicates: 62</span></span>
 <span><span class="co">#&gt; full data n: 17606</span></span>
-<span><span class="co">#&gt; n used: 16915</span></span>
+<span><span class="co">#&gt; n used: 16359</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt;                   coef         se          t    dof</span></span>
-<span><span class="co">#&gt; (Intercept)  -0.937357   0.045582 -20.564023 60.193</span></span>
-<span><span class="co">#&gt; dsexFemale    0.183125   0.049674   3.686517 54.838</span></span>
+<span><span class="co">#&gt; (Intercept)  -0.920421   0.046355 -19.855835 60.636</span></span>
+<span><span class="co">#&gt; dsexFemale    0.178274   0.050129   3.556331 54.578</span></span>
 <span><span class="co">#&gt;              Pr(&gt;|t|)    </span></span>
 <span><span class="co">#&gt; (Intercept) &lt; 2.2e-16 ***</span></span>
-<span><span class="co">#&gt; dsexFemale  0.0005226 ***</span></span>
+<span><span class="co">#&gt; dsexFemale  0.0007863 ***</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  </span></span>
 <span><span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
@@ -688,11 +676,11 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h3>
 <p>The <code>oddsRatio</code> helper function converts coefficients from an <code>EdSurvey</code> logit regression model to odds ratios. Odds ratios are useful for understanding the real likelihood of an event occurring based on a transformation to the log odds returned in a logistic model.</p>
 <p>In <code>EdSurvey</code>, odds ratios can be returned by specifying the logistic model object (<code>logit1</code>).</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/oddsRatio.html">oddsRatio</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">logit1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                    OR      2.5%     97.5%</span></span>
-<span><span class="co">#&gt; (Intercept) 0.3916615 0.3575323 0.4290487</span></span>
-<span><span class="co">#&gt; dsexFemale  1.2009640 1.0871600 1.3266810</span></span></code></pre></div>
+<span><span class="co">#&gt; (Intercept) 0.3983511 0.3630823 0.4370459</span></span>
+<span><span class="co">#&gt; dsexFemale  1.1951531 1.0809029 1.3214796</span></span></code></pre></div>
 <p>The odds of having more than 100 books at home (versus less than or equal to 100 books) increases by <code>1.1951531</code> for female students compared with male students.</p>
 </div>
 <div id="wald-tests" class="section level3" number="8.3.2">
@@ -701,7 +689,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h3>
 <p>The <code>waldTest</code> function allows the user to test composite hypotheses—those with multiple coefficients involved—even when the data include plausible values. Because there is no likelihood test for plausible values or residuals of large-scale assessment data analysis, the Wald test fills the role of the likelihood ratio test, analysis of variance, and the F-test.</p>
 <p>Wald tests can be run by specifying the model and coefficients. The second coefficient in our <code>logit1</code> model object (<code>Female</code>) is tested in the following example:</p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/waldTest.html">waldTest</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">logit1</span>, coefficients <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Wald test:</span></span>
 <span><span class="co">#&gt; ----------</span></span>
@@ -709,61 +697,22 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; dsexFemale = 0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Chi-square test:</span></span>
-<span><span class="co">#&gt; X2 = 13.6, df = 1, P(&gt; X2) = 0.00023</span></span>
+<span><span class="co">#&gt; X2 = 12.6, df = 1, P(&gt; X2) = 0.00038</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; F test:</span></span>
-<span><span class="co">#&gt; W = 13.6, df1 = 1, df2 = 62, P(&gt; W) = 0.00048</span></span></code></pre></div>
+<span><span class="co">#&gt; W = 12.6, df1 = 1, df2 = 62, P(&gt; W) = 0.00073</span></span></code></pre></div>
 <p>To learn more about conducting Wald tests, consult the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf"><em>Methods and Overview of Using EdSurvey for Running Wald Tests</em></a>.</p>
 </div>
 <div id="using-plausible-values-as-a-predictor" class="section level3" number="8.3.3">
 <h3>
 <span class="header-section-number">8.3.3</span> Using Plausible Values as a Predictor<a class="anchor" aria-label="anchor" href="#using-plausible-values-as-a-predictor"><i class="fas fa-link"></i></a>
 </h3>
-<p>For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale, can be used as a predictor. This feature has been enabled for linear regression (<code>lm.sdf</code>) and generalized linear regression (<code>glm.sdf</code>, <code>logit.sdf</code>, and <code>probit.sdf</code>). Their methodology has been documented in Chapter11, Statistical Methodology. In this section we will show how to use this feature in linear and generalized linear regressions.</p>
-<div id="using-plausible-values-as-a-predictor-for-generalized-linear-regression" class="section level4" number="8.3.3.1">
-<h4>
-<span class="header-section-number">8.3.3.1</span> Using Plausible Values as a Predictor for Generalized Linear Regression<a class="anchor" aria-label="anchor" href="#using-plausible-values-as-a-predictor-for-generalized-linear-regression"><i class="fas fa-link"></i></a>
-</h4>
-<p>In this section, we will show examples using <code>logit.sdf</code>. For example, we now demonstrate the exploration and analysis for the research question, “How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?” In the <code>2005 NAEP Primer</code>, there is a “Math class taking now” variable that has the variable name <code>m815701</code> in the <code>sdf</code> object. It is useful to look at a raw frequency table to see the levels and their approximate prevalence, a call to table achieves this goal.</p>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815701</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Geometry           Algebra II </span></span>
-<span><span class="co">#&gt;                  588                  589 </span></span>
-<span><span class="co">#&gt; Algebra I (1-yr crs)  1st yr 2-yr Algeb I </span></span>
-<span><span class="co">#&gt;                 4567                  471 </span></span>
-<span><span class="co">#&gt;  2nd yr 2-yr Algeb I  Int algeb,pre-algeb </span></span>
-<span><span class="co">#&gt;                  254                 4406 </span></span>
-<span><span class="co">#&gt;  Basic,gen gr 8 math Integrat or seq math </span></span>
-<span><span class="co">#&gt;                 4175                  277 </span></span>
-<span><span class="co">#&gt;     Other math class              Omitted </span></span>
-<span><span class="co">#&gt;                  824                  659 </span></span>
-<span><span class="co">#&gt;             Multiple </span></span>
-<span><span class="co">#&gt;                  105</span></span></code></pre></div>
-<p>One way to run the analyses for the research question of interest is to create a new variable indicating that a student is taking “Algebra I (1-yr crs)”, “1st yr 2-yr Algeb I”, “2nd yr 2-yr Algeb I”, and “Algebra II” or not. The following code uses the <code>ifelse</code> function to create a new variable called <code>AlgebraClass</code> in the <code>sdf</code> object, assigning a value of <code>1</code> if the <code>m815701</code> column contains any of Algebra I and II classes mentioned above, and <code>0</code> otherwise. Note that there are multiple categories of “Algebra I” and these are included in the following code.</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sdf</span><span class="op">$</span><span class="va">AlgebraClass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815701</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Algebra I (1-yr crs)'</span>, <span class="st">'1st yr 2-yr Algeb I'</span>, <span class="st">'2nd yr 2-yr Algeb I'</span>, <span class="st">'Algebra II'</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>ifelse</code> function converts multiple Algebra class categories to <code>1</code>, while coding all the other categories as <code>0</code>, including <code>Multiple</code> and <code>Omitted</code>. . The following code provides the frequencies of each category of the newly created <code>AlgebraClass</code> variable against the actual variable in the <code>NAEP 2005 Primer</code>.</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815701</span>,<span class="va">sdf</span><span class="op">$</span><span class="va">AlgebraClass</span>,  useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                       </span></span>
-<span><span class="co">#&gt;                           0    1 &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   Geometry              588    0    0</span></span>
-<span><span class="co">#&gt;   Algebra II              0  589    0</span></span>
-<span><span class="co">#&gt;   Algebra I (1-yr crs)    0 4567    0</span></span>
-<span><span class="co">#&gt;   1st yr 2-yr Algeb I     0  471    0</span></span>
-<span><span class="co">#&gt;   2nd yr 2-yr Algeb I     0  254    0</span></span>
-<span><span class="co">#&gt;   Int algeb,pre-algeb  4406    0    0</span></span>
-<span><span class="co">#&gt;   Basic,gen gr 8 math  4175    0    0</span></span>
-<span><span class="co">#&gt;   Integrat or seq math  277    0    0</span></span>
-<span><span class="co">#&gt;   Other math class      824    0    0</span></span>
-<span><span class="co">#&gt;   Omitted               659    0    0</span></span>
-<span><span class="co">#&gt;   Multiple              105    0    0</span></span>
-<span><span class="co">#&gt;   &lt;NA&gt;                    0    0    0</span></span></code></pre></div>
-<p>After creating the <code>AlgebraClass</code> variable, the <code>logit.sdf</code> function can be used to answer the research question: How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)? In this context, <code>AlgebraClass</code> is the outcome variable, and algebra achievement, represented by the algebra subscale in the <code>sdf</code> object, is the predictor. The <code>algebra</code> subscale includes multiple plausible values. The <code>logit.sdf</code> function runs the analyses for each plausible value, combines them according to Rubin’s rule (<span class="citation">Rubin (<a href="references.html#ref-rubin">1987</a>)</span>) on the backend, and provides the final results. The <code>logit.sdf</code> function, like the <code>glm.sdf</code>, <code>probit.sdf,</code> and <code>lm.sdf</code> functions, also accepts other subscales and <code>composite</code> scales. You can use the <code>showPlausibleValues</code> function to find out the name of the subject scale and subscales in the <code>sdf</code> object.</p>
-<p>The following code demonstrates how to use plausible values as the predictor to answer the research question of interest.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">AlgebraClass</span> <span class="op">~</span> <span class="va">algebra</span>,</span>
+<p>For some research questions the latent achievement variable can be used as the predictor. The <code>logit.sdf</code> function can perform analyses when the plausible values are right hand side of the equation. Please refer to chapter 11 for the statistical methodology. The following code is intended to answer this research question; how are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">sdf</span><span class="op">$</span><span class="va">AlgebraClass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815701</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Algebra I'</span>, <span class="st">'Algebra II'</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">logit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">AlgebraClass</span> <span class="op">~</span> <span class="va">algebra</span>,</span>
 <span>                    weightVar <span class="op">=</span> <span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">logit2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -777,112 +726,16 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; n used: 16915</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;                    coef          se           t    dof</span></span>
-<span><span class="co">#&gt; (Intercept)  -5.1635177   0.4050084 -12.7491605 48.045</span></span>
-<span><span class="co">#&gt; algebra       0.0164805   0.0013863  11.8882140 49.207</span></span>
-<span><span class="co">#&gt;              Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) &lt; 2.2e-16 ***</span></span>
-<span><span class="co">#&gt; algebra     4.441e-16 ***</span></span>
+<span><span class="co">#&gt;                   coef         se          t    dof</span></span>
+<span><span class="co">#&gt; (Intercept) -2.8117300  0.7808744 -3.6007455 24.109</span></span>
+<span><span class="co">#&gt; algebra     -0.0015316  0.0028963 -0.5288174 20.236</span></span>
+<span><span class="co">#&gt;             Pr(&gt;|t|)   </span></span>
+<span><span class="co">#&gt; (Intercept) 0.001428 **</span></span>
+<span><span class="co">#&gt; algebra     0.602685   </span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  </span></span>
 <span><span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
-<p>When running logistic regression, <code>EdSurvey</code> package, by default, uses listwise deletes special values including missing values, and <code>Multiple</code> and <code>Omitted</code>categories. To change the setting, set <code>dropOmittedLevels = FALSE</code>, or recode them to another category. In this case, the special values were converted to <code>0</code> with the <code>ifelse</code> function. As the <code>AlgebraClass</code> variable is already created as a binary variable, by default the <code>logit.sdf</code> models the likelihood of its highest category (i.e., level 1: taking one of the algebra class). Additionally, because we created the <code>AlgebraClass</code> variable with a certain condition, i.e. <code>1</code> if taking one of the algebra classes and <code>0</code> not taking one of the algebra classes, the <code>0</code> condition contains <code>Multiple</code> and <code>Omitted</code> categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). As a conclusion, with each one-unit increase in the algebra score, the log odds of being in an Algebra class increase by <code>0.016481</code>.</p>
-</div>
-<div id="using-plausible-values-as-a-predictor-for-linear-regression" class="section level4" number="8.3.3.2">
-<h4>
-<span class="header-section-number">8.3.3.2</span> Using Plausible Values as a Predictor for Linear Regression<a class="anchor" aria-label="anchor" href="#using-plausible-values-as-a-predictor-for-linear-regression"><i class="fas fa-link"></i></a>
-</h4>
-<p>This section explains and provides examples of cases where the outcome variable is continuous and the predictor is a scale or subscale. The <code>lm.sdf</code> function can be used to perform these analyses. For example, <code>lm.sdf</code> can be applied to address the research question: “How does students’ performance in geometry relate their achievement in algebra?” Both algebra and geometry are mathematics subscales within the <code>sdf</code> object. The following call performs a linear regression analysis with the geometry subscale as the predictor:</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">algebra</span> <span class="op">~</span> <span class="va">geometry</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm3</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Formula: algebra ~ geometry</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Weight variable: 'origwt'</span></span>
-<span><span class="co">#&gt; Variance method: jackknife</span></span>
-<span><span class="co">#&gt; JK replicates: 62</span></span>
-<span><span class="co">#&gt; Plausible values: 5</span></span>
-<span><span class="co">#&gt; jrrIMax: 1</span></span>
-<span><span class="co">#&gt; full data n: 17606</span></span>
-<span><span class="co">#&gt; n used: 16915</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;                   coef         se       t    dof  Pr(&gt;|t|)</span></span>
-<span><span class="co">#&gt; (Intercept) 27.1500107  2.7555551  9.8528 49.373 3.026e-13</span></span>
-<span><span class="co">#&gt; geometry     0.9216951  0.0099083 93.0226 53.519 &lt; 2.2e-16</span></span>
-<span><span class="co">#&gt;                </span></span>
-<span><span class="co">#&gt; (Intercept) ***</span></span>
-<span><span class="co">#&gt; geometry    ***</span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  </span></span>
-<span><span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Multiple R-squared: 0.7459</span></span></code></pre></div>
-<p>The <code>lm.sdf</code> function can also be applied to analyze cases where the outcome variable is a Likert scale, which we will treat as a continuous variable for this example. Let’s consider a scenario where the goal is to investigate the relationship between students’ effort on a math test and their overall math achievement. The research question guiding this analysis could be: “How does students’ overall academic performance predict their effort on this math test?” To address this, we use the <code>lm.sdf</code> function, where the outcome variable is the Likert scale measuring the effort on this math test (<code>m815501</code>), and the predictor is the math <code>composite</code> scale.</p>
-<p>Before running the analyses with <code>lm.sdf</code> function, we need to ensure that the categories are ordered meaningfully and that <code>Omitted</code> and <code>Multiple</code> categories are converted to <code>NA</code>. First, we check the category order using the <code>levelsSDF</code> function:</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span><span class="st">"m815501"</span>, <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Levels for Variable 'm815501' (Lowest level first):</span></span>
-<span><span class="co">#&gt;     1. Tried not as hard (n = 3970)</span></span>
-<span><span class="co">#&gt;     2. Tried about as hard (n = 8543)</span></span>
-<span><span class="co">#&gt;     3. Tried harder (n = 2277)</span></span>
-<span><span class="co">#&gt;     4. Tried much harder (n = 1129)</span></span>
-<span><span class="co">#&gt;     8. Omitted* (n = 986)</span></span>
-<span><span class="co">#&gt;     0. Multiple* (n = 10)</span></span>
-<span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
-<p>As the output shows, the categories range from <code>1</code> to <code>4</code>, representing responses from <code>Tried not as hard</code> to <code>Tried much harder.</code> No reordering is necessary, but the <code>Multiple</code> and <code>Omitted</code> categories must be converted to <code>NA</code>, as their numeric codes (<code>8</code> and <code>0</code>, respectively) would distort the linear regression results. The following code converts <code>m815501</code> to a numeric variable and recodes <code>0</code> and <code>8</code> as <code>NA</code>:</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501</span><span class="op">)</span></span>
-<span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span>  <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">8</span><span class="op">)</span>, <span class="cn">NA</span>,  <span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span><span class="op">)</span></span></code></pre></div>
-<p>After preparing the variable, we can apply the <code>lm.sdf</code>to run a linear regression model:</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">lm5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/lm.sdf.html">lm.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">m815501_numeric</span>  <span class="op">~</span> <span class="va">composite</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm5</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Formula: m815501_numeric ~ composite</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Weight variable: 'origwt'</span></span>
-<span><span class="co">#&gt; Variance method: jackknife</span></span>
-<span><span class="co">#&gt; JK replicates: 62</span></span>
-<span><span class="co">#&gt; full data n: 17606</span></span>
-<span><span class="co">#&gt; n used: 15919</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;                    coef          se       t    dof</span></span>
-<span><span class="co">#&gt; (Intercept)  2.89018612  0.06891612  41.938 56.558</span></span>
-<span><span class="co">#&gt; composite   -0.00314019  0.00024894 -12.614 55.118</span></span>
-<span><span class="co">#&gt;              Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept) &lt; 2.2e-16 ***</span></span>
-<span><span class="co">#&gt; composite   &lt; 2.2e-16 ***</span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  </span></span>
-<span><span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Multiple R-squared: 0.0195</span></span></code></pre></div>
-<p>The analysis shows that the mathematics <code>composite</code> scale score is a significant predictor of effort on the math test. However, the coefficient is negative, indicating that higher-scoring students tend to report lower effort on this math test. The R-squared value is 0.02, meaning this model explains only 2% of the variance in the <code>m815501</code> variable.</p>
-<p>We can also visually inspect the fitted values against the observed values. The following code extracts the fitted values from the lm5 model, removes the plausible values for students missing on <code>m815501</code>, and creates a plot of the first plausible value, the listwise-deleted <code>m815501_numeric</code>, and the fitted values:</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Extract fitted values</span></span>
-<span><span class="va">fittedValues</span> <span class="op">&lt;-</span> <span class="va">lm5</span><span class="op">$</span><span class="va">fitted.values</span></span>
-<span> </span>
-<span><span class="co"># Remove composite plausible values for the missing students on the m815501 variable</span></span>
-<span><span class="va">noNA_mrpcm1</span> <span class="op">&lt;-</span> <span class="va">sdf</span><span class="op">$</span><span class="va">mrpcm1</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">plotData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">noNA_mrpcm1</span>, m815501_numeric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815501_numeric</span><span class="op">)</span>, <span class="va">fittedValues</span><span class="op">)</span></span>
-<span> </span>
-<span><span class="co"># Create the plot using ggplot2</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plotData</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">noNA_mrpcm1</span>, y <span class="op">=</span> <span class="va">m815501_numeric</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html">position_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Adding jitter to the points</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">fittedValues</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Line with fitted values</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Scatterplot with Fitted Line"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Plausible Value 1"</span>,  <span class="co"># Category label for the x-axis</span></span>
-<span>    y <span class="op">=</span> <span class="st">"Effort on this test"</span>   <span class="co"># Category label for the y-axis</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="08-models_files/figure-html/lm_effort_plot-1.png" width="672"></div>
-<p>This plot provides a visual comparison of the fitted values from the linear model and the observed student effort scores.</p>
-</div>
+<p>According to the logistic regression results, changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).</p>
 </div>
 </div>
 <div id="quantile-regression-analysis-with-rq.sdf" class="section level2" number="8.4">
@@ -891,7 +744,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h2>
 <p>The <code>rq.sdf</code> function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to <code>lm.sdf</code>, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.</p>
 <p>To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the <code>tau</code> argument (in this example <code>tau = 0.8</code>); all other arguments are otherwise consistent with <code>lm.sdf</code>, except for <code>returnVarEstInputs</code>, <code>returnNumberOfPSU</code>, and <code>standardizeWithSamplingVar</code>, which are not available.</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rq.sdf.html">rq.sdf</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data<span class="op">=</span><span class="va">sdf</span>, tau <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">rq1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -931,7 +784,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h2>
 <p><code>EdSurvey</code> features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. <code>EdSurvey</code> fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the <code>WeMix</code> package.</p>
 <p>This example illustrates how the user might implement student-level weighting when using a survey (NAEP in this example) that does not have a weighting scheme previously implemented.</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Subset data to a sample of interest</span></span>
 <span><span class="va">sdf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span>, subset <span class="op">=</span> <span class="va">scrpsu</span> <span class="op">&lt;</span> <span class="fl">500</span><span class="op">)</span></span>
 <span></span>
@@ -974,7 +827,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.389</span></span></code></pre></div>
 <p>The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students’ gender as a covariate, using TIMSS 2015 datasets.</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#Use all plausible values</span></span>
 <span><span class="va">TIMSS15USA</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">edsurveyHome</span>, <span class="st">"TIMSS/2015"</span><span class="op">)</span>, countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span>, gradeLvl <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span>
@@ -1010,7 +863,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; itsexMALE      6.091      1.500   4.061</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.273</span></span></code></pre></div>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># uses only one plausible value</span></span>
 <span><span class="va">mix2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">asmmat01</span> <span class="op">~</span> <span class="va">itsex</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">idschool</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">TIMSS15USA</span>,</span>
 <span>                  weightVar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"totwgt"</span>,<span class="st">"schwgt"</span><span class="op">)</span>, weightTransformation<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
@@ -1081,7 +934,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-10-17.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-10-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
