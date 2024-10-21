@@ -703,40 +703,6 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; W = 12.6, df1 = 1, df2 = 62, P(&gt; W) = 0.00073</span></span></code></pre></div>
 <p>To learn more about conducting Wald tests, consult the vignette titled <a href="https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf"><em>Methods and Overview of Using EdSurvey for Running Wald Tests</em></a>.</p>
 </div>
-<div id="using-plausible-values-as-a-predictor" class="section level3" number="8.3.3">
-<h3>
-<span class="header-section-number">8.3.3</span> Using Plausible Values as a Predictor<a class="anchor" aria-label="anchor" href="#using-plausible-values-as-a-predictor"><i class="fas fa-link"></i></a>
-</h3>
-<p>For some research questions the latent achievement variable can be used as the predictor. The <code>logit.sdf</code> function can perform analyses when the plausible values are right hand side of the equation. Please refer to chapter 11 for the statistical methodology. The following code is intended to answer this research question; how are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?</p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">sdf</span><span class="op">$</span><span class="va">AlgebraClass</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">sdf</span><span class="op">$</span><span class="va">m815701</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Algebra I'</span>, <span class="st">'Algebra II'</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">logit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/glm.sdf.html">logit.sdf</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">AlgebraClass</span> <span class="op">~</span> <span class="va">algebra</span>,</span>
-<span>                    weightVar <span class="op">=</span> <span class="st">'origwt'</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">logit2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Formula: AlgebraClass ~ algebra</span></span>
-<span><span class="co">#&gt; Family: binomial (logit)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Weight variable: 'origwt'</span></span>
-<span><span class="co">#&gt; Variance method: jackknife</span></span>
-<span><span class="co">#&gt; JK replicates: 62</span></span>
-<span><span class="co">#&gt; full data n: 17606</span></span>
-<span><span class="co">#&gt; n used: 16915</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;                   coef         se          t    dof</span></span>
-<span><span class="co">#&gt; (Intercept) -2.8117300  0.7808744 -3.6007455 24.109</span></span>
-<span><span class="co">#&gt; algebra     -0.0015316  0.0028963 -0.5288174 20.236</span></span>
-<span><span class="co">#&gt;             Pr(&gt;|t|)   </span></span>
-<span><span class="co">#&gt; (Intercept) 0.001428 **</span></span>
-<span><span class="co">#&gt; algebra     0.602685   </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  </span></span>
-<span><span class="co">#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
-<p>According to the logistic regression results, changes in the algebra achievement in this test are not significantly associated with the likelihood of enrollment in algebra I or II class (versus not taking them or taking another math class).</p>
-</div>
 </div>
 <div id="quantile-regression-analysis-with-rq.sdf" class="section level2" number="8.4">
 <h2>
@@ -744,7 +710,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h2>
 <p>The <code>rq.sdf</code> function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to <code>lm.sdf</code>, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.</p>
 <p>To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the <code>tau</code> argument (in this example <code>tau = 0.8</code>); all other arguments are otherwise consistent with <code>lm.sdf</code>, except for <code>returnVarEstInputs</code>, <code>returnNumberOfPSU</code>, and <code>standardizeWithSamplingVar</code>, which are not available.</p>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/rq.sdf.html">rq.sdf</a></span><span class="op">(</span><span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data<span class="op">=</span><span class="va">sdf</span>, tau <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">rq1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -784,7 +750,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 </h2>
 <p><code>EdSurvey</code> features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. <code>EdSurvey</code> fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the <code>WeMix</code> package.</p>
 <p>This example illustrates how the user might implement student-level weighting when using a survey (NAEP in this example) that does not have a weighting scheme previously implemented.</p>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Subset data to a sample of interest</span></span>
 <span><span class="va">sdf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span>, subset <span class="op">=</span> <span class="va">scrpsu</span> <span class="op">&lt;</span> <span class="fl">500</span><span class="op">)</span></span>
 <span></span>
@@ -827,7 +793,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.389</span></span></code></pre></div>
 <p>The following two examples illustrate how to model the random intercept of mathematics achievement at the school level with students’ gender as a covariate, using TIMSS 2015 datasets.</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#Use all plausible values</span></span>
 <span><span class="va">TIMSS15USA</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readTIMSS.html">readTIMSS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">edsurveyHome</span>, <span class="st">"TIMSS/2015"</span><span class="op">)</span>, countries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"usa"</span><span class="op">)</span>, gradeLvl <span class="op">=</span> <span class="st">"4"</span><span class="op">)</span></span>
@@ -863,7 +829,7 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <span><span class="co">#&gt; itsexMALE      6.091      1.500   4.061</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intraclass Correlation= 0.273</span></span></code></pre></div>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># uses only one plausible value</span></span>
 <span><span class="va">mix2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/mixed.sdf.html">mixed.sdf</a></span><span class="op">(</span><span class="va">asmmat01</span> <span class="op">~</span> <span class="va">itsex</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">|</span><span class="va">idschool</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">TIMSS15USA</span>,</span>
 <span>                  weightVar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"totwgt"</span>,<span class="st">"schwgt"</span><span class="op">)</span>, weightTransformation<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
@@ -912,7 +878,6 @@ Liao, Y., Bailey, P., &amp; Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.)
 <a class="nav-link" href="#logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf"><span class="header-section-number">8.3</span> Logistic Regression Analysis With glm.sdf, logit.sdf, and probit.sdf</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#recovering-odds-ratios"><span class="header-section-number">8.3.1</span> Recovering Odds Ratios</a></li>
 <li><a class="nav-link" href="#wald-tests"><span class="header-section-number">8.3.2</span> Wald Tests</a></li>
-<li><a class="nav-link" href="#using-plausible-values-as-a-predictor"><span class="header-section-number">8.3.3</span> Using Plausible Values as a Predictor</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#quantile-regression-analysis-with-rq.sdf"><span class="header-section-number">8.4</span> Quantile Regression Analysis with rq.sdf</a></li>
