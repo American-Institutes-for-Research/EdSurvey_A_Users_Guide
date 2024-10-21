@@ -528,8 +528,6 @@ es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
 </table></div>
 
 
-
-
 By specifying `pctAggregationLevel = 0`, such as in the following call, the `PCT` column adds up to 100 across the entire sample.         
 
 
@@ -655,8 +653,6 @@ es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
   </tr>
 </tbody>
 </table></div>
-
-
 
 ### `ggplot2`
 `ggplot2` is an important R package used with `EdSurvey` to conduct EDA. 
