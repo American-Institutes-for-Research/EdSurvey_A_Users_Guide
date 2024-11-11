@@ -1,10 +1,94 @@
 
-```{r loadEdSurvey6, echo=FALSE, message=FALSE}
+```{r loadEdSurvey6, echo=FALSE, message=FALSE, warning=FALSE}
 library(EdSurvey)
 library(dplyr)
 library(ggplot2)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 ```
+
+## Data Manipulation With `tidyEdSurvey`
+
+EdSurvey has a companion package, `tidyEdSurvey`, designed to allow users to directly use an `edsurvey.data.frame` with common `dplyr` and `ggplot2` functions, as opposed to making a call to `getData` first. Users may also use the utility functions `attach` and `with` with an `edsurvey.data.frame`. To install, run the following code within R:
+
+```{r sourcePackage, eval=FALSE}
+install.packages("tidyEdSurvey")
+```
+
+Once the package is successfully installed, `tidyEdSurvey` can be loaded with the following command:
+
+```{r loadtidyEdSurvey, message=FALSE, warning=FALSE}
+library(tidyEdSurvey)
+```
+
+The `with` function provides a convenient shorthand for evaluating expressions on an `edsurvey.data.frame`. Here we create a boxplot of the first plausible value of math performance (`mrpcm1`) broken down by mother's education level (`b003501`)
+
+```{r withtidyEdSurvey, message=FALSE, warning=FALSE}
+with(sdf, boxplot(mrpcm1~b003501))
+```
+
+Anything that can be done with a standard `data.frame` object within `dplyr` and `ggplot2` can be done with an `edsurvey.data.frame` using `tidyEdSurvey`. There are two nuances to consider:
+
+1. If the `select` verb is used on a weight variable (such as `origwt`), the default behavior will also return the jackknife replicate weights associated with that weight variable.
+2. Any verb used with a plausible value variable (such as `algebra`) will return all of the associated plausible value columns (a total of 5 columns, in the case of the NAEP primer).
+
+### dplyr with `edsurvey.data.frame`
+
+All of the common `dplyr` verbs can be used with an `edsurvey.data.frame`, including: `select`, `group_by`, `filter`, `mutate`, `arrange`, and several more. We can consider an example where we filter to only female students, group by race, and get a count in each racial group.
+
+```{r tidyEdSurvey1, warning=FALSE, message=FALSE}
+sdf %>% filter(dsex=="Female") %>% group_by(sdracem) %>% group_size()
+```
+
+We can also use the `mutate` verb to create a proficiency variable based on the 1st set of plausible values.
+
+```{r tidyEdSurvey2, warning=FALSE, message=FALSE}
+sdf2 <- sdf %>% 	
+    mutate(prof = case_when(	
+                  between(mrpcm1, 0, 261.99) ~ "Below Basic",	
+                  between(mrpcm1, 262, 298.99) ~ "Basic",	
+                  between(mrpcm1, 299, 332.99) ~ "Proficient",	
+                  between(mrpcm1, 333, 1e4) ~ "Advanced"))
+```
+
+We can then summarize `mrpcm1` by proficiency level, like so:
+
+```{r tidyEdSurvey3, warning=FALSE, message=FALSE}
+sdf2 %>% 
+  group_by(prof) %>%
+  summarize(mrpcm1)
+```
+
+Note this is not a summary of students' performance level, but rather of their first plausible performance level.
+
+### ggplot2 with `edsurvey.data.frame`
+
+We can use `ggplot2` independently or as part of a `dplyr` pipeline to visualize our `edsurvey.data.frame`. Using the previous example where we created a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.
+
+```{r tidyEdSurvey4, warning=FALSE, message=FALSE}
+sdf2 %>% 	
+    ggplot(.,aes(x=mrpcm1,fill=prof,color=prof)) +	
+      facet_wrap(vars(sdracem),scales="free_y") +	
+      geom_density(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..],alpha=0.6),	
+               position="stack",bw=2,show.legend = FALSE) +	
+      scale_fill_manual(values = c("#003f5c", "#58508d", "#bc5090","#ff6361"),	
+                    guide = guide_none()) +	
+      scale_colour_manual(values = c("#003f5c", "#58508d", "#bc5090","#ff6361"), 	
+                      guide = guide_none()) +	
+      theme_minimal() +	
+      theme(axis.title.x = element_blank(),	
+            axis.title.y = element_blank(),	
+            axis.text.y = element_blank()) +	
+      geom_vline(xintercept = c(262,299,333),	
+                 color=rep(c("#58508d","#ff6361","#003f5c"),6),	
+                 linewidth=1.1) +	
+      annotate(geom = "text",label = "Basic",x = 262,y = 0.003,angle = 90,vjust = 1) +	
+      annotate(geom = "text",label = "Proficient",x = 299,y = 0.003,angle = 90,vjust = 1) +	
+      annotate(geom = "text",label = "Advanced",x = 333,y = 0.003,angle = 90,vjust = 1)	
+```
+
+
+
+
 
 # Data Manipulation in `EdSurvey` and Base R {#dataManipulation}
 
@@ -219,75 +303,6 @@ gddat <- getData(data = sdf,
 lm9 <- lm.sdf(formula = composite ~ lep + dsex + iep + b017451, data = gddat)
 lm9
 ```
-
-## Data Manipulation With `tidyEdSurvey`
-
-EdSurvey has a companion package, `tidyEdSurvey`, designed to allow users to directly use an `edsurvey.data.frame` with common `dplyr` and `ggplot2` functions, as opposed to making a call to `getData` first. To install, run the following code within R:
-
-```{r sourcePackage, eval=FALSE}
-install.packages("tidyEdSurvey")
-```
-
-Once the package is successfully installed, `tidyEdSurvey` can be loaded with the following command:
-
-```{r loadtidyEdSurvey, echo=FALSE, message=FALSE}
-library(tidyEdSurvey)
-```
-
-Anything that can be done with a standard `data.frame` object within `dplyr` and `ggplot2` can be done with an `edsurvey.data.frame` using `tidyEdSurvey`. There are two nuances to consider:
-
-1. If the `select` verb is used on a weight variable (such as `origwt`), the default behavior will also return the jackknife replicate weights associated with that weight variable.
-2. Any verb used with a plausible value variable (such as `algebra`) will return all of the associated plausible value columns (a total of 5 columns, in the case of the NAEP primer).
-
-### dplyr with `edsurvey.data.frame`
-
-All of the common `dplyr` verbs can be used with an `edsurvey.data.frame`, including: `select`, `group_by`, `filter`, `mutate`, `arrange`, and several more. We can consider an example where we filter to only female students, group by race, and get a count in each racial group.
-
-```{r tidyEdSurvey1, warning=FALSE, message=FALSE}
-sdf %>% filter(dsex=="Female") %>% group_by(sdracem) %>% group_size()
-```
-
-We can also utilize the `mutate` verb to create a proficiency variable based on the 1st set of plausible values.
-
-```{r tidyEdSurvey2, warning=FALSE, message=FALSE}
-sdf2 <- sdf %>% 	
-    mutate(prof = case_when(	
-                  between(mrpcm1, 0, 261.99) ~ "Below Basic",	
-                  between(mrpcm1, 262, 298.99) ~ "Basic",	
-                  between(mrpcm1, 299, 332.99) ~ "Proficient",	
-                  between(mrpcm1, 333, 1e4) ~ "Advanced"))
-```
-
-### ggplot2 with `edsurvey.data.frame`
-
-We can use `ggplot2` independently or as part of a `dplyr` pipeline to visualize our `edsurvey.data.frame`. Using the previous example where we created a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.
-
-```{r tidyEdSurvey3, warning=FALSE, message=FALSE}
-sdf2 %>% 	
-    ggplot(.,aes(x=mrpcm1,fill=prof,color=prof)) +	
-      facet_wrap(vars(sdracem),scales="free_y") +	
-      geom_density(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..],alpha=0.6),	
-               position="stack",bw=2,show.legend = FALSE) +	
-      scale_fill_manual(values = c("#003f5c", "#58508d", "#bc5090","#ff6361"),	
-                    guide = guide_none()) +	
-      scale_colour_manual(values = c("#003f5c", "#58508d", "#bc5090","#ff6361"), 	
-                      guide = guide_none()) +	
-      theme_minimal() +	
-      theme(axis.title.x = element_blank(),	
-            axis.title.y = element_blank(),	
-            axis.text.y = element_blank()) +	
-      geom_vline(xintercept = c(262,299,333),	
-                 color=rep(c("#58508d","#ff6361","#003f5c"),6),	
-                 linewidth=1.1) +	
-      annotate(geom = "text",label = "Basic",x = 262,y = 0.003,angle = 90,vjust = 1) +	
-      annotate(geom = "text",label = "Proficient",x = 299,y = 0.003,angle = 90,vjust = 1) +	
-      annotate(geom = "text",label = "Advanced",x = 333,y = 0.003,angle = 90,vjust = 1)	
-```
-
-
-
-
-
 
 
 
