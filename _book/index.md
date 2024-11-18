@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2024-10-17"
+date: "2024-11-18"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,7 +48,7 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**October 2024**
+**November 2024**
 
 Editors: <br></br>
 **Paul Bailey**, **Ting Zhang**<br></br>
@@ -192,7 +192,7 @@ Dnk2015
 #> |>Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
 #> edsurvey.data.frame for 2015 TIMSS International
 #>   (Mathematics and Science; Grade 4) in Denmark
-#> Dimensions: 5897 rows and 2043 columns.
+#> Dimensions: 5900 rows and 2043 columns.
 #> 
 #> There are 4 full sample weights in this
 #>   edsurvey.data.frame:
@@ -553,10 +553,10 @@ searchSDF(string = c("computer","homework","school"), data = Dnk2015, levels = T
 levelsSDF(varnames = "asbg10b", data = Dnk2015)
 #> Levels for Variable 'asbg10b' (Lowest level first):
 #>     1. EVERY DAY OR ALMOST EVERY DAY (n = 840)
-#>     2. ONCE OR TWICE A WEEK (n = 1368)
-#>     3. ONCE OR TWICE A MONTH (n = 671)
-#>     4. NEVER OR ALMOST NEVER (n = 603)
-#>     9. OMITTED OR INVALID* (n = 122)
+#>     2. ONCE OR TWICE A WEEK (n = 1400)
+#>     3. ONCE OR TWICE A MONTH (n = 670)
+#>     4. NEVER OR ALMOST NEVER (n = 600)
+#>     9. OMITTED OR INVALID* (n = 120)
 #>     NOTE: * indicates an omitted level.
 ```
 
@@ -569,11 +569,11 @@ summary2(data = Dnk2015, variable = "asbg10b", weightVar = NULL)
 #> Estimates are not weighted.
 #>                         asbg10b    N   Percent
 #> 1 EVERY DAY OR ALMOST EVERY DAY  840 22.641509
-#> 2          ONCE OR TWICE A WEEK 1368 36.873315
-#> 3         ONCE OR TWICE A MONTH  671 18.086253
-#> 4         NEVER OR ALMOST NEVER  603 16.253369
-#> 5            OMITTED OR INVALID  122  3.288410
-#> 6                          <NA>  106  2.857143
+#> 2          ONCE OR TWICE A WEEK 1400 36.873315
+#> 3         ONCE OR TWICE A MONTH  670 18.086253
+#> 4         NEVER OR ALMOST NEVER  600 16.253369
+#> 5            OMITTED OR INVALID  120  3.288410
+#> 6                          <NA>  110  2.857143
 ```
 
 Additional data exploration functions are in [Chapter 5](#understandingData).

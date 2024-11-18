@@ -1,7 +1,7 @@
 
 # Models {#models}
 
-Last edited: October 2024
+Last edited: November 2024
 
 **Suggested Citation**<br></br>
 Liao, Y., Bailey, P., & Yavuz, S. Models. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
@@ -25,17 +25,17 @@ summary(object = lm1)
 #> JK replicates: 62
 #> Plausible values: 5
 #> jrrIMax: 1
-#> full data n: 17606
-#> n used: 16331
+#> full data n: 17600
+#> n used: 16300
 #> 
 #> Coefficients:
-#>                                  coef        se        t
-#> (Intercept)                 270.41112   1.02443 263.9615
-#> dsexFemale                   -2.95858   0.60423  -4.8965
-#> b017451Once every few weeks   4.23341   1.18327   3.5777
-#> b017451About once a week     11.22612   1.25854   8.9200
-#> b0174512 or 3 times a week   14.94591   1.18665  12.5951
-#> b017451Every day              7.52998   1.30846   5.7549
+#>                                 coef       se        t
+#> (Intercept)                 270.4110   1.0244 263.9615
+#> dsexFemale                   -2.9590   0.6042  -4.8965
+#> b017451Once every few weeks   4.2330   1.1833   3.5777
+#> b017451About once a week     11.2260   1.2585   8.9200
+#> b0174512 or 3 times a week   14.9460   1.1866  12.5951
+#> b017451Every day              7.5300   1.3085   5.7549
 #>                                dof  Pr(>|t|)    
 #> (Intercept)                 54.670 < 2.2e-16 ***
 #> dsexFemale                  54.991 8.947e-06 ***
@@ -67,17 +67,17 @@ summary(object = lm1f)
 #> JK replicates: 62
 #> Plausible values: 5
 #> jrrIMax: 1
-#> full data n: 17606
-#> n used: 16331
+#> full data n: 17600
+#> n used: 16300
 #> 
 #> Coefficients:
-#>                                  coef        se        t
-#> (Intercept)                 267.45254   1.13187 236.2919
-#> dsexMale                      2.95858   0.60423   4.8965
-#> b017451Once every few weeks   4.23341   1.18327   3.5777
-#> b017451About once a week     11.22612   1.25854   8.9200
-#> b0174512 or 3 times a week   14.94591   1.18665  12.5951
-#> b017451Every day              7.52998   1.30846   5.7549
+#>                                 coef       se        t
+#> (Intercept)                 267.4530   1.1319 236.2919
+#> dsexMale                      2.9590   0.6042   4.8965
+#> b017451Once every few weeks   4.2330   1.1833   3.5777
+#> b017451About once a week     11.2260   1.2585   8.9200
+#> b0174512 or 3 times a week   14.9460   1.1866  12.5951
+#> b017451Every day              7.5300   1.3085   5.7549
 #>                                dof  Pr(>|t|)    
 #> (Intercept)                 76.454 < 2.2e-16 ***
 #> dsexMale                    54.991 8.947e-06 ***
@@ -106,31 +106,31 @@ summary(object = lm1f, src=TRUE)
 #> JK replicates: 62
 #> Plausible values: 5
 #> jrrIMax: 1
-#> full data n: 17606
-#> n used: 16331
+#> full data n: 17600
+#> n used: 16300
 #> 
 #> Coefficients:
-#>                                   coef         se        t
-#> (Intercept)                 2.6745e+02 1.1319e+00 236.2919
-#> dsexMale                    2.9586e+00 6.0423e-01   4.8965
-#> b017451Once every few weeks 4.2334e+00 1.1833e+00   3.5777
-#> b017451About once a week    1.1226e+01 1.2585e+00   8.9200
-#> b0174512 or 3 times a week  1.4946e+01 1.1866e+00  12.5951
-#> b017451Every day            7.5300e+00 1.3085e+00   5.7549
+#>                                 coef       se        t
+#> (Intercept)                 267.4530   1.1319 236.2919
+#> dsexMale                      2.9590   0.6042   4.8965
+#> b017451Once every few weeks   4.2330   1.1833   3.5777
+#> b017451About once a week     11.2260   1.2585   8.9200
+#> b0174512 or 3 times a week   14.9460   1.1866  12.5951
+#> b017451Every day              7.5300   1.3085   5.7549
 #>                                dof   Pr(>|t|) stdCoef
 #> (Intercept)                 76.454 0.0000e+00      NA
-#> dsexMale                    54.991 8.9474e-06  0.0407
-#> b017451Once every few weeks 57.316 7.1311e-04  0.0458
-#> b017451About once a week    54.683 2.9834e-12  0.1175
-#> b0174512 or 3 times a week  72.582 0.0000e+00  0.1659
-#> b017451Every day            48.470 5.7550e-07  0.0817
-#>                                stdSE   
-#> (Intercept)                       NA   
-#> dsexMale                    0.008313 **
-#> b017451Once every few weeks 0.012791 * 
-#> b017451About once a week    0.013175 * 
-#> b0174512 or 3 times a week  0.013175 * 
-#> b017451Every day            0.014200 * 
+#> dsexMale                    54.991 8.9474e-06   0.041
+#> b017451Once every few weeks 57.316 7.1311e-04   0.046
+#> b017451About once a week    54.683 2.9834e-12   0.118
+#> b0174512 or 3 times a week  72.582 0.0000e+00   0.166
+#> b017451Every day            48.470 5.7550e-07   0.082
+#>                              stdSE   
+#> (Intercept)                     NA   
+#> dsexMale                    0.0083 **
+#> b017451Once every few weeks 0.0128 * 
+#> b017451About once a week    0.0132 * 
+#> b0174512 or 3 times a week  0.0132 * 
+#> b017451Every day            0.0142 * 
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -150,6 +150,7 @@ lm1 <- lm.sdf(formula = composite ~ dsex + b003501 + b003601, data = sdf)
 summary(object = lm1)$coefmat
 ```
 
+
 Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 
 |                          |      coef|      se|         t|      dof| Pr(>&#124;t&#124;)|
@@ -162,6 +163,8 @@ Table: (\#tab:table801)Coefficients \label{tab:Coefficients}
 |b003601Graduated H.S.     |   2.89789| 1.65445|   1.75157| 44.98221|            0.08666|
 |b003601Some ed after H.S. |   9.15489| 1.85547|   4.93399| 25.78984|            0.00004|
 |b003601I Don't Know       |  -4.12084| 1.52672|  -2.69914| 37.56060|            0.01036|
+
+
 
 The *p*-values for variables run in `lm1` can be corrected for multiple testing. Notice that the only *p*-values adjusted in this example are in rows 6, 7, and 8 of the coefficients in `lm1`, and that column's name is `Pr(>|t|)` so we can extract them with this command
 
@@ -190,6 +193,7 @@ p.adjust(p = lm1$coefmat[6:8, "Pr(>|t|)"], method = "bonferroni")
 ```
 We can compare all the values in a single table in \ref{tab:allp}
 
+
 Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab:allp}
 
 |                          |      raw|       BH| Bonferroni|
@@ -197,6 +201,8 @@ Table: (\#tab:allAdjustments)Various p-values adjustments for b003501 \label{tab
 |b003601Graduated H.S.     | 0.086663| 0.086663|   0.259990|
 |b003601Some ed after H.S. | 0.000041| 0.000122|   0.000122|
 |b003601I Don't Know       | 0.010360| 0.015540|   0.031080|
+
+
 The coefficients matrix also can be overwritten by selecting the same vector in the `lm1` linear regression object, updated here the Bonferroni p-values:
 
 
@@ -206,6 +212,7 @@ summary(object = lm1)$coefmat[6:8, ]
 ```
 
 
+
 Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustment to the b003501 variable  \label{tab:Coefficients with Bonferroni}
 
 |                          |     coef|      se|        t|      dof| Pr(>&#124;t&#124;)|
@@ -213,6 +220,8 @@ Table: (\#tab:updateCoefmatout)Coefficients table after using Bonferroni adjustm
 |b003601Graduated H.S.     |  2.89789| 1.65445|  1.75157| 44.98221|            0.25999|
 |b003601Some ed after H.S. |  9.15489| 1.85547|  4.93399| 25.78984|            0.00012|
 |b003601I Don't Know       | -4.12084| 1.52672| -2.69914| 37.56060|            0.03108|
+
+
 
 ### Adjusting *p*-Values From Multiple Sources
 Sometimes several values must be adjusted at once. In these cases, the `p.adjust` function must be called with all the *p*-values the researcher wishes to adjust together.
@@ -258,6 +267,7 @@ colnames(pvalues)[3] <- "Pr(>|t|)"
 pvalues
 ```
 
+
 Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 
 |source |coef                      | Pr(>&#124;t&#124;)|
@@ -270,6 +280,8 @@ Table: (\#tab:table804)Unadjusted *p*-values \label{tab:unadjustedPValues}
 |lm2b   |b003501I Don't Know       |          0.0013006|
 |otherp |                          |          0.0200000|
 
+
+
 Now that the aforementioned *p*-values are included in the same vector, they are adjusted via `p.adjust` using the Benjamini and Hochberg method:
 
 
@@ -277,6 +289,7 @@ Now that the aforementioned *p*-values are included in the same vector, they are
 pvalues[,"Adjusted Pr(>|t|)"] <- p.adjust(p = pvalues[,"Pr(>|t|)"], method = "BH")
 pvalues
 ```
+
 
 Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 
@@ -289,6 +302,8 @@ Table: (\#tab:table805)Adjusted *p*-values \label{tab:adjustedPValues}
 |lm2b   |b003501Some ed after H.S. |          0.0000000|                   0.0000000|
 |lm2b   |b003501I Don't Know       |          0.0013006|                   0.0018208|
 |otherp |                          |          0.0200000|                   0.0233333|
+
+
 
 *NOTE:* The `EdSurvey` package produces *p*-values based on the assumption that tests are independent and unassociated with each other; yet this assumption is not always valid. Several possible methods have been developed for dealing with the multiple hypothesis testing problem.  
 
@@ -309,21 +324,21 @@ summary(object = mvrlm1)
 #> Weight variable: 'origwt'
 #> Variance method: 
 #> JK replicates: 62
-#> full data n: 17606
-#> n used: 16915
+#> full data n: 17600
+#> n used: 16900
 #> 
 #> Coefficients:
 #> 
 #> algebra 
-#>                         coef        se         t    dof
-#> (Intercept)        258.60021   2.37825 108.73566 42.830
-#> dsexFemale           6.49222   1.51768   4.27772 52.594
-#> m072801B *          24.73912   2.23007  11.09343 67.824
-#> m072801C            11.68097   2.97770   3.92281 64.728
-#> m072801D           -12.88715   6.56876  -1.96188 12.101
-#> m072801E             1.98741   5.38193   0.36927 21.259
-#> m072801Omitted      -5.31108   9.43653  -0.56282 24.518
-#> m072801Not Reached -33.49285  17.44246  -1.92019 10.866
+#>                        coef       se        t    dof
+#> (Intercept)        258.6000   2.3782 108.7357 42.830
+#> dsexFemale           6.4920   1.5177   4.2777 52.594
+#> m072801B *          24.7390   2.2301  11.0934 67.824
+#> m072801C            11.6810   2.9777   3.9228 64.728
+#> m072801D           -12.8870   6.5688  -1.9619 12.101
+#> m072801E             1.9870   5.3819   0.3693 21.258
+#> m072801Omitted      -5.3110   9.4365  -0.5628 24.518
+#> m072801Not Reached -33.4930  17.4425  -1.9202 10.866
 #>                     Pr(>|t|)    
 #> (Intercept)        < 2.2e-16 ***
 #> dsexFemale         8.001e-05 ***
@@ -338,15 +353,15 @@ summary(object = mvrlm1)
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> geometry 
-#>                          coef         se          t     dof
-#> (Intercept)        255.501196   2.367237 107.932229 33.7717
-#> dsexFemale           5.158692   1.576222   3.272821 36.3082
-#> m072801B *          22.345782   2.212370  10.100380 57.1509
-#> m072801C             8.808899   3.646951   2.415414 51.2075
-#> m072801D            -9.261391   5.877839  -1.575646 12.8646
-#> m072801E            -0.174883   5.919771  -0.029542 23.9273
-#> m072801Omitted      -4.713822   7.345774  -0.641705 25.5050
-#> m072801Not Reached -31.766149  23.888495  -1.329768  5.1301
+#>                        coef       se        t    dof
+#> (Intercept)        255.5010   2.3672 107.9322 33.772
+#> dsexFemale           5.1590   1.5762   3.2728 36.308
+#> m072801B *          22.3460   2.2124  10.1004 57.151
+#> m072801C             8.8090   3.6470   2.4154 51.207
+#> m072801D            -9.2610   5.8778  -1.5756 12.865
+#> m072801E            -0.1750   5.9198  -0.0295 23.927
+#> m072801Omitted      -4.7140   7.3458  -0.6417 25.505
+#> m072801Not Reached -31.7660  23.8885  -1.3298  5.130
 #>                     Pr(>|t|)    
 #> (Intercept)        < 2.2e-16 ***
 #> dsexFemale          0.002341 ** 
@@ -409,16 +424,13 @@ summary(object = logit1)
 #> Weight variable: 'origwt'
 #> Variance method: jackknife
 #> JK replicates: 62
-#> full data n: 17606
-#> n used: 16915
+#> full data n: 17600
+#> n used: 16900
 #> 
 #> Coefficients:
-#>                   coef         se          t    dof
-#> (Intercept)  -0.937357   0.045582 -20.564023 60.193
-#> dsexFemale    0.183125   0.049674   3.686517 54.838
-#>              Pr(>|t|)    
-#> (Intercept) < 2.2e-16 ***
-#> dsexFemale  0.0005226 ***
+#>                 coef       se        t    dof  Pr(>|t|)    
+#> (Intercept)  -0.9370   0.0456 -20.5640 60.193 < 2.2e-16 ***
+#> dsexFemale    0.1830   0.0497   3.6865 54.838 0.0005226 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -465,14 +477,15 @@ waldTest(model = logit1, coefficients = 2)
 
 To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
 
+
 ### Using Plausible Values as a Predictor
 
-For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale, can be used as a predictor. This feature has been enabled for linear regression (`lm.sdf`) and generalized linear regression (`glm.sdf`, `logit.sdf`, and `probit.sdf`). Their methodology has been documented in Chapter11, Statistical Methodology. In this section we will show how to use this feature in linear and generalized linear regressions.
+For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale can be used as a predictor. This feature has been enabled for generalized linear regression (`glm.sdf`, `logit.sdf`, and `probit.sdf`) and linear regression (`lm.sdf`). The methodology of these regression models has been documented in Chapter 11, Statistical Methodology. This subchapter will explain how to use this feature in linear and generalized linear regressions.
 
 
 #### Using Plausible Values as a Predictor for Generalized Linear Regression
 
-In this section, we will show examples using `logit.sdf`. For example, we now demonstrate the exploration and analysis for the research question, “How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)?” In the `2005 NAEP Primer`, there is a “Math class taking now” variable that has the variable name `m815701` in the `sdf` object. It is useful to look at a raw frequency table to see the levels and their approximate prevalence, a call to table achieves this goal.
+In this section, we will show examples using `logit.sdf`. For example, we will demonstrate the exploration and analysis for the research question “How is students’ algebra achievement associated with students’ current enrollment in algebra class (Algebra I or Algebra II)?” In the `2005 NAEP Primer`, there is a “Math class taking now” variable that has the variable name `m815701` in the `sdf` object. It is useful to look at a raw frequency table to see the levels and their approximate distribution with the table function.
 
 
 ```r
@@ -492,14 +505,14 @@ table(sdf$m815701)
 #>                  105
 ```
 
-One way to run the analyses for the research question of interest is to create a new variable indicating that a student is taking "Algebra I (1-yr crs)", "1st yr 2-yr Algeb I", "2nd yr 2-yr Algeb I", and "Algebra II" or not. The following code uses the `ifelse` function to create a new variable called `AlgebraClass` in the `sdf` object, assigning a value of `1` if the `m815701` column contains any of Algebra I and II classes mentioned above, and `0` otherwise. Note that there are multiple categories of "Algebra I" and these are included in the following code.
+One way to run the analyses for the research question of interest is to create a new variable indicating that a student is or is not taking “Algebra I (1-yr crs),” “1st yr 2-yr Algeb I,” “2nd yr 2-yr Algeb I,” or “Algebra II.” The following code uses the `ifelse` function to create a new variable called `AlgebraClass` in the `sdf` object, assigning a value of `1` if the `m815701` column contains any of Algebra I and II classes mentioned above and `0` otherwise. Note that there are multiple categories of “Algebra I,” which are included in the following code:
 
 
 ```r
 sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I (1-yr crs)', '1st yr 2-yr Algeb I', '2nd yr 2-yr Algeb I', 'Algebra II'), 1, 0)
 ```
 
-The `ifelse` function converts multiple Algebra class categories to `1`, while coding all the other categories as `0`, including `Multiple` and `Omitted`. . The following code provides the frequencies of each category of the newly created `AlgebraClass` variable against the actual variable in the `NAEP 2005 Primer`.
+The `ifelse` function converts multiple Algebra class categories to `1` while coding all the other categories as `0`, including `Multiple` and `Omitted`. The following code provides the frequencies of each category of the newly created `AlgebraClass` variable against the actual variable in the `NAEP 2005 Primer`.
 
 
 ```r
@@ -520,9 +533,9 @@ table(sdf$m815701,sdf$AlgebraClass,  useNA = "always")
 #>   <NA>                    0    0    0
 ```
 
-After creating the `AlgebraClass` variable, the `logit.sdf` function can be used to answer the research question: How are students’ algebra achievement associated with the student currently taking an algebra class (Algebra I or Algebra II)? In this context, `AlgebraClass` is the outcome variable, and algebra achievement, represented by the algebra subscale in the `sdf` object, is the predictor. The `algebra` subscale includes multiple plausible values. The `logit.sdf` function runs the analyses for each plausible value, combines them according to Rubin’s rule (@rubin) on the backend, and provides the final results.  The `logit.sdf` function, like the `glm.sdf`, `probit.sdf,` and `lm.sdf` functions, also accepts other subscales and `composite` scales. You can use the `showPlausibleValues` function to find out the name of the subject scale and subscales in the `sdf` object.
+After creating the `AlgebraClass` variable, the `logit.sdf` function can be used to answer the research question “How is students’ algebra achievement associated with students currently enrollment in an algebra class (Algebra I or Algebra II)”? In this context, `AlgebraClass` is the outcome variable and algebra achievement—represented by the algebra subscale in the `sdf` object—is the predictor. The `algebra` subscale includes multiple plausible values. The `logit.sdf` function runs the analyses for each plausible value, combines them according to Rubin’s rule (@rubin) on the backend, and provides the final results. The `logit.sdf` function, like the `glm.sdf`, `probit.sdf`, and `lm.sdf` functions, also accepts other subscales and `composite` scales. You can use the `showPlausibleValues` function to find out the name of the subject scale and subscales in the `sdf` object.
 
-The following code demonstrates how to use plausible values as the predictor to answer the research question of interest. 
+The following code demonstrates how to use plausible values as the predictor to answer the research question of interest:
 
 
 ```r
@@ -536,25 +549,23 @@ summary(object = logit2)
 #> Weight variable: 'origwt'
 #> Variance method: jackknife
 #> JK replicates: 62
-#> full data n: 17606
-#> n used: 16915
+#> full data n: 17600
+#> n used: 16900
 #> 
 #> Coefficients:
-#>                    coef          se           t    dof
-#> (Intercept)  -5.1635177   0.4050084 -12.7491605 48.045
-#> algebra       0.0164805   0.0013863  11.8882140 49.207
-#>              Pr(>|t|)    
-#> (Intercept) < 2.2e-16 ***
-#> algebra     4.441e-16 ***
+#>                 coef       se        t    dof  Pr(>|t|)    
+#> (Intercept)  -5.1640   0.4050 -12.7492 48.046 < 2.2e-16 ***
+#> algebra       0.0160   0.0014  11.8882 49.207 4.441e-16 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-When running logistic regression, `EdSurvey` package, by default, uses listwise deletes special values including missing values, and `Multiple` and `Omitted`categories. To change the setting, set `dropOmittedLevels = FALSE`, or recode them to another category. In this case, the special values were converted to `0` with the `ifelse` function. As the `AlgebraClass` variable is already created as a binary variable,  by default the `logit.sdf` models the likelihood of its highest category (i.e., level 1: taking one of the algebra class). Additionally, because we created the `AlgebraClass` variable with a certain condition, i.e. `1` if taking one of the algebra classes and `0` not taking one of the algebra classes, the `0` condition contains `Multiple` and `Omitted` categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). As a conclusion, with each one-unit increase in the algebra score, the log odds of being in an Algebra class increase by `0.016481`.
+
+When running logistic regression, the `EdSurvey` package, by default, uses listwise deletion for special values, including missing values and `Multiple` and `Omitted` categories. To change the setting, set `dropOmittedLevels = FALSE` or recode them to another category. In this case, the special values were converted to `0` with the `ifelse` function. As the `AlgebraClass` variable is already created as a binary variable, by default the `logit.sdf` models the likelihood of its highest category (i.e., level 1: taking one of the algebra classes). Additionally, because we created the `AlgebraClass` variable with a certain condition (i.e., `1` if taking one of the algebra classes and `0` if not taking one of the algebra classes), the `0` condition contains `Multiple` and `Omitted` categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). Each one-unit increase in the algebra score was associated with an increase in log odds of being in an Algebra class of `0.0160`.
 
 #### Using Plausible Values as a Predictor for Linear Regression
 
-This section explains and provides examples of cases where the outcome variable is continuous and the predictor is a scale or subscale. The `lm.sdf` function can be used to perform these analyses. For example, `lm.sdf` can be applied to address the research question: “How does students’ performance in geometry relate their achievement in algebra?” Both algebra and geometry are mathematics subscales within the `sdf` object. The following call performs a linear regression analysis with the geometry subscale as the predictor:
+This section explains and provides examples of cases where the outcome variable is continuous and the predictor is a scale or subscale. The `lm.sdf` function can be used to perform these analyses. For example, `lm.sdf` can be applied to address the research question “How does students’ performance in geometry relate their achievement in algebra?” Both `algebra` and `geometry` are mathematics subscales within the `sdf` object. The following call performs a linear regression analysis with the geometry subscale as the predictor:
 
 
 ```r
@@ -568,16 +579,13 @@ summary(lm3)
 #> JK replicates: 62
 #> Plausible values: 5
 #> jrrIMax: 1
-#> full data n: 17606
-#> n used: 16915
+#> full data n: 17600
+#> n used: 16900
 #> 
 #> Coefficients:
-#>                   coef         se       t    dof  Pr(>|t|)
-#> (Intercept) 27.1500107  2.7555551  9.8528 49.373 3.026e-13
-#> geometry     0.9216951  0.0099083 93.0226 53.519 < 2.2e-16
-#>                
-#> (Intercept) ***
-#> geometry    ***
+#>                coef      se       t    dof  Pr(>|t|)    
+#> (Intercept) 27.1500  2.7556  9.8528 49.373 3.026e-13 ***
+#> geometry     0.9220  0.0099 93.0226 53.519 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -585,31 +593,33 @@ summary(lm3)
 #> Multiple R-squared: 0.7459
 ```
 
-The `lm.sdf` function can also be applied to analyze cases where the outcome variable is a Likert scale, which we will treat as a continuous variable for this example. Let's consider a scenario where the goal is to investigate the relationship between students' effort on a math test and their overall math achievement. The research question guiding this analysis could be: “How does students’ overall academic performance predict their effort on this math test?” To address this, we use the `lm.sdf` function, where the outcome variable is the Likert scale measuring the effort on this math test (`m815501`), and the predictor is the math `composite` scale. 
- 
-Before running the analyses with `lm.sdf` function, we need to ensure that the categories are ordered meaningfully and that `Omitted` and `Multiple` categories are converted to `NA`. First, we check the category order using the `levelsSDF` function:
+The `lm.sdf` function can also be applied to analyze cases where the outcome variable is a Likert scale, which we will treat as a continuous variable for this example. Let’s consider a scenario where the goal is to investigate the relationship between students’ effort on a math test and their overall math achievement. The research question guiding this analysis could be “How does students’ overall academic performance predict their effort on this math test?” To address this, we use the `lm.sdf` function, where the outcome variable is the Likert scale measuring the effort on this math test (`m815501`) and the predictor is the math `composite` scale.
+
+Before running the analyses with the `lm.sdf` function, we need to ensure that the categories are ordered meaningfully and that `Omitted` and `Multiple` categories are converted to `NA.` First, we check the category order using the `levelsSDF` function:
+
  
 
 ```r
 levelsSDF("m815501", sdf)
 #> Levels for Variable 'm815501' (Lowest level first):
-#>     1. Tried not as hard (n = 3970)
-#>     2. Tried about as hard (n = 8543)
-#>     3. Tried harder (n = 2277)
-#>     4. Tried much harder (n = 1129)
-#>     8. Omitted* (n = 986)
-#>     0. Multiple* (n = 10)
+#>     1. Tried not as hard (n = 4000)
+#>     2. Tried about as hard (n = 8500)
+#>     3. Tried harder (n = 2300)
+#>     4. Tried much harder (n = 1100)
+#>     8. Omitted* (n = 990)
+#>     0. Multiple* (n = 0)
 #>     NOTE: * indicates an omitted level.
 ```
  
-As the output shows, the categories range from `1` to `4`, representing responses from `Tried not as hard` to `Tried much harder.` No reordering is necessary, but the `Multiple` and `Omitted` categories must be converted to `NA`, as their numeric codes (`8` and `0`, respectively) would distort the linear regression results. The following code converts `m815501` to a numeric variable and recodes `0` and `8` as `NA`:
+As the output shows, the categories range from `1` to `4`, representing responses from `Tried not as hard` to `Tried much harder`. No reordering is necessary, but the `Multiple` and `Omitted` categories must be converted to `NA`, as their numeric codes (`8` and `0`, respectively) would distort the linear regression results. The following code converts `m815501` to a numeric variable and recodes `0` and `8` as `NA`:
  
 
 ```r
 sdf$m815501_numeric <- as.numeric(sdf$m815501)
 sdf$m815501_numeric <- ifelse(sdf$m815501_numeric  %in% c(0,8), NA,  sdf$m815501_numeric)
 ```
-After preparing the variable, we can apply the `lm.sdf`to run a linear regression model:
+
+After preparing the variable, we can apply the `lm.sdf` to run a linear regression model:
  
 
 ```r
@@ -621,25 +631,22 @@ summary(lm5)
 #> Weight variable: 'origwt'
 #> Variance method: jackknife
 #> JK replicates: 62
-#> full data n: 17606
-#> n used: 15919
+#> full data n: 17600
+#> n used: 15900
 #> 
 #> Coefficients:
-#>                    coef          se       t    dof
-#> (Intercept)  2.89018612  0.06891612  41.938 56.558
-#> composite   -0.00314019  0.00024894 -12.614 55.118
-#>              Pr(>|t|)    
-#> (Intercept) < 2.2e-16 ***
-#> composite   < 2.2e-16 ***
+#>                coef      se       t    dof  Pr(>|t|)    
+#> (Intercept)  2.8900  0.0689  41.938 56.558 < 2.2e-16 ***
+#> composite   -0.0030  0.0002 -12.614 55.118 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> Multiple R-squared: 0.0195
 ```
-The analysis shows that the mathematics `composite` scale score is a significant predictor of effort on the math test. However, the coefficient is negative, indicating that higher-scoring students tend to report lower effort on this math test. The R-squared value is 0.02, meaning this model explains only 2% of the variance in the `m815501` variable.
- 
-We can also visually inspect the fitted values against the observed values. The following code extracts the fitted values from the lm5 model, removes the plausible values for students missing on `m815501`, and creates a plot of the first plausible value, the listwise-deleted `m815501_numeric`, and the fitted values:
+The analysis shows that the mathematics `composite` scale score is a significant predictor of effort on the math test. However, the coefficient is negative, indicating that higher scoring students tend to report lower effort on this math test. The R-squared value is `0.02`, meaning this model explains only 2% of the variance in the `m815501` variable.
+
+We can also visually inspect the fitted values against the observed values. The following code extracts the fitted values from the `lm5` model, removes the plausible values for students missing on `m815501`, and creates a plot of the first plausible value, the listwise-deleted `m815501_numeric`, and the fitted values:
  
 
 ```r
@@ -655,8 +662,8 @@ ggplot(plotData, aes(x = noNA_mrpcm1, y = m815501_numeric)) +
   geom_point(position = position_jitter(width = 0.2), color = "blue", size = .3) +  # Adding jitter to the points
   geom_line(aes(y = fittedValues), color = "red", linewidth = 1) +  # Line with fitted values
   labs(
-    title = "Scatterplot with Fitted Line",
-    x = "Plausible Value 1",  # Category label for the x-axis
+    title = "Figure 1",
+    x = "Plausible value 1",  # Category label for the x-axis
     y = "Effort on this test"   # Category label for the y-axis
   ) +
   theme_minimal()
@@ -664,7 +671,7 @@ ggplot(plotData, aes(x = noNA_mrpcm1, y = m815501_numeric)) +
 
 <img src="08-models_files/figure-html/lm_effort_plot-1.png" width="672" />
 
-This plot provides a visual comparison of the fitted values from the linear model and the observed student effort scores.
+Figure 1 provides a visual comparison of the fitted values from the linear model and the observed student effort on this test. The figure uses jittered dots to show how students are distributed across the effort categories. The blue dots represent the individual student effort scores, while the red line indicates the fitted values calculated by the linear model. The line has a slight downward slope, consistent with the negative coefficient of the composite variable in the regression output. This suggests that students with higher mathematics composite scores tend to report slightly lower effort on the math test.
 
 ##  Quantile Regression Analysis with `rq.sdf`
 The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.
@@ -683,8 +690,8 @@ summary(object = rq1)
 #> Weight variable: 'origwt'
 #> Variance method: jackknife
 #> JK replicates: 62
-#> full data n: 17606
-#> n used: 16331
+#> full data n: 17600
+#> n used: 16300
 #> 
 #> Coefficients:
 #>                                 coef       se        t
@@ -695,12 +702,12 @@ summary(object = rq1)
 #> b0174512 or 3 times a week   16.5420   2.4616   6.7201
 #> b017451Every day             12.7420   1.6932   7.5253
 #>                                dof  Pr(>|t|)    
-#> (Intercept)                 29.389 < 2.2e-16 ***
+#> (Intercept)                 29.388 < 2.2e-16 ***
 #> dsexFemale                  58.617 0.0006868 ***
 #> b017451Once every few weeks 46.045 0.0012041 ** 
 #> b017451About once a week    67.782 8.032e-07 ***
 #> b0174512 or 3 times a week  29.867 1.943e-07 ***
-#> b017451Every day            50.343 8.717e-10 ***
+#> b017451Every day            50.342 8.717e-10 ***
 #> ---
 #> Signif. codes:  
 #> 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -738,12 +745,12 @@ summary(object = m1)
 #> Plausible Values: 5
 #> Number of Groups:
 #>  Level  Group n size mean wgt sum wgt
-#>      2 scrpsu     22    1.281   28.19
-#>      1    Obs    492    1.598  786.25
+#>      2 scrpsu      0        0       0
+#>      1    Obs    490        0     790
 #> 
 #> Variance terms:
 #>  Level    Group        Name Variance Std. Error Std.Dev.
-#>      2   scrpsu (Intercept)    558.6     204.64    23.63
+#>      2   scrpsu (Intercept)    558.6     204.64    23.64
 #>      1 Residual                876.8      74.69    29.61
 #> 
 #> Fixed Effects:
@@ -783,8 +790,8 @@ summary(object = mix1)
 #> Plausible Values: 5
 #> Number of Groups:
 #>  Level    Group n size mean wgt sum wgt
-#>      2 idschool    250    255.9   63971
-#>      1      Obs  10029    374.6 3757302
+#>      2 idschool    250      260   64000
+#>      1      Obs  10000      370 3757000
 #> 
 #> Variance terms:
 #>  Level    Group        Name Variance Std. Error Std.Dev.
@@ -812,8 +819,8 @@ summary(object = mix2)
 #> Formula: asmmat01 ~ itsex + (1 | idschool)
 #> Number of Groups:
 #>  Level    Group n size mean wgt sum wgt
-#>      2 idschool    250    255.9   63971
-#>      1      Obs  10029    374.6 3757302
+#>      2 idschool    250      260   64000
+#>      1      Obs  10000      370 3757000
 #> 
 #> Variance terms:
 #>  Level    Group        Name Variance Std. Error Std.Dev.
