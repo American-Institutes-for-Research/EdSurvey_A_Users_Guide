@@ -1,6 +1,7 @@
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
 library(EdSurvey)
-sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
+path <- "I:/NCES/NCES_Dev/EdSurvey Project/DataSimulation/Deliverable/NCES2024013_UploadDate09232024/S46MAT/"
+sdf <- readNAEP(path = file.path(path, "Data/M46NT2SM.dat"), frPath = file.path(path, "Select/Parms/M46NT2SM.fr2"))
 ```
 # Models {#models}
 
@@ -207,16 +208,29 @@ waldTest(model = logit1, coefficients = 2)
 To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
 
 ##  Quantile Regression Analysis with `rq.sdf`
-The `rq.sdf` function computes an estimate on the tau-th conditional quantile function of the response, given the covariates, as specified by the formula argument. Similar to `lm.sdf`, the function presumes a linear specification for the quantile regression model (i.e., the formula defines a model that is linear in parameter). Jackknife is the only applicable variance estimation method used by the function.
+The `rq.sdf` function from the `EdSurvey` package allows you to fit quantile regression models specifically designed for large-scale assessment data supported by `EdSurvey`, utilizing appropriate weights and variance estimates. Like `lm.sdf`, it assumes a linear relationship between the dependent variable and the covariates but focuses on estimating the conditional quantile function at a specified quantile (`tau`).
 
-To conduct quantile regression at a given tau value (by default, tau is set as 0.5), specify using the `tau` argument (in this example `tau = 0.8`); all other arguments are otherwise consistent with `lm.sdf`, except for `returnVarEstInputs`, `returnNumberOfPSU`, and `standardizeWithSamplingVar`, which are not available.
+**Key Features and Arguments**
+
+- **Formula Specification**: The formula argument defines the model and specifies the dependent variable and covariates. For example, `composite ~ dsex + b017451` estimates the relationship between `composite` (dependent variable) and the independent variables `dsex` and `b017451.`
+- **Tau Parameter**: Use the `tau` argument to select the quantile of interest. By default, `tau = 0.5` (median), but other quantiles (e.g., `tau = 0.8`) can be specified.
+- **Variance Estimation**: Unlike lm.sdf(), the jackknife is the only applicable variance estimation method used by the function.
+- **Weights and Levels**: You can specify survey weights via `weightVar` and control whether omitted levels in the data are included using the `dropOmittedLevels` argument (default: `TRUE`).
+
+**Example: Estimating the 80th Percentile**
+The following example demonstrates quantile regression at the 80th percentile (`tau = 0.8`) to model the relationship between the `composite` score and selected variables (`dsex` and `b017451`). The `summary()` function displays key outputs, including coefficient estimates, standard errors, and other model diagnostics.
 
 ```{r rqsdf, cache=FALSE, warning=FALSE}
 rq1 <- rq.sdf(composite ~ dsex + b017451, data=sdf, tau = 0.8)
 summary(object = rq1)
 ```
 
-For further details on quantile regression models and how they are implemented in R, see the vignette from the `quantreg` package (accessible by the `vignette("rq", package="quantreg")`), on which the `rq.sdf` function is built.
+**Comparison with `lm.sdf`**
+While both `lm.sdf` and `rq.sdf` handle survey data, `rq.sdf` focuses on specific quantiles rather than the mean. This makes it particularly useful for exploring how relationships between variables differ across the distribution of the dependent variable.
+
+**Additional Resources**
+To deepen your understanding of quantile regression and its implementation, Review the vignette provided in the `quantreg` package, which `rq.sdf` is based on: `vignette("rq", package="quantreg").`
+
 
 ##  Mixed Models With `mixed.sdf`
 `EdSurvey` features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. `EdSurvey` fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the `WeMix` package.
