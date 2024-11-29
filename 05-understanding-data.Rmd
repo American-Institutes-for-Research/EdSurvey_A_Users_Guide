@@ -202,7 +202,7 @@ gddat <- getData(data = sdf, varnames = c('dsex', 'sdracem', 'b018201', 'b017451
               addAttributes = TRUE, dropOmittedLevels = FALSE)
 ```           
 
-####Bar Chart with `geom_bar()`
+**Bar Chart with `geom_bar()`**
 Bar charts represent data with rectangles whose heights indicate values. Figure 1 displays a bar chart showing counts of the variable `b017451` by category, with `fill = dsex` used to segment by gender (`dsex`).
 
 ```{r plot1, message=FALSE, fig.width=11,fig.height=3}
@@ -213,7 +213,7 @@ bar1 <- ggplot(data = gddat, aes(x = b017451)) +
 bar1
 ```
 
-####Histogram with geom_histogram()
+**Histogram with geom_histogram()**
 Histograms illustrate the distribution of continuous variables through binning. Figure 2 depicts the unweighted distribution of the first plausible value of the `composite` variable.
 
 ```{r plot2, message=FALSE, fig.width=11,fig.height=3}
@@ -232,7 +232,7 @@ hist2 <- ggplot(gddat, aes(x = mrpcm1)) +
 hist2
 ```
 
-####Boxplot with geom_boxplot()
+**Boxplot with geom_boxplot()**
 Boxplots summarize data distribution using quartiles. Figure 4 shows the distribution of `mrpcm1` (the first plausible value of `composite`) across the six categories of `sdracem.`
 
 ```{r plot4, message=FALSE, fig.width=11, fig.height=3}
