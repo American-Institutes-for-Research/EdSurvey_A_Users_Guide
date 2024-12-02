@@ -113,6 +113,9 @@ exploring-data
 summary2
 edsurveytable
 ggplot2
+data-manipulation-with-tidyedsurvey
+dplyr-with-edsurvey.data.frame
+ggplot2-with-edsurvey.data.frame
 dataManipulation
 subsetting-the-data
 recoding-variable-names-and-levels-using-recode.sdf-and-rename.sdf

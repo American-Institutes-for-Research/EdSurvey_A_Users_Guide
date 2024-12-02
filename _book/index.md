@@ -1,7 +1,7 @@
 --- 
 title: " Analyzing NCES Data Using EdSurvey: A User's Guide"
 author: EdSurvey Team\footnote{NCES 2021-044}
-date: "2024-07-12"
+date: "2024-12-02"
 site: bookdown::bookdown_site
 description: |
   | The EdSurvey R package brings together the ability to download, extract data from, and analyze with common procedures all the methodologies that a researcher needs to analyze NCES survey data. Analyzing NCES Data Using EdSurvey\\: A User’s Guide is an e-book that provides guidance for how to use the `EdSurvey` R package to analyze NCES data.
@@ -48,7 +48,7 @@ Please report bugs and other issues on our GitHub repository at [https://github.
 
 ## Analyzing NCES Data Using EdSurvey: A User's Guide {.unnumbered}
 
-**July 2024**
+**December 2024**
 
 Editors: **Paul Bailey**, **Ting Zhang**<br></br>
 **American Institutes for Research**

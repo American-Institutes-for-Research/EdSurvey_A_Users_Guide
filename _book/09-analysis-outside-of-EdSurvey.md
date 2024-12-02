@@ -9,7 +9,6 @@ By calling the function `getData()`, one can extract a `light.edsurvey.data.fram
 
 ```r
 library(EdSurvey)
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors

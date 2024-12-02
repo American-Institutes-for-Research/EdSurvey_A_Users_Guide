@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.7.0/transition.js"></script><script src="libs/bs3compat-0.7.0/tabs.js"></script><script src="libs/bs3compat-0.7.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -71,6 +71,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Analyzing NCES Data Using EdSurvey: A User’s Guide</a></li>
 <li><a class="" href="cover-page.html">Cover Page</a></li>
+<li><a class="" href="authors.html">Authors</a></li>
 <li><a class="" href="preface.html">Preface</a></li>
 <li><a class="" href="introduction.html"><span class="header-section-number">1</span> Introduction</a></li>
 <li><a class="" href="installation.html"><span class="header-section-number">2</span> Installing R and EdSurvey and Loading the Package</a></li>
@@ -100,14 +101,14 @@
 </h1>
 <p>Once data are successfully read in (see how <code>EdSurvey</code> supports reading-in data for each study in <a href="dataAccess.html#dataAccess">Chapter 4</a>), users can use the commands in the following sections to understand the data.</p>
 <p>To follow along in this chapter, load the <a href="https://nces.ed.gov/pubsearch/pubsinfo.asp?pubid=2011463">NAEP Primer dataset</a> <code>M36NT2PM</code> and assign it the name <code>sdf</code> with the following call:</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/readNAEP.html">readNAEP</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/data"</span>, <span class="st">"M36NT2PM.dat"</span>, package <span class="op">=</span> <span class="st">"NAEPprimer"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="searching-variables" class="section level2" number="5.1">
 <h2>
 <span class="header-section-number">5.1</span> Searching Variables<a class="anchor" aria-label="anchor" href="#searching-variables"><i class="fas fa-link"></i></a>
 </h2>
 <p>The <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code> function will list all variable names in the data:</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] "ROWID"   "year"    "cohort"  "scrpsu"  "dsex"   </span></span>
 <span><span class="co">#&gt;   [6] "iep"     "lep"     "ell3"    "sdracem" "pared"  </span></span>
@@ -171,7 +172,7 @@
 <span><span class="co">#&gt; [296] "c046501" "c044006" "c044007" "c052901" "c053001"</span></span>
 <span><span class="co">#&gt; [301] "c053101" "sscrpsu" "c052601"</span></span></code></pre></div>
 <p>To conduct a more powerful search of NAEP data variables, use the <code><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF()</a></code> function, which returns variable names and labels from an <code>edsurvey.data.frame</code> based on a character string. The user can specify which data source (either “student” or “school”) to search. For example, the following call to <code><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF()</a></code> searches for the character string <code>"book"</code> in an <code>edsurvey.data.frame</code> and specifies the <code>fileFormat</code> to search the student data file:</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"book"</span>, data <span class="op">=</span> <span class="va">sdf</span>, fileFormat <span class="op">=</span> <span class="st">"student"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   variableName                                       Labels</span></span>
 <span><span class="co">#&gt; 1      b013801                                Books in home</span></span>
@@ -182,7 +183,7 @@
 <span><span class="co">#&gt; 2    Student</span></span>
 <span><span class="co">#&gt; 3    Student</span></span></code></pre></div>
 <p>The levels and labels for each variable searched via <code><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF()</a></code> also can be returned by setting <code>levels = TRUE</code>:</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string <span class="op">=</span> <span class="st">"book"</span>, data <span class="op">=</span> <span class="va">sdf</span>, fileFormat <span class="op">=</span> <span class="st">"student"</span>, levels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Variable: b013801</span></span>
 <span><span class="co">#&gt; Label: Books in home</span></span>
@@ -212,7 +213,7 @@
 <span><span class="co">#&gt;      8. Omitted</span></span>
 <span><span class="co">#&gt;      0. Multiple</span></span></code></pre></div>
 <p>The <code>|</code> (OR) operator will search several strings simultaneously:</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string<span class="op">=</span><span class="st">"book|home|value"</span>, data<span class="op">=</span><span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    variableName</span></span>
 <span><span class="co">#&gt; 1       b013801</span></span>
@@ -254,12 +255,12 @@
 <span><span class="co">#&gt; 11    Student</span></span>
 <span><span class="co">#&gt; 12    Student</span></span></code></pre></div>
 <p>A vector of strings will search for variables that contain multiple strings, such as both “book” and “home”; each string is present in the variable label and can be used to filter the results:</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/searchSDF.html">searchSDF</a></span><span class="op">(</span>string<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"book"</span>,<span class="st">"home"</span><span class="op">)</span>, data<span class="op">=</span><span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   variableName        Labels fileFormat</span></span>
 <span><span class="co">#&gt; 1      b013801 Books in home    Student</span></span></code></pre></div>
 <p>To dive into a particular variable, use <code><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF()</a></code>. It returns the levels, the corresponding sample size, and label of each level.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"b017451"</span>, data <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'b017451' (Lowest level first):</span></span>
 <span><span class="co">#&gt;     1. Never or hardly ever (n = 3837)</span></span>
@@ -276,7 +277,7 @@
 <span class="header-section-number">5.2</span> Displaying Basic Information<a class="anchor" aria-label="anchor" href="#displaying-basic-information"><i class="fas fa-link"></i></a>
 </h2>
 <p>Some basic functions that work on a <code>data.frame</code>, such as <code>dim</code>, <code>nrow</code>, and <code>ncol</code>, also work on an <code>edsurvey.data.frame</code>. They help check the dimensions of <code>sdf</code>.</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 17606   303</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
@@ -284,7 +285,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdf</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 303</span></span></code></pre></div>
 <p>Basic information about plausible values and weights in an <code>edsurvey.data.frame</code> can be seen in the <code>print</code> function. The variables associated with plausible values and weights can be seen from the <code>showPlausibleValues</code> and <code>showWeights</code> functions, respectively, when setting the <code>verbose</code> argument to <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/showPlausibleValues.html">showPlausibleValues</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; There are 6 subject scale(s) or subscale(s) in this</span></span>
 <span><span class="co">#&gt;   edsurvey.data.frame:</span></span>
@@ -338,7 +339,7 @@
 <span><span class="co">#&gt;     'srwt56', 'srwt57', 'srwt58', 'srwt59', 'srwt60',</span></span>
 <span><span class="co">#&gt;     'srwt61', and 'srwt62'</span></span></code></pre></div>
 <p>The functions <code>getStratumVar</code> and <code>getPSUVar</code> return the default stratum variable name or a PSU variable associated with a weight variable.</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurvey-class.html">getStratumVar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, weightVar <span class="op">=</span> <span class="st">"origwt"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   stratum </span></span>
 <span><span class="co">#&gt; "repgrp1"</span></span>
@@ -378,7 +379,7 @@
 <strong><code>dropOmittedLevels</code></strong>: If <code>TRUE</code>, the function will remove omitted levels for the specified variable before producing descriptive statistics. If <code>FALSE</code>, the function will include omitted levels in the output statistics.</li>
 </ul>
 <p>The <code>summary2</code> function produces both weighted and unweighted descriptive statistics for a variable. This functionality is quite useful for gathering response information for survey variables when conducting data exploration. For NAEP data and other datasets that have a default weight variable, <code>summary2</code> produces weighted statistics by default. If the specified variable is a set of plausible values, and the <code>weightVar</code> option is non-<code>NULL</code>, <code>summary2</code> statistics account for both plausible values pooling and weighting.</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"composite"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;    Variable     N Weighted N   Min.  1st Qu.   Median</span></span>
@@ -386,7 +387,7 @@
 <span><span class="co">#&gt;       Mean  3rd Qu.    Max.      SD NA's Zero weights</span></span>
 <span><span class="co">#&gt; 1 275.8892 301.1827 404.184 36.5713    0            0</span></span></code></pre></div>
 <p>By specifying <code>weightVar = NULL</code>, the function prints out unweighted descriptive statistics for the selected variable or plausible values:</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"composite"</span>, weightVar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;   Variable     N   Min.  1st Qu. Median     Mean  3rd Qu.</span></span>
@@ -402,7 +403,7 @@
 <span><span class="co">#&gt; 4 407.41 35.91078    0</span></span>
 <span><span class="co">#&gt; 5 395.96 36.10905    0</span></span></code></pre></div>
 <p>For a categorical variable, the <code>summary2</code> function returns the weighted number of cases, the weighted percentage, and the weighted standard error (SE). For example, the variable <code>b017451</code> (frequency of students talking about studies at home) returns the following output:</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"b017451"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;                b017451    N Weighted N Weighted Percent</span></span>
@@ -422,7 +423,7 @@
 <span><span class="co">#&gt; 6           0.1272462</span></span>
 <span><span class="co">#&gt; 7           0.0191187</span></span></code></pre></div>
 <p>By default, the <code>summary2</code> function includes omitted levels; to remove those levels, set <code>dropOmittedLevels = TRUE</code>:</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/summary2.html">summary2</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, variable <span class="op">=</span> <span class="st">"b017451"</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Estimates are weighted using the weight variable 'origwt'</span></span>
 <span><span class="co">#&gt;                b017451    N Weighted N Weighted Percent</span></span>
@@ -464,10 +465,8 @@ categorical variables can be separated using <code>+</code> symbol.<br>
 - <code>dsex</code>: gender
 - <code>b017451</code>: frequency of talk about studies at home</p>
 <p><code>pctAggregationLevel</code> is by default set to <code>NULL</code> (or <code>1</code>). That is, the <code>PCT</code> column adds up to 100 within each level of the first categorical variable <code>dsex</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span>, pctAggregationLevel <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
-<pre><code>#&gt; Warning: package 'kableExtra' was built under R version
-#&gt; 4.4.1</code></pre>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:30%; overflow-x: scroll; width:100%; ">
 <div class="inline-table"><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
@@ -764,7 +763,7 @@ Every day
 </table></div>
 </div>
 <p>By specifying <code>pctAggregationLevel = 0</code>, such as in the following call, the <code>PCT</code> column adds up to 100 across the entire sample.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">es2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/edsurveyTable.html">edsurveyTable</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">composite</span> <span class="op">~</span> <span class="va">dsex</span> <span class="op">+</span> <span class="va">b017451</span>, data <span class="op">=</span> <span class="va">sdf</span>, pctAggregationLevel <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:75%; overflow-x: scroll; width:100%; ">
 <div class="inline-table"><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
@@ -1067,7 +1066,7 @@ Every day
 <span class="header-section-number">5.4.3</span> <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#ggplot2"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>ggplot2</code> is an important R package used with <code>EdSurvey</code> to conduct EDA.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load the ggplot2 library</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <p>The basic steps for using <code>ggplot2</code> are as follows. To learn more about how to use <code>ggplot2()</code>, visit its <a href="https://ggplot2.tidyverse.org/">official website</a>.</p>
@@ -1090,12 +1089,12 @@ Every day
 </ul>
 <p>In this chapter, you will find a “quick and dirty” approach (i.e., no application of weights; where applicable, only one set of plausible values is used) for EDA using <code>ggplot2</code> and <code>EdSurvey</code> functions. To learn more about conducting EDA on NCES data, read <a href="https://www.air.org/sites/default/files/EdSurvey-EDA.pdf"><em>Exploratory Data Analysis on NCES Data</em></a></p>
 <p>This section uses the following <code>gddat</code> object:</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gddat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/getData.html">getData</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sdf</span>, varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'dsex'</span>, <span class="st">'sdracem'</span>, <span class="st">'b018201'</span>, <span class="st">'b017451'</span>,</span>
 <span>                                   <span class="st">'composite'</span>, <span class="st">'geometry'</span>, <span class="st">'origwt'</span><span class="op">)</span>,</span>
 <span>              addAttributes <span class="op">=</span> <span class="cn">TRUE</span>, dropOmittedLevels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> uses the height of rectangles to represent data values. Figure 1 shows a bar chart with counts of the variable <code>b017451</code> in each category, with <code>fill = dsex</code> used to color portions of the selected <code>x</code> variable.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bar1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">b017451</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">dsex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1103,14 +1102,14 @@ Every day
 <span><span class="va">bar1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot1-1.png" width="1056"></div>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> uses binning to visualize the distribution of continuous variables. Figure 2 is a basic histogram that uses the first plausible value of the composite, giving an unbiased (but unweighted) estimate of the frequencies in each bin.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hist1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 2"</span><span class="op">)</span> </span>
 <span><span class="va">hist1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot2-1.png" width="1056"></div>
 <p>Figure 3 extends Figure 2, faceted on the categorical variable <code>dsex</code>, so that the output will be two histograms with common axes.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hist2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">dsex</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1125,14 +1124,14 @@ Every day
 <span><span class="co">#&gt; this warning was generated.</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot3-1.png" width="1056"></div>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code> shows the distribution of a single variable through quartiles. Figure 4 shows the distribution of the six levels of the <code>sdracem</code> variable by the first plausible value of the composite.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">box1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gddat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sdracem</span>, y <span class="op">=</span> <span class="va">mrpcm1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Figure 4"</span><span class="op">)</span> </span>
 <span><span class="va">box1</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot4-1.png" width="1056"></div>
 <p>Figure 5 extends Figure 4 by using <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code> to add another statistic on top: the mean of <code>mrpcm1</code> by <code>sdracem</code>, which is represented by the diamond-shaped symbol (<code>shape = 23</code>). Figure 5 also adds a coordinate flip via <code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code>.</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">box2</span> <span class="op">&lt;-</span> <span class="va">box1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun.y <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"point"</span>, shape <span class="op">=</span> <span class="fl">23</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1140,7 +1139,91 @@ Every day
 <span><span class="va">box2</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-understanding-data_files/figure-html/plot5-1.png" width="1056"></div>
 
-<pre><code>#&gt; Warning: package 'EdSurvey' was built under R version 4.4.1</code></pre>
+</div>
+</div>
+<div id="data-manipulation-with-tidyedsurvey" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Data Manipulation With <code>tidyEdSurvey</code><a class="anchor" aria-label="anchor" href="#data-manipulation-with-tidyedsurvey"><i class="fas fa-link"></i></a>
+</h2>
+<p>EdSurvey has a companion package, <code>tidyEdSurvey</code>, designed to allow users to directly use an <code>edsurvey.data.frame</code> with common <code>dplyr</code> and <code>ggplot2</code> functions, as opposed to making a call to <code>getData</code> first. Users may also use the utility functions <code>attach</code> and <code>with</code> with an <code>edsurvey.data.frame</code>. To install, run the following code within R:</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyEdSurvey"</span><span class="op">)</span></span></code></pre></div>
+<p>Once the package is successfully installed, <code>tidyEdSurvey</code> can be loaded with the following command:</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidyEdSurvey</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>with</code> function provides a convenient shorthand for evaluating expressions on an <code>edsurvey.data.frame</code>. Here we create a boxplot of the first plausible value of math performance (<code>mrpcm1</code>) broken down by mother’s education level (<code>b003501</code>)</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">sdf</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">mrpcm1</span><span class="op">~</span><span class="va">b003501</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="06-data-manipulation_files/figure-html/withtidyEdSurvey-1.png" width="672"></div>
+<p>Anything that can be done with a standard <code>data.frame</code> object within <code>dplyr</code> and <code>ggplot2</code> can be done with an <code>edsurvey.data.frame</code> using <code>tidyEdSurvey</code>. There are two nuances to consider:</p>
+<ol style="list-style-type: decimal">
+<li>If the <code>select</code> verb is used on a weight variable (such as <code>origwt</code>), the default behavior will also return the jackknife replicate weights associated with that weight variable.</li>
+<li>Any verb used with a plausible value variable (such as <code>algebra</code>) will return all of the associated plausible value columns (a total of 5 columns, in the case of the NAEP primer).</li>
+</ol>
+<div id="dplyr-with-edsurvey.data.frame" class="section level3" number="5.5.1">
+<h3>
+<span class="header-section-number">5.5.1</span> dplyr with <code>edsurvey.data.frame</code><a class="anchor" aria-label="anchor" href="#dplyr-with-edsurvey.data.frame"><i class="fas fa-link"></i></a>
+</h3>
+<p>All of the common <code>dplyr</code> verbs can be used with an <code>edsurvey.data.frame</code>, including: <code>select</code>, <code>group_by</code>, <code>filter</code>, <code>mutate</code>, <code>arrange</code>, and several more. We can consider an example where we filter to only female students, group by race, and get a count in each racial group.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sdf</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">dsex</span><span class="op">==</span><span class="st">"Female"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">sdracem</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">group_size</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4977 1615 1234  384  166   53</span></span></code></pre></div>
+<p>We can also use the <code>mutate</code> verb to create a proficiency variable based on the 1st set of plausible values.</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sdf2</span> <span class="op">&lt;-</span> <span class="va">sdf</span> <span class="op">%&gt;%</span>     </span>
+<span>    <span class="fu">mutate</span><span class="op">(</span>prof <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span>    </span>
+<span>                  <span class="fu">between</span><span class="op">(</span><span class="va">mrpcm1</span>, <span class="fl">0</span>, <span class="fl">261.99</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Below Basic"</span>,   </span>
+<span>                  <span class="fu">between</span><span class="op">(</span><span class="va">mrpcm1</span>, <span class="fl">262</span>, <span class="fl">298.99</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Basic"</span>,   </span>
+<span>                  <span class="fu">between</span><span class="op">(</span><span class="va">mrpcm1</span>, <span class="fl">299</span>, <span class="fl">332.99</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Proficient"</span>,  </span>
+<span>                  <span class="fu">between</span><span class="op">(</span><span class="va">mrpcm1</span>, <span class="fl">333</span>, <span class="fl">1e4</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Advanced"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We can then summarize <code>mrpcm1</code> by proficiency level, like so:</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sdf2</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">prof</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span><span class="va">mrpcm1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 16,915 × 2</span></span>
+<span><span class="co">#&gt; # Groups:   prof [4]</span></span>
+<span><span class="co">#&gt;    prof     mrpcm1</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1 Advanced   343.</span></span>
+<span><span class="co">#&gt;  2 Advanced   349.</span></span>
+<span><span class="co">#&gt;  3 Advanced   337.</span></span>
+<span><span class="co">#&gt;  4 Advanced   344.</span></span>
+<span><span class="co">#&gt;  5 Advanced   335.</span></span>
+<span><span class="co">#&gt;  6 Advanced   340.</span></span>
+<span><span class="co">#&gt;  7 Advanced   341.</span></span>
+<span><span class="co">#&gt;  8 Advanced   336.</span></span>
+<span><span class="co">#&gt;  9 Advanced   352.</span></span>
+<span><span class="co">#&gt; 10 Advanced   342.</span></span>
+<span><span class="co">#&gt; # ℹ 16,905 more rows</span></span></code></pre></div>
+<p>Note this is not a summary of students’ performance level, but rather of their first plausible performance level.</p>
+</div>
+<div id="ggplot2-with-edsurvey.data.frame" class="section level3" number="5.5.2">
+<h3>
+<span class="header-section-number">5.5.2</span> ggplot2 with <code>edsurvey.data.frame</code><a class="anchor" aria-label="anchor" href="#ggplot2-with-edsurvey.data.frame"><i class="fas fa-link"></i></a>
+</h3>
+<p>We can use <code>ggplot2</code> independently or as part of a <code>dplyr</code> pipeline to visualize our <code>edsurvey.data.frame</code>. Using the previous example where we created a variable for proficiency, we can extend the pipeline to visualize the proportion of students at each achievement level by race.</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sdf2</span> <span class="op">%&gt;%</span>    </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mrpcm1</span>,fill<span class="op">=</span><span class="va">prof</span>,color<span class="op">=</span><span class="va">prof</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">sdracem</span><span class="op">)</span>,scales<span class="op">=</span><span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span>   </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="op">(</span><span class="va">..count..</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">..count..</span>,<span class="va">..PANEL..</span>,<span class="va">sum</span><span class="op">)</span><span class="op">[</span><span class="va">..PANEL..</span><span class="op">]</span>,alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span>, </span>
+<span>               position<span class="op">=</span><span class="st">"stack"</span>,bw<span class="op">=</span><span class="fl">2</span>,show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#003f5c"</span>, <span class="st">"#58508d"</span>, <span class="st">"#bc5090"</span>,<span class="st">"#ff6361"</span><span class="op">)</span>,  </span>
+<span>                    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_none.html">guide_none</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#003f5c"</span>, <span class="st">"#58508d"</span>, <span class="st">"#bc5090"</span>,<span class="st">"#ff6361"</span><span class="op">)</span>,    </span>
+<span>                      guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_none.html">guide_none</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>            axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>            axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>    </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">262</span>,<span class="fl">299</span>,<span class="fl">333</span><span class="op">)</span>,   </span>
+<span>                 color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#58508d"</span>,<span class="st">"#ff6361"</span>,<span class="st">"#003f5c"</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span>, </span>
+<span>                 linewidth<span class="op">=</span><span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span>   </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>,label <span class="op">=</span> <span class="st">"Basic"</span>,x <span class="op">=</span> <span class="fl">262</span>,y <span class="op">=</span> <span class="fl">0.003</span>,angle <span class="op">=</span> <span class="fl">90</span>,vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>,label <span class="op">=</span> <span class="st">"Proficient"</span>,x <span class="op">=</span> <span class="fl">299</span>,y <span class="op">=</span> <span class="fl">0.003</span>,angle <span class="op">=</span> <span class="fl">90</span>,vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>,label <span class="op">=</span> <span class="st">"Advanced"</span>,x <span class="op">=</span> <span class="fl">333</span>,y <span class="op">=</span> <span class="fl">0.003</span>,angle <span class="op">=</span> <span class="fl">90</span>,vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="06-data-manipulation_files/figure-html/tidyEdSurvey4-1.png" width="672"></div>
 </div>
 </div>
 </div>
@@ -1159,6 +1242,12 @@ Every day
 <li><a class="nav-link" href="#summary2"><span class="header-section-number">5.4.1</span> summary2()</a></li>
 <li><a class="nav-link" href="#edsurveytable"><span class="header-section-number">5.4.2</span> edsurveyTable()</a></li>
 <li><a class="nav-link" href="#ggplot2"><span class="header-section-number">5.4.3</span> ggplot2</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#data-manipulation-with-tidyedsurvey"><span class="header-section-number">5.5</span> Data Manipulation With tidyEdSurvey</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dplyr-with-edsurvey.data.frame"><span class="header-section-number">5.5.1</span> dplyr with edsurvey.data.frame</a></li>
+<li><a class="nav-link" href="#ggplot2-with-edsurvey.data.frame"><span class="header-section-number">5.5.2</span> ggplot2 with edsurvey.data.frame</a></li>
 </ul>
 </li>
 </ul>

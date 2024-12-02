@@ -39,10 +39,21 @@ ccd_dir_url <-"https://nces.ed.gov/ccd/data/zip/ccd_sch_029_1415_w_0216601a_txt.
 ccd_mem_url <- "https://nces.ed.gov/ccd/data/zip/ccd_sch_052_1415_w_0216161a_txt.zip"
 edge_url <- "https://nces.ed.gov/ccd/data/zip/EDGE_GEOIDS_201415_PUBLIC_SCHOOL_csv.zip"
 
+# Set the target directory for the downloaded files
+ccd_dir <- paste0(getwd(), "/CCD")
+
+# Ensure the directory exists
+dir.create(ccd_dir, showWarnings = FALSE)
+
+# Define the paths for the downloaded files
+ccd_dir_zip <- file.path(ccd_dir, "ccd_dir.zip")
+ccd_mem_zip <- file.path(ccd_dir, "ccd_mem.zip")
+edge_zip <- file.path(ccd_dir, "edge.zip")
+
 # Download the CCD files
-download.file(ccd_dir_url, "~/CCD/ccd_dir.zip")
-download.file(ccd_mem_url, "~/CCD/ccd_mem.zip")
-download.file(edge_url, "~/CCD/edge.zip")
+download.file(ccd_dir_url, ccd_dir_zip)
+download.file(ccd_mem_url, ccd_mem_zip)
+download.file(edge_url, edge_zip)
 ```
 
 
@@ -50,13 +61,21 @@ After downloading these zip files, we will unzip and read the files.
 
 
 ```r
-unzip("~/CCD/ccd_dir.zip", exdir = "~/CCD/")
-unzip("~/CCD/ccd_mem.zip", exdir = "~/CCD/")
-unzip("~/CCD/edge.zip", exdir = "~/CCD/")
+# Update the unzip lines to match the directory
+unzip(file.path(ccd_dir, "ccd_dir.zip"), exdir = ccd_dir)
+unzip(file.path(ccd_dir, "ccd_mem.zip"), exdir = ccd_dir)
+unzip(file.path(ccd_dir, "edge.zip"), exdir = ccd_dir)
 
-ccd_dir <- read.delim('~/CCD/ccd_sch_029_1415_w_0216601a.txt',colClasses = "character")
-ccd_mem <- read.delim('~/CCD/ccd_sch_052_1415_w_0216161a.txt',colClasses = "character")
-edge <- read.delim('~/CCD/EDGE_GEOIDS_201415_PUBLIC_SCHOOL.csv', sep = ",", colClasses = "character") # Geographical location for utol4 variable
+# Update the file paths for reading data
+ccd_dir_data <- file.path(ccd_dir, "ccd_sch_029_1415_w_0216601a.txt")
+ccd_mem_data <- file.path(ccd_dir, "ccd_sch_052_1415_w_0216161a.txt")
+edge_data <- file.path(ccd_dir, "EDGE_GEOIDS_201415_PUBLIC_SCHOOL.csv")
+
+# Read the data
+ccd_dir <- read.delim(ccd_dir_data, colClasses = "character")
+ccd_mem <- read.delim(ccd_mem_data, colClasses = "character")
+edge <- read.delim(edge_data, sep = ",", colClasses = "character")
+ # Geographical location for utol4 variable
 ```
 
 In line with the designated sampling frame, special education schools  will be excluded from the 'ccd_dir' dataset. Also schools with different state address on their mailing address than their actual address will be removed to ensure the location information is accurate. Schools without specific grade levels, such as ungraded schools, and vocational schools lacking enrollment will be naturally filtered out in subsequent steps, as they will not possess records for the number of eighth-grade students. However, certain institutions like prison and hospital schools, home-school entities, and juvenile correctional facilities could not be systematically removed due to the absence of specific identifying data in the 2014-15 CCD files. 

@@ -1,7 +1,4 @@
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
-```
 
 # Longitudinal Datasets
 
@@ -60,32 +57,53 @@ Data recoding is especially important when performing analyses with ECLS:K-2011 
 
 In ECLS:K-2011, special codes are used to indicate item nonresponse, legitimate skips, and unit nonresponse.
 
-
-```
-#> Warning: package 'kableExtra' was built under R version
-#> 4.4.1
-```
-
-
-
-Table: (\#tab:table1001)Missing value codes used in the ECLS-K:2011 data file \label{tab:SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.}
-
-|Value   |Description                                                 |
-|:-------|:-----------------------------------------------------------|
-|-1      |Not applicable, including legitimate skips                  |
-|-2      |Data suppressed (public-use data file only)                 |
-|-4      |Data suppressed due to administration error                 |
-|-5      |Item not asked in School Administrator Questionnaire Form B |
-|-7      |Refused (a type of item nonresponse)                        |
-|-8      |Don't know (a type of item nonresponse)                     |
-|-9      |Not ascertained (a type of item nonresponse)                |
-|(blank) |System missing, including unit nonresponse                  |
-
+<table>
+<caption>(\#tab:table1001)Missing value codes used in the ECLS-K:2011 data file \label{tab:SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.}</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Value </th>
+   <th style="text-align:left;"> Description </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> -1 </td>
+   <td style="text-align:left;"> Not applicable, including legitimate skips </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -2 </td>
+   <td style="text-align:left;"> Data suppressed (public-use data file only) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -4 </td>
+   <td style="text-align:left;"> Data suppressed due to administration error </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -5 </td>
+   <td style="text-align:left;"> Item not asked in School Administrator Questionnaire Form B </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -7 </td>
+   <td style="text-align:left;"> Refused (a type of item nonresponse) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -8 </td>
+   <td style="text-align:left;"> Don't know (a type of item nonresponse) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> -9 </td>
+   <td style="text-align:left;"> Not ascertained (a type of item nonresponse) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> (blank) </td>
+   <td style="text-align:left;"> System missing, including unit nonresponse </td>
+  </tr>
+</tbody>
+</table>
 
 ```{=html}
 <a href="https://nces.ed.gov/ecls/kindergarten2011.asp">SOURCE: U.S. Department of Education, National Center for Education Statistics, Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS:K-2011), kindergarten-fifth grade (K--5) restricted-use data file.</a>
 ```
-
 
 The method for recoding these values appears later in this chapter in _Recoding Variables in a Dataset_ in the **Retrieving Data for Further Manipulation With getData** section of this chapter. 
 
@@ -339,26 +357,103 @@ es1 <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 
 This `edsurveyTable` is saved as the object `es1`, and the resulting table can be displayed by printing the object:
 
-
-
-Table: (\#tab:table1002)Weighted and Unweighted Sample Size, Percentage
+<table>
+<caption>(\#tab:table1002)Weighted and Unweighted Sample Size, Percentage
              Distribution, and Standard Error of Percentage Distribution
-             of Children by Students' Gender and Their Parents' Marital Status \label{tab:summaryTableECLSK}
-
-|x_chsex_r |p9curmar                                |    N|      WTD_N|       PCT|   SE(PCT)|
-|:---------|:---------------------------------------|----:|----------:|---------:|---------:|
-|1: MALE   |1: MARRIED (1)                          | 2938| 1367616.83| 67.608642| 1.1756039|
-|1: MALE   |2: SEPARATED (2)                        |  151|   86412.02|  4.271810| 0.3944507|
-|1: MALE   |3: DIVORCED OR WIDOWED (3, 4)           |  442|  250607.34| 12.388866| 0.7625198|
-|1: MALE   |4: NEVER MARRIED (5)                    |  425|  273190.02| 13.505249| 0.9075561|
-|1: MALE   |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   81|   45017.01|  2.225432| 0.3368478|
-|2: FEMALE |1: MARRIED (1)                          | 2870| 1319848.64| 69.131210| 1.0257652|
-|2: FEMALE |2: SEPARATED (2)                        |  143|   80672.81|  4.225491| 0.4357400|
-|2: FEMALE |3: DIVORCED OR WIDOWED (3, 4)           |  428|  224738.15| 11.771365| 0.6138104|
-|2: FEMALE |4: NEVER MARRIED (5)                    |  385|  237346.10| 12.431746| 0.7270084|
-|2: FEMALE |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   82|   46587.90|  2.440187| 0.2406026|
-
-
+             of Children by Students' Gender and Their Parents' Marital Status \label{tab:summaryTableECLSK}</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> x_chsex_r </th>
+   <th style="text-align:left;"> p9curmar </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:right;"> WTD_N </th>
+   <th style="text-align:right;"> PCT </th>
+   <th style="text-align:right;"> SE(PCT) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 2938 </td>
+   <td style="text-align:right;"> 1367616.83 </td>
+   <td style="text-align:right;"> 67.608642 </td>
+   <td style="text-align:right;"> 1.1756039 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 151 </td>
+   <td style="text-align:right;"> 86412.02 </td>
+   <td style="text-align:right;"> 4.271810 </td>
+   <td style="text-align:right;"> 0.3944507 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 442 </td>
+   <td style="text-align:right;"> 250607.34 </td>
+   <td style="text-align:right;"> 12.388866 </td>
+   <td style="text-align:right;"> 0.7625198 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 425 </td>
+   <td style="text-align:right;"> 273190.02 </td>
+   <td style="text-align:right;"> 13.505249 </td>
+   <td style="text-align:right;"> 0.9075561 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 81 </td>
+   <td style="text-align:right;"> 45017.01 </td>
+   <td style="text-align:right;"> 2.225432 </td>
+   <td style="text-align:right;"> 0.3368478 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 2870 </td>
+   <td style="text-align:right;"> 1319848.64 </td>
+   <td style="text-align:right;"> 69.131210 </td>
+   <td style="text-align:right;"> 1.0257652 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 143 </td>
+   <td style="text-align:right;"> 80672.81 </td>
+   <td style="text-align:right;"> 4.225491 </td>
+   <td style="text-align:right;"> 0.4357400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 428 </td>
+   <td style="text-align:right;"> 224738.15 </td>
+   <td style="text-align:right;"> 11.771365 </td>
+   <td style="text-align:right;"> 0.6138104 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 385 </td>
+   <td style="text-align:right;"> 237346.10 </td>
+   <td style="text-align:right;"> 12.431746 </td>
+   <td style="text-align:right;"> 0.7270084 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 82 </td>
+   <td style="text-align:right;"> 46587.90 </td>
+   <td style="text-align:right;"> 2.440187 </td>
+   <td style="text-align:right;"> 0.2406026 </td>
+  </tr>
+</tbody>
+</table>
 
 Given that the previous analysis uses parent data from Round 9, the weight variable `"w9c29p_9a0"` also might be appropriate. Both `"w9c29p_9t90"`  and `"w9c29p_9a0"` could be used for this analysis, although both include nonresponse adjustments for additional data components or rounds of data collection than those of interest in the current analysis. Therefore, analysts need to determine which weight they prefer to use because there is no weight that adjusts for nonresponse for only the sources used in this analysis. Successive analyses in this chapter that mix Round 9 child and parent variables might substitute the selected weight chosen. Note the slight differences in `*n* used` and results. Consult the *4.3.1 Types of Sample Weights* section of the [*ECLS-K:2011 Kindergarten--Fifth Grade User's Manual, Public Version*](https://nces.ed.gov/pubs2019/2019051.pdf) for additional guidance on choosing the most appropriate sample weight for an analysis.
 
@@ -373,26 +468,103 @@ es1p <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 #> weight from analysis.
 ```
 
-
-
-Table: (\#tab:table1003)Weighted and Unweighted Sample Size, Percentage
+<table>
+<caption>(\#tab:table1003)Weighted and Unweighted Sample Size, Percentage
              Distribution, and Standard Error of Percentage Distribution of
-             Children by Students' Gender and Their Parents' Marital Status---Using Parent Weights \label{tab:summaryTableECLSK2}
-
-|x_chsex_r |p9curmar                                |    N|      WTD_N|       PCT|   SE(PCT)|
-|:---------|:---------------------------------------|----:|----------:|---------:|---------:|
-|1: MALE   |1: MARRIED (1)                          | 3160| 1384646.17| 67.662995| 1.2201761|
-|1: MALE   |2: SEPARATED (2)                        |  165|   87807.35|  4.290850| 0.4019977|
-|1: MALE   |3: DIVORCED OR WIDOWED (3, 4)           |  473|  257917.26| 12.603548| 0.7437032|
-|1: MALE   |4: NEVER MARRIED (5)                    |  465|  273250.63| 13.352838| 0.8934741|
-|1: MALE   |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   85|   42764.76|  2.089770| 0.3269484|
-|2: FEMALE |1: MARRIED (1)                          | 3072| 1340918.74| 69.585339| 0.9959942|
-|2: FEMALE |2: SEPARATED (2)                        |  147|   78575.20|  4.077564| 0.4313110|
-|2: FEMALE |3: DIVORCED OR WIDOWED (3, 4)           |  449|  223633.62| 11.605193| 0.5995680|
-|2: FEMALE |4: NEVER MARRIED (5)                    |  417|  234899.85| 12.189841| 0.7083241|
-|2: FEMALE |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   90|   48985.90|  2.542063| 0.2864988|
-
-
+             Children by Students' Gender and Their Parents' Marital Status---Using Parent Weights \label{tab:summaryTableECLSK2}</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> x_chsex_r </th>
+   <th style="text-align:left;"> p9curmar </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:right;"> WTD_N </th>
+   <th style="text-align:right;"> PCT </th>
+   <th style="text-align:right;"> SE(PCT) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 3160 </td>
+   <td style="text-align:right;"> 1384646.17 </td>
+   <td style="text-align:right;"> 67.662995 </td>
+   <td style="text-align:right;"> 1.2201761 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 165 </td>
+   <td style="text-align:right;"> 87807.35 </td>
+   <td style="text-align:right;"> 4.290850 </td>
+   <td style="text-align:right;"> 0.4019977 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 473 </td>
+   <td style="text-align:right;"> 257917.26 </td>
+   <td style="text-align:right;"> 12.603548 </td>
+   <td style="text-align:right;"> 0.7437032 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 465 </td>
+   <td style="text-align:right;"> 273250.63 </td>
+   <td style="text-align:right;"> 13.352838 </td>
+   <td style="text-align:right;"> 0.8934741 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 85 </td>
+   <td style="text-align:right;"> 42764.76 </td>
+   <td style="text-align:right;"> 2.089770 </td>
+   <td style="text-align:right;"> 0.3269484 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 3072 </td>
+   <td style="text-align:right;"> 1340918.74 </td>
+   <td style="text-align:right;"> 69.585339 </td>
+   <td style="text-align:right;"> 0.9959942 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 147 </td>
+   <td style="text-align:right;"> 78575.20 </td>
+   <td style="text-align:right;"> 4.077564 </td>
+   <td style="text-align:right;"> 0.4313110 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 449 </td>
+   <td style="text-align:right;"> 223633.62 </td>
+   <td style="text-align:right;"> 11.605193 </td>
+   <td style="text-align:right;"> 0.5995680 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 417 </td>
+   <td style="text-align:right;"> 234899.85 </td>
+   <td style="text-align:right;"> 12.189841 </td>
+   <td style="text-align:right;"> 0.7083241 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 90 </td>
+   <td style="text-align:right;"> 48985.90 </td>
+   <td style="text-align:right;"> 2.542063 </td>
+   <td style="text-align:right;"> 0.2864988 </td>
+  </tr>
+</tbody>
+</table>
 
 The function also features variance estimation by setting the `varMethod` argument.[^helplmsdf] As shown in the previous example, the default `varMethod = "jackknife"` indicates that the call used the jackknife method for variance estimation. By setting `varMethod = "Taylor"`, the same `edsurveyTable` call in the previous example can return results using Taylor series variance estimation:
 
@@ -405,24 +577,101 @@ es1t <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 #> jrrIMax, pctAggregationLevel, : Removing 2251 rows with 0
 #> weight from analysis.
 ```
-
-
-Table: (\#tab:table1004)Weighted and Unweighted Sample Size, Percentage Distribution, and Standard Error of Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status---Taylor Series \label{tab:summaryTableECLSK3}
-
-|x_chsex_r |p9curmar                                |    N|      WTD_N|       PCT|   SE(PCT)|
-|:---------|:---------------------------------------|----:|----------:|---------:|---------:|
-|1: MALE   |1: MARRIED (1)                          | 2938| 1367616.83| 67.608642| 1.3241743|
-|1: MALE   |2: SEPARATED (2)                        |  151|   86412.02|  4.271810| 0.4490012|
-|1: MALE   |3: DIVORCED OR WIDOWED (3, 4)           |  442|  250607.34| 12.388866| 0.7819802|
-|1: MALE   |4: NEVER MARRIED (5)                    |  425|  273190.02| 13.505249| 1.1456202|
-|1: MALE   |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   81|   45017.01|  2.225432| 0.3459628|
-|2: FEMALE |1: MARRIED (1)                          | 2870| 1319848.64| 69.131210| 1.1836404|
-|2: FEMALE |2: SEPARATED (2)                        |  143|   80672.81|  4.225491| 0.4377188|
-|2: FEMALE |3: DIVORCED OR WIDOWED (3, 4)           |  428|  224738.15| 11.771365| 0.6806314|
-|2: FEMALE |4: NEVER MARRIED (5)                    |  385|  237346.10| 12.431746| 0.8638412|
-|2: FEMALE |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |   82|   46587.90|  2.440187| 0.3446689|
-
-
+<table>
+<caption>(\#tab:table1004)Weighted and Unweighted Sample Size, Percentage Distribution, and Standard Error of Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status---Taylor Series \label{tab:summaryTableECLSK3}</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> x_chsex_r </th>
+   <th style="text-align:left;"> p9curmar </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:right;"> WTD_N </th>
+   <th style="text-align:right;"> PCT </th>
+   <th style="text-align:right;"> SE(PCT) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 2938 </td>
+   <td style="text-align:right;"> 1367616.83 </td>
+   <td style="text-align:right;"> 67.608642 </td>
+   <td style="text-align:right;"> 1.3241743 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 151 </td>
+   <td style="text-align:right;"> 86412.02 </td>
+   <td style="text-align:right;"> 4.271810 </td>
+   <td style="text-align:right;"> 0.4490012 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 442 </td>
+   <td style="text-align:right;"> 250607.34 </td>
+   <td style="text-align:right;"> 12.388866 </td>
+   <td style="text-align:right;"> 0.7819802 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 425 </td>
+   <td style="text-align:right;"> 273190.02 </td>
+   <td style="text-align:right;"> 13.505249 </td>
+   <td style="text-align:right;"> 1.1456202 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 81 </td>
+   <td style="text-align:right;"> 45017.01 </td>
+   <td style="text-align:right;"> 2.225432 </td>
+   <td style="text-align:right;"> 0.3459628 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 2870 </td>
+   <td style="text-align:right;"> 1319848.64 </td>
+   <td style="text-align:right;"> 69.131210 </td>
+   <td style="text-align:right;"> 1.1836404 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 143 </td>
+   <td style="text-align:right;"> 80672.81 </td>
+   <td style="text-align:right;"> 4.225491 </td>
+   <td style="text-align:right;"> 0.4377188 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 428 </td>
+   <td style="text-align:right;"> 224738.15 </td>
+   <td style="text-align:right;"> 11.771365 </td>
+   <td style="text-align:right;"> 0.6806314 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 385 </td>
+   <td style="text-align:right;"> 237346.10 </td>
+   <td style="text-align:right;"> 12.431746 </td>
+   <td style="text-align:right;"> 0.8638412 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 82 </td>
+   <td style="text-align:right;"> 46587.90 </td>
+   <td style="text-align:right;"> 2.440187 </td>
+   <td style="text-align:right;"> 0.3446689 </td>
+  </tr>
+</tbody>
+</table>
 
 [^helplmsdf]: See the documentation for `lm.sdf` for details on the variance calculation.
 
@@ -439,23 +688,89 @@ es1b <- edsurveyTable(formula = ~ x_chsex_r + p9curmar, data = eclsk11,
 
 In this `edsurveyTable`, the resulting table can be displayed by printing the object:
 
-
-
-Table: (\#tab:table1005)Weighted and Unweighted Sample Size and Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status \label{tab:summaryTableECLSK4}
-
-|x_chsex_r |p9curmar                                |    N|      WTD_N|       PCT|
-|:---------|:---------------------------------------|----:|----------:|---------:|
-|1: MALE   |1: MARRIED (1)                          | 3718| 1367616.83| 67.608642|
-|1: MALE   |2: SEPARATED (2)                        |  210|   86412.02|  4.271810|
-|1: MALE   |3: DIVORCED OR WIDOWED (3, 4)           |  570|  250607.34| 12.388866|
-|1: MALE   |4: NEVER MARRIED (5)                    |  599|  273190.02| 13.505249|
-|1: MALE   |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |  103|   45017.01|  2.225432|
-|2: FEMALE |1: MARRIED (1)                          | 3585| 1319848.64| 69.131210|
-|2: FEMALE |2: SEPARATED (2)                        |  194|   80672.81|  4.225491|
-|2: FEMALE |3: DIVORCED OR WIDOWED (3, 4)           |  545|  224738.15| 11.771365|
-|2: FEMALE |4: NEVER MARRIED (5)                    |  558|  237346.10| 12.431746|
-|2: FEMALE |5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) |  114|   46587.90|  2.440187|
-
-
+<table>
+<caption>(\#tab:table1005)Weighted and Unweighted Sample Size and Percentage Distribution of Children by Students' Gender and Their Parents' Marital Status \label{tab:summaryTableECLSK4}</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> x_chsex_r </th>
+   <th style="text-align:left;"> p9curmar </th>
+   <th style="text-align:right;"> N </th>
+   <th style="text-align:right;"> WTD_N </th>
+   <th style="text-align:right;"> PCT </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 3718 </td>
+   <td style="text-align:right;"> 1367616.83 </td>
+   <td style="text-align:right;"> 67.608642 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 210 </td>
+   <td style="text-align:right;"> 86412.02 </td>
+   <td style="text-align:right;"> 4.271810 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 570 </td>
+   <td style="text-align:right;"> 250607.34 </td>
+   <td style="text-align:right;"> 12.388866 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 599 </td>
+   <td style="text-align:right;"> 273190.02 </td>
+   <td style="text-align:right;"> 13.505249 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 1: MALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 103 </td>
+   <td style="text-align:right;"> 45017.01 </td>
+   <td style="text-align:right;"> 2.225432 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 1: MARRIED (1) </td>
+   <td style="text-align:right;"> 3585 </td>
+   <td style="text-align:right;"> 1319848.64 </td>
+   <td style="text-align:right;"> 69.131210 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 2: SEPARATED (2) </td>
+   <td style="text-align:right;"> 194 </td>
+   <td style="text-align:right;"> 80672.81 </td>
+   <td style="text-align:right;"> 4.225491 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 3: DIVORCED OR WIDOWED (3, 4) </td>
+   <td style="text-align:right;"> 545 </td>
+   <td style="text-align:right;"> 224738.15 </td>
+   <td style="text-align:right;"> 11.771365 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 4: NEVER MARRIED (5) </td>
+   <td style="text-align:right;"> 558 </td>
+   <td style="text-align:right;"> 237346.10 </td>
+   <td style="text-align:right;"> 12.431746 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2: FEMALE </td>
+   <td style="text-align:left;"> 5: CIVIL UNION/DOMESTIC PARTNERSHIP (6) </td>
+   <td style="text-align:right;"> 114 </td>
+   <td style="text-align:right;"> 46587.90 </td>
+   <td style="text-align:right;"> 2.440187 </td>
+  </tr>
+</tbody>
+</table>
 
 For more details on the arguments in the `edsurveyTable` function, look at the examples using `?edsurveyTable`.
