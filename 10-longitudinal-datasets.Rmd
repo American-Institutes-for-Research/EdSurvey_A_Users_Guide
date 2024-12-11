@@ -23,7 +23,7 @@ downloadECLS_K(years = 2011, root = "C:/", cache=FALSE)
 To load the ECLS-K:2011 data for fifth graders and create an `edsurvey.data.frame`, select the pathway to the ECLS-K:2011 data folder and assign it the name  `eclsk11` with this call: 
 
 ```{r readECLS, results='hide', echo = FALSE}
-eclsk11 <- readECLS_K2011(paste0(edsurveyHome,"/ECLS_K/2011"))
+eclsk11 <- readECLS_K2011(file.path(edsurveyHome,"/ECLS_K/2011"))
 ```
 
 ```{r readECLSshown, eval = FALSE}

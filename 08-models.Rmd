@@ -1,5 +1,4 @@
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
-library(ggplot2)
 library(EdSurvey)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 options(EdSurvey_round_output=TRUE)
@@ -174,17 +173,10 @@ A logistic regression model can be fit to fully account for the complex sample d
 
 The following example demonstrates how to use `logit.sdf` to predict the number of books at home with student gender. The example arguments are generalizable to `glm.sdf` and `probit.sdf`. For more information about how to use the latter two functions, check their help files by calling `?glm.sdf` and `?probit.sdf`, respectively.
 
-In `logit.sdf`, although some variables might already be binary, the other variables can be converted to a binary variable using `ifelse` function. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level prior to the analyses. While we used to recommend using `I()` for this transformation, we no longer do, as `ifelse` function provides a more intuitive way to handle binary outcomes and allowing it to compare the frequencies of the actual variable and the binary variable. The following code creates a binary variable (`b013801_100more`) and assigne a value of `1` for "more than 100 books at home" (`">100"`) and `0` to all other categories, including `Omitted` and `Multiple`. 
-
-```{r logit_ifelse, cache=FALSE, warning=FALSE}
-sdf$b013801_100more <- ifelse(sdf$b013801 %in% ">100", yes = 1, no = 0)
-table(sdf$b013801, sdf$b013801_100more)
-```
-
-After creating the binary variable, we can run the logistic regression by calling the `logit.sdf` function.
+In `logit.sdf`, although some variables might already be binary, the function `I()` will dichotomize a nonbinary variable and specify the desired outcome level. A logistic regression can be run exploring the association of gender (`dsex`) to the outcome variable: number of books at home (`b013801`), which is dichotomized with the level matching "more than 100 books at home" (`">100"`) as the outcome level: 
 
 ```{r logit, cache=FALSE, warning=FALSE}
-logit1 <- logit.sdf(formula = b013801_100more ~ dsex,
+logit1 <- logit.sdf(formula = I(b013801 %in% ">100") ~ dsex,
                     weightVar = 'origwt', data = sdf)
 summary(object = logit1)
 ```
@@ -214,7 +206,6 @@ waldTest(model = logit1, coefficients = 2)
 ```
 
 To learn more about conducting Wald tests, consult the vignette titled [*Methods and Overview of Using EdSurvey for Running Wald Tests*](https://www.air.org/sites/default/files/EdSurvey-WaldTest.pdf).
-
 
 ### Using Plausible Values as a Predictor
 
@@ -349,7 +340,7 @@ The following two examples illustrate how to model the random intercept of mathe
 ```{r mixAgain, cache=FALSE, warning=FALSE}
 
 #Use all plausible values
-TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
+TIMSS15USA<- readTIMSS(file.path(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
 summary(object = mix1)
