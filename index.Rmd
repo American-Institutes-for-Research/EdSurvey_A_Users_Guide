@@ -188,7 +188,7 @@ Dnk2015
 
 ```{r Dnk2015edsurveyHome, echo = FALSE}
 #Read Grade 4 Denmark 2015 TIMSS survey into the dataframe Dnk2015 
-Dnk2015 <- readTIMSS(paste0(edsurveyHome,"/TIMSS/2015"), countries = "dnk", gradeLvl = 4)
+Dnk2015 <- readTIMSS(file.path(edsurveyHome,"/TIMSS/2015"), countries = "dnk", gradeLvl = 4)
 Dnk2015
 ```
 

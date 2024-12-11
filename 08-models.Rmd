@@ -245,7 +245,7 @@ The following two examples illustrate how to model the random intercept of mathe
 ```{r mixAgain, cache=FALSE, warning=FALSE}
 
 #Use all plausible values
-TIMSS15USA<- readTIMSS(paste0(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
+TIMSS15USA<- readTIMSS(file.path(edsurveyHome, "TIMSS/2015"), countries = c("usa"), gradeLvl = "4")
 mix1 <- mixed.sdf(mmat ~ itsex + (1|idschool), data = TIMSS15USA,
                   weightVar=c("totwgt","schwgt"), weightTransformation=FALSE)
 summary(object = mix1)
