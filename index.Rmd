@@ -27,6 +27,7 @@ favicon: "favicon.ico"
 ## to render epub, out.width needs to be a number value
 ## ```{r coverImage, echo=FALSE, fig.align='center', out.width=500}
 knitr::include_graphics('images/cover.png')
+options(EdSurvey_round_output=TRUE)
 ```
 
 ## Learning to Use `EdSurvey`
