@@ -5,3 +5,4 @@
 *.md
 *.rds
 *.rda
+.DS_Store
