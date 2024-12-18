@@ -1,5 +1,7 @@
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
-library(EdSurvey)
+devtools::load_all("~/GitHub/EdSurvey")
+require(ggplot2)
+require(tidyEdSurvey)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 options(EdSurvey_round_output=TRUE)
 ```
@@ -24,22 +26,26 @@ summary(object = lm1)
 
 After the regression is run, the data are automatically removed from memory. 
 
-`EdSurvey` drops level 1 by default from the discrete predictor and treats it as the reference group. The reference level can be changed through the argument `relevels`. For example, in the previous model, the default reference group is males. In the following example, the reference group is changed to "Female" for the variable `dsex`:
+`EdSurvey` drops the first/lowest level by default from the discrete predictor and treats it as the reference group---this is the first level in a table, such as:
+```{r table dsex}
+table(sdf$b017451)
+```
+where `Never or hardly ever` is the first level in the table and so the omitted group in a regression. The reference level can be changed through the argument `relevels`. For example, in the previous model. In the following example, the reference group is changed to a level closer to the middle of the scale: `About once a week` for the variable `b017451`:
 
 ```{r lmf, cache=FALSE, warning=FALSE}
 lm1f <- lm.sdf(formula = composite ~ dsex + b017451, data = sdf,
-               relevels = list(dsex = "Female"))
+               relevels = list(b017451 = "About once a week"))
 summary(object = lm1f)
 ```
 
-The coefficient on `dsex` changed from negative in the previous run to positive of the exact same magnitude, whereas none of the other coefficients (aside from the intercept) changed; this is the expected result. 
+The coefficient on `dsex` stayed the same but the intercept and `b017451` levels adjusted; this is the expected result because it does not change any predicted score in the model.
 
-The standardized regression coefficient also can be returned by adding `src=TRUE` into the summary call for your regression model object: 
+Standardized coefficients can help with interpretation because they can be interpreted as the association between a one standard deviation increase in the predictor on the outcome, also in terms of standard deviations. In this case, a one standard deviation increase in, e.g. the covariate `b017451` being in the level "2 or 3 times a week" doesn't add to interpretability. So, while we could do a typical standardized regresion coefficient by setting `src="both"`, instead we will only request coefficients that show the results in terms of a standardized outcome using `src="outcome"`: 
 ```{r lm1fSrc, cache=FALSE, warning=FALSE}
-summary(object = lm1f, src=TRUE)
+summary(object = lm1f, src="outcome")
 ```
 
-By default, the standardized coefficients are calculated using standard deviations of the variables themselves, including averaging the standard deviation across any plausible values. When `standardizeWithSamplingVar` is set to `TRUE`, the variance of the standardized coefficient is calculated similar to a regression coefficient and therefore includes the sampling variance in the variance estimate of the outcome variable.
+This results shows that studnts who report talking about studies at home 2 or 3 times a week score about 3.72 NAEP math scale score points higher that those who report talking about studies about once a week. The `stdCoef` column indicates that these score about 0.046 NAEP math standard deviations higher that females. The p-value is not affected by this transformation and can be used for either coefficient.
 
 ### Calculating Multiple Comparisons in lm.sdf
 
@@ -61,7 +67,7 @@ The *p*-values for variables run in `lm1` can be corrected for multiple testing.
 summary(object = lm1)$coefmat[6:8, "Pr(>|t|)"]
 ```
 
-Here the Benjamini and Hochberg (1995) FDR adjustment is used in the argument `method = "BH"`. The output below displays the adjusted *p*-values with the FDR adjustment:
+Here the @BenjaminiHochberg FDR adjustment is used in the argument `method = "BH"`. The output below displays the adjusted *p*-values with the FDR adjustment:
 
 ```{r pAdjust}
 # Benjamini and Hochberg adjusted p-values
@@ -209,7 +215,7 @@ To learn more about conducting Wald tests, consult the vignette titled [*Methods
 
 ### Using Plausible Values as a Predictor
 
-For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale can be used as a predictor. This feature has been enabled for generalized linear regression (`glm.sdf`, `logit.sdf`, and `probit.sdf`) and linear regression (`lm.sdf`). The methodology of these regression models has been documented in Chapter 11, Statistical Methodology. This subchapter will explain how to use this feature in linear and generalized linear regressions.
+For some research questions, a set of plausible values, that represents students’ achievement in a subject scale or subscale can be used as a predictor. This feature has been enabled for generalized linear regression (`glm.sdf`, `logit.sdf`, and `probit.sdf`) and linear regression (`lm.sdf`). The methodology of these regression models has been documented in [Chapter 11, Statistical Methodology][methods]. This subchapter will explain how to use this feature in linear and generalized linear regressions.
 
 
 #### Using Plausible Values as a Predictor for Generalized Linear Regression
@@ -229,10 +235,10 @@ sdf$AlgebraClass <- ifelse(sdf$m815701 %in% c('Algebra I (1-yr crs)', '1st yr 2-
 The `ifelse` function converts multiple Algebra class categories to `1` while coding all the other categories as `0`, including `Multiple` and `Omitted`. The following code provides the frequencies of each category of the newly created `AlgebraClass` variable against the actual variable in the `NAEP 2005 Primer`.
 
 ```{r logit_pred_table_AlgebraClass, cache=FALSE, warning=FALSE, eval=TRUE}
-table(sdf$m815701,sdf$AlgebraClass,  useNA = "always")
+table(sdf$m815701,sdf$AlgebraClass,  useNA = "ifany")
 ```
 
-After creating the `AlgebraClass` variable, the `logit.sdf` function can be used to answer the research question “How is students’ algebra achievement associated with students currently enrollment in an algebra class (Algebra I or Algebra II)”? In this context, `AlgebraClass` is the outcome variable and algebra achievement—represented by the algebra subscale in the `sdf` object—is the predictor. The `algebra` subscale includes multiple plausible values. The `logit.sdf` function runs the analyses for each plausible value, combines them according to Rubin’s rule (@rubin) on the backend, and provides the final results. The `logit.sdf` function, like the `glm.sdf`, `probit.sdf`, and `lm.sdf` functions, also accepts other subscales and `composite` scales. You can use the `showPlausibleValues` function to find out the name of the subject scale and subscales in the `sdf` object.
+After creating the `AlgebraClass` variable, the `logit.sdf` function can be used to answer the research question “How is students’ algebra achievement associated with students currently enrollment in an algebra class (Algebra I or Algebra II)”? In this context, `AlgebraClass` is the outcome variable and algebra achievement—represented by the algebra subscale in the `sdf` object—is the predictor. The `algebra` subscale includes multiple plausible values. The `logit.sdf` function runs the analyses for each plausible value, combines them according to Rubin’s rules [@rubin] and provides the final results. The `logit.sdf` function, like the `glm.sdf`, `probit.sdf`, and `lm.sdf` functions, also accepts other subscales and `composite` scales. You can use the `showPlausibleValues` function to find out the name of the subject scale and subscales in the `sdf` object.
 
 The following code demonstrates how to use plausible values as the predictor to answer the research question of interest:
 
@@ -242,7 +248,26 @@ logit2 <- logit.sdf(formula = AlgebraClass ~ algebra,
 summary(object = logit2)
 ```
 
-When running logistic regression, the `EdSurvey` package, by default, uses listwise deletion for special values, including missing values and `Multiple` and `Omitted` categories. To change the setting, set `dropOmittedLevels = FALSE` or recode them to another category. In this case, the special values were converted to `0` with the `ifelse` function. As the `AlgebraClass` variable is already created as a binary variable, by default the `logit.sdf` models the likelihood of its highest category (i.e., level 1: taking one of the algebra classes). Additionally, because we created the `AlgebraClass` variable with a certain condition (i.e., `1` if taking one of the algebra classes and `0` if not taking one of the algebra classes), the `0` condition contains `Multiple` and `Omitted` categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). Each one-unit increase in the algebra score was associated with an increase in log odds of being in an Algebra class of `0.0160`.
+When running logistic regression, the `EdSurvey` package, by default, uses listwise deletion for special values, including missing values and `Multiple` and `Omitted` categories. To change the setting, set `dropOmittedLevels = FALSE` or recode them to another category. In this case, the special values were converted to `0` with the `ifelse` function. As the `AlgebraClass` variable is already created as a binary variable, by default the `logit.sdf` models the likelihood of its highest category (i.e., level 1: taking one of the algebra classes). Additionally, because we created the `AlgebraClass` variable with a certain condition (i.e., `1` if taking one of the algebra classes and `0` if not taking one of the algebra classes), the `0` condition contains `Multiple` and `Omitted` categories in it as well. According to the logistic regression results, changes in algebra achievement are significantly associated with the likelihood of enrollment in Algebra I or II classes (versus not taking them, taking another math class, selecting multiple responses, or omitting this question). Each one-unit increase in the algebra score was associated with an increase in log odds of being in an Algebra class of `0.0160`. First, using `summary2` to get summary statistics about the NAEP `algebra` scores,
+```{r algebra summary}
+salg <- summary2("algebra", data=sdf, weightVar="origwt")
+salg
+```
+a user can then find the modeled probability a student took an Algebra class at the mean and one standard deviation above the mean relatively easily.
+
+```{r prob}
+mean_alg <- salg$summary$Mean
+sd_alg <- salg$summary$SD
+mean_pred <- data.frame(algebra=c(mean_alg, # a student with mean algebra score
+                                  mean_alg + sd_alg)) # a student with algebra 1 SD above the mean
+round(100 * # multiply by 100 to make the 0-1 outcome into a percentage on 0-100
+      predict(logit2, # predict with the logit2 model that was fit above
+              newdata=mean_pred, # predict at these levels
+              type="response")) # predict in the 0-1 space
+```
+This shows that a student at the mean algebra score of 278.94 would be predicted to be enrolled in an algebra class with a probability of about 36% while a student with a one standard devation higher score of 315.6 would be predicted to be enrilled an algebra class about 51% of the time.
+
+
 
 #### Using Plausible Values as a Predictor for Linear Regression
 
@@ -267,6 +292,8 @@ As the output shows, the categories range from `1` to `4`, representing response
 ```{r, lm_numeric, cache=FALSE, warning=FALSE, eval=TRUE} 
 sdf$m815501_numeric <- as.numeric(sdf$m815501)
 sdf$m815501_numeric <- ifelse(sdf$m815501_numeric  %in% c(0,8), NA,  sdf$m815501_numeric)
+require("tidyEdSurvey") # needed to use with() on the next line
+with(sdf, table(m815501, m815501_numeric))
 ```
 
 After preparing the variable, we can apply the `lm.sdf` to run a linear regression model:
@@ -275,7 +302,7 @@ After preparing the variable, we can apply the `lm.sdf` to run a linear regressi
 lm5 <- lm.sdf(formula = m815501_numeric  ~ composite, data = sdf) 
 summary(lm5) 
 ``` 
-The analysis shows that the mathematics `composite` scale score is a significant predictor of effort on the math test. However, the coefficient is negative, indicating that higher scoring students tend to report lower effort on this math test. The R-squared value is `0.02`, meaning this model explains only 2% of the variance in the `m815501` variable.
+The analysis shows that the mathematics `composite` scale score is a statistically significant predictor of effort on the math test. The coefficient is negative, indicating that higher scoring students tend to report lower effort on this math test. The R-squared value is `0.02`, meaning this model explains only 2% of the variance in the `m815501` variable.
 
 We can also visually inspect the fitted values against the observed values. The following code extracts the fitted values from the `lm5` model, removes the plausible values for students missing on `m815501`, and creates a plot of the first plausible value, the listwise-deleted `m815501_numeric`, and the fitted values:
  
@@ -311,7 +338,7 @@ rq1 <- rq.sdf(composite ~ dsex + b017451, data=sdf, tau = 0.8)
 summary(object = rq1)
 ```
 
-For further details on quantile regression models and how they are implemented in R, see the vignette from the `quantreg` package (accessible by the `vignette("rq", package="quantreg")`), on which the `rq.sdf` function is built.
+For further details on quantile regression models and how they are implemented in R, see the vignette from the `quantreg` package (accessible by the `vignette("rq", package="quantreg")`), on which the `rq.sdf` function is built [@quantreg].
 
 ##  Mixed Models With `mixed.sdf`
 `EdSurvey` features the functionality of estimating mixed-effects models accounting for plausible values and survey weights. `EdSurvey` fits a weighted mixed model, also known as a weighted multilevel or hierarchical linear model using the `WeMix` package.
