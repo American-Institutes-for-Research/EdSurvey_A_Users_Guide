@@ -1,5 +1,10 @@
 # Analysis Outside `EdSurvey` {#analysisOutsideEdSurvey}
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Lee, M. Analysis Outside EdSurvey. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 `EdSurvey` gives users functions to efficiently analyze education survey data. Although `EdSurvey` allows for rudimentary data manipulation and analysis, this chapter will discuss how to integrate other R packages into `EdSurvey`. As this chapter will demonstrate, this functionality is especially useful for data processing and manipulation in popular R packages such as `dplyr`.
 
 ## Integration With Any Other Package
@@ -9,7 +14,6 @@ By calling the function `getData()`, one can extract a `light.edsurvey.data.fram
 
 ```r
 library(EdSurvey)
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
 #> Loading required package: car
 #> Loading required package: carData
 #> Loading required package: lfactors

@@ -1,5 +1,10 @@
 # Data Access {#dataAccess}
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Fink, T. Data Access. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 To obtain and read in different types of assessment data, each section in this chapter shows information about licensing, downloading, and some simple examples. Before processing NCES datasets with `EdSurvey`, review the available study documentation to familiarize yourself with each unique study. 
 
 Its good practice to keep source data in a structured folder scheme.  For `EdSurvey` we recommend having one `root` data folder, subfolders for each study, and year/group folders within each study subfolder.  For example, `C:/EdSurveyData` would be the `root` folder.  Then `C:/EdSurveyData/TIMSS` would be the `TIMSS` study folder.  Lastly, each year of TIMSS data would then have another subfolder such as `C:/EdSurveyData/TIMSS/2015`. This structure helps organize the data and is the method used by the `download` functions.

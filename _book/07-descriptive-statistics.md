@@ -1,9 +1,11 @@
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
-```
 
 # Descriptive Statistics
+
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Buehler, E. & Zhang, T. Descriptive Statistics. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 ## Computing the Percentages of Students With `achievementLevels`
 

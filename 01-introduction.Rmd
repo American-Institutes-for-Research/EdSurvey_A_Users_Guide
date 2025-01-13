@@ -1,5 +1,10 @@
 # Introduction
 
+Last edited: February 2022
+
+**Suggested Citation**<br></br>
+Zhang, T. Introduction. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 Large-scale educational assessments---such as NAEP (National Assessment of Educational Progress), TIMSS (Trends in International Mathematics and Science Study), PISA (Programme for International Student Assessment)---collect data related to education in the United States and other nations. Because of the quality and quantity of the inherent information, the assessment data are valuable assets for policymakers, education practitioners, and researchers to explore and understand multiple education-related issues from childhood to adulthood, from schools, homes, and neighborhoods. These large-scale assessments measure activities and outcomes of educational systems and institutions in jurisdictions (e.g., districts, states, countries) and address how other jurisdictions educate their children and with what success. They gather demographic information and contextual data from participating students and their homes, schools, and teachers on various topics, such as crucial curricular, instructional, and resource-related factors that can impact the teaching and learning process. 
 
 Because of their special sampling and testing designs, large-scale educational assessment data allow inference at the jurisdiction level regarding the target sample and domains assessed, for example, U.S. students’ achievement in mathematics in Grade 8. Meanwhile, the designs have implications for data analyses. Often, customized statistical analysis modules need to properly account for the designs in data analysis.

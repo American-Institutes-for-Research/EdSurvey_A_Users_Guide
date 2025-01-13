@@ -1,9 +1,11 @@
 
-```
-#> Warning: package 'EdSurvey' was built under R version 4.4.1
-```
 
 # Understanding Data {#understandingData}
+
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Liao, Y. Understanding Data. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
 
 Once data are successfully read in (see how `EdSurvey` supports reading-in data for each study in [Chapter 4](#dataAccess)), users can use the commands in the following sections to understand the data.
 
@@ -407,12 +409,6 @@ The following call uses `edsurveyTable()` to create a summary table of NAEP comp
 es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggregationLevel = NULL)
 ```
 
-
-```
-#> Warning: package 'kableExtra' was built under R version
-#> 4.4.1
-```
-
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:30%; overflow-x: scroll; width:100%; "><table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">(\#tab:table501)Summary Data Tables with EdSurvey</caption>
  <thead>
@@ -530,8 +526,6 @@ es1 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
   </tr>
 </tbody>
 </table></div>
-
-
 
 
 By specifying `pctAggregationLevel = 0`, such as in the following call, the `PCT` column adds up to 100 across the entire sample.         
@@ -659,8 +653,6 @@ es2 <- edsurveyTable(formula = composite ~ dsex + b017451, data = sdf, pctAggreg
   </tr>
 </tbody>
 </table></div>
-
-
 
 ### `ggplot2`
 `ggplot2` is an important R package used with `EdSurvey` to conduct EDA. 
