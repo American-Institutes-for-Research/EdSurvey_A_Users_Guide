@@ -7,7 +7,7 @@
 <title>Preface | Analyzing NCES Data Using EdSurvey: A User’s Guide</title>
 <meta name="author" content="EdSurvey Team">
 <meta name="description" content="Analyzing NCES Data Using EdSurvey: A User’s Guide is the first introductory manual dedicated to introducing this R package to the education research community. Until now, most of the instruction...">
-<meta name="generator" content="bookdown 0.40 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Preface | Analyzing NCES Data Using EdSurvey: A User’s Guide">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/preface.html">
@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://github.com/American-Institutes-for-Research/EdSurvey_A_Users_Guide/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -178,7 +178,7 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 #&gt; |&gt;Teacher        |        5897|         745|one:many        |5897 of 5897                | ✓  |
 #&gt; edsurvey.data.frame for 2015 TIMSS International
 #&gt;   (Mathematics and Science; Grade 4) in Denmark
-#&gt; Dimensions: 5897 rows and 2043 columns.
+#&gt; Dimensions: 5900 rows and 2043 columns.
 #&gt; 
 #&gt; There are 4 full sample weights in this
 #&gt;   edsurvey.data.frame:
@@ -513,10 +513,10 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="fu"><a href="https://rdrr.io/pkg/EdSurvey/man/levelsSDF.html">levelsSDF</a></span><span class="op">(</span>varnames <span class="op">=</span> <span class="st">"asbg10b"</span>, data <span class="op">=</span> <span class="va">Dnk2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Levels for Variable 'asbg10b' (Lowest level first):</span></span>
 <span><span class="co">#&gt;     1. EVERY DAY OR ALMOST EVERY DAY (n = 840)</span></span>
-<span><span class="co">#&gt;     2. ONCE OR TWICE A WEEK (n = 1368)</span></span>
-<span><span class="co">#&gt;     3. ONCE OR TWICE A MONTH (n = 671)</span></span>
-<span><span class="co">#&gt;     4. NEVER OR ALMOST NEVER (n = 603)</span></span>
-<span><span class="co">#&gt;     9. OMITTED OR INVALID* (n = 122)</span></span>
+<span><span class="co">#&gt;     2. ONCE OR TWICE A WEEK (n = 1400)</span></span>
+<span><span class="co">#&gt;     3. ONCE OR TWICE A MONTH (n = 670)</span></span>
+<span><span class="co">#&gt;     4. NEVER OR ALMOST NEVER (n = 600)</span></span>
+<span><span class="co">#&gt;     9. OMITTED OR INVALID* (n = 120)</span></span>
 <span><span class="co">#&gt;     NOTE: * indicates an omitted level.</span></span></code></pre></div>
 <p>Please note that these estimates are weighted. To see the unweighted frequency table, use the option <code>weightVar = NULL</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -524,11 +524,11 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <span><span class="co">#&gt; Estimates are not weighted.</span></span>
 <span><span class="co">#&gt;                         asbg10b    N   Percent</span></span>
 <span><span class="co">#&gt; 1 EVERY DAY OR ALMOST EVERY DAY  840 22.641509</span></span>
-<span><span class="co">#&gt; 2          ONCE OR TWICE A WEEK 1368 36.873315</span></span>
-<span><span class="co">#&gt; 3         ONCE OR TWICE A MONTH  671 18.086253</span></span>
-<span><span class="co">#&gt; 4         NEVER OR ALMOST NEVER  603 16.253369</span></span>
-<span><span class="co">#&gt; 5            OMITTED OR INVALID  122  3.288410</span></span>
-<span><span class="co">#&gt; 6                          &lt;NA&gt;  106  2.857143</span></span></code></pre></div>
+<span><span class="co">#&gt; 2          ONCE OR TWICE A WEEK 1400 36.873315</span></span>
+<span><span class="co">#&gt; 3         ONCE OR TWICE A MONTH  670 18.086253</span></span>
+<span><span class="co">#&gt; 4         NEVER OR ALMOST NEVER  600 16.253369</span></span>
+<span><span class="co">#&gt; 5            OMITTED OR INVALID  120  3.288410</span></span>
+<span><span class="co">#&gt; 6                          &lt;NA&gt;  110  2.857143</span></span></code></pre></div>
 <p>Additional data exploration functions are in <a href="understandingData.html#understandingData">Chapter 5</a>.</p>
 <p>The previous examples give a brief introduction to <code>EdSurvey</code> commands, what they look like, and their purpose. Many more commands appear in the subsequent chapters. These commands were created based on questions, inquiries, suggestions, and surveys collected from more than 2 decades of training at NCES, AERA, and National Council for Measurement in Education and interacting with analysts of our data products. The researcher should pay particular attention to commands that are specific to some types of data and those that apply to any dataset. As users progress through this manual while analyzing their data, they must always remember that (a) they are in the R environment, (b) all the commands of R base are available to them at any given time, and (c) they have to ability to augment <code>EdSurvey</code> with tools from other packages in CRAN.</p>
 <p>At the end of this manual, Chapters 11 and 12 detail some of the mathematics used to create some of the functions in <code>EdSurvey</code>. This is done purposefully. The development team wants the user to be aware that even though this package makes many computations easily accessible, there are intensive computations and several methodologies that either existed or were developed that were implemented in this package. The entire <code>EdSurvey</code> package is not complete because it is still being developed. The team strongly encourages that anyone who has suggestions of methodology that could be added or that they have developed themselves as an add-on to <a href="https://github.com/American-Institutes-for-Research/EdSurvey">contact us</a> for possible implementation. The development team will not guarantee inclusion but will give any suggestions a fair assessment.</p>
@@ -570,7 +570,7 @@ AM and WESVAR are needed because, traditionally, NCES data are collected using m
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-10-21.</p>
+    <p>"<strong>Analyzing NCES Data Using EdSurvey: A User’s Guide</strong>" was written by EdSurvey Team. It was last built on 2024-11-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
