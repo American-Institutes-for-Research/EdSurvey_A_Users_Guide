@@ -2,6 +2,11 @@
 
 # Longitudinal Datasets
 
+Last edited: July 2023
+
+**Suggested Citation**<br></br>
+Lee, M. Longitudinal Datasets. In Bailey, P. and Zhang, T. (eds.), _Analyzing NCES Data Using EdSurvey: A User's Guide_.
+
 Data from large-scale educational assessment programs require special statistical methods for analysis. Because of their scope and complexity, `EdSurvey` gives users functions to perform analyses that account for complex sample survey designs. This chapter provides some analysis guidelines and tips that apply to most NCES longitudinal data, using the Early Childhood Longitudinal Study, Kindergarten Class of 2010--11 (ECLS-K:2011) as the example data. 
 
 ## Using `EdSurvey` to Access ECLS-K:2011 Data for Analysis

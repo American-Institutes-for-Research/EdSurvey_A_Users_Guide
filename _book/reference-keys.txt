@@ -152,7 +152,6 @@ multivariate-regression-with-mvrlm.sdf
 logistic-regression-analysis-with-glm.sdf-logit.sdf-and-probit.sdf
 recovering-odds-ratios
 wald-tests
-using-plausible-values-as-a-predictor
 quantile-regression-analysis-with-rq.sdf
 mixed-models-with-mixed.sdf
 analysisOutsideEdSurvey
@@ -228,5 +227,3 @@ weights-developed-for-use-with-the-ecls-k2011-second-grade-data
 weights-developed-for-use-with-the-ecls-k2011-third-grade-data
 weights-developed-for-use-with-the-ecls-k2011-fourth-grade-data
 weights-developed-for-use-with-the-ecls-k2011-fifth-grade-data-spring-2016
-note-this-section-will-be-merged-into-the-main-dire-section
-using-the-dire-package-for-linked-data
