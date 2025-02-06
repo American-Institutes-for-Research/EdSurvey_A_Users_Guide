@@ -1,6 +1,6 @@
 ```{r loadEdSurvey8, echo=FALSE, message=FALSE}
-devtools::load_all("~/GitHub/EdSurvey")
 require(ggplot2)
+require(EdSurvey)
 require(tidyEdSurvey)
 sdf <- readNAEP(path = system.file("extdata/data", "M36NT2PM.dat", package = "NAEPprimer"))
 options(EdSurvey_round_output=TRUE)
